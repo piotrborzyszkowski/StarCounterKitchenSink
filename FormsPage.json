@@ -1,0 +1,20 @@
+{
+  "Html": "/KitchenSink/FormsPage.html",
+
+  "Name$": "",
+  "Age$": 0,
+  "DrivingLicense$": true,
+  "Pets": [{
+    "Name": "", "Kind": ""
+  }],
+
+  "NameReaction": "",
+  "$NameReaction": {"Bind": "CalculatedNameReaction"},
+
+  "AgeReaction": "",
+  "$AgeReaction": {"Bind": "CalculatedAgeReaction"},
+
+  "DrivingLicenseReaction": "",
+  "$DrivingLicenseReaction": {"Bind": "CalculatedDrivingLicenseReaction"}
+
+}

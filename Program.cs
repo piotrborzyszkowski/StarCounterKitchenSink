@@ -21,6 +21,10 @@ namespace KitchenSink {
         NavPage.NavLinksElementJson a;
 
         a = nav.NavLinks.Add();
+        a.Label = "Forms";
+        a.Url = "/KitchenSink/forms";
+
+        a = nav.NavLinks.Add();
         a.Label = "Email";
         a.Url = "/KitchenSink/email";
 
@@ -44,6 +48,15 @@ namespace KitchenSink {
 
       Handle.GET("/KitchenSink", () => {
         return Self.GET("/KitchenSink/input");
+      });
+
+      Handle.GET("/KitchenSink/forms", () => {
+        var master = (StandalonePage)Self.GET("/KitchenSink/standalone");
+        if (!((master.CurrentPage as NavPage).CurrentPage is FormsPage)) {
+          var page = new FormsPage();
+          (master.CurrentPage as NavPage).CurrentPage = page;
+        }
+        return master;
       });
 
       Handle.GET("/KitchenSink/email", () => {

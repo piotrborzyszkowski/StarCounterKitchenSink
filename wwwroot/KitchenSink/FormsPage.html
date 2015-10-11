@@ -1,0 +1,24 @@
+﻿<template>
+  <p class="lead">JSON's primitive value types <code>string</code>, <code>number</code>, <code>boolean</code> can be mapped directly to HTML form input elements: <code>type="text"</code>, <code>type="number"</code>, <code>type="checkbox"</code></p>
+
+  <template is="dom-bind">
+    <div class="form-group">
+      <label class="control-label">{{model.NameReaction}}</label>
+      <input type="text" value="{{model.Name$::change}}" placeholder="Name" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label class="control-label">{{model.AgeReaction}}</label>
+      <input type="number" value="{{model.Age$::change}}" placeholder="Age" class="form-control">
+    </div>
+
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" checked="{{model.DrivingLicense$::change}}"> Driver's license
+      </label>
+      <div>{{model.DrivingLicenseReaction}}</div>
+    </div>
+
+    <dom-bind-notifier path="model" observed-object="{{model}}" deep></dom-bind-notifier>
+  </template>
+</template>

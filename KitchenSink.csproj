@@ -64,6 +64,9 @@
     <Compile Include="EmailPage.json.cs">
       <DependentUpon>EmailPage.json</DependentUpon>
     </Compile>
+    <Compile Include="FormsPage.json.cs">
+      <DependentUpon>FormsPage.json</DependentUpon>
+    </Compile>
     <Compile Include="MenuPage.json.cs">
       <DependentUpon>MenuPage.json</DependentUpon>
     </Compile>
@@ -99,6 +102,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="wwwroot\KitchenSink\EmailPage.html" />
+    <Content Include="wwwroot\KitchenSink\FormsPage.html" />
     <Content Include="wwwroot\KitchenSink\MenuPage.html" />
     <Content Include="wwwroot\KitchenSink\NavPage.html" />
     <Content Include="wwwroot\KitchenSink\NumberPage.html" />
@@ -118,6 +122,11 @@
   </ItemGroup>
   <ItemGroup>
     <TypedJSON Include="EmailPage.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
+  </ItemGroup>
+  <ItemGroup>
+    <TypedJSON Include="FormsPage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>
