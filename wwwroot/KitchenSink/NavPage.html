@@ -1,0 +1,16 @@
+﻿<template>
+  <template is="dom-bind">
+
+    <ul>
+      <template is="dom-repeat" items="{{model.NavLinks}}">
+        <li><a href="{{item.Url}}">{{item.Label}}</a></li>
+      </template>
+    </ul>
+
+    <div class="kitchen-sink-current-page">
+      <starcounter-include partial="{{model.CurrentPage}}"></starcounter-include>
+    </div>
+
+    <dom-bind-notifier path="model" observed-object="{{model}}" deep></dom-bind-notifier>
+  </template>
+</template>

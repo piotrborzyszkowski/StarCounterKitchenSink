@@ -61,8 +61,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="InputsPage.json.cs">
-      <DependentUpon>InputsPage.json</DependentUpon>
+    <Compile Include="EmailPage.json.cs">
+      <DependentUpon>EmailPage.json</DependentUpon>
+    </Compile>
+    <Compile Include="MenuPage.json.cs">
+      <DependentUpon>MenuPage.json</DependentUpon>
+    </Compile>
+    <Compile Include="NavPage.json.cs">
+      <DependentUpon>NavPage.json</DependentUpon>
+    </Compile>
+    <Compile Include="NumberPage.json.cs">
+      <DependentUpon>NumberPage.json</DependentUpon>
+    </Compile>
+    <Compile Include="InputPage.json.cs">
+      <DependentUpon>InputPage.json</DependentUpon>
     </Compile>
     <Compile Include="StandalonePage.json.cs">
       <DependentUpon>StandalonePage.json</DependentUpon>
@@ -71,7 +83,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <TypedJSON Include="InputsPage.json">
+    <TypedJSON Include="NumberPage.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
+  </ItemGroup>
+  <ItemGroup>
+    <TypedJSON Include="InputPage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>
@@ -81,9 +98,28 @@
     </TypedJSON>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="wwwroot\KitchenSink\InputsPage.html" />
+    <Content Include="wwwroot\KitchenSink\EmailPage.html" />
+    <Content Include="wwwroot\KitchenSink\MenuPage.html" />
+    <Content Include="wwwroot\KitchenSink\NavPage.html" />
+    <Content Include="wwwroot\KitchenSink\NumberPage.html" />
+    <Content Include="wwwroot\KitchenSink\InputPage.html" />
     <Content Include="wwwroot\KitchenSink\StandalonePage.html" />
     <Content Include="wwwroot\KitchenSink\style.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypedJSON Include="MenuPage.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
+  </ItemGroup>
+  <ItemGroup>
+    <TypedJSON Include="NavPage.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
+  </ItemGroup>
+  <ItemGroup>
+    <TypedJSON Include="EmailPage.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(StarcounterBin)\Starcounter.MsBuild.targets" />

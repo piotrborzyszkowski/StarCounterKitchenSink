@@ -1,0 +1,10 @@
+﻿<template>
+  <template is="dom-bind">
+    <div class="form-group">
+      <label class="control-label">{{model.Reaction}}</label>
+      <input type="email" value="{{model.EditMe$::change}}" placeholder="Email" class="form-control">
+    </div>
+
+    <dom-bind-notifier path="model" observed-object="{{model}}" deep></dom-bind-notifier>
+  </template>
+</template>

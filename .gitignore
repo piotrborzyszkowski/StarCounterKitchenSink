@@ -114,3 +114,7 @@ UpgradeLog*.XML
 node_modules
 
 dist/*
+
+# Remove what comes from Starcounter /sys/
+wwwroot/sys/polymer
+wwwroot/sys/webcomponentsjs
