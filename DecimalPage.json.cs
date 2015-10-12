@@ -1,5 +1,4 @@
 using Starcounter;
-using System;
 
 namespace KitchenSink {
   partial class DecimalPage : Page {
