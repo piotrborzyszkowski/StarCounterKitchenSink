@@ -41,6 +41,23 @@ namespace KitchenSink
         return master;
       });
 
+      Handle.GET("/KitchenSink/chart", () => {
+        var master = (StandalonePage)Self.GET("/KitchenSink/standalone");
+        if (!((master.CurrentPage as NavPage).CurrentPage is ChartPage)) {
+          var page = new ChartPage();
+
+          page.AddChartData("January", 4);
+          page.AddChartData("February", 7);
+          page.AddChartData("March", 9);
+          page.AddChartData("April", 12);
+          page.AddChartData("May", 15);
+          page.AddChartData("June", 19);
+
+          (master.CurrentPage as NavPage).CurrentPage = page;
+        }
+        return master;
+      });
+
       Handle.GET("/KitchenSink/checkbox", () => {
         var master = (StandalonePage)Self.GET("/KitchenSink/standalone");
         if (!((master.CurrentPage as NavPage).CurrentPage is CheckboxPage)) {

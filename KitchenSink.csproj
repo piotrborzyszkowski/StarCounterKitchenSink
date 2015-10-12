@@ -64,6 +64,9 @@
     <Compile Include="ButtonPage.json.cs">
       <DependentUpon>ButtonPage.json</DependentUpon>
     </Compile>
+    <Compile Include="ChartPage.json.cs">
+      <DependentUpon>ChartPage.json</DependentUpon>
+    </Compile>
     <Compile Include="CheckboxPage.json.cs">
       <DependentUpon>CheckboxPage.json</DependentUpon>
     </Compile>
@@ -127,6 +130,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="wwwroot\KitchenSink\ButtonPage.html" />
+    <Content Include="wwwroot\KitchenSink\ChartPage.html" />
     <Content Include="wwwroot\KitchenSink\CheckboxPage.html" />
     <Content Include="wwwroot\KitchenSink\DatagridPage.html" />
     <Content Include="wwwroot\KitchenSink\DecimalPage.html" />
@@ -217,6 +221,11 @@
   </ItemGroup>
   <ItemGroup>
     <TypedJSON Include="DatagridPage.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
+  </ItemGroup>
+  <ItemGroup>
+    <TypedJSON Include="ChartPage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>

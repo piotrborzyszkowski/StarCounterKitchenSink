@@ -8,5 +8,8 @@
     }
   ],
 
+  "Labels": ["1"],
+  "Temperatures": [13],
+
   "AddPet$":  0
 }

@@ -22,6 +22,7 @@
     "paper-item": "PolymerElements/paper-item#~1.0.3",
     "paper-menu": "PolymerElements/paper-menu#~1.1.1",
     "paper-radio-button": "PolymerElements/paper-radio-button#~1.0.9",
-    "paper-radio-group": "PolymerElements/paper-radio-group#~1.0.5"
+    "paper-radio-group": "PolymerElements/paper-radio-group#~1.0.5",
+    "chart-elements": "robdodson/chart-elements#~2.0.0"
   }
 }
