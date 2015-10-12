@@ -1,0 +1,13 @@
+{
+  "Html": "/KitchenSink/MoreFormsPage.html",
+  
+  "Pets": [
+    {Label: ""}
+  ],
+  "SelectedPet$": "",
+  "Shuffle$": 0,
+
+  "PetReaction": "",
+  "$PetReaction": {"Bind": "CalculatedPetReaction"}
+
+}

@@ -1,0 +1,28 @@
+﻿<link rel="import" href="/sys/paper-radio-group/paper-radio-group.html" />
+<link rel="import" href="/sys/paper-radio-button/paper-radio-button.html" />
+
+<template>
+  <template is="dom-bind" id="more-forms-page">
+
+    <p class="lead">What about less obvious <code>type="radio"</code>, <code>select</code> and <code>button</code>?</p>
+    
+    <paper-radio-group selected="{{model.SelectedPet$}}">
+      <template is="dom-repeat" items="{{model.Pets}}">
+        <paper-radio-button name="{{item.Label}}">{{item.Label}}</paper-radio-button>
+      </template>
+    </paper-radio-group>
+
+    <select value="{{model.SelectedPet$::change}}">
+      <template is="dom-repeat" items="{{model.Pets}}">
+        <option value="{{item.Label}}">{{item.Label}}</option>
+      </template>
+    </select>
+
+    <button value="{{model.Shuffle$::click}}" onclick="++this.value">Add more</button>
+
+
+      <div>{{model.PetReaction}}</div>
+
+      <dom-bind-notifier path="model" observed-object="{{model}}" deep></dom-bind-notifier>
+</template>
+</template>

@@ -25,6 +25,10 @@ namespace KitchenSink {
         a.Url = "/KitchenSink/forms";
 
         a = nav.NavLinks.Add();
+        a.Label = "More Forms";
+        a.Url = "/KitchenSink/more-forms";
+
+        a = nav.NavLinks.Add();
         a.Label = "Email";
         a.Url = "/KitchenSink/email";
 
@@ -54,6 +58,28 @@ namespace KitchenSink {
         var master = (StandalonePage)Self.GET("/KitchenSink/standalone");
         if (!((master.CurrentPage as NavPage).CurrentPage is FormsPage)) {
           var page = new FormsPage();
+          (master.CurrentPage as NavPage).CurrentPage = page;
+        }
+        return master;
+      });
+
+      Handle.GET("/KitchenSink/more-forms", () => {
+        var master = (StandalonePage)Self.GET("/KitchenSink/standalone");
+        if (!((master.CurrentPage as NavPage).CurrentPage is MoreFormsPage)) {
+          var page = new MoreFormsPage();
+
+          MoreFormsPage.PetsElementJson pet;
+          pet = page.Pets.Add();
+          pet.Label = "dogs";
+
+          pet = page.Pets.Add();
+          pet.Label = "cats";
+
+          pet = page.Pets.Add();
+          pet.Label = "rabbit";
+
+          page.SelectedPet = "dogs";
+
           (master.CurrentPage as NavPage).CurrentPage = page;
         }
         return master;

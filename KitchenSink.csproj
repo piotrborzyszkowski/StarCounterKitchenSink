@@ -70,6 +70,9 @@
     <Compile Include="MenuPage.json.cs">
       <DependentUpon>MenuPage.json</DependentUpon>
     </Compile>
+    <Compile Include="MoreFormsPage.json.cs">
+      <DependentUpon>MoreFormsPage.json</DependentUpon>
+    </Compile>
     <Compile Include="NavPage.json.cs">
       <DependentUpon>NavPage.json</DependentUpon>
     </Compile>
@@ -104,6 +107,7 @@
     <Content Include="wwwroot\KitchenSink\EmailPage.html" />
     <Content Include="wwwroot\KitchenSink\FormsPage.html" />
     <Content Include="wwwroot\KitchenSink\MenuPage.html" />
+    <Content Include="wwwroot\KitchenSink\MoreFormsPage.html" />
     <Content Include="wwwroot\KitchenSink\NavPage.html" />
     <Content Include="wwwroot\KitchenSink\NumberPage.html" />
     <Content Include="wwwroot\KitchenSink\InputPage.html" />
@@ -127,6 +131,11 @@
   </ItemGroup>
   <ItemGroup>
     <TypedJSON Include="FormsPage.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
+  </ItemGroup>
+  <ItemGroup>
+    <TypedJSON Include="MoreFormsPage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>
