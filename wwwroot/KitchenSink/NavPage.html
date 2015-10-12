@@ -1,45 +1,46 @@
 ﻿<template>
   <template is="dom-bind">
-      <nav class="kitchen-sink-menu">
-          <h3>String</h3>
-          <ul>
-              <li><a href="/kitchensink/Text">Text</a></li>
-              <li><a href="/kitchensink/Password">Password</a></li>
-              <li><a href="/kitchensink/Textarea">Textarea</a></li>
-              <li><a href="/kitchensink/Url">Url</a></li>
-              <li><a href="/kitchensink/Markdown">Markdown</a></li>
-              <li><a href="/kitchensink/Html">Html</a></li>
-          </ul>
+    <nav class="kitchen-sink-menu">
+      <h3>String</h3>
+      <ul>
+        <li><a href="/kitchensink/Text">Text</a></li>
+        <li><a href="/kitchensink/Password">Password</a></li>
+        <li><a href="/kitchensink/Textarea">Textarea</a></li>
+        <li><a href="/kitchensink/Url">Url</a></li>
+        <li><a href="/kitchensink/Markdown">Markdown</a></li>
+        <li><a href="/kitchensink/Html">Html</a></li>
+      </ul>
 
-          <h3>Number</h3>
-          <ul>
-              <li><a href="/kitchensink/Integer">Integer</a></li>
-              <li><a href="/kitchensink/Decimal">Decimal</a></li>
-              <li><a href="/kitchensink/Button">Button</a></li>
-          </ul>
+      <h3>Number</h3>
+      <ul>
+        <li><a href="/kitchensink/Integer">Integer</a></li>
+        <li><a href="/kitchensink/Decimal">Decimal</a></li>
+        <li><a href="/kitchensink/Button">Button</a></li>
+      </ul>
 
-          <h3>Boolean</h3>
-          <ul>
-              <li><a href="/kitchensink/Checkbox">Checkbox</a></li>
-              <li><a href="/kitchensink/Button">Button</a></li>
-              <li><a href="/kitchensink/Conditionals">Conditionals</a></li>
-          </ul>
+      <h3>Boolean</h3>
+      <ul>
+        <li><a href="/kitchensink/Checkbox">Checkbox</a></li>
+        <li><a href="/kitchensink/Button">Button</a></li>
+        <li><a href="/kitchensink/Conditionals">Conditionals</a></li>
+      </ul>
 
-          <h3>Object</h3>
-          <ul>
-              <li><a href="/kitchensink/Nesting">Nesting</a></li>
-          </ul>
+      <h3>Object</h3>
+      <ul>
+        <li><a href="/kitchensink/Nesting">Nesting</a></li>
+      </ul>
 
-          <h3>Array</h3>
-          <ul>
-              <li><a href="/kitchensink/Radio">Radio</a></li>
-              <li><a href="/kitchensink/Dropdown">Dropdown</a></li>
-              <li><a href="/kitchensink/Multiselect">Multiselect</a></li>
-              <li><a href="/kitchensink/Table">Table</a></li>
-              <li><a href="/kitchensink/Graph">Graph</a></li>
-              <li><a href="/kitchensink/Navigation">Navigation</a></li>
-          </ul>
-      </nav>
+      <h3>Array</h3>
+      <ul>
+        <li><a href="/kitchensink/Radio">Radio</a></li>
+        <li><a href="/kitchensink/Dropdown">Dropdown</a></li>
+        <li><a href="/kitchensink/Multiselect">Multiselect</a></li>
+        <li><a href="/kitchensink/Table">Table</a></li>
+        <!--<li><a href="/kitchensink/Datagrid">Datagrid</a></li>-->
+        <li><a href="/kitchensink/Graph">Graph</a></li>
+        <li><a href="/kitchensink/Navigation">Navigation</a></li>
+      </ul>
+    </nav>
 
     <div class="kitchen-sink-current-page">
       <starcounter-include partial="{{model.CurrentPage}}"></starcounter-include>

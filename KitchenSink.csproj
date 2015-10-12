@@ -91,6 +91,9 @@
     <Compile Include="RadioPage.json.cs">
       <DependentUpon>RadioPage.json</DependentUpon>
     </Compile>
+    <Compile Include="TablePage.json.cs">
+      <DependentUpon>TablePage.json</DependentUpon>
+    </Compile>
     <Compile Include="TextareaPage.json.cs">
       <DependentUpon>TextareaPage.json</DependentUpon>
     </Compile>
@@ -108,6 +111,9 @@
     <Compile Include="DecimalPage.json.cs">
       <DependentUpon>DecimalPage.json</DependentUpon>
     </Compile>
+    <Compile Include="DatagridPage.json.cs">
+      <DependentUpon>DatagridPage.json</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <TypedJSON Include="TextPage.json">
@@ -122,6 +128,7 @@
   <ItemGroup>
     <Content Include="wwwroot\KitchenSink\ButtonPage.html" />
     <Content Include="wwwroot\KitchenSink\CheckboxPage.html" />
+    <Content Include="wwwroot\KitchenSink\DatagridPage.html" />
     <Content Include="wwwroot\KitchenSink\DecimalPage.html" />
     <Content Include="wwwroot\KitchenSink\HtmlPage.html" />
     <Content Include="wwwroot\KitchenSink\MarkdownPage.html" />
@@ -131,6 +138,7 @@
     <Content Include="wwwroot\KitchenSink\NavPage.html" />
     <Content Include="wwwroot\KitchenSink\IntegerPage.html" />
     <Content Include="wwwroot\KitchenSink\RadioPage.html" />
+    <Content Include="wwwroot\KitchenSink\TablePage.html" />
     <Content Include="wwwroot\KitchenSink\TextareaPage.html" />
     <Content Include="wwwroot\KitchenSink\TextPage.html" />
     <Content Include="wwwroot\KitchenSink\StandalonePage.html" />
@@ -199,6 +207,16 @@
   </ItemGroup>
   <ItemGroup>
     <TypedJSON Include="DecimalPage.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
+  </ItemGroup>
+  <ItemGroup>
+    <TypedJSON Include="TablePage.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
+  </ItemGroup>
+  <ItemGroup>
+    <TypedJSON Include="DatagridPage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>

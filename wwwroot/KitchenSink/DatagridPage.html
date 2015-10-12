@@ -1,0 +1,19 @@
+﻿<link rel="import" href="/sys/hot-table/hot-table.html" />
+
+<template>
+  <template is="dom-bind">
+    <p class="lead">JSON's <code>array</code> and <code>object</code> can be used to create editable datagrid with a helper custom element, e.g. <a href="http://handsontable.github.io/hot-table/">hot-table</a>.</p>
+
+    <hot-table datarows="{{model.Pets}}">
+      <hot-column value="Name$" header="Name"></hot-column>
+      <hot-column value="Kind$" header="Kind"></hot-column>
+      <hot-column value="Sound" header="Sound" read-only></hot-column>
+    </hot-table>
+
+    <div>
+      <button value="{{model.AddPet$::click}}" onclick="++this.value">Add a pet</button>
+    </div>
+
+    <dom-bind-notifier path="model" observed-object="{{model}}" deep></dom-bind-notifier>
+  </template>
+</template>

@@ -50,6 +50,29 @@ namespace KitchenSink
         return master;
       });
 
+      Handle.GET("/KitchenSink/datagrid", () => {
+        var master = (StandalonePage)Self.GET("/KitchenSink/standalone");
+        if (!((master.CurrentPage as NavPage).CurrentPage is DatagridPage)) {
+          var page = new DatagridPage();
+
+          DatagridPagePetsElementJson pet;
+          pet = page.Pets.Add();
+          pet.Name = "Rocky";
+          pet.Kind = "Dog";
+
+          pet = page.Pets.Add();
+          pet.Name = "Tigger";
+          pet.Kind = "Cat";
+
+          pet = page.Pets.Add();
+          pet.Name = "Bella";
+          pet.Kind = "Rabbit";
+
+          (master.CurrentPage as NavPage).CurrentPage = page;
+        }
+        return master;
+      });
+
       Handle.GET("/KitchenSink/decimal", () => {
         var master = (StandalonePage)Self.GET("/KitchenSink/standalone");
         if (!((master.CurrentPage as NavPage).CurrentPage is DecimalPage)) {
@@ -134,6 +157,29 @@ It supports **markdown** *syntax*.";
         var master = (StandalonePage)Self.GET("/KitchenSink/standalone");
         if (!((master.CurrentPage as NavPage).CurrentPage is PasswordPage)) {
           var page = new PasswordPage();
+          (master.CurrentPage as NavPage).CurrentPage = page;
+        }
+        return master;
+      });
+
+      Handle.GET("/KitchenSink/table", () => {
+        var master = (StandalonePage)Self.GET("/KitchenSink/standalone");
+        if (!((master.CurrentPage as NavPage).CurrentPage is TablePage)) {
+          var page = new TablePage();
+
+          TablePage.PetsElementJson pet;
+          pet = page.Pets.Add();
+          pet.Name = "Rocky";
+          pet.Kind = "Dog";
+
+          pet = page.Pets.Add();
+          pet.Name = "Tigger";
+          pet.Kind = "Cat";
+
+          pet = page.Pets.Add();
+          pet.Name = "Bella";
+          pet.Kind = "Rabbit";
+
           (master.CurrentPage as NavPage).CurrentPage = page;
         }
         return master;
