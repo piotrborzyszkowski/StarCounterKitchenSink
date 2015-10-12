@@ -50,6 +50,16 @@ namespace KitchenSink
         return master;
       });
 
+      Handle.GET("/KitchenSink/decimal", () => {
+        var master = (StandalonePage)Self.GET("/KitchenSink/standalone");
+        if (!((master.CurrentPage as NavPage).CurrentPage is DecimalPage)) {
+          var page = new DecimalPage();
+          page.Price = 10;
+          (master.CurrentPage as NavPage).CurrentPage = page;
+        }
+        return master;
+      });
+
       Handle.GET("/KitchenSink/dropdown", () => {
         var master = (StandalonePage)Self.GET("/KitchenSink/standalone");
         if (!((master.CurrentPage as NavPage).CurrentPage is DropdownPage)) {

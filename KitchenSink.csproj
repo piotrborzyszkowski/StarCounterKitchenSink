@@ -105,6 +105,9 @@
     <Compile Include="UrlPage.json.cs">
       <DependentUpon>UrlPage.json</DependentUpon>
     </Compile>
+    <Compile Include="DecimalPage.json.cs">
+      <DependentUpon>DecimalPage.json</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <TypedJSON Include="TextPage.json">
@@ -119,6 +122,7 @@
   <ItemGroup>
     <Content Include="wwwroot\KitchenSink\ButtonPage.html" />
     <Content Include="wwwroot\KitchenSink\CheckboxPage.html" />
+    <Content Include="wwwroot\KitchenSink\DecimalPage.html" />
     <Content Include="wwwroot\KitchenSink\HtmlPage.html" />
     <Content Include="wwwroot\KitchenSink\MarkdownPage.html" />
     <Content Include="wwwroot\KitchenSink\PasswordPage.html" />
@@ -190,6 +194,11 @@
   </ItemGroup>
   <ItemGroup>
     <TypedJSON Include="ButtonPage.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
+  </ItemGroup>
+  <ItemGroup>
+    <TypedJSON Include="DecimalPage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>
