@@ -61,6 +61,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ButtonPage.json.cs">
+      <DependentUpon>ButtonPage.json</DependentUpon>
+    </Compile>
     <Compile Include="CheckboxPage.json.cs">
       <DependentUpon>CheckboxPage.json</DependentUpon>
     </Compile>
@@ -182,6 +185,11 @@
   </ItemGroup>
   <ItemGroup>
     <TypedJSON Include="RadioPage.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
+  </ItemGroup>
+  <ItemGroup>
+    <TypedJSON Include="ButtonPage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>

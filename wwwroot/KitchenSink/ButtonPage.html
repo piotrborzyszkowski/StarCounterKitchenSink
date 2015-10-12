@@ -1,2 +1,15 @@
-﻿
-<button value="{{model.Shuffle$::click}}" onclick="++this.value">Add more</button>
+﻿<template>
+  <template is="dom-bind">
+    <p class="lead">JSON's primitive value type <code>number</code> or <code>boolean</code> can be mapped to a HTML <code>button</code>.</p>
+
+    <p>We recommend using <code>number</code> where possible, to take benefit of non-blocking UI enabled by Puppet's operational transformation.</p>
+
+    <div>
+      <button value="{{model.AddCarrots$::click}}" onclick="++this.value">Add carrots</button>
+      <div>{{model.CarrotsReaction}}</div>
+    </div>
+
+    <dom-bind-notifier path="model" observed-object="{{model}}" deep></dom-bind-notifier>
+  </template>
+</template>
+

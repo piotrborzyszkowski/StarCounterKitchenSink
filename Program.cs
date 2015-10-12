@@ -32,10 +32,27 @@ namespace KitchenSink
         return Self.GET("/KitchenSink/text");
       });
 
+      Handle.GET("/KitchenSink/button", () => {
+        var master = (StandalonePage)Self.GET("/KitchenSink/standalone");
+        if (!((master.CurrentPage as NavPage).CurrentPage is ButtonPage)) {
+          var page = new ButtonPage();
+          (master.CurrentPage as NavPage).CurrentPage = page;
+        }
+        return master;
+      });
+
+      Handle.GET("/KitchenSink/checkbox", () => {
+        var master = (StandalonePage)Self.GET("/KitchenSink/standalone");
+        if (!((master.CurrentPage as NavPage).CurrentPage is CheckboxPage)) {
+          var page = new CheckboxPage();
+          (master.CurrentPage as NavPage).CurrentPage = page;
+        }
+        return master;
+      });
+
       Handle.GET("/KitchenSink/dropdown", () => {
         var master = (StandalonePage)Self.GET("/KitchenSink/standalone");
-        if (!((master.CurrentPage as NavPage).CurrentPage is DropdownPage))
-        {
+        if (!((master.CurrentPage as NavPage).CurrentPage is DropdownPage)) {
           var page = new DropdownPage();
 
           DropdownPage.PetsElementJson pet;
@@ -50,15 +67,6 @@ namespace KitchenSink
 
           page.SelectedPet = "dogs";
 
-          (master.CurrentPage as NavPage).CurrentPage = page;
-        }
-        return master;
-      });
-
-      Handle.GET("/KitchenSink/checkbox", () => {
-        var master = (StandalonePage)Self.GET("/KitchenSink/standalone");
-        if (!((master.CurrentPage as NavPage).CurrentPage is CheckboxPage)) {
-          var page = new CheckboxPage();
           (master.CurrentPage as NavPage).CurrentPage = page;
         }
         return master;
