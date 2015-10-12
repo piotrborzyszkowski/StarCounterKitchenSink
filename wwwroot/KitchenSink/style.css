@@ -4,6 +4,34 @@
   font-size: 14px;
 }
 
+.kitchen-sink-menu {
+  width: 200px;
+  height: 100%;
+  overflow-y: scroll;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.kitchen-sink-menu h3 {
+  font-size: 100%;
+}
+
+.kitchen-sink-menu h3:first-child {
+  margin-top: 0;
+}
+
+.kitchen-sink-menu ul {
+  padding: 0;
+  list-style: none;
+}
+
+.kitchen-sink-current-page {
+  margin: 0 0 0 200px;
+}
+
 .kitchen-sink-current-page > starcounter-include > * {
   margin-bottom: 40px;
 }

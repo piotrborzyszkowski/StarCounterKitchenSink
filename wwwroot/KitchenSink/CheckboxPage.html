@@ -1,0 +1,14 @@
+﻿<template>
+  <template is="dom-bind">
+    <p class="lead">JSON's primitive value type <code>boolean</code> can be mapped directly to HTML form elements <code>input type="checkbox"</code>.</p>
+
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" checked="{{model.DrivingLicense$::change}}"> Driver's license
+      </label>
+      <div>{{model.DrivingLicenseReaction}}</div>
+    </div>
+
+    <dom-bind-notifier path="model" observed-object="{{model}}" deep></dom-bind-notifier>
+  </template>
+</template>

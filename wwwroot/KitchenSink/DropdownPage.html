@@ -1,0 +1,15 @@
+﻿<template>
+  <template is="dom-bind">
+    <p class="lead">A combination of JSON's primitive value types <code>array</code>, <code>object</code> and <code>number</code> can be mapped to a HTML <code>select</code> element.</p>
+
+    <select value="{{model.SelectedPet$::change}}">
+      <template is="dom-repeat" items="{{model.Pets}}">
+        <option value="{{item.Label}}">{{item.Label}}</option>
+      </template>
+    </select>
+
+    <div>{{model.PetReaction}}</div>
+
+    <dom-bind-notifier path="model" observed-object="{{model}}" deep></dom-bind-notifier>
+  </template>
+</template>

@@ -1,0 +1,8 @@
+{
+  "Html": "/KitchenSink/TextPage.html",
+
+  "Name$": "",
+
+  "NameReaction": "",
+  "$NameReaction": {"Bind": "CalculatedNameReaction"}
+}
