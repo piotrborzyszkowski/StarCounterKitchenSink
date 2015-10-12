@@ -9,6 +9,19 @@
       <div>{{model.CarrotsReaction}}</div>
     </div>
 
+    <p>When you have a special need to use the pressed state of a button, you might use <code>boolean</code> type for buttons.</p>
+
+    <div>
+      <style>
+        button[pressed] {
+           color: white;
+           background: green;
+        }
+      </style>
+      <button pressed$="{{model.EnableCarrotEngine$}}" model="{{model}}" onclick="this.model.EnableCarrotEngine$ = !this.model.EnableCarrotEngine$; return true">Enable carrot engine</button>
+      <div>{{model.CarrotEngineReaction}}</div>
+    </div>
+
     <dom-bind-notifier path="model" observed-object="{{model}}" deep></dom-bind-notifier>
   </template>
 </template>

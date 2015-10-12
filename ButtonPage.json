@@ -1,7 +1,9 @@
 {
   "Html": "/KitchenSink/ButtonPage.html",
-  
-  "AddCarrots$": 0,
 
-  "CarrotsReaction": "You don't have any carrots"
+  "AddCarrots$": 0,
+  "EnableCarrotEngine$": false,
+
+  "CarrotsReaction": "You don't have any carrots",
+  "CarrotEngineReaction": "Carrot engine disabled"
 }
