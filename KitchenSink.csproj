@@ -73,6 +73,9 @@
     <Compile Include="HtmlPage.json.cs">
       <DependentUpon>HtmlPage.json</DependentUpon>
     </Compile>
+    <Compile Include="MapPage.json.cs">
+      <DependentUpon>MapPage.json</DependentUpon>
+    </Compile>
     <Compile Include="MarkdownPage.json.cs">
       <DependentUpon>MarkdownPage.json</DependentUpon>
     </Compile>
@@ -135,6 +138,7 @@
     <Content Include="wwwroot\KitchenSink\DatagridPage.html" />
     <Content Include="wwwroot\KitchenSink\DecimalPage.html" />
     <Content Include="wwwroot\KitchenSink\HtmlPage.html" />
+    <Content Include="wwwroot\KitchenSink\MapPage.html" />
     <Content Include="wwwroot\KitchenSink\MarkdownPage.html" />
     <Content Include="wwwroot\KitchenSink\PasswordPage.html" />
     <Content Include="wwwroot\KitchenSink\MultiselectPage.html" />
@@ -226,6 +230,11 @@
   </ItemGroup>
   <ItemGroup>
     <TypedJSON Include="ChartPage.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
+  </ItemGroup>
+  <ItemGroup>
+    <TypedJSON Include="MapPage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>

@@ -143,6 +143,15 @@ You can put <strong>any</strong> <a href=""https://en.wikipedia.org/wiki/HTML"">
         return master;
       });
 
+      Handle.GET("/KitchenSink/map", () => {
+        var master = (StandalonePage)Self.GET("/KitchenSink/standalone");
+        if (!((master.CurrentPage as NavPage).CurrentPage is MapPage)) {
+          var page = new MapPage();
+          (master.CurrentPage as NavPage).CurrentPage = page;
+        }
+        return master;
+      });
+
       Handle.GET("/KitchenSink/markdown", () => {
         var master = (StandalonePage)Self.GET("/KitchenSink/standalone");
         if (!((master.CurrentPage as NavPage).CurrentPage is MarkdownPage)) {
