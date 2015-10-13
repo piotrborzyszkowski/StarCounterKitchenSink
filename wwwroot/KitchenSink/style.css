@@ -36,6 +36,10 @@
   margin-bottom: 40px;
 }
 
+.kitchen-sink-current-page select {
+  width: 50%;
+}
+
 .form-group {
   display: flex;
   flex-direction: row-reverse;
