@@ -6,7 +6,7 @@
 
     <div class="form-group">
       <label class="control-label">{{model.PriceReaction}}</label>
-      <input type="number" step="0.01" value="{{model.Price$::change}}" placeholder="Price" class="form-control">
+      <input type="number" step="0.01" value="{{model.Price$::input}}" placeholder="Price" class="form-control">
     </div>
 
     <dom-bind-notifier path="model" observed-object="{{model}}" deep></dom-bind-notifier>
