@@ -36,6 +36,15 @@
   margin-bottom: 40px;
 }
 
+.kitchen-sink-current-page > starcounter-include > h1,
+.kitchen-sink-current-page > starcounter-include > h2,
+.kitchen-sink-current-page > starcounter-include > h3,
+.kitchen-sink-current-page > starcounter-include > h4,
+.kitchen-sink-current-page > starcounter-include > h5,
+.kitchen-sink-current-page > starcounter-include > h6 {
+  margin-bottom: 20px;
+}
+
 .kitchen-sink-current-page select {
   width: 50%;
 }
