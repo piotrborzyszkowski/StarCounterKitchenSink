@@ -1,52 +1,54 @@
 ﻿<template>
-  <template is="dom-bind">
-    <nav class="kitchen-sink-menu">
-      <h3>String</h3>
-      <ul>
-        <li><a href="/kitchensink/Text">Text</a></li>
-        <li><a href="/kitchensink/Password">Password</a></li>
-        <li><a href="/kitchensink/Textarea">Textarea</a></li>
-        <li><a href="/kitchensink/Url">Url</a></li>
-        <li><a href="/kitchensink/Markdown">Markdown</a></li>
-        <li><a href="/kitchensink/Html">Html</a></li>
-      </ul>
+    <template is="dom-bind">
+        <div class="kitchen-sink-layout">
+            <nav class="kitchen-sink-menu">
+                <h3>String</h3>
+                <ul>
+                    <li><a href="/KitchenSink/Text">Text</a></li>
+                    <li><a href="/KitchenSink/Password">Password</a></li>
+                    <li><a href="/KitchenSink/Textarea">Textarea</a></li>
+                    <li><a href="/KitchenSink/Url">Url</a></li>
+                    <li><a href="/KitchenSink/Markdown">Markdown</a></li>
+                    <li><a href="/KitchenSink/Html">Html</a></li>
+                </ul>
 
-      <h3>Number</h3>
-      <ul>
-        <li><a href="/kitchensink/Integer">Integer</a></li>
-        <li><a href="/kitchensink/Decimal">Decimal</a></li>
-        <li><a href="/kitchensink/Button">Button</a></li>
-        <li><a href="/kitchensink/Geo">Map</a></li>
-      </ul>
+                <h3>Number</h3>
+                <ul>
+                    <li><a href="/KitchenSink/Integer">Integer</a></li>
+                    <li><a href="/KitchenSink/Decimal">Decimal</a></li>
+                    <li><a href="/KitchenSink/Button">Button</a></li>
+                    <li><a href="/KitchenSink/Geo">Map</a></li>
+                </ul>
 
-      <h3>Boolean</h3>
-      <ul>
-        <li><a href="/kitchensink/Checkbox">Checkbox</a></li>
-        <li><a href="/kitchensink/Button">Button</a></li>
-        <!--<li><a href="/kitchensink/Conditionals">Conditionals</a></li> not ready yet -->
-      </ul>
+                <h3>Boolean</h3>
+                <ul>
+                    <li><a href="/KitchenSink/Checkbox">Checkbox</a></li>
+                    <li><a href="/KitchenSink/Button">Button</a></li>
+                    <!--<li><a href="/KitchenSink/Conditionals">Conditionals</a></li> not ready yet -->
+                </ul>
 
-      <!--<h3>Object</h3>
-      <ul>
-        <!--<li><a href="/kitchensink/Nesting">Nesting</a></li> not ready yet
-      </ul>-->
+                <!--<h3>Object</h3>
+                <ul>
+                  <!--<li><a href="/KitchenSink/Nesting">Nesting</a></li> not ready yet
+                </ul>-->
 
-      <h3>Array</h3>
-      <ul>
-        <li><a href="/kitchensink/Radio">Radio</a></li>
-        <li><a href="/kitchensink/Dropdown">Dropdown</a></li>
-        <!--<li><a href="/kitchensink/Multiselect">Multiselect</a></li> isn't really multiselect-->
-        <li><a href="/kitchensink/Table">Table</a></li>
-        <!--<li><a href="/kitchensink/Datagrid">Datagrid</a></li> buggy -->
-        <li><a href="/kitchensink/Chart">Chart</a></li>
-        <!--<li><a href="/kitchensink/Navigation">Navigation</a></li> not ready yet-->
-      </ul>
-    </nav>
+                <h3>Array</h3>
+                <ul>
+                    <li><a href="/KitchenSink/Radio">Radio</a></li>
+                    <li><a href="/KitchenSink/Dropdown">Dropdown</a></li>
+                    <!--<li><a href="/KitchenSink/Multiselect">Multiselect</a></li> isn't really multiselect-->
+                    <li><a href="/KitchenSink/Table">Table</a></li>
+                    <!--<li><a href="/KitchenSink/Datagrid">Datagrid</a></li> buggy -->
+                    <li><a href="/KitchenSink/Chart">Chart</a></li>
+                    <!--<li><a href="/KitchenSink/Navigation">Navigation</a></li> not ready yet-->
+                </ul>
+            </nav>
 
-    <div class="kitchen-sink-current-page">
-      <starcounter-include partial="{{model.CurrentPage}}"></starcounter-include>
-    </div>
+            <div class="kitchen-sink-current-page">
+                <starcounter-include partial="{{model.CurrentPage}}"></starcounter-include>
+            </div>
+        </div>
 
-    <dom-bind-notifier path="model" observed-object="{{model}}" deep></dom-bind-notifier>
-  </template>
+        <dom-bind-notifier path="model" observed-object="{{model}}" deep></dom-bind-notifier>
+    </template>
 </template>

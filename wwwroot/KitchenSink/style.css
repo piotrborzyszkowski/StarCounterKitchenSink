@@ -1,18 +1,10 @@
-﻿body {
-  padding: 20px;
-  max-width: 800px;
-  font-size: 14px;
+﻿.kitchen-sink-layout {
+  display: flex;
 }
 
 .kitchen-sink-menu {
-  width: 200px;
-  height: 100%;
-  overflow-y: scroll;
-  position: fixed;
-  top: 0;
-  left: 0;
-  padding: 20px;
-  box-sizing: border-box;
+  flex: 0 0 160px;
+  margin-right: 20px;
 }
 
 .kitchen-sink-menu h3 {
@@ -29,7 +21,7 @@
 }
 
 .kitchen-sink-current-page {
-  margin: 0 0 0 200px;
+  flex: 0 1 600px;
 }
 
 .kitchen-sink-current-page > starcounter-include > * {
@@ -49,31 +41,27 @@
   width: 50%;
 }
 
-.form-group {
+.kitchen-sink-current-page .form-group {
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
   justify-content: center;
 }
 
-.form-group > * {
+.kitchen-sink-current-page .form-group > * {
   flex: 1 1 auto;
   width: 50%;
 }
 
-.form-group > label {
+.kitchen-sink-current-page .form-group > label {
   display: block;
   margin-left: 20px;
 }
 
-input[type=email]:valid {
+.kitchen-sink-current-page input[type=email]:valid {
   box-shadow: inset 0 -2px 0 #4caf50;
 }
 
-input[type=email]:invalid {
+.kitchen-sink-current-page input[type=email]:invalid {
   box-shadow: inset 0 -2px 0 #e51c23;
-}
-
-.horizontal-section {
-  
 }
