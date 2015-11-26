@@ -132,12 +132,15 @@
     </TypedJSON>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="wwwroot\KitchenSink\AppIcon.html" />
+    <Content Include="wwwroot\KitchenSink\AppMenuPage.html" />
     <Content Include="wwwroot\KitchenSink\ButtonPage.html" />
     <Content Include="wwwroot\KitchenSink\ChartPage.html" />
     <Content Include="wwwroot\KitchenSink\CheckboxPage.html" />
     <Content Include="wwwroot\KitchenSink\DatagridPage.html" />
     <Content Include="wwwroot\KitchenSink\DecimalPage.html" />
     <Content Include="wwwroot\KitchenSink\HtmlPage.html" />
+    <Content Include="wwwroot\KitchenSink\LauncherWrapperPage.html" />
     <Content Include="wwwroot\KitchenSink\MapPage.html" />
     <Content Include="wwwroot\KitchenSink\MarkdownPage.html" />
     <Content Include="wwwroot\KitchenSink\PasswordPage.html" />
@@ -235,6 +238,11 @@
   </ItemGroup>
   <ItemGroup>
     <TypedJSON Include="MapPage.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
+  </ItemGroup>
+  <ItemGroup>
+    <TypedJSON Include="AppName.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>
