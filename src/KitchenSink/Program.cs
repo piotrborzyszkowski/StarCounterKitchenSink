@@ -163,16 +163,27 @@ It supports **markdown** *syntax*.";
                 return master;
             });
 
-            Handle.GET("/KitchenSink/multiselect", () => {
+            Handle.GET("/KitchenSink/radiolist", () => {
                 var master = (StandalonePage)Self.GET("/KitchenSink/standalone");
-                if (!((master.CurrentPage as NavPage).CurrentPage is MultiselectPage)) {
-                    var page = new MultiselectPage();
+                if (!((master.CurrentPage as NavPage).CurrentPage is RadiolistPage)) {
+                    var page = new RadiolistPage();
                     MenuOptionsElement a;
                     a = page.MenuOptions.Add();
                     a.Label = "Dogs";
                     a = page.MenuOptions.Add();
                     a.Label = "Cats";
                     page.SelectOption(0);
+                    (master.CurrentPage as NavPage).CurrentPage = page;
+                }
+                return master;
+            });
+
+            Handle.GET("/KitchenSink/multiselect", () => {
+                var master = (StandalonePage)Self.GET("/KitchenSink/standalone");
+                if (!((master.CurrentPage as NavPage).CurrentPage is MultiselectPage)) {
+                    var page = new MultiselectPage() {
+                        Data = null
+                    };
                     (master.CurrentPage as NavPage).CurrentPage = page;
                 }
                 return master;

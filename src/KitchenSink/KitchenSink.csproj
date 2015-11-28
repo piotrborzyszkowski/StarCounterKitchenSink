@@ -79,14 +79,17 @@
     <Compile Include="MarkdownPage.json.cs">
       <DependentUpon>MarkdownPage.json</DependentUpon>
     </Compile>
+    <Compile Include="MultiselectPage.json.cs">
+      <DependentUpon>MultiselectPage.json</DependentUpon>
+    </Compile>
     <Compile Include="PasswordPage.json.cs">
       <DependentUpon>PasswordPage.json</DependentUpon>
     </Compile>
     <Compile Include="IntegerPage.json.cs">
       <DependentUpon>IntegerPage.json</DependentUpon>
     </Compile>
-    <Compile Include="MultiselectPage.json.cs">
-      <DependentUpon>MultiselectPage.json</DependentUpon>
+    <Compile Include="RadiolistPage.json.cs">
+      <DependentUpon>RadiolistPage.json</DependentUpon>
     </Compile>
     <Compile Include="DropdownPage.json.cs">
       <DependentUpon>DropdownPage.json</DependentUpon>
@@ -145,6 +148,7 @@
     <Content Include="wwwroot\KitchenSink\MarkdownPage.html" />
     <Content Include="wwwroot\KitchenSink\PasswordPage.html" />
     <Content Include="wwwroot\KitchenSink\MultiselectPage.html" />
+    <Content Include="wwwroot\KitchenSink\RadiolistPage.html" />
     <Content Include="wwwroot\KitchenSink\DropdownPage.html" />
     <Content Include="wwwroot\KitchenSink\NavPage.html" />
     <Content Include="wwwroot\KitchenSink\IntegerPage.html" />
@@ -157,7 +161,7 @@
     <Content Include="wwwroot\KitchenSink\UrlPage.html" />
   </ItemGroup>
   <ItemGroup>
-    <TypedJSON Include="MultiselectPage.json">
+    <TypedJSON Include="RadiolistPage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>
@@ -243,6 +247,11 @@
   </ItemGroup>
   <ItemGroup>
     <TypedJSON Include="AppName.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
+  </ItemGroup>
+  <ItemGroup>
+    <TypedJSON Include="MultiselectPage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>

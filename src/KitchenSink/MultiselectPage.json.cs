@@ -1,22 +1,13 @@
 using Starcounter;
 
 namespace KitchenSink {
-  partial class MultiselectPage : Page {
+    partial class MultiselectPage : Page {
+        protected override void OnData() {
+            base.OnData();
 
-    public void SelectOption(int index) {
-      SelectedItemLabel = MenuOptions[index].Label;
+            this.Countries.Add().Name = "Sweden";
+            this.Countries.Add().Name = "China";
+            this.Countries.Add().Name = "India";
+        }
     }
-
-    void Handle(Input.SelectedItemIndex action) {
-      SelectOption((int)action.Value);
-    }
-  }
-
-  [MultiselectPage_json.MenuOptions]
-  partial class MenuOptionsElement : Json {
-
-    void Handle(Input.Choose action) {
-      Label = "!";
-    }
-  }
 }

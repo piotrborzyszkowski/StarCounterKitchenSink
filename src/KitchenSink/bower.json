@@ -24,6 +24,7 @@
     "paper-radio-button": "PolymerElements/paper-radio-button#~1.0.9",
     "paper-radio-group": "PolymerElements/paper-radio-group#~1.0.5",
     "chart-elements": "robdodson/chart-elements#~2.0.0",
-    "google-map": "GoogleWebComponents/google-map#~1.1.4"
+    "google-map": "GoogleWebComponents/google-map#~1.1.4",
+    "juicy-select": "Juicy/juicy-select#master"
   }
 }
