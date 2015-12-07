@@ -6,7 +6,7 @@ namespace KitchenSink {
             base.OnData();
 
             this.Url = "/KitchenSink";
-            this.Label = "Go to home page";
+            this.Label = "This a sample link";
         }
     }
 }
