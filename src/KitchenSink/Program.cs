@@ -15,8 +15,7 @@ namespace KitchenSink {
                 if (session == null) {
                     session = new Session(SessionOptions.PatchVersioning);
                     standalone.Html = "/KitchenSink/StandalonePage.html";
-                }
-                else {
+                } else {
                     standalone.Html = "/KitchenSink/LauncherWrapperPage.html";
                 }
 
@@ -31,250 +30,43 @@ namespace KitchenSink {
                 return Self.GET("/KitchenSink/text");
             });
 
-            Handle.GET("/KitchenSink/button", () => {
-                var master = (StandalonePage)Self.GET("/KitchenSink/standalone");
-                if (!((master.CurrentPage as NavPage).CurrentPage is ButtonPage)) {
-                    var page = new ButtonPage();
-                    (master.CurrentPage as NavPage).CurrentPage = page;
-                }
-                return master;
-            });
+            Handle.GET("/KitchenSink/button", () => WrapPage(() => new ButtonPage()));
 
-            Handle.GET("/KitchenSink/chart", () => {
-                var master = (StandalonePage)Self.GET("/KitchenSink/standalone");
-                if (!((master.CurrentPage as NavPage).CurrentPage is ChartPage)) {
-                    var page = new ChartPage();
+            Handle.GET("/KitchenSink/chart", () => WrapPage(() => new ChartPage()));
 
-                    page.AddChartData("January", 4);
-                    page.AddChartData("February", 7);
-                    page.AddChartData("March", 9);
-                    page.AddChartData("April", 12);
-                    page.AddChartData("May", 15);
-                    page.AddChartData("June", 19);
+            Handle.GET("/KitchenSink/checkbox", () => WrapPage(() => new CheckboxPage()));
 
-                    (master.CurrentPage as NavPage).CurrentPage = page;
-                }
-                return master;
-            });
+            Handle.GET("/KitchenSink/datagrid", () => WrapPage(() => new DatagridPage()));
 
-            Handle.GET("/KitchenSink/checkbox", () => {
-                var master = (StandalonePage)Self.GET("/KitchenSink/standalone");
-                if (!((master.CurrentPage as NavPage).CurrentPage is CheckboxPage)) {
-                    var page = new CheckboxPage();
-                    (master.CurrentPage as NavPage).CurrentPage = page;
-                }
-                return master;
-            });
+            Handle.GET("/KitchenSink/decimal", () => WrapPage(() => new DecimalPage()));
 
-            Handle.GET("/KitchenSink/datagrid", () => {
-                var master = (StandalonePage)Self.GET("/KitchenSink/standalone");
-                if (!((master.CurrentPage as NavPage).CurrentPage is DatagridPage)) {
-                    var page = new DatagridPage();
+            Handle.GET("/KitchenSink/dropdown", () => WrapPage(() => new DropdownPage()));
 
-                    DatagridPagePetsElementJson pet;
-                    pet = page.Pets.Add();
-                    pet.Name = "Rocky";
-                    pet.Kind = "Dog";
+            Handle.GET("/KitchenSink/html", () => WrapPage(() => new HtmlPage()));
 
-                    pet = page.Pets.Add();
-                    pet.Name = "Tigger";
-                    pet.Kind = "Cat";
+            Handle.GET("/KitchenSink/integer", () => WrapPage(() => new IntegerPage()));
 
-                    pet = page.Pets.Add();
-                    pet.Name = "Bella";
-                    pet.Kind = "Rabbit";
+            Handle.GET("/KitchenSink/Geo", () => WrapPage(() => new MapPage()));
 
-                    (master.CurrentPage as NavPage).CurrentPage = page;
-                }
-                return master;
-            });
+            Handle.GET("/KitchenSink/markdown", () => WrapPage(() => new MarkdownPage()));
 
-            Handle.GET("/KitchenSink/decimal", () => {
-                var master = (StandalonePage)Self.GET("/KitchenSink/standalone");
-                if (!((master.CurrentPage as NavPage).CurrentPage is DecimalPage)) {
-                    var page = new DecimalPage();
-                    page.Price = 10;
-                    (master.CurrentPage as NavPage).CurrentPage = page;
-                }
-                return master;
-            });
+            Handle.GET("/KitchenSink/radiolist", () => WrapPage(() => new RadiolistPage()));
 
-            Handle.GET("/KitchenSink/dropdown", () => {
-                var master = (StandalonePage)Self.GET("/KitchenSink/standalone");
-                if (!((master.CurrentPage as NavPage).CurrentPage is DropdownPage)) {
-                    var page = new DropdownPage();
+            Handle.GET("/KitchenSink/multiselect", () => WrapPage(() => new MultiselectPage()));
 
-                    DropdownPage.PetsElementJson pet;
-                    pet = page.Pets.Add();
-                    pet.Label = "dogs";
+            Handle.GET("/KitchenSink/password", () => WrapPage(() => new PasswordPage()));
 
-                    pet = page.Pets.Add();
-                    pet.Label = "cats";
+            Handle.GET("/KitchenSink/table", () => WrapPage(() => new TablePage()));
 
-                    pet = page.Pets.Add();
-                    pet.Label = "rabbit";
+            Handle.GET("/KitchenSink/text", () => WrapPage(() => new TextPage()));
 
-                    page.SelectedPet = "dogs";
+            Handle.GET("/KitchenSink/textarea", () => WrapPage(() => new TextareaPage()));
 
-                    (master.CurrentPage as NavPage).CurrentPage = page;
-                }
-                return master;
-            });
+            Handle.GET("/KitchenSink/radio", () => WrapPage(() => new RadioPage()));
 
-            Handle.GET("/KitchenSink/html", () => {
-                var master = (StandalonePage)Self.GET("/KitchenSink/standalone");
-                if (!((master.CurrentPage as NavPage).CurrentPage is HtmlPage)) {
-                    var page = new HtmlPage();
-                    page.Bio = @"<h1>This is a markup text</h1>
+            Handle.GET("/KitchenSink/url", () => WrapPage(() => new UrlPage()));
 
-You can put <strong>any</strong> <a href=""https://en.wikipedia.org/wiki/HTML"">HTML</a> in it.";
-                    (master.CurrentPage as NavPage).CurrentPage = page;
-                }
-                return master;
-            });
-
-            Handle.GET("/KitchenSink/integer", () => {
-                var master = (StandalonePage)Self.GET("/KitchenSink/standalone");
-                if (!((master.CurrentPage as NavPage).CurrentPage is IntegerPage)) {
-                    var page = new IntegerPage();
-                    (master.CurrentPage as NavPage).CurrentPage = page;
-                }
-                return master;
-            });
-
-            Handle.GET("/KitchenSink/Geo", () => {
-                var master = (StandalonePage)Self.GET("/KitchenSink/standalone");
-                if (!((master.CurrentPage as NavPage).CurrentPage is MapPage)) {
-                    var page = new MapPage();
-                    (master.CurrentPage as NavPage).CurrentPage = page;
-                }
-                return master;
-            });
-
-            Handle.GET("/KitchenSink/markdown", () => {
-                var master = (StandalonePage)Self.GET("/KitchenSink/standalone");
-                if (!((master.CurrentPage as NavPage).CurrentPage is MarkdownPage)) {
-                    var page = new MarkdownPage();
-                    page.Bio = @"# This is a strucured text
-
-It supports **markdown** *syntax*.";
-                    (master.CurrentPage as NavPage).CurrentPage = page;
-                }
-                return master;
-            });
-
-            Handle.GET("/KitchenSink/radiolist", () => {
-                var master = (StandalonePage)Self.GET("/KitchenSink/standalone");
-                if (!((master.CurrentPage as NavPage).CurrentPage is RadiolistPage)) {
-                    var page = new RadiolistPage();
-                    MenuOptionsElement a;
-                    a = page.MenuOptions.Add();
-                    a.Label = "Dogs";
-                    a = page.MenuOptions.Add();
-                    a.Label = "Cats";
-                    page.SelectOption(0);
-                    (master.CurrentPage as NavPage).CurrentPage = page;
-                }
-                return master;
-            });
-
-            Handle.GET("/KitchenSink/multiselect", () => {
-                var master = (StandalonePage)Self.GET("/KitchenSink/standalone");
-                if (!((master.CurrentPage as NavPage).CurrentPage is MultiselectPage)) {
-                    var page = new MultiselectPage() {
-                        Data = null
-                    };
-                    (master.CurrentPage as NavPage).CurrentPage = page;
-                }
-                return master;
-            });
-
-            Handle.GET("/KitchenSink/password", () => {
-                var master = (StandalonePage)Self.GET("/KitchenSink/standalone");
-                if (!((master.CurrentPage as NavPage).CurrentPage is PasswordPage)) {
-                    var page = new PasswordPage();
-                    (master.CurrentPage as NavPage).CurrentPage = page;
-                }
-                return master;
-            });
-
-            Handle.GET("/KitchenSink/table", () => {
-                var master = (StandalonePage)Self.GET("/KitchenSink/standalone");
-                if (!((master.CurrentPage as NavPage).CurrentPage is TablePage)) {
-                    var page = new TablePage();
-
-                    TablePage.PetsElementJson pet;
-                    pet = page.Pets.Add();
-                    pet.Name = "Rocky";
-                    pet.Kind = "Dog";
-
-                    pet = page.Pets.Add();
-                    pet.Name = "Tigger";
-                    pet.Kind = "Cat";
-
-                    pet = page.Pets.Add();
-                    pet.Name = "Bella";
-                    pet.Kind = "Rabbit";
-
-                    (master.CurrentPage as NavPage).CurrentPage = page;
-                }
-                return master;
-            });
-
-            Handle.GET("/KitchenSink/text", () => {
-                var master = (StandalonePage)Self.GET("/KitchenSink/standalone");
-                if (!((master.CurrentPage as NavPage).CurrentPage is TextPage)) {
-                    var page = new TextPage();
-                    (master.CurrentPage as NavPage).CurrentPage = page;
-                }
-                return master;
-            });
-
-            Handle.GET("/KitchenSink/textarea", () => {
-                var master = (StandalonePage)Self.GET("/KitchenSink/standalone");
-                if (!((master.CurrentPage as NavPage).CurrentPage is TextareaPage)) {
-                    var page = new TextareaPage();
-                    (master.CurrentPage as NavPage).CurrentPage = page;
-                }
-                return master;
-            });
-
-            Handle.GET("/KitchenSink/radio", () => {
-                var master = (StandalonePage)Self.GET("/KitchenSink/standalone");
-                if (!((master.CurrentPage as NavPage).CurrentPage is RadioPage)) {
-                    var page = new RadioPage();
-
-                    RadioPage.PetsElementJson pet;
-                    pet = page.Pets.Add();
-                    pet.Label = "dogs";
-
-                    pet = page.Pets.Add();
-                    pet.Label = "cats";
-
-                    pet = page.Pets.Add();
-                    pet.Label = "rabbit";
-
-                    page.SelectedPet = "dogs";
-
-                    (master.CurrentPage as NavPage).CurrentPage = page;
-                }
-                return master;
-            });
-
-            Handle.GET("/KitchenSink/url", () => {
-                var master = (StandalonePage)Self.GET("/KitchenSink/standalone");
-                if (!((master.CurrentPage as NavPage).CurrentPage is UrlPage)) {
-                    var page = new UrlPage();
-                    page.Url = "/KitchenSink";
-                    page.Label = "Go to home page";
-                    (master.CurrentPage as NavPage).CurrentPage = page;
-                }
-                return master;
-            });
-
-            Handle.GET("/KitchenSink/datepicker", () => {
-                return WrapPage(() => new DatepickerPage() { Data = null });
-            });
+            Handle.GET("/KitchenSink/datepicker", () => WrapPage(() => new DatepickerPage()));
 
             //for a launcher
             Handle.GET("/KitchenSink/app-name", () => {
@@ -289,15 +81,16 @@ It supports **markdown** *syntax*.";
             UriMapping.Map("/KitchenSink/app-name", UriMapping.MappingUriPrefix + "/app-name");
         }
 
-        private static Page WrapPage(Func<Page> Page) {
+        private static Page WrapPage<T>(Func<T> Page) where T : Page {
             var master = (StandalonePage)Self.GET("/KitchenSink/standalone");
             var nav = master.CurrentPage as NavPage;
 
-            if (nav.CurrentPage != null && nav.CurrentPage.GetType().Equals(Page.GetType())) {
+            if (nav.CurrentPage != null && nav.CurrentPage.GetType().Equals(typeof(T))) {
                 return master;
             }
 
             nav.CurrentPage = Page();
+            nav.CurrentPage.Data = null;
 
             return master;
         }

@@ -1,12 +1,17 @@
 using Starcounter;
 
 namespace KitchenSink {
-  partial class DecimalPage : Page {
+    partial class DecimalPage : Page {
+        protected override void OnData() {
+            base.OnData();
 
-    public string CalculatedPriceReaction {
-      get {
-        return "5% of tax is " + (Price / 20);
-      }
+            this.Price = 10;
+        }
+
+        public string CalculatedPriceReaction {
+            get {
+                return "5% of tax is " + (Price / 20);
+            }
+        }
     }
-  }
 }

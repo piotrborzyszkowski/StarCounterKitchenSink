@@ -1,12 +1,27 @@
 using Starcounter;
 
 namespace KitchenSink {
-  partial class RadioPage : Page {
+    partial class RadioPage : Page {
+        protected override void OnData() {
+            base.OnData();
 
-    public string CalculatedPetReaction {
-      get {
-        return "You like " + SelectedPet;
-      }
+            RadioPage.PetsElementJson pet;
+            pet = this.Pets.Add();
+            pet.Label = "dogs";
+
+            pet = this.Pets.Add();
+            pet.Label = "cats";
+
+            pet = this.Pets.Add();
+            pet.Label = "rabbit";
+
+            this.SelectedPet = "dogs";
+        }
+
+        public string CalculatedPetReaction {
+            get {
+                return "You like " + SelectedPet;
+            }
+        }
     }
-  }
 }
