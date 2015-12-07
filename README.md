@@ -6,9 +6,11 @@ Shows how to model different UI patterns in JSON:
    - Text
    - Password
    - Textarea
-   - Url
    - Markdown
    - Html
+   - Datepicker
+   - Url
+   - Redirect
 
 - Number
    - Integer
@@ -23,6 +25,8 @@ Shows how to model different UI patterns in JSON:
 - Array
    - Radio
    - Dropdown
+   - Radiolist
+   - Multiselect
    - Table
    - Chart
 
