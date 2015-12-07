@@ -4,11 +4,40 @@
     <template is="dom-bind">
         <p class="lead">JSON's primitive value type <code>string</code> can be used to cause the client to morph to a new URL using <code><a href="https://github.com/PuppetJs/puppet-redirect">link is="puppet-redirect"</a></code>.</p>
 
+        <h5>Morph the current partial</h5>
+
+        <p>You can the current partial to a new URL while keeping the state.</p>
+
         <div>
-            <button value="{{model.TriggerRedirection$::click}}" onclick="++this.value">Trigger redirection</button>
+            <label>Morph to some: 
+                <button value="{{model.ChooseFood$::click}}" onclick="this.value = 'Fruit'">Fruit</button>
+                <button value="{{model.ChooseFood$::click}}" onclick="this.value = 'Vegetable'">Vegetable</button>
+                <button value="{{model.ChooseFood$::click}}" onclick="this.value = 'Bread'">Bread</button>
+            </label>
+            <div>{{model.YourFavoriteFood}}</div>
         </div>
 
-        <link is="puppet-redirect" history url$="{{model.RedirectUrl$}}" />
+
+        <h5>Morph to another partial</h5>
+
+        <p>Want to morph to another partial? It's as easy.</p>
+
+        <div>
+            <button value="{{model.GoToHomePartial$::click}}" onclick="++this.value">Morph to another partial</button>
+        </div>
+
+
+        <h5>Redirect to an external link</h5>
+
+        <p>Drop the <code>history</code> attribute to redirect to an external link (without morphing).</p>
+
+        <div>
+            <button value="{{model.GoToDocs$::click}}" onclick="++this.value">Redirect to Starcounter.io</button>
+        </div>
+
+
+        <link is="puppet-redirect" history url$="{{model.MorphUrl$}}" />
+        <link is="puppet-redirect" url$="{{model.RedirectUrl$}}" />
 
         <dom-bind-notifier path="model" observed-object="{{model}}" deep></dom-bind-notifier>
     </template>

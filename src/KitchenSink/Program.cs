@@ -61,7 +61,15 @@ namespace KitchenSink {
 
             Handle.GET("/KitchenSink/radio", () => WrapPage(() => new RadioPage()));
 
-            Handle.GET("/KitchenSink/redirect", () => WrapPage(() => new RedirectPage()));
+            Handle.GET("/KitchenSink/Redirect", () => WrapPage(() => new RedirectPage()));
+
+            Handle.GET("/KitchenSink/Redirect/{?}", (string param) => {
+                var master = WrapPage(() => new RedirectPage()) as MasterPage;
+                var nav = master.CurrentPage as NavPage;
+                var page = nav.CurrentPage as RedirectPage;
+                page.YourFavoriteFood = "You've got some tasty " + param;
+                return master;
+            });
 
             Handle.GET("/KitchenSink/url", () => WrapPage(() => new UrlPage()));
 
