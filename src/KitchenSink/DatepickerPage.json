@@ -1,4 +1,7 @@
 {
     "Html": "/KitchenSink/DatepickerPage.html",
-    "Value": ""
+    "Value$": "",
+    "Month": "",
+    "Day": "",
+    "Year": ""
 }
