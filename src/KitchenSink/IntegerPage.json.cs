@@ -2,7 +2,7 @@ using Starcounter;
 using System;
 
 namespace KitchenSink {
-  partial class IntegerPage : Page {
+  partial class IntegerPage : Partial {
 
     public string CalculatedAgeReaction {
       get {

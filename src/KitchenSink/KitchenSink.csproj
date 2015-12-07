@@ -85,6 +85,7 @@
     <Compile Include="MultiselectPage.json.cs">
       <DependentUpon>MultiselectPage.json</DependentUpon>
     </Compile>
+    <Compile Include="Partial.cs" />
     <Compile Include="PasswordPage.json.cs">
       <DependentUpon>PasswordPage.json</DependentUpon>
     </Compile>
@@ -112,8 +113,8 @@
     <Compile Include="TextPage.json.cs">
       <DependentUpon>TextPage.json</DependentUpon>
     </Compile>
-    <Compile Include="StandalonePage.json.cs">
-      <DependentUpon>StandalonePage.json</DependentUpon>
+    <Compile Include="MasterPage.json.cs">
+      <DependentUpon>MasterPage.json</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -133,7 +134,7 @@
     </TypedJSON>
   </ItemGroup>
   <ItemGroup>
-    <TypedJSON Include="StandalonePage.json">
+    <TypedJSON Include="MasterPage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>
@@ -147,7 +148,7 @@
     <Content Include="wwwroot\KitchenSink\DatepickerPage.html" />
     <Content Include="wwwroot\KitchenSink\DecimalPage.html" />
     <Content Include="wwwroot\KitchenSink\HtmlPage.html" />
-    <Content Include="wwwroot\KitchenSink\LauncherWrapperPage.html" />
+    <Content Include="wwwroot\KitchenSink\MasterPage.html" />
     <Content Include="wwwroot\KitchenSink\MapPage.html" />
     <Content Include="wwwroot\KitchenSink\MarkdownPage.html" />
     <Content Include="wwwroot\KitchenSink\PasswordPage.html" />
@@ -160,7 +161,6 @@
     <Content Include="wwwroot\KitchenSink\TablePage.html" />
     <Content Include="wwwroot\KitchenSink\TextareaPage.html" />
     <Content Include="wwwroot\KitchenSink\TextPage.html" />
-    <Content Include="wwwroot\KitchenSink\StandalonePage.html" />
     <Content Include="wwwroot\KitchenSink\style.css" />
     <Content Include="wwwroot\KitchenSink\UrlPage.html" />
   </ItemGroup>

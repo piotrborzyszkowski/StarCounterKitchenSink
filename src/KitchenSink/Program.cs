@@ -4,26 +4,23 @@ using Starcounter;
 namespace KitchenSink {
     class Program {
         static void Main() {
-            Handle.GET("/KitchenSink/standalone", () => {
+            Handle.GET("/KitchenSink/master", () => {
                 Session session = Session.Current;
 
                 if (session != null && session.Data != null)
                     return session.Data;
 
-                var standalone = new StandalonePage();
+                var master = new MasterPage();
 
                 if (session == null) {
                     session = new Session(SessionOptions.PatchVersioning);
-                    standalone.Html = "/KitchenSink/StandalonePage.html";
-                } else {
-                    standalone.Html = "/KitchenSink/LauncherWrapperPage.html";
                 }
 
                 var nav = new NavPage();
-                standalone.CurrentPage = nav;
+                master.CurrentPage = nav;
 
-                standalone.Session = session;
-                return standalone;
+                master.Session = session;
+                return master;
             });
 
             Handle.GET("/KitchenSink", () => {
@@ -74,22 +71,22 @@ namespace KitchenSink {
             });
 
             Handle.GET("/KitchenSink/menu", () => {
-                return new Page() { Html = "/KitchenSink/AppMenuPage.html" };
+                return new Partial() { Html = "/KitchenSink/AppMenuPage.html" };
             });
 
             UriMapping.Map("/KitchenSink/menu", UriMapping.MappingUriPrefix + "/menu");
             UriMapping.Map("/KitchenSink/app-name", UriMapping.MappingUriPrefix + "/app-name");
         }
 
-        private static Page WrapPage<T>(Func<T> Page) where T : Page {
-            var master = (StandalonePage)Self.GET("/KitchenSink/standalone");
+        private static Partial WrapPage<T>(Func<T> Partial) where T : Partial {
+            var master = (MasterPage)Self.GET("/KitchenSink/master");
             var nav = master.CurrentPage as NavPage;
 
             if (nav.CurrentPage != null && nav.CurrentPage.GetType().Equals(typeof(T))) {
                 return master;
             }
 
-            nav.CurrentPage = Page();
+            nav.CurrentPage = Partial();
             nav.CurrentPage.Data = null;
 
             return master;

@@ -1,7 +1,7 @@
 using Starcounter;
 
 namespace KitchenSink {
-    partial class RadioPage : Page {
+    partial class RadioPage : Partial {
         protected override void OnData() {
             base.OnData();
 

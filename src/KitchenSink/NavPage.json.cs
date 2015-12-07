@@ -1,6 +1,6 @@
 using Starcounter;
 
 namespace KitchenSink {
-  partial class NavPage : Page {
+  partial class NavPage : Partial {
   }
 }

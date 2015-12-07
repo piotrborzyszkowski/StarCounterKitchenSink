@@ -1,7 +1,7 @@
 using Starcounter;
 
 namespace KitchenSink {
-  partial class TextPage : Page {
+  partial class TextPage : Partial {
 
     public string CalculatedNameReaction {
       get {

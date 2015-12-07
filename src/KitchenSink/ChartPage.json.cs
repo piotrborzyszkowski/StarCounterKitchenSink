@@ -1,7 +1,7 @@
 using Starcounter;
 
 namespace KitchenSink {
-    partial class ChartPage : Page {
+    partial class ChartPage : Partial {
         protected override void OnData() {
             base.OnData();
 

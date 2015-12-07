@@ -1,7 +1,7 @@
 using Starcounter;
 
 namespace KitchenSink {
-    partial class MultiselectPage : Page {
+    partial class MultiselectPage : Partial {
         protected override void OnData() {
             base.OnData();
 
