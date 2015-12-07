@@ -1,0 +1,15 @@
+﻿<link rel="import" href="/sys/puppet-redirect/src/puppet-redirect.html">
+
+<template>
+    <template is="dom-bind">
+        <p class="lead">JSON's primitive value type <code>string</code> can be used to cause the client to morph to a new URL using <code><a href="https://github.com/PuppetJs/puppet-redirect">link is="puppet-redirect"</a></code>.</p>
+
+        <div>
+            <button value="{{model.TriggerRedirection$::click}}" onclick="++this.value">Trigger redirection</button>
+        </div>
+
+        <link is="puppet-redirect" history url$="{{model.RedirectUrl$}}" />
+
+        <dom-bind-notifier path="model" observed-object="{{model}}" deep></dom-bind-notifier>
+    </template>
+</template>

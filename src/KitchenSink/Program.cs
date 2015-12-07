@@ -61,6 +61,8 @@ namespace KitchenSink {
 
             Handle.GET("/KitchenSink/radio", () => WrapPage(() => new RadioPage()));
 
+            Handle.GET("/KitchenSink/redirect", () => WrapPage(() => new RedirectPage()));
+
             Handle.GET("/KitchenSink/url", () => WrapPage(() => new UrlPage()));
 
             Handle.GET("/KitchenSink/datepicker", () => WrapPage(() => new DatepickerPage()));

@@ -104,6 +104,9 @@
     <Compile Include="RadioPage.json.cs">
       <DependentUpon>RadioPage.json</DependentUpon>
     </Compile>
+    <Compile Include="RedirectPage.json.cs">
+      <DependentUpon>RedirectPage.json</DependentUpon>
+    </Compile>
     <Compile Include="TablePage.json.cs">
       <DependentUpon>TablePage.json</DependentUpon>
     </Compile>
@@ -158,6 +161,7 @@
     <Content Include="wwwroot\KitchenSink\NavPage.html" />
     <Content Include="wwwroot\KitchenSink\IntegerPage.html" />
     <Content Include="wwwroot\KitchenSink\RadioPage.html" />
+    <Content Include="wwwroot\KitchenSink\RedirectPage.html" />
     <Content Include="wwwroot\KitchenSink\TablePage.html" />
     <Content Include="wwwroot\KitchenSink\TextareaPage.html" />
     <Content Include="wwwroot\KitchenSink\TextPage.html" />
@@ -261,6 +265,11 @@
   </ItemGroup>
   <ItemGroup>
     <TypedJSON Include="DatepickerPage.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
+  </ItemGroup>
+  <ItemGroup>
+    <TypedJSON Include="RedirectPage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>
