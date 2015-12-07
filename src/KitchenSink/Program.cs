@@ -272,6 +272,10 @@ It supports **markdown** *syntax*.";
                 return master;
             });
 
+            Handle.GET("/KitchenSink/datepicker", () => {
+                return WrapPage(() => new DatepickerPage() { Data = null });
+            });
+
             //for a launcher
             Handle.GET("/KitchenSink/app-name", () => {
                 return new AppName();
@@ -283,6 +287,19 @@ It supports **markdown** *syntax*.";
 
             UriMapping.Map("/KitchenSink/menu", UriMapping.MappingUriPrefix + "/menu");
             UriMapping.Map("/KitchenSink/app-name", UriMapping.MappingUriPrefix + "/app-name");
+        }
+
+        private static Page WrapPage(Func<Page> Page) {
+            var master = (StandalonePage)Self.GET("/KitchenSink/standalone");
+            var nav = master.CurrentPage as NavPage;
+
+            if (nav.CurrentPage != null && nav.CurrentPage.GetType().Equals(Page.GetType())) {
+                return master;
+            }
+
+            nav.CurrentPage = Page();
+
+            return master;
         }
     }
 }

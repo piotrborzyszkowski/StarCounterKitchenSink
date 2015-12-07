@@ -70,6 +70,9 @@
     <Compile Include="CheckboxPage.json.cs">
       <DependentUpon>CheckboxPage.json</DependentUpon>
     </Compile>
+    <Compile Include="DatepickerPage.json.cs">
+      <DependentUpon>DatepickerPage.json</DependentUpon>
+    </Compile>
     <Compile Include="HtmlPage.json.cs">
       <DependentUpon>HtmlPage.json</DependentUpon>
     </Compile>
@@ -141,6 +144,7 @@
     <Content Include="wwwroot\KitchenSink\ChartPage.html" />
     <Content Include="wwwroot\KitchenSink\CheckboxPage.html" />
     <Content Include="wwwroot\KitchenSink\DatagridPage.html" />
+    <Content Include="wwwroot\KitchenSink\DatepickerPage.html" />
     <Content Include="wwwroot\KitchenSink\DecimalPage.html" />
     <Content Include="wwwroot\KitchenSink\HtmlPage.html" />
     <Content Include="wwwroot\KitchenSink\LauncherWrapperPage.html" />
@@ -252,6 +256,11 @@
   </ItemGroup>
   <ItemGroup>
     <TypedJSON Include="MultiselectPage.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
+  </ItemGroup>
+  <ItemGroup>
+    <TypedJSON Include="DatepickerPage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>
