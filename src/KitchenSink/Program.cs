@@ -47,6 +47,10 @@ namespace KitchenSink {
 
             Handle.GET("/KitchenSink/markdown", () => WrapPage(() => new MarkdownPage()));
 
+            Handle.GET("/KitchenSink/nested", () => WrapPage(() => new NestedPartial() {
+                Data = new AnyData()
+            }));
+
             Handle.GET("/KitchenSink/radiolist", () => WrapPage(() => new RadiolistPage()));
 
             Handle.GET("/KitchenSink/multiselect", () => WrapPage(() => new MultiselectPage()));
@@ -88,7 +92,7 @@ namespace KitchenSink {
             UriMapping.Map("/KitchenSink/app-name", UriMapping.MappingUriPrefix + "/app-name");
         }
 
-        private static Partial WrapPage<T>(Func<T> Partial) where T : Partial {
+        private static Partial WrapPage<T>(Func<T> partial) where T : Partial {
             var master = (MasterPage)Self.GET("/KitchenSink/master");
             var nav = master.CurrentPage as NavPage;
 
@@ -96,8 +100,10 @@ namespace KitchenSink {
                 return master;
             }
 
-            nav.CurrentPage = Partial();
-            nav.CurrentPage.Data = null;
+            nav.CurrentPage = partial();
+            if (nav.CurrentPage.Data == null) {
+                nav.CurrentPage.Data = null; //trick to invoke OnData in partial
+            }
 
             return master;
         }

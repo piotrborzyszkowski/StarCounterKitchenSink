@@ -85,6 +85,9 @@
     <Compile Include="MultiselectPage.json.cs">
       <DependentUpon>MultiselectPage.json</DependentUpon>
     </Compile>
+    <Compile Include="NestedPartial.json.cs">
+      <DependentUpon>NestedPartial.json</DependentUpon>
+    </Compile>
     <Compile Include="Partial.cs" />
     <Compile Include="PasswordPage.json.cs">
       <DependentUpon>PasswordPage.json</DependentUpon>
@@ -154,6 +157,7 @@
     <Content Include="wwwroot\KitchenSink\MasterPage.html" />
     <Content Include="wwwroot\KitchenSink\MapPage.html" />
     <Content Include="wwwroot\KitchenSink\MarkdownPage.html" />
+    <Content Include="wwwroot\KitchenSink\NestedPartial.html" />
     <Content Include="wwwroot\KitchenSink\PasswordPage.html" />
     <Content Include="wwwroot\KitchenSink\MultiselectPage.html" />
     <Content Include="wwwroot\KitchenSink\RadiolistPage.html" />
@@ -270,6 +274,11 @@
   </ItemGroup>
   <ItemGroup>
     <TypedJSON Include="RedirectPage.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
+  </ItemGroup>
+  <ItemGroup>
+    <TypedJSON Include="NestedPartial.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>
