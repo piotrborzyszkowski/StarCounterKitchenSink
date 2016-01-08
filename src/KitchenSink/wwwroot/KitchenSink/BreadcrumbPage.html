@@ -3,11 +3,29 @@
 
 <template>
     <template is="dom-bind">
-        <h5>Breadcrumb</h5>
+        <h1>Breadcrumbs</h1>
 
-        <p>Sample:</p>
+        <h2>Simple breadcrumb</h2>
+
+        <p class="kitchen-sink-how-to">A JSON <code>array</code> of <code>objects</code> can used as a breadcrumb navigation. The below example uses <code>template is="dom-repeat"</code> with <code>span</code>.</p>
+
+        <template is="dom-repeat" items="{{model.Breadcrumbs}}" restamp>
+            <template is="dom-if" if="{{index}}" restamp>
+                &gt;
+            </template>
+            
+            <span class="btn">{{item.Name}}</span>
+        </template>
+
+        <h2>Breadcrumb with navigation</h2>
+
+        <p class="kitchen-sink-how-to">It doesn't take much more to add a multidimensional navigation to the breadcrumb. The below example uses <code>template is="dom-repeat"</code> with <code><a href="https://github.com/Juicy/x-breadcrumb">x-breadcrumb</a></code> custom element.</p>
 
         <style>
+            x-breadcrumb {
+                margin-bottom: 20px;
+            }
+
             .breadcrumb-suggestions {
                 padding: 0;
                 list-style: none;
@@ -24,10 +42,10 @@
         <x-breadcrumb>
             <template is="dom-repeat" items="{{model.Breadcrumbs}}" restamp>
                 <x-crumb value="{{item.Name}}"
-                            search-query="{{item.SearchQuery$}}"
-                            dropdown="true"
-                            active$="{{item.IsActive}}"
-                            ghost$="{{item.IsGhost}}">
+                         search-query="{{item.SearchQuery$}}"
+                         dropdown="true"
+                         active$="{{item.IsActive}}"
+                         ghost$="{{item.IsGhost}}">
                     <ul class="breadcrumb-suggestions">
                         <template is="dom-repeat" items="{{item.Siblings}}" restamp>
                             <li selected="{{item.Selected$::click}}" onclick="++this.selected">{{item.Name}}</li>
@@ -38,13 +56,11 @@
             </template>
         </x-breadcrumb>
 
-        <h5>Current item</h5>
-
         <template is="dom-if" if="{{model.CurrentTreeItem.IsAdd}}" restamp>
-            <p>Adding a new type in <strong>{{model.CurrentTreeItem.ParentName}}</strong>:</p>
+            <h5>Adding a new type in <strong>{{model.CurrentTreeItem.ParentName}}</strong></h5>
         </template>
         <template is="dom-if" if="{{!model.CurrentTreeItem.IsAdd}}" restamp>
-            <p>Editing <strong>{{model.CurrentTreeItem.Name$}}</strong>:</p>
+            <h5>Editing <strong>{{model.CurrentTreeItem.Name$}}</strong></h5>
         </template>
 
         <div class="form-group">

@@ -23,6 +23,10 @@ namespace KitchenSink {
                 return master;
             });
 
+            Handle.GET("/KitchenSink/json", () => {
+                return new Json();
+            });
+
             Handle.GET("/KitchenSink", () => {
                 return Self.GET("/KitchenSink/text");
             });
@@ -49,7 +53,9 @@ namespace KitchenSink {
 
             Handle.GET("/KitchenSink/integer", () => WrapPage(() => new IntegerPage()));
 
-            Handle.GET("/KitchenSink/Geo", () => WrapPage(() => new MapPage()));
+            //Handle.GET("/KitchenSink/Map", () => WrapPage(() => new MapPage()));
+
+            Handle.GET("/KitchenSink/Map", () => WrapPage(() => new MapPage()));
 
             Handle.GET("/KitchenSink/markdown", () => WrapPage(() => new MarkdownPage()));
 
