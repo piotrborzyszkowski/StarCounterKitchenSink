@@ -26,10 +26,6 @@ namespace KitchenSink {
             }
             BreadcrumbTestData.Create();
 
-            Db.Scope(() => {
-                CurrentTreeItem = new BreadcrumbPageCurrentTreeItem();
-            });
-
             var treeItem = Db.SQL<TreeItem>("SELECT i FROM TreeItem i WHERE Name = ?", "Milk").First;
             SetActiveItem(treeItem);
         }
