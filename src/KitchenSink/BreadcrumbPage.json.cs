@@ -108,7 +108,7 @@ namespace KitchenSink {
         }
 
         void Handle(Input.Select action) {
-            if(Data != null) {
+            if (Data != null) {
                 BreadcrumbPage breadcrumbPage = (BreadcrumbPage)Parent.Parent;
                 breadcrumbPage.SetActiveItem(Data);
             }
@@ -130,14 +130,14 @@ namespace KitchenSink {
             Siblings.Clear();
 
             QueryResultRows<TreeItem> result;
-            if (GhostParent != null) {
-                if (query.Length > 0) {
-                    result = Db.SQL<TreeItem>("SELECT i FROM TreeItem i WHERE Parent = ? AND Name LIKE ? FETCH ?", ParentItem, query + "%", 5);
-                }
-                else {
-                    result = Db.SQL<TreeItem>("SELECT i FROM TreeItem i WHERE Parent = ? FETCH ?", ParentItem, 5);
-                }
+            //if (GhostParent != null) {
+            if (query.Length > 0) {
+                result = Db.SQL<TreeItem>("SELECT i FROM TreeItem i WHERE Parent = ? AND Name LIKE ? FETCH ?", ParentItem, query + "%", 5);
             }
+            else {
+                result = Db.SQL<TreeItem>("SELECT i FROM TreeItem i WHERE Parent = ? FETCH ?", ParentItem, 5);
+            }
+            /*}
             else {
                 if (query.Length > 0) {
                     result = Db.SQL<TreeItem>("SELECT i FROM TreeItem i WHERE Parent = ? AND NOT i = ? AND Name LIKE ? FETCH ?", ParentItem, Data, query + "%", 5);
@@ -145,7 +145,7 @@ namespace KitchenSink {
                 else {
                     result = Db.SQL<TreeItem>("SELECT i FROM TreeItem i WHERE Parent = ? AND NOT i = ? FETCH ?", ParentItem, Data, 5);
                 }
-            }
+            }*/
 
             Siblings.Data = result;
         }
