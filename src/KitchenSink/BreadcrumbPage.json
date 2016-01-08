@@ -1,0 +1,32 @@
+{
+    "Html": "/KitchenSink/BreadcrumbPage.html",
+
+    "Breadcrumbs": [
+        {
+            "Name": "",
+            "$Name": {
+                "Bind": "FormattedName"
+            },
+            "SearchQuery$": "",
+            "IsActive": false,
+            "IsGhost": false,
+            "IsAdd": false,
+            "$IsGhost": {
+                "Bind": "IsGhostParentSet"
+            },
+            "Siblings": [
+                {
+                    "Name": "",
+                    "Selected$": 0
+                }
+            ],
+            "AddSibling$": 0
+        }
+    ],
+    "CurrentTreeItem": {
+        "Name$": "",
+        "IsAdd": false,
+        "ParentName": "",
+        "Save$": 0
+    }
+}

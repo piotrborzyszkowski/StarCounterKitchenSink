@@ -5,6 +5,8 @@
 .kitchen-sink-menu {
   flex: 0 0 160px;
   margin-right: 20px;
+  max-height: 90vh;
+  overflow-y: scroll;
 }
 
 .kitchen-sink-menu h3 {

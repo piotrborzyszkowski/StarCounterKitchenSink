@@ -1,0 +1,47 @@
+﻿<link rel="import" href="/sys/x-breadcrumb/x-breadcrumb.html" />
+<link rel="import" href="/sys/x-breadcrumb/x-crumb.html" />
+
+<template>
+    <template is="dom-bind">
+        <h5>Breadcrumb</h5>
+
+        <p>Sample:</p>
+
+        <div style="height: 50px;">
+            <x-breadcrumb>
+                <template is="dom-repeat" items="{{model.Breadcrumbs}}" restamp>
+                    <x-crumb value="{{item.Name}}"
+                             search-query="{{item.SearchQuery$}}"
+                             dropdown="true"
+                             active$="{{item.IsActive}}"
+                             ghost$="{{item.IsGhost}}">
+                        <ul>
+                            <template is="dom-repeat" items="{{item.Siblings}}" restamp>
+                                <li selected="{{item.Selected$::click}}" onclick="++this.selected">{{item.Name}}</li>
+                            </template>
+                            <li selected="{{item.AddSibling$::click}}" onclick="++this.selected">+ Add a new type</li>
+                        </ul>
+                    </x-crumb>
+                </template>
+            </x-breadcrumb>
+        </div>
+
+        <h5>Current item</h5>
+
+        <template is="dom-if" if="{{model.CurrentTreeItem.IsAdd}}" restamp>
+            <p>Adding a new type in <strong>{{model.CurrentTreeItem.ParentName}}</strong>:</p>
+        </template>
+        <template is="dom-if" if="{{!model.CurrentTreeItem.IsAdd}}" restamp>
+            <p>Editing <strong>{{model.CurrentTreeItem.Name$}}</strong>:</p>
+        </template>
+
+        <div class="form-group">
+            <label class="control-label">Name</label>
+            <input type="text" value="{{model.CurrentTreeItem.Name$::change}}" placeholder="Name" class="form-control">
+        </div>
+
+        <button value="{{model.CurrentTreeItem.Save$::click}}" onclick="++this.value">Save</button>
+
+        <dom-bind-notifier path="model" observed-object="{{model}}" deep></dom-bind-notifier>
+    </template>
+</template>

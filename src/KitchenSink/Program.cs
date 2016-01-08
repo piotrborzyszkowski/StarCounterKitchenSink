@@ -29,6 +29,12 @@ namespace KitchenSink {
 
             Handle.GET("/KitchenSink/button", () => WrapPage(() => new ButtonPage()));
 
+            Handle.GET("/KitchenSink/breadcrumb", () => WrapPage(() => {
+                return Db.Scope(() => {
+                    return new BreadcrumbPage();
+                });
+            }));
+
             Handle.GET("/KitchenSink/chart", () => WrapPage(() => new ChartPage()));
 
             Handle.GET("/KitchenSink/checkbox", () => WrapPage(() => new CheckboxPage()));

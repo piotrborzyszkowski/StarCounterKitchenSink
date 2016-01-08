@@ -61,6 +61,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BreadcrumbPage.json.cs">
+      <DependentUpon>BreadcrumbPage.json</DependentUpon>
+    </Compile>
+    <Compile Include="BreadcrumbTestData.cs" />
     <Compile Include="ButtonPage.json.cs">
       <DependentUpon>ButtonPage.json</DependentUpon>
     </Compile>
@@ -147,6 +151,7 @@
   <ItemGroup>
     <Content Include="wwwroot\KitchenSink\AppIcon.html" />
     <Content Include="wwwroot\KitchenSink\AppMenuPage.html" />
+    <Content Include="wwwroot\KitchenSink\BreadcrumbPage.html" />
     <Content Include="wwwroot\KitchenSink\ButtonPage.html" />
     <Content Include="wwwroot\KitchenSink\ChartPage.html" />
     <Content Include="wwwroot\KitchenSink\CheckboxPage.html" />
@@ -279,6 +284,11 @@
   </ItemGroup>
   <ItemGroup>
     <TypedJSON Include="NestedPartial.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
+  </ItemGroup>
+  <ItemGroup>
+    <TypedJSON Include="BreadcrumbPage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>
