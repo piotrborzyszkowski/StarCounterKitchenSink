@@ -29,11 +29,11 @@
     "polymer": "^1.1.0",
     "webcomponentsjs": "^0.7.18"
   },
-  "_release": "f8def2d1a8",
+  "_release": "220e72eb0f",
   "_resolution": {
     "type": "branch",
     "branch": "gh-pages",
-    "commit": "f8def2d1a8bd9395b83f9704c5a9cf83d4ced640"
+    "commit": "220e72eb0f3afbaebb8cb6df61217eea3d1d23db"
   },
   "_source": "git://github.com/Juicy/x-breadcrumb.git",
   "_target": "gh-pages",

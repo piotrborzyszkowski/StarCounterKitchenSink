@@ -8,182 +8,85 @@
                 max-height: 600px;
             }
 
-            /*.button {
-                border: 1px solid #3d5b92;
-                background: #4d72b5;
-                color: #fff;
-                -webkit-font-smoothing: antialiased;
-                font-weight: bold;
-                padding: 0.3em .75em 0.4em;
-                line-height: 1;
-                -moz-border-radius: 2px;
-                -webkit-border-radius: 2px;
-                border-radius: 2px;
-                text-decoration: none;
-                -moz-transition-property: background-color;
-                -o-transition-property: background-color;
-                -webkit-transition-property: background-color;
-                transition-property: background-color;
-                -moz-transition-duration: 350ms;
-                -o-transition-duration: 350ms;
-                -webkit-transition-duration: 350ms;
-                transition-duration: 350ms;
-                -moz-transition-timing-function: ease-in-out;
-                -o-transition-timing-function: ease-in-out;
-                -webkit-transition-timing-function: ease-in-out;
-                transition-timing-function: ease-in-out;
-                cursor: pointer;
+            label {
+                margin: 0 0.5em 0 0;
                 display: inline-block;
-            }
-
-            .button:hover {
-                text-decoration: none;
-            }*/
-
-            .btn-large {
-                padding: 1em;
-                text-align: center;
-            }
-
-            .btn-create:before {
-                content: "+";
-                padding-right: .5em;
-                font-weight: bold;
-            }
-
-            .btn-create.btn-large {
                 position: relative;
-                padding-left: 3em;
-                padding-right: 1.5em;
             }
 
-            .btn-create.btn-large:before {
-                content: "+";
-                font-size: 2em;
-                position: absolute;
-                left: 16px;
-                left: 1rem;
-                top: 6.4px;
-                top: 0.4rem;
-            }
-
-            /*.button-dropdown {
-                position: relative;
-                display: inline-block;
-                padding-bottom: 15px;
-            }
-
-            .button-dropdown .btn-create {
-                -moz-border-radius: 3px 0 0 3px;
-                -webkit-border-radius: 3px;
-                border-radius: 3px 0 0 3px;
-            }*/
-
-            li label {
-                margin-top: 2px;
-                margin-bottom: 2px;
+            label .label-text {
                 color: white;
                 text-decoration: none;
-                padding: 10px 30px 10px 45px;
+                padding: .5em 1em;
+                margin-left: 0.74em;
+                display: inline-block;
                 position: relative;
-                display: block;
-                z-index: 1;
+                background: rgba(128, 128, 128, 1);
+                line-height: 1.13em;
             }
 
-            li label:after {
+            label::after {
                 content: " ";
                 display: block;
-                width: 90%;
+                width: 100%;
                 height: 50%;
                 position: absolute;
                 top: 0px;
-                left: 0px;
+                left: 0.38em;
                 z-index: -1;
+                background: rgba(128, 128, 128,1);
+                -webkit-transform: skewX(35deg);
+                transform: skewX(35deg);
             }
 
-            li label:before {
+            label::before {
                 content: " ";
                 display: block;
-                width: 90%;
+                width: 100%;
                 height: 50%;
                 position: absolute;
                 bottom: 0px;
-                left: 0px;
+                left: 0.38em;
                 z-index: -1;
-            }
-
-            li label:hover:after {
-                background: linear-gradient(to bottom, black, green);
-                -webkit-transform: skewX(35deg);
-                transform: skewX(35deg);
-            }
-
-            li label:hover:before {
-                background: linear-gradient(to bottom, green, lightgreen);
-                -webkit-transform: skewX(-35deg);
-                transform: skewX(-35deg);
-            }
-
-            label[active] {
-                background: rgba(53,122,232,0);
-            }
-
-            label[active]:before {
-                -webkit-transform: skewX(-35deg);
-                transform: skewX(-35deg);
-                background: rgba(31, 109, 255,0.4);
-            }
-
-            label[active]:after {
-                -webkit-transform: skewX(35deg);
-                transform: skewX(35deg);
-                background: rgba(31, 109, 255,0.4);
-            }
-
-            label[ghost] {
-                background: rgba(128,128,128,0);
-            }
-
-            label[ghost]:before {
-                background: rgba(128,128,128,0.5);
-                -webkit-transform: skewX(-35deg);
-                transform: skewX(-35deg);
-            }
-
-            label[ghost]:after {
-                background: rgba(128,128,128,0.5);
-                -webkit-transform: skewX(35deg);
-                transform: skewX(35deg);
-            }
-
-
-            label {
-                background: rgba(128, 128, 128,0);
-            }
-
-            label:before {
                 background: rgba(128, 128, 128,1);
                 -webkit-transform: skewX(-35deg);
                 transform: skewX(-35deg);
             }
 
-            label:after {
-                background: rgba(128, 128, 128,1);
-                -webkit-transform: skewX(35deg);
-                transform: skewX(35deg);
+            :host(:first-child) label .label-text {
+                margin-left: 0;
             }
 
-            li label {
-                display: block;
-                margin: 4px;
+            label[active] .label-text {
+                background: rgba(0, 121, 255, 1);
+            }
+
+            label[active]::before {
+                background: rgba(0, 121, 255, 1);
+            }
+
+            label[active]::after {
+                background: rgba(0, 121, 255, 1);
+            }
+
+            label[ghost] .label-text {
+                background: rgba(223, 223, 223, 1);
+            }
+
+            label[ghost]::before {
+                background: rgba(223, 223, 223, 1);
+            }
+
+            label[ghost]::after {
+                background: rgba(223, 223, 223, 1);
             }
 
             .options {
                 height: 0;
-                background: rgba(128, 128, 128, 0.9);
+                background: rgba(128, 128, 128, 1);
                 position: absolute;
                 display: none;
-                width: 90%;
+                width: 300px;
                 height: 250px;
                 transition: top 300ms cubic-bezier(0.17, 0.04, 0.03, 0.94);
                 overflow: hidden;
@@ -194,10 +97,10 @@
 
             .search {
                 width: 100%;
-                text-align: center;
                 padding: 5px;
                 font-size: smaller;
                 box-sizing: border-box;
+                border-width: 0;
             }
 
             .options[expanded] {
@@ -206,14 +109,16 @@
                 min-height: 40px;
                 max-height: 400px;
             }
+
+            .dropdown-decoration {
+                margin-left: 10px;
+            }
         </style>
-        <li class="block">
-            <label active$="[[active]]" ghost$="[[ghost]]" on-click="expandDropdown" on-mouseover="onItemHover" on-mouseout="onItemBlur"><span>[[value]]</span> &nbsp; &#x2228;</label>
-            <div class="options" expanded$="[[expanded]]">
-                <input on-click="preventCollapse" type="text" value="{{searchQuery::input}}" class="search" placeholder="Search">
-                <content></content>
-            </div>
-        </li>
+        <label active$="[[active]]" ghost$="[[ghost]]" on-click="expandDropdown" on-mouseover="onItemHover" on-mouseout="onItemBlur"><span class="label-text"><span>[[value]]</span><span class="dropdown-decoration">&#x25BE;</span></span></label>
+        <div class="options" expanded$="[[expanded]]">
+            <input on-click="preventCollapse" type="text" value="{{searchQuery::input}}" class="search" placeholder="Search">
+            <content></content>
+        </div>
     </template>
     <script>
         (function () {
@@ -248,16 +153,6 @@
                         type: String,
                         value: "",
                         notify: true
-                    },
-                    alloptions: {
-                        type: Array,
-                        value: [],
-                        notify: true
-                    },
-                    add: {
-                        type: Boolean,
-                        value: false,
-                        notify: true
                     }
                 },
                 attached: function () {
@@ -269,7 +164,7 @@
                             }
 
                             this.set("expanded", false);
-                        }.bind(this), 100);
+                        }.bind(this), 1);
                     }.bind(this));
                 },
                 preventCollapse: function(ev) {

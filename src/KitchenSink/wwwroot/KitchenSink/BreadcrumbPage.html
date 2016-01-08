@@ -7,24 +7,36 @@
 
         <p>Sample:</p>
 
-        <div style="height: 50px;">
-            <x-breadcrumb>
-                <template is="dom-repeat" items="{{model.Breadcrumbs}}" restamp>
-                    <x-crumb value="{{item.Name}}"
-                             search-query="{{item.SearchQuery$}}"
-                             dropdown="true"
-                             active$="{{item.IsActive}}"
-                             ghost$="{{item.IsGhost}}">
-                        <ul>
-                            <template is="dom-repeat" items="{{item.Siblings}}" restamp>
-                                <li selected="{{item.Selected$::click}}" onclick="++this.selected">{{item.Name}}</li>
-                            </template>
-                            <li selected="{{item.AddSibling$::click}}" onclick="++this.selected">+ Add a new type</li>
-                        </ul>
-                    </x-crumb>
-                </template>
-            </x-breadcrumb>
-        </div>
+        <style>
+            .breadcrumb-suggestions {
+                padding: 0;
+                list-style: none;
+                color: white;
+                margin: 0;
+            }
+
+                .breadcrumb-suggestions li:hover {
+                    cursor: default;
+                    background: rgba(255, 255, 255, 0.2);
+                }
+        </style>
+
+        <x-breadcrumb>
+            <template is="dom-repeat" items="{{model.Breadcrumbs}}" restamp>
+                <x-crumb value="{{item.Name}}"
+                            search-query="{{item.SearchQuery$}}"
+                            dropdown="true"
+                            active$="{{item.IsActive}}"
+                            ghost$="{{item.IsGhost}}">
+                    <ul class="breadcrumb-suggestions">
+                        <template is="dom-repeat" items="{{item.Siblings}}" restamp>
+                            <li selected="{{item.Selected$::click}}" onclick="++this.selected">{{item.Name}}</li>
+                        </template>
+                        <li selected="{{item.AddSibling$::click}}" onclick="++this.selected">+ Add a new type</li>
+                    </ul>
+                </x-crumb>
+            </template>
+        </x-breadcrumb>
 
         <h5>Current item</h5>
 
