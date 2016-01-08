@@ -11,13 +11,14 @@
             "IsActive": false,
             "IsGhost": false,
             "IsAdd": false,
+            "Select$": 0,
             "$IsGhost": {
                 "Bind": "IsGhostParentSet"
             },
             "Siblings": [
                 {
                     "Name": "",
-                    "Selected$": 0
+                    "Select$": 0
                 }
             ],
             "AddSibling$": 0

@@ -107,6 +107,13 @@ namespace KitchenSink {
             }
         }
 
+        void Handle(Input.Select action) {
+            if(Data != null) {
+                BreadcrumbPage breadcrumbPage = (BreadcrumbPage)Parent.Parent;
+                breadcrumbPage.SetActiveItem(Data);
+            }
+        }
+
         void Handle(Input.AddSibling action) {
             BreadcrumbPage breadcrumbPage = (BreadcrumbPage)Parent.Parent;
             TreeItem item = new TreeItem() {
@@ -146,7 +153,7 @@ namespace KitchenSink {
 
     [BreadcrumbPage_json.Breadcrumbs.Siblings]
     partial class BreadcrumbPageBreadcrumbsSiblingsElement : Json, IBound<TreeItem> {
-        void Handle(Input.Selected action) {
+        void Handle(Input.Select action) {
             BreadcrumbPage breadcrumbPage = (BreadcrumbPage)Parent.Parent.Parent.Parent;
             breadcrumbPage.SetActiveItem(Data);
         }

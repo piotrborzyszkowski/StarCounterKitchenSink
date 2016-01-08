@@ -14,7 +14,7 @@
                 &gt;
             </template>
             
-            <span class="btn">{{item.Name}}</span>
+            <span class="btn" select="{{item.Select$::mouseup}}" onmousedown="++this.select">{{item.Name}}</span>
         </template>
 
         <h2>Breadcrumb with navigation</h2>
@@ -48,9 +48,9 @@
                          ghost$="{{item.IsGhost}}">
                     <ul class="breadcrumb-suggestions">
                         <template is="dom-repeat" items="{{item.Siblings}}" restamp>
-                            <li selected="{{item.Selected$::click}}" onclick="++this.selected">{{item.Name}}</li>
+                            <li select="{{item.Select$::click}}" onclick="++this.select">{{item.Name}}</li>
                         </template>
-                        <li selected="{{item.AddSibling$::click}}" onclick="++this.selected">+ Add a new type</li>
+                        <li select="{{item.AddSibling$::click}}" onclick="++this.select">+ Add a new type</li>
                     </ul>
                 </x-crumb>
             </template>
