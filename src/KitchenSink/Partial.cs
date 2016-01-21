@@ -9,7 +9,7 @@ using System.Text;
 
 namespace KitchenSink {
     public class Partial : Page {
-        public string ImplicitStandaloneTitle = Application.Current.DisplayName;
+        public string ImplicitStandaloneTitle = Application.Current.Name;
 
         public string ImplicitStandaloneTemplate = @"<!DOCTYPE html>
 
