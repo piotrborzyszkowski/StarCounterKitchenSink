@@ -51,7 +51,7 @@ var browsers = [
   }
 ];
 
-module.exports = function (grunt) {
+module.exports = function(grunt) {
 
   require('time-grunt')(grunt);
   require('load-grunt-tasks')(grunt);
@@ -71,7 +71,7 @@ module.exports = function (grunt) {
         'src/3rdparty/*.js'
       ],
       walkontable: [
-        'src/3rdparty/walkontable/src/*.js'
+        'src/3rdparty/walkontable/src/**/*.js'
       ],
       vendor: [
         'lib/numeral/numeral.js'
@@ -91,9 +91,17 @@ module.exports = function (grunt) {
     },
 
     jasmine: {
+      options: {
+        page: {
+          viewportSize: {
+            width: 1200,
+            height: 1000
+          }
+        },
+      },
       handsontable: {
         src: [
-          'dist/handsontable.js',
+          'dist/handsontable.min.js',
           'demo/js/numeral.de-de.js',
           'demo/js/backbone/lodash.underscore.js',
           'demo/js/backbone/backbone.js',
@@ -111,7 +119,7 @@ module.exports = function (grunt) {
           ],
           styles: [
             'test/jasmine/css/SpecRunner.css',
-            'dist/handsontable.css',
+            'dist/handsontable.min.css',
             'plugins/removeRow/handsontable.removeRow.css',
             'demo/js/jquery-ui/css/ui-bootstrap/jquery-ui.custom.css',
             'demo/js/pikaday/css/pikaday.css'
@@ -136,7 +144,7 @@ module.exports = function (grunt) {
       },
       walkontable: {
         src: [
-          'dist/handsontable.js'
+          'dist/handsontable.min.js'
         ],
         options: {
           specs: [
@@ -166,7 +174,7 @@ module.exports = function (grunt) {
       },
       mobile: {
         src: [
-          'dist/handsontable.js',
+          'dist/handsontable.min.js',
           'demo/js/numeral.de-de.js',
           'demo/js/backbone/lodash.underscore.js',
           'demo/js/backbone/backbone.js',
@@ -181,7 +189,7 @@ module.exports = function (grunt) {
           ],
           styles: [
             'test/jasmine/css/SpecRunner.css',
-            'dist/handsontable.css',
+            'dist/handsontable.min.css',
             'plugins/removeRow/handsontable.removeRow.css',
             'demo/js/jquery-ui/css/ui-bootstrap/jquery-ui.custom.css',
             'demo/js/pikaday/css/pikaday.css'
@@ -227,21 +235,19 @@ module.exports = function (grunt) {
       handsontable: {
         options: {
           urls: ['http://localhost:9999/test/jasmine/SpecRunner.html'],
-//          build: process.env.TRAVIS_JOB_ID,
           build: '<%= pkg.version %>-<%= gitinfo.local.branch.current.name %>',
           concurrency: 3,
           browsers: browsers,
-          testname: "Development test (Handsontable)"
+          testname: 'Development test (Handsontable)'
         }
       },
       walkontable: {
         options: {
           urls: ['http://localhost:9999/src/3rdparty/walkontable/test/jasmine/SpecRunner.html'],
-//          build: process.env.TRAVIS_JOB_ID,
           build: '<%= pkg.version %>-<%= gitinfo.local.branch.current.name %>',
           concurrency: 3,
           browsers: browsers,
-          testname: "Development test (Walkontable)"
+          testname: 'Development test (Walkontable)'
         }
       }
     },
@@ -254,15 +260,33 @@ module.exports = function (grunt) {
       walkontable: '<%= meta.walkontable %>'
     },
 
+    jscs: {
+      handsontable: {
+        files: {
+          src: ['<%= meta.src %>', '!src/shims/classes.js']
+        }
+      },
+      walkontable: {
+        files: {
+          src: ['<%= meta.walkontable %>', '!src/shims/classes.js']
+        }
+      },
+      options: {
+        config: '.jscsrc',
+        esnext: true,
+        verbose: true
+      }
+    },
+
     hotBuilder: {
       handsontable: {
         files: {
-          'dist': 'package.json'
+          dist: 'package.json'
         }
       },
       handsontableDev: {
         files: {
-          'dist': 'package.json'
+          dist: 'package.json'
         },
         options: {
           devMode: true
@@ -270,7 +294,7 @@ module.exports = function (grunt) {
       },
       handsontableCustom: {
         files: {
-          'dist': 'package.json'
+          dist: 'package.json'
         },
         options: {
           disableUI: false
@@ -283,7 +307,7 @@ module.exports = function (grunt) {
   });
 
   // Default task.
-  grunt.registerTask('default', ['jshint', 'gitinfo', 'build']);
+  grunt.registerTask('default', ['jscs', 'jshint', 'gitinfo', 'build']);
   grunt.registerTask('build', ['hotBuilder:handsontable']);
   grunt.registerTask('build-dev', ['hotBuilder:handsontableDev']);
   grunt.registerTask('build-custom', ['hotBuilder:handsontableCustom']);
@@ -297,4 +321,5 @@ module.exports = function (grunt) {
 
   grunt.loadTasks('tasks');
   grunt.loadNpmTasks('hot-builder');
+  grunt.loadNpmTasks('grunt-jscs');
 };
