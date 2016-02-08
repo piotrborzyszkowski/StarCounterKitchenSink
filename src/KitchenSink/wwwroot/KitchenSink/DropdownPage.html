@@ -1,14 +1,33 @@
 ﻿<template>
     <template is="dom-bind">
-        <p class="lead">A combination of JSON's primitive value types <code>array</code>, <code>object</code> and <code>number</code> can be mapped to a HTML <code>select</code> element.</p>
+        <fieldset>
+            <legend>Primitive array</legend>
+            <p class="lead">A combination of JSON's primitive value types <code>array</code>, <code>object</code> and <code>number</code> can be mapped to an HTML <code>select</code> element.</p>
 
-        <select value="{{model.SelectedPet$::change}}">
-            <template is="dom-repeat" items="{{model.Pets}}">
-                <option value="{{item.Label}}">{{item.Label}}</option>
+            <select value="{{model.SelectedPet$::change}}">
+                <template is="dom-repeat" items="{{model.Pets}}">
+                    <option value="{{item.Label}}">{{item.Label}}</option>
+                </template>
+            </select>
+
+            <div>{{model.PetReaction}}</div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Objects array</legend>
+            <p class="lead">A combination of object <code>array</code> and bound JSON string property can be mapped to an HTML <code>select</code> element.</p>
+
+            <select value="{{model.SelectedProductKey$::change}}">
+                <option></option>
+                <template is="dom-repeat" items="{{model.Products}}">
+                    <option value="{{item.Key}}">{{item.Name}}</option>
+                </template>
+            </select>
+
+            <template is="dom-if" if="{{model.SelectedProduct.Name}}">
+                <div>You have selected: <strong>{{model.SelectedProduct.Name}}</strong></div>
             </template>
-        </select>
-
-        <div>{{model.PetReaction}}</div>
+        </fieldset>
 
         <dom-bind-notifier path="model" observed-object="{{model}}" deep></dom-bind-notifier>
     </template>
