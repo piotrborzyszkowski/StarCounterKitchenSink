@@ -1,11 +1,11 @@
 {
-  "Html": "/KitchenSink/DropdownPage.html",
-  
-  "Pets": [
-    {"Label": ""}
-  ],
-  "SelectedPet$": "",
+    "Html": "/KitchenSink/DropdownPage.html",
 
-  "PetReaction": "",
-  "$PetReaction": {"Bind": "CalculatedPetReaction"}
+    "Pets": [
+        { "Label": "" }
+    ],
+    "SelectedPet$": "",
+
+    "PetReaction": "",
+    "$PetReaction": { "Bind": "CalculatedPetReaction" }
 }

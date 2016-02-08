@@ -1,7 +1,7 @@
 using Starcounter;
 
 namespace KitchenSink {
-  partial class DropdownPage : Partial {
+    partial class DropdownPage : Partial {
         protected override void OnData() {
             base.OnData();
 
@@ -19,9 +19,9 @@ namespace KitchenSink {
         }
 
         public string CalculatedPetReaction {
-      get {
-        return "You like " + SelectedPet;
-      }
+            get {
+                return "You like " + SelectedPet;
+            }
+        }
     }
-  }
 }
