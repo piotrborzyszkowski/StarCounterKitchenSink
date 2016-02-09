@@ -28,6 +28,10 @@
   width: 50%;
 }
 
+.kitchen-sink-current-page juicy-select {
+  display: block;
+}
+
 .kitchen-sink-current-page .form-group {
   display: flex;
   align-items: center;

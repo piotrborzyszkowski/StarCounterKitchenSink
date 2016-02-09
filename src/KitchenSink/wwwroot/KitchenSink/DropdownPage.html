@@ -1,4 +1,6 @@
-﻿<template>
+﻿<link rel="import" href="/sys/juicy-select/juicy-select.html" />
+
+<template>
     <template is="dom-bind">
         <fieldset>
             <legend>Primitive array</legend>
@@ -17,15 +19,25 @@
             <legend>Objects array</legend>
             <p class="lead">A combination of object <code>array</code> and bound JSON string property can be mapped to an HTML <code>select</code> element.</p>
 
-            <select value="{{model.SelectedProductKey$::change}}">
-                <option></option>
-                <template is="dom-repeat" items="{{model.Products}}">
-                    <option value="{{item.Key}}">{{item.Name}}</option>
-                </template>
-            </select>
+            <p>
+                <small>Polymer applies <code>value</code> binding before options generated. That is why there is no value.</small>
+                <br />
+                <select value="{{model.SelectedProductKey$::change}}">
+                    <option></option>
+                    <template is="dom-repeat" items="{{model.Products}}">
+                        <option value="{{item.Key}}">{{item.Name}}</option>
+                    </template>
+                </select>
+            </p>
+
+            <p>
+                <small>You can use <code>juicy-select</code> to workaround issue with value binding.</small>
+                <br />
+                <juicy-select caption-text=" " value="{{model.SelectedProductKey$}}" options="{{model.Products}}" text-property="Name" value-property="Key"></juicy-select>
+            </p>
 
             <template is="dom-if" if="{{model.SelectedProduct.Name}}">
-                <div>You have selected: <strong>{{model.SelectedProduct.Name}}</strong></div>
+                <p>You have selected: <strong>{{model.SelectedProduct.Name}}</strong></p>
             </template>
         </fieldset>
 

@@ -31,6 +31,7 @@ namespace KitchenSink {
             }
 
             this.Products.Data = Db.SQL("SELECT p FROM Simplified.Ring3.Product p ORDER BY p.Name");
+            this.SelectedProduct.Data = Db.SQL("SELECT p FROM Simplified.Ring3.Product p ORDER BY p.Name DESC").First;
         }
 
         public string CalculatedPetReaction {
