@@ -11,7 +11,7 @@
     </hot-table>
 
     <div>
-      <button value="{{model.AddPet$::click}}" onclick="++this.value">Add a pet</button>
+      <button value="{{model.AddPet$::click}}" onmousedown="++this.value">Add a pet</button>
     </div>
 
     <dom-bind-notifier path="model" observed-object="{{model}}" deep></dom-bind-notifier>

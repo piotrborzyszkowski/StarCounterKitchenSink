@@ -10,9 +10,9 @@
 
         <div>
             <label>Morph to some: 
-                <button value="{{model.ChooseFood$::click}}" onclick="this.value = 'Fruit'">Fruit</button>
-                <button value="{{model.ChooseFood$::click}}" onclick="this.value = 'Vegetable'">Vegetable</button>
-                <button value="{{model.ChooseFood$::click}}" onclick="this.value = 'Bread'">Bread</button>
+                <button value="{{model.ChooseFood$::click}}" onmousedown="this.value = 'Fruit'">Fruit</button>
+                <button value="{{model.ChooseFood$::click}}" onmousedown="this.value = 'Vegetable'">Vegetable</button>
+                <button value="{{model.ChooseFood$::click}}" onmousedown="this.value = 'Bread'">Bread</button>
             </label>
             <div>{{model.YourFavoriteFood}}</div>
         </div>
@@ -23,7 +23,7 @@
         <p>Want to morph to another partial? It's as easy.</p>
 
         <div>
-            <button value="{{model.GoToHomePartial$::click}}" onclick="++this.value">Morph to another partial</button>
+            <button value="{{model.GoToHomePartial$::click}}" onmousedown="++this.value">Morph to another partial</button>
         </div>
 
 
@@ -32,7 +32,7 @@
         <p>Drop the <code>history</code> attribute to redirect to an external link (without morphing).</p>
 
         <div>
-            <button value="{{model.GoToDocs$::click}}" onclick="++this.value">Redirect to Starcounter.io</button>
+            <button value="{{model.GoToDocs$::click}}" onmousedown="++this.value">Redirect to Starcounter.io</button>
         </div>
 
 

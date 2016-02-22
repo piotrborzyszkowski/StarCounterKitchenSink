@@ -48,9 +48,9 @@
                          ghost$="{{item.IsGhost}}">
                     <ul class="breadcrumb-suggestions">
                         <template is="dom-repeat" items="{{item.Siblings}}" restamp>
-                            <li select="{{item.Select$::click}}" onclick="++this.select">{{item.Name}}</li>
+                            <li select="{{item.Select$::click}}" onmousedown="++this.select">{{item.Name}}</li>
                         </template>
-                        <li select="{{item.AddSibling$::click}}" onclick="++this.select">+ Add a new type</li>
+                        <li select="{{item.AddSibling$::click}}" onmousedown="++this.select">+ Add a new type</li>
                     </ul>
                 </x-crumb>
             </template>
@@ -68,7 +68,7 @@
             <input type="text" value="{{model.CurrentTreeItem.Name$::change}}" placeholder="Name" class="form-control">
         </div>
 
-        <button value="{{model.CurrentTreeItem.Save$::click}}" onclick="++this.value">Save</button>
+        <button value="{{model.CurrentTreeItem.Save$::click}}" onmousedown="++this.value">Save</button>
 
         <dom-bind-notifier path="model" observed-object="{{model}}" deep></dom-bind-notifier>
     </template>

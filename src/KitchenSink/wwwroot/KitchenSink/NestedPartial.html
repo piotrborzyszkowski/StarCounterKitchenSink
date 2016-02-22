@@ -10,7 +10,7 @@
         </style>
 
         <div class="nested-child">
-            <button value="{{model.AddChild$::click}}" onclick="++this.value">Add child</button>
+            <button value="{{model.AddChild$::click}}" onmousedown="++this.value">Add child</button>
             <div>Hi, <span>{{model.Name}}</span></div>
 
             <starcounter-include partial="{{model.ChildPartial}}"></starcounter-include>

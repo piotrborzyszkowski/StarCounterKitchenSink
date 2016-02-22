@@ -7,7 +7,7 @@
         <p>We recommend using <code>number</code> where possible, to take benefit of non-blocking UI enabled by Puppet's operational transformation.</p>
 
         <div>
-            <button value="{{model.AddCarrots$::click}}" onclick="++this.value">Add carrots</button>
+            <button value="{{model.AddCarrots$::click}}" onmousedown="++this.value">Add carrots</button>
             <span>{{model.CarrotsReaction}}</span>
         </div>
 
@@ -22,7 +22,7 @@
                     background: green;
                 }
             </style>
-            <button pressed$="{{model.EnableCarrotEngine$}}" model="{{model}}" onclick="this.model.EnableCarrotEngine$ = !this.model.EnableCarrotEngine$; return true">Enable carrot engine</button>
+            <button pressed$="{{model.EnableCarrotEngine$}}" model="{{model}}" onmousedown="this.model.EnableCarrotEngine$ = !this.model.EnableCarrotEngine$; return true">Enable carrot engine</button>
             <span>{{model.CarrotEngineReaction}}</span>
         </div>
 
@@ -37,7 +37,7 @@
                     cursor: not-allowed;
                 }
             </style>
-            <button value="{{model.AddOneCarrot$::click}}" onclick="++this.value" disabled="{{model.AddOneCarrotDisabled}}">Add carrots</button>
+            <button value="{{model.AddOneCarrot$::click}}" onmousedown="++this.value" disabled="{{model.AddOneCarrotDisabled}}">Add carrots</button>
             <span>{{model.OneCarrotReaction}}</span>
         </div>
 
