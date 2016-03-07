@@ -20,7 +20,9 @@
     </style>
     <template is="dom-bind">
         <h3>File upload example</h3>
-        <p>Upload big files with <code>starcounter-upload</code> over WebSocket</p>
+        <p>
+            Upload big files with <a href="https://github.com/Starcounter/starcounter-upload/"><code>starcounter-upload</code></a> over WebSocket
+        </p>
         <fieldset>
             <legend>Uploaded files</legend>
             <template is="dom-if" if="{{model.Files.length}}">
@@ -30,6 +32,7 @@
                             <th>Name</th>
                             <th>Size</th>
                             <th>Path</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -38,10 +41,16 @@
                                 <td>{{item.FileName}}</td>
                                 <td>{{item.FileSizeString}}</td>
                                 <td>{{item.FilePath}}</td>
+                                <td>
+                                    <button type="button" class="btn btn-xs btn-link" value="{{item.DeleteClick$::click}}" onmouseup="++this.value;">Delete</button>
+                                </td>
                             </tr>
                         </template>
                     </tbody>
                 </table>
+                <div class="alert alert-warning">
+                    Do not forget to delete files from your temporary folder!
+                </div>
             </template>
             <template is="dom-if" if="{{!model.Files.length}}">
                 <p>No files uploaded so far</p>
@@ -102,7 +111,9 @@
                             <tr>
                                 <td>{{item.file.name}}</td>
                                 <td>{{item.sizeString}}</td>
-                                <td>{{item.progress}}</td>
+                                <td>
+                                    <span>{{item.progress}}</span>%
+                                </td>
                                 <td>{{item.error}}</td>
                             </tr>
                         </template>

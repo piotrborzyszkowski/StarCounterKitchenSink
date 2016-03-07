@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using Starcounter;
 
 namespace KitchenSink {
@@ -38,6 +39,14 @@ namespace KitchenSink {
                 get {
                     return this.ParentPage.GetFileSizeString(this.FileSize);
                 }
+            }
+
+            void Handle(Input.DeleteClick Action) {
+                if (File.Exists(this.FilePath)) {
+                    File.Delete(this.FilePath);
+                }
+
+                this.ParentPage.Files.Remove(this);
             }
         }
 
