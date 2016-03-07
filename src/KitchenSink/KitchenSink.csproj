@@ -62,6 +62,7 @@
     <Reference Include="Starcounter.XSON, Version=2.0.0.0, Culture=neutral, PublicKeyToken=d2df1e81d0ca3abf">
       <Private>False</Private>
     </Reference>
+    <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BreadcrumbPage.json.cs">
@@ -80,6 +81,10 @@
     <Compile Include="DatepickerPage.json.cs">
       <DependentUpon>DatepickerPage.json</DependentUpon>
     </Compile>
+    <Compile Include="FileUploadPage.json.cs">
+      <DependentUpon>FileUploadPage.json</DependentUpon>
+    </Compile>
+    <Compile Include="HandleFile.cs" />
     <Compile Include="HtmlPage.json.cs">
       <DependentUpon>HtmlPage.json</DependentUpon>
     </Compile>
@@ -161,6 +166,7 @@
     <Content Include="wwwroot\KitchenSink\DatagridPage.html" />
     <Content Include="wwwroot\KitchenSink\DatepickerPage.html" />
     <Content Include="wwwroot\KitchenSink\DecimalPage.html" />
+    <Content Include="wwwroot\KitchenSink\FileUploadPage.html" />
     <Content Include="wwwroot\KitchenSink\HtmlPage.html" />
     <Content Include="wwwroot\KitchenSink\MasterPage.html" />
     <Content Include="wwwroot\KitchenSink\MapPage.html" />
@@ -292,6 +298,11 @@
   </ItemGroup>
   <ItemGroup>
     <TypedJSON Include="BreadcrumbPage.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
+  </ItemGroup>
+  <ItemGroup>
+    <TypedJSON Include="FileUploadPage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>

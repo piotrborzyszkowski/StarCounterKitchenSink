@@ -1,0 +1,133 @@
+﻿<link href="/sys/starcounter-upload/starcounter-upload.html" rel="import" />
+
+<template>
+    <style>
+        .kitchen-sink-current-page {
+            flex: 0 1 800px
+        }
+
+        .starcounter-upload-tasks {
+            background-color: #F0F0F0;
+            padding: 5px 10px 5px 10px;
+            border-left: 5px solid #C0C0C0;
+            margin-top: 20px;
+            font-size: x-small;
+        }
+
+        .starcounter-upload-tasks h4 {
+            font-size: 15px;
+        }
+    </style>
+    <template is="dom-bind">
+        <h3>File upload example</h3>
+        <p>Upload big files with <code>starcounter-upload</code> over WebSocket</p>
+        <fieldset>
+            <legend>Uploaded files</legend>
+            <template is="dom-if" if="{{model.Files.length}}">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Size</th>
+                            <th>Path</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template is="dom-repeat" items="{{model.Files}}">
+                            <tr>
+                                <td>{{item.FileName}}</td>
+                                <td>{{item.FileSizeString}}</td>
+                                <td>{{item.FilePath}}</td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </template>
+            <template is="dom-if" if="{{!model.Files.length}}">
+                <p>No files uploaded so far</p>
+            </template>
+        </fieldset>
+        <fieldset>
+            <legend>Uploading files</legend>
+            <template is="dom-if" if="{{model.Tasks.length}}">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Size</th>
+                            <th>Progress</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template is="dom-repeat" items="{{model.Tasks}}">
+                            <tr>
+                                <td>{{item.FileName}}</td>
+                                <td>{{item.FileSizeString}}</td>
+                                <td>
+                                    <span>{{item.Progress}}</span>%
+                                </td>
+                                <td>{{item.Message}}</td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </template>
+            <template is="dom-if" if="{{!model.Tasks.length}}">
+                <p>No ongoing uploads so far</p>
+            </template>
+        </fieldset>
+        <hr />
+        <p>
+            <starcounter-upload session-id="{{model.SessionId}}" upload-url="{{model.UploadUrl}}" tasks="{{tasks}}" multiple="true">
+                <button type="button" class="btn btn-sm btn-primary" on-click="selectFile">Select file</button>
+                <button type="button" class="btn btn-sm btn-default" on-click="cancelUpload" disabled="{{!tasks.length}}">Cancel upload</button>
+            </starcounter-upload>
+        </p>
+        <hr />
+        <template is="dom-if" if="{{tasks.length}}">
+            <div class="starcounter-upload-tasks">
+                <h4>Client side <code>tasks</code> collection</h4>
+                <table class="table table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Size</th>
+                            <th>Progress</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template is="dom-repeat" items="{{tasks}}">
+                            <tr>
+                                <td>{{item.file.name}}</td>
+                                <td>{{item.sizeString}}</td>
+                                <td>{{item.progress}}</td>
+                                <td>{{item.error}}</td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </div>
+        </template>
+    </template>
+    <script>
+        (function () {
+            var script = document._currentScript || document.currentScript;
+            var template = script.previousElementSibling;
+            var getUploader = function () {
+                return template.parentNode.querySelector("starcounter-upload");
+            };
+
+            template.selectFile = function () {
+                var uploader = getUploader();
+                uploader.selectFile();
+            };
+
+            template.cancelUpload = function () {
+                var uploader = getUploader();
+                uploader.abortAllTasks();
+            };
+        })();
+    </script>
+</template>

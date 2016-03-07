@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Starcounter;
 
 namespace KitchenSink {
@@ -90,6 +91,62 @@ namespace KitchenSink {
             Handle.GET("/KitchenSink/url", () => WrapPage(() => new UrlPage()));
 
             Handle.GET("/KitchenSink/datepicker", () => WrapPage(() => new DatepickerPage()));
+
+            Handle.GET("/KitchenSink/fileupload", () => WrapPage(() => new FileUploadPage()));
+
+            HandleFile.GET("/KitchenSink/fileupload/upload", task => {
+                Session.ScheduleTask(task.SessionId, (s, id) => {
+                    MasterPage master = s.Data as MasterPage;
+
+                    if (master == null) {
+                        return;
+                    }
+
+                    NavPage nav = master.CurrentPage as NavPage;
+
+                    if (nav == null) {
+                        return;
+                    }
+
+                    FileUploadPage page = nav.CurrentPage as FileUploadPage;
+
+                    if (page == null) {
+                        return;
+                    }
+
+                    var item = page.Tasks.FirstOrDefault(x => x.FileName == task.FileName);
+
+                    if (task.State == HandleFile.UploadTaskState.Completed) {
+                        if (item != null) {
+                            page.Tasks.Remove(item);
+                        }
+
+                        var file = page.Files.FirstOrDefault(x => x.FileName == task.FileName);
+
+                        if (file == null) {
+                            file = page.Files.Add();
+                        }
+
+                        file.FileName = task.FileName;
+                        file.FileSize = task.FileSize;
+                        file.FilePath = task.FilePath;
+                    } else {
+                        if (item == null) {
+                            item = page.Tasks.Add();
+                        }
+
+                        item.FileName = task.FileName;
+                        item.FileSize = task.FileSize;
+                        item.Progress = task.Progress;
+
+                        if (task.State == HandleFile.UploadTaskState.Error) {
+                            item.Message = "Error uploading file";
+                        }
+                    }
+
+                    s.CalculatePatchAndPushOnWebSocket();
+                });
+            });
 
             //for a launcher
             Handle.GET("/KitchenSink/app-name", () => {
