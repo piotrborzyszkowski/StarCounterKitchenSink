@@ -47,7 +47,7 @@ namespace KitchenSink {
                 }
 
                 return HandlerStatus.Handled;
-            });
+            }, new HandlerOptions() { SkipRequestFilters = true });
 
             Handle.WebSocket(WebSocketGroupName, (byte[] data, WebSocket ws) => {
                 if (!Uploads.ContainsKey(ws.ToUInt64())) {
