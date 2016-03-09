@@ -2,20 +2,17 @@
 using System.Text;
 using NUnit.Framework;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Firefox;
-//using OpenQA.Selenium.IE;
-using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 
-namespace SeleniumTests {
+namespace KitchenSink.Test {
     [TestFixture("firefox")]
     [TestFixture("chrome")]
+    [TestFixture("edge")]
     //[TestFixture("internet explorer")]
     public class MarcinNunit {
         private IWebDriver driver;
         private StringBuilder verificationErrors;
         private string baseURL;
-        private bool acceptNextAlert = true;
         private string browser;
 
         public MarcinNunit(string browser) {
@@ -24,21 +21,7 @@ namespace SeleniumTests {
 
         [SetUp]
         public void SetupTest() {
-            switch (browser) {
-                case "chrome":
-                    driver = new ChromeDriver();
-                    break;
-                /*case "internet explorer":
-                    InternetExplorerOptions options = new InternetExplorerOptions();
-                    options.IgnoreZoomLevel = true;
-                    options.IntroduceInstabilityByIgnoringProtectedModeSettings = true;
-                    options.EnsureCleanSession = true;
-                    driver = new InternetExplorerDriver(options);
-                    break;*/
-                default:
-                    driver = new FirefoxDriver();
-                    break;
-            }
+            driver = WebDriverFactory.Create(this.browser);
             baseURL = "http://localhost:8080/KitchenSink";
             verificationErrors = new StringBuilder();
         }
