@@ -54,9 +54,7 @@ namespace KitchenSink {
 
             Handle.GET("/KitchenSink/integer", () => WrapPage(() => new IntegerPage()));
 
-            //Handle.GET("/KitchenSink/Map", () => WrapPage(() => new MapPage()));
-
-            Handle.GET("/KitchenSink/Map", () => WrapPage(() => new MapPage()));
+            Handle.GET("/KitchenSink/Geo", () => WrapPage(() => new GeoPage()));
 
             Handle.GET("/KitchenSink/markdown", () => WrapPage(() => new MarkdownPage()));
 
