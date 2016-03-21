@@ -1,11 +1,12 @@
 ﻿<link rel="import" href="/sys/juicy-markdown/juicy-markdown.html" />
-
 <template>
   <template is="dom-bind">
-    <p class="lead">JSON's primitive value type <code>string</code> can be rendered as Markdown using a helper custom element, such as <a href="http://github.com/juicy/juicy-markdown">juicy-markdown</a>.</p>
-
-    <juicy-markdown value="{{model.Bio}}"></juicy-markdown>
-
+    <div>
+        <p class="lead">JSON's primitive value type <code>string</code> can be rendered as Markdown using a helper custom element, such as <a href="http://github.com/juicy/juicy-markdown">juicy-markdown</a>.</p>
+    </div>
+    <div>
+        <juicy-markdown value="{{model.Bio}}"></juicy-markdown>
+    </div>
     <dom-bind-notifier path="model" observed-object="{{model}}" deep></dom-bind-notifier>
   </template>
 </template>
