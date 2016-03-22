@@ -3,19 +3,7 @@
 <template>
     <style>
         .kitchen-sink-current-page {
-            flex: 0 1 800px
-        }
-
-        .starcounter-upload-tasks {
-            background-color: #F0F0F0;
-            padding: 5px 10px 5px 10px;
-            border-left: 5px solid #C0C0C0;
-            margin-top: 20px;
-            font-size: x-small;
-        }
-
-        .starcounter-upload-tasks h4 {
-            font-size: 15px;
+            flex: 0 1 800px;
         }
     </style>
     <template is="dom-bind">
@@ -125,7 +113,7 @@
         <template is="dom-if" if="{{tasks.length}}">
             <div class="starcounter-upload-tasks">
                 <div>
-                    <h4>Client side <code>tasks</code> collection</h4>
+                    <h4 class="starcounter-upload-tasks__heading">Client side <code>tasks</code> collection</h4>
                 </div>
                 <div>
                     <table class="table table-condensed">

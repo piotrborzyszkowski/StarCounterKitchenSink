@@ -13,7 +13,6 @@
                     <li><a href="/KitchenSink/Url">Url</a></li>
                     <li><a href="/KitchenSink/Redirect">Redirect</a></li>
                 </ul>
-
                 <h3 class="kitchen-sink-menu__heading">Number</h3>
                 <ul class="kitchen-sink-menu_unorderedList">
                     <li><a href="/KitchenSink/Integer">Integer</a></li>
@@ -21,19 +20,16 @@
                     <li><a href="/KitchenSink/Button">Button</a></li>
                     <li><a href="/KitchenSink/Geo">Map</a></li>
                 </ul>
-
                 <h3 class="kitchen-sink-menu__heading">Boolean</h3>
                 <ul class="kitchen-sink-menu_unorderedList">
                     <li><a href="/KitchenSink/Checkbox">Checkbox</a></li>
                     <li><a href="/KitchenSink/Button">Button</a></li>
                     <!--<li><a href="/KitchenSink/Conditionals">Conditionals</a></li> not ready yet -->
                 </ul>
-
                 <h3 class="kitchen-sink-menu__heading">Object</h3>
                 <ul class="kitchen-sink-menu_unorderedList">
                   <li><a href="/KitchenSink/Nested">Nested partials</a></li>
                 </ul>
-
                 <h3 class="kitchen-sink-menu__heading">Array</h3>
                 <ul class="kitchen-sink-menu_unorderedList">
                     <li><a href="/KitchenSink/Radio">Radio</a></li>
@@ -46,18 +42,15 @@
                     <!--<li><a href="/KitchenSink/Navigation">Navigation</a></li> not ready yet-->
                     <li><a href="/KitchenSink/Breadcrumb">Breadcrumb</a></li>
                  </ul>
-
                 <h3 class="kitchen-sink-menu__heading">Custom</h3>
                 <ul class="kitchen-sink-menu_unorderedList">
                     <li><a href="/KitchenSink/FileUpload">File upload</a></li>
                 </ul>
             </nav>
-
             <div class="kitchen-sink-current-page">
                 <starcounter-include partial="{{model.CurrentPage}}"></starcounter-include>
             </div>
         </div>
-
         <dom-bind-notifier path="model" observed-object="{{model}}" deep></dom-bind-notifier>
     </template>
 </template>

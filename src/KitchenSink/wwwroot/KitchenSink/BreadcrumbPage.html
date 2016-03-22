@@ -6,15 +6,12 @@
         <div>
             <h1>Breadcrumbs</h1>
         </div>
-        
         <div>
             <h2>Simple breadcrumb</h2>
         </div>
-        
         <div>
             <p class="kitchen-sink-current-page__paragraphHowTo">A JSON <code>array</code> of <code>objects</code> can used as a breadcrumb navigation. The below example uses <code>template is="dom-repeat"</code> with <code>span</code>.</p>
         </div>
-
         <template is="dom-repeat" items="{{model.Breadcrumbs}}" restamp>
             <div>
                 <template is="dom-if" if="{{index}}" restamp>
@@ -25,32 +22,12 @@
                 <span class="btn" select="{{item.Select$::mouseup}}" onmousedown="++this.select">{{item.Name}}</span>
             </div>
         </template>
-        
         <div>
             <h2>Breadcrumb with navigation</h2>
         </div>
-
         <div>
             <p class="kitchen-sink-current-page__paragraphHowTo">It doesn't take much more to add a multidimensional navigation to the breadcrumb. The below example uses <code>template is="dom-repeat"</code> with <code><a href="https://github.com/Juicy/x-breadcrumb">x-breadcrumb</a></code> custom element.</p>
         </div>
-
-        <style>
-            x-breadcrumb {
-                margin-bottom: 20px;
-            }
-
-            .breadcrumb-suggestions {
-                padding: 0;
-                list-style: none;
-                color: white;
-                margin: 0;
-            }
-
-                .breadcrumb-suggestions li:hover {
-                    cursor: default;
-                    background: rgba(255, 255, 255, 0.2);
-                }
-        </style>
         <div>
             <x-breadcrumb>
                 <template is="dom-repeat" items="{{model.Breadcrumbs}}" restamp>
@@ -61,7 +38,7 @@
                              ghost$="{{item.IsGhost}}">
                         <ul class="breadcrumb-suggestions">
                             <template is="dom-repeat" items="{{item.Siblings}}" restamp>
-                                <li select="{{item.Select$::click}}" onmousedown="++this.select">{{item.Name}}</li>
+                                <li class="breadcrumb-suggestions__listItem" select="{{item.Select$::click}}" onmousedown="++this.select">{{item.Name}}</li>
                             </template>
                             <li select="{{item.AddSibling$::click}}" onmousedown="++this.select">+ Add a new type</li>
                         </ul>
@@ -89,7 +66,6 @@
         <div>
             <button value="{{model.CurrentTreeItem.Save$::click}}" onmousedown="++this.value">Save</button>
         </div>
-
         <dom-bind-notifier path="model" observed-object="{{model}}" deep></dom-bind-notifier>
     </template>
 </template>

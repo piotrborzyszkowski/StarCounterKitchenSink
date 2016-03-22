@@ -3,15 +3,12 @@
         <div>
             <p class="lead">JSON's primitive value type <code>number</code> or <code>boolean</code> can be mapped to a HTML <code>button</code>.</p>
         </div>
-        
         <div>
             <h5>Regular button</h5>
         </div>
-        
         <div>
             <p>We recommend using <code>number</code> where possible, to take benefit of non-blocking UI enabled by Puppet's operational transformation.</p>
         </div>
-
         <div>
             <button value="{{model.AddCarrots$::click}}" onmousedown="++this.value">Add carrots</button>
         </div>
@@ -22,48 +19,39 @@
         <div>
             <h5>Switch button</h5>
         </div>
-        
         <div>
             <p>When you have a special need to use the pressed state of a button, you might use <code>boolean</code> type for buttons.</p>
         </div>
-
         <style>
             button[pressed] {
                 color: white;
                 background: green;
             }
         </style>
-
         <div>
             <button pressed$="{{model.EnableCarrotEngine$}}" model="{{model}}" onmousedown="this.model.EnableCarrotEngine$ = !this.model.EnableCarrotEngine$; return true">Enable carrot engine</button>
         </div>
-
         <div>
             <span>{{model.CarrotEngineReaction}}</span>
         </div>
-        
         <div>
             <h5>Disabled button</h5>
         </div>
-        
         <div>
             <p>It is possible to mark button as disabled using the <code>disabled</code> boolean attribute. The below button gets disbled when the value reaches 1.</p>
         </div>
-
         <style>
             button[disabled] {
                 opacity: 0.5;
                 cursor: not-allowed;
             }
         </style>
-
         <div>
             <button value="{{model.AddOneCarrot$::click}}" onmousedown="++this.value" disabled="{{model.AddOneCarrotDisabled}}">Add carrots</button>
         </div>
         <div>
             <span>{{model.OneCarrotReaction}}</span>
         </div>
-
         <dom-bind-notifier path="model" observed-object="{{model}}" deep></dom-bind-notifier>
     </template>
 </template>

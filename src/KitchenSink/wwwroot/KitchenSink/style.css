@@ -32,30 +32,6 @@
   display: block;
 }
 
-.kitchen-sink-current-page__formGroup {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.kitchen-sink-current-page__formGroup__child {
-  flex: 1 1 100%;   
-}
-
-.kitchen-sink-current-page__formGroup__label {
-  display: block;
-  white-space: nowrap;
-  margin-right: 20px;
-  flex: 1 1 150px;
-}
-.kitchen-sink-current-page__input[type=email]:valid {
-  box-shadow: inset 0 -2px 0 #4caf50;
-}
-
-.kitchen-sink-current-page__input[type=email]:invalid {
-  box-shadow: inset 0 -2px 0 #e51c23;
-}
-
 .kitchen-sink-current-page__paragraphHowTo {
   background-color: #FAFAFA;
   border-radius: 5px;
@@ -70,4 +46,36 @@
 .kitchen-sink-current-page__nested-child {
     padding: 10px;
     border: 1px solid #eeeeee;
+}
+
+x-breadcrumb {
+    margin-bottom: 20px;
+}
+
+.breadcrumb-suggestions {
+    padding: 0;
+    list-style: none;
+    color: white;
+    margin: 0;
+}
+
+.breadcrumb-suggestions__listItem:hover {
+    cursor: default;
+    background: rgba(255, 255, 255, 0.2);
+}    
+
+.starcounter-upload-tasks {
+    background-color: #F0F0F0;
+    padding: 5px 10px 5px 10px;
+    border-left: 5px solid #C0C0C0;
+    margin-top: 20px;
+    font-size: x-small;
+}
+
+.starcounter-upload-tasks__heading {
+    font-size: 15px;
+}
+
+google-map {
+    height: 300px;
 }
