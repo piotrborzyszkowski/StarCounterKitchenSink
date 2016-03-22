@@ -10,7 +10,7 @@
         </div>
 
         <div>
-            <select value="{{model.SelectedPet$::change}}">
+            <select value="{{model.SelectedPet$::change}}" class="kitchen-sink-current-page__select">
                 <template is="dom-repeat" items="{{model.Pets}}">
                     <option value="{{item.Label}}">{{item.Label}}</option>
                 </template>
@@ -37,7 +37,7 @@
             <br />
         </div>
         <div>
-            <select value="{{model.SelectedProductKey$::change}}">
+            <select value="{{model.SelectedProductKey$::change}}" class="kitchen-sink-current-page__select">
                 <option></option>
                 <template is="dom-repeat" items="{{model.Products}}">
                     <option value="{{item.Key}}">{{item.Name}}</option>
@@ -51,7 +51,7 @@
             <br />
         </div>
         <div>
-            <juicy-select caption-text=" " value="{{model.SelectedProductKey$}}" options="{{model.Products}}" text-property="Name" value-property="Key"></juicy-select>
+            <juicy-select class="kitchen-sink-current-page__juicySelect" caption-text=" " value="{{model.SelectedProductKey$}}" options="{{model.Products}}" text-property="Name" value-property="Key"></juicy-select>
         </div>
         <div>
             <template is="dom-if" if="{{model.SelectedProduct.Name}}">
