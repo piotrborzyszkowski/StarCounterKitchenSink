@@ -20,7 +20,13 @@
     </div>
 
     <div>
-      Selected item: <span>{{model.SelectedItemLabel}}</span> (<span>{{model.SelectedItemIndex$}}</span>)
+        Selected item:
+    </div>
+    <div>
+      <span>{{model.SelectedItemLabel}}</span>
+    </div>
+    <div>
+        (<span>{{model.SelectedItemIndex$}}</span>)
     </div>
 
     <dom-bind-notifier path="model" observed-object="{{model}}" deep></dom-bind-notifier>

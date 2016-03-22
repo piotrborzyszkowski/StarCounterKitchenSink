@@ -11,11 +11,13 @@
         <p>We recommend using <a href="https://elements.polymer-project.org/elements/paper-radio-group">paper-radio-group</a> and <a href="https://elements.polymer-project.org/elements/paper-radio">paper-radio</a>, because native <code>input type="radio"</code> lacks an onuncheck event, which makes unchecking not detectable with pure HTML.</p>  
     </div>
 
-    <paper-radio-group selected="{{model.SelectedPet$}}">
-      <template is="dom-repeat" items="{{model.Pets}}">
-        <paper-radio-button name="{{item.Label}}">{{item.Label}}</paper-radio-button>
-      </template>
-    </paper-radio-group>
+    <div>
+        <paper-radio-group selected="{{model.SelectedPet$}}">
+            <template is="dom-repeat" items="{{model.Pets}}">
+                <paper-radio-button name="{{item.Label}}">{{item.Label}}</paper-radio-button>
+            </template>
+        </paper-radio-group>
+    </div>
 
     <div>{{model.PetReaction}}</div>
 
