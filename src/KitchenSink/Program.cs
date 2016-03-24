@@ -169,12 +169,37 @@ namespace KitchenSink {
                 return master;
             }
 
-            nav.CurrentPage = partial();
+            var currentUri = Handle.IncomingRequest.Uri;
+            var indexCallPath = IndexOfNth(currentUri, '/', 2);
+            var partialPath = currentUri.Insert(indexCallPath, "/partial");
+
+            var isRegistered = Handle.IsHandlerRegistered(string.Format("GET {0}", partialPath), null);
+            if (!isRegistered)
+            {
+                Handle.GET(partialPath, () =>
+                {
+                    var textPage = partial();
+                    return textPage;
+                });
+            }
+            nav.CurrentPage = Self.GET(partialPath);
+
             if (nav.CurrentPage.Data == null) {
                 nav.CurrentPage.Data = null; //trick to invoke OnData in partial
             }
 
             return master;
+        }
+
+        private static int IndexOfNth(string str, char c, int n)
+        {
+            int index = -1;
+            while (n-- > 0)
+            {
+                index = str.IndexOf(c, index + 1);
+                if (index == -1) break;
+            }
+            return index;
         }
     }
 }
