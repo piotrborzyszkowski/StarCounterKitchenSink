@@ -40,8 +40,8 @@ namespace KitchenSink.Test {
         [Test]
         public void PageLoads() {
             driver.Navigate().GoToUrl(baseURL + "/Text");
-            var html = driver.PageSource;
-            StringAssert.Contains("puppet-client", html);
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            IWebElement element = wait.Until(driver => driver.FindElement(By.XPath("/html/body/puppet-client")));
         }
 
         [Test]
