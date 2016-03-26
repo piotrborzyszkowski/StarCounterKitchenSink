@@ -1,7 +1,7 @@
 using Starcounter;
 
 namespace KitchenSink {
-  partial class MapPage : Partial {
+  partial class GeoPage : Partial {
     
   }
 }
