@@ -1,1 +1,1 @@
-packages\NUnit.Runners.2.6.4\tools\nunit-console test\KitchenSink.Tests\KitchenSink.Tests.csproj
+packages\NUnit.ConsoleRunner.3.2.0\tools\nunit3-console.exe test\KitchenSink.Tests\KitchenSink.Tests.csproj
