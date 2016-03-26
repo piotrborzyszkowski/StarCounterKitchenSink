@@ -41,14 +41,14 @@ namespace KitchenSink.Test {
         public void PageLoads() {
             driver.Navigate().GoToUrl(baseURL + "/Text");
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            IWebElement element = wait.Until(driver => driver.FindElement(By.XPath("/html/body/puppet-client")));
+            IWebElement element = wait.Until(_driver => _driver.FindElement(By.XPath("/html/body/puppet-client")));
         }
 
         [Test]
         public void TextPropagationOnUnfocus() {
             driver.Navigate().GoToUrl(baseURL + "/Text");
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            IWebElement element = wait.Until(driver => driver.FindElement(By.XPath("(//input)[1]")));
+            IWebElement element = wait.Until(_driver => _driver.FindElement(By.XPath("(//input)[1]")));
             var label = driver.FindElement(By.XPath("(//label[@class='control-label'])[1]"));
             var originalText = label.Text;
             driver.FindElement(By.XPath("(//input)[1]")).Clear();
@@ -64,7 +64,7 @@ namespace KitchenSink.Test {
         public void TextPropagationWhileTyping() {
             driver.Navigate().GoToUrl(baseURL + "/Text");
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
-            IWebElement element = wait.Until(driver => driver.FindElement(By.XPath("(//input)[2]")));
+            IWebElement element = wait.Until(_driver => _driver.FindElement(By.XPath("(//input)[2]")));
             var label = driver.FindElement(By.XPath("(//label[@class='control-label'])[2]"));
             var originalText = label.Text;
             driver.FindElement(By.XPath("(//input)[2]")).Clear();
