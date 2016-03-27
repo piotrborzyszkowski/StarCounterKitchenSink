@@ -1,11 +1,17 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Starcounter;
+using KitchenSink.Herlper;
+using System;
 
-namespace KitchenSink {
-    class Program {
-        static void Main() {
-            Handle.GET("/KitchenSink/master", () => {
+namespace KitchenSink
+{
+    class Program
+    {
+        static void Main()
+        {
+            var handlerHelper = new HandlerHelper();
+
+            handlerHelper.Register("/KitchenSink/master", (Func<Response>)(() => {
                 Session session = Session.Current;
 
                 if (session != null && session.Data != null)
@@ -13,7 +19,8 @@ namespace KitchenSink {
 
                 var master = new MasterPage();
 
-                if (session == null) {
+                if (session == null)
+                {
                     session = new Session(SessionOptions.PatchVersioning);
                 }
 
@@ -22,116 +29,116 @@ namespace KitchenSink {
 
                 master.Session = session;
                 return master;
-            });
+            }));
 
-            Handle.GET("/KitchenSink/json", () => {
+            handlerHelper.Register("/KitchenSink/json", (Func<Response>)(() => {
                 return new Json();
-            });
+            }));
 
-            Handle.GET("/KitchenSink", () => {
+            handlerHelper.Register("/KitchenSink", () => {
                 return Self.GET("/KitchenSink/text");
             });
 
-            Handle.GET("/KitchenSink/button", () => WrapPage(() => new ButtonPage()));
+            handlerHelper.Register<ButtonPage>("/KitchenSink/button");
 
-            Handle.GET("/KitchenSink/breadcrumb", () => WrapPage(() => {
-                return Db.Scope(() => {
-                    return new BreadcrumbPage();
-                });
-            }));
+            handlerHelper.RegisterWithDbScope<BreadcrumbPage>("/KitchenSink/breadcrumb");
 
-            Handle.GET("/KitchenSink/chart", () => WrapPage(() => new ChartPage()));
+            handlerHelper.Register<ChartPage>("/KitchenSink/chart");
 
-            Handle.GET("/KitchenSink/checkbox", () => WrapPage(() => new CheckboxPage()));
+            handlerHelper.Register<CheckboxPage>("/KitchenSink/checkbox");
 
-            Handle.GET("/KitchenSink/datagrid", () => WrapPage(() => new DatagridPage()));
+            handlerHelper.Register<DatagridPage>("/KitchenSink/datagrid");
 
-            Handle.GET("/KitchenSink/decimal", () => WrapPage(() => new DecimalPage()));
+            handlerHelper.Register<DecimalPage>("/KitchenSink/decimal");
 
-            Handle.GET("/KitchenSink/dropdown", () => WrapPage(() => new DropdownPage()));
+            handlerHelper.Register<DropdownPage>("/KitchenSink/dropdown");
 
-            Handle.GET("/KitchenSink/html", () => WrapPage(() => new HtmlPage()));
+            handlerHelper.Register<HtmlPage>("/KitchenSink/html");
 
-            Handle.GET("/KitchenSink/integer", () => WrapPage(() => new IntegerPage()));
+            handlerHelper.Register<IntegerPage>("/KitchenSink/integer");
 
-            //Handle.GET("/KitchenSink/Map", () => WrapPage(() => new MapPage()));
+            handlerHelper.Register<MapPage>("/KitchenSink/Map");
 
-            Handle.GET("/KitchenSink/Map", () => WrapPage(() => new MapPage()));
+            handlerHelper.Register<MarkdownPage>("/KitchenSink/markdown");
 
-            Handle.GET("/KitchenSink/markdown", () => WrapPage(() => new MarkdownPage()));
+            handlerHelper.Register<NestedPartial>("/KitchenSink/nested");
 
-            Handle.GET("/KitchenSink/nested", () => WrapPage(() => new NestedPartial() {
-                Data = new AnyData()
-            }));
+            handlerHelper.Register<RadiolistPage>("/KitchenSink/radiolist");
 
-            Handle.GET("/KitchenSink/radiolist", () => WrapPage(() => new RadiolistPage()));
+            handlerHelper.Register<MultiselectPage>("/KitchenSink/multiselect");
 
-            Handle.GET("/KitchenSink/multiselect", () => WrapPage(() => new MultiselectPage()));
+            handlerHelper.Register<PasswordPage>("/KitchenSink/password");
 
-            Handle.GET("/KitchenSink/password", () => WrapPage(() => new PasswordPage()));
+            handlerHelper.Register<TablePage>("/KitchenSink/table");
 
-            Handle.GET("/KitchenSink/table", () => WrapPage(() => new TablePage()));
+            handlerHelper.Register<TextPage>("/KitchenSink/text");
 
-            Handle.GET("/KitchenSink/text", () => WrapPage(() => new TextPage()));
+            handlerHelper.Register<TextareaPage>("/KitchenSink/textarea");
 
-            Handle.GET("/KitchenSink/textarea", () => WrapPage(() => new TextareaPage()));
+            handlerHelper.Register<RadioPage>("/KitchenSink/radio");
 
-            Handle.GET("/KitchenSink/radio", () => WrapPage(() => new RadioPage()));
+            handlerHelper.Register<RedirectPage>("/KitchenSink/Redirect/{?}",
+                (MasterPage master, string param) =>
+                {
+                    var nav = master.CurrentPage as NavPage;
+                    var page = nav.CurrentPage as RedirectPage;
+                    page.YourFavoriteFood = "You've got some tasty " + param;
+                }
+            );
 
-            Handle.GET("/KitchenSink/Redirect", () => WrapPage(() => new RedirectPage()));
+            handlerHelper.Register<UrlPage>("/KitchenSink/url");
 
-            Handle.GET("/KitchenSink/Redirect/{?}", (string param) => {
-                var master = WrapPage(() => new RedirectPage()) as MasterPage;
-                var nav = master.CurrentPage as NavPage;
-                var page = nav.CurrentPage as RedirectPage;
-                page.YourFavoriteFood = "You've got some tasty " + param;
-                return master;
-            });
+            handlerHelper.Register<DatepickerPage>("/KitchenSink/datepicker");
 
-            Handle.GET("/KitchenSink/url", () => WrapPage(() => new UrlPage()));
+            handlerHelper.Register<FileUploadPage>("/KitchenSink/fileupload");
 
-            Handle.GET("/KitchenSink/datepicker", () => WrapPage(() => new DatepickerPage()));
-
-            Handle.GET("/KitchenSink/fileupload", () => WrapPage(() => new FileUploadPage()));
-
-            HandleFile.GET("/KitchenSink/fileupload/upload", task => {
+            handlerHelper.Register("/KitchenSink/fileupload/upload", task => {
                 Session.ScheduleTask(task.SessionId, (s, id) => {
                     MasterPage master = s.Data as MasterPage;
 
-                    if (master == null) {
+                    if (master == null)
+                    {
                         return;
                     }
 
                     NavPage nav = master.CurrentPage as NavPage;
 
-                    if (nav == null) {
+                    if (nav == null)
+                    {
                         return;
                     }
 
                     FileUploadPage page = nav.CurrentPage as FileUploadPage;
 
-                    if (page == null) {
+                    if (page == null)
+                    {
                         return;
                     }
 
                     var item = page.Tasks.FirstOrDefault(x => x.FileName == task.FileName);
 
-                    if (task.State == HandleFile.UploadTaskState.Completed) {
-                        if (item != null) {
+                    if (task.State == HandleFile.UploadTaskState.Completed)
+                    {
+                        if (item != null)
+                        {
                             page.Tasks.Remove(item);
                         }
 
                         var file = page.Files.FirstOrDefault(x => x.FileName == task.FileName);
 
-                        if (file == null) {
+                        if (file == null)
+                        {
                             file = page.Files.Add();
                         }
 
                         file.FileName = task.FileName;
                         file.FileSize = task.FileSize;
                         file.FilePath = task.FilePath;
-                    } else {
-                        if (item == null) {
+                    }
+                    else
+                    {
+                        if (item == null)
+                        {
                             item = page.Tasks.Add();
                         }
 
@@ -139,7 +146,8 @@ namespace KitchenSink {
                         item.FileSize = task.FileSize;
                         item.Progress = task.Progress;
 
-                        if (task.State == HandleFile.UploadTaskState.Error) {
+                        if (task.State == HandleFile.UploadTaskState.Error)
+                        {
                             item.Message = "Error uploading file";
                         }
                     }
@@ -149,57 +157,16 @@ namespace KitchenSink {
             });
 
             //for a launcher
-            Handle.GET("/KitchenSink/app-name", () => {
+            handlerHelper.Register("/KitchenSink/app-name", (Func<Response>)(() => {
                 return new AppName();
-            });
+            }));
 
-            Handle.GET("/KitchenSink/menu", () => {
-                return new Partial() { Html = "/KitchenSink/AppMenuPage.html" };
+            handlerHelper.Register("/KitchenSink/menu", () => {
+                return new Partial() { Html = "/KitchenSink/AppMenu(Page.html" };
             });
 
             UriMapping.Map("/KitchenSink/menu", UriMapping.MappingUriPrefix + "/menu");
             UriMapping.Map("/KitchenSink/app-name", UriMapping.MappingUriPrefix + "/app-name");
-        }
-
-        private static Partial WrapPage<T>(Func<T> partial) where T : Partial {
-            var master = (MasterPage)Self.GET("/KitchenSink/master");
-            var nav = master.CurrentPage as NavPage;
-
-            if (nav.CurrentPage != null && nav.CurrentPage.GetType().Equals(typeof(T))) {
-                return master;
-            }
-
-            var currentUri = Handle.IncomingRequest.Uri;
-            var indexCallPath = IndexOfNth(currentUri, '/', 2);
-            var partialPath = currentUri.Insert(indexCallPath, "/partial");
-
-            var isRegistered = Handle.IsHandlerRegistered(string.Format("GET {0}", partialPath), null);
-            if (!isRegistered)
-            {
-                Handle.GET(partialPath, () =>
-                {
-                    var textPage = partial();
-                    return textPage;
-                });
-            }
-            nav.CurrentPage = Self.GET(partialPath);
-
-            if (nav.CurrentPage.Data == null) {
-                nav.CurrentPage.Data = null; //trick to invoke OnData in partial
-            }
-
-            return master;
-        }
-
-        private static int IndexOfNth(string str, char c, int n)
-        {
-            int index = -1;
-            while (n-- > 0)
-            {
-                index = str.IndexOf(c, index + 1);
-                if (index == -1) break;
-            }
-            return index;
         }
     }
 }

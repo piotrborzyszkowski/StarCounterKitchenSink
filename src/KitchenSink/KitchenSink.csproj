@@ -85,6 +85,7 @@
       <DependentUpon>FileUploadPage.json</DependentUpon>
     </Compile>
     <Compile Include="HandleFile.cs" />
+    <Compile Include="Herlper\HandlerHelper.cs" />
     <Compile Include="HtmlPage.json.cs">
       <DependentUpon>HtmlPage.json</DependentUpon>
     </Compile>

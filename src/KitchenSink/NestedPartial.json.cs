@@ -14,5 +14,13 @@ namespace KitchenSink {
                 Html = NestedPartial.DefaultTemplate.Html.DefaultValue + "?" + DateTime.Now //normally you don't need this
             };
         }
+        protected override void OnData()
+        {
+            if(Data == null)
+            {
+                Data = new AnyData();
+            }
+            base.OnData();
+        }
     }
 }
