@@ -1,49 +1,45 @@
-﻿.kitchen-sink-layout {
+﻿.kitchensink-layout {
   display: flex;
 }
 
-.kitchen-sink-menu {
+.kitchensink-menu {
   flex: 0 0 160px;
   margin-right: 20px;
 }
 
-.kitchen-sink-menu__heading {
+.kitchensink-menu__heading {
   font-size: 100%;
 }
 
-.kitchen-sink-menu__headingFirst {
+.kitchensink-menu__headingFirst {
   margin-top: 0;
 }
 
-.kitchen-sink-menu_unorderedList {
+.kitchensink-menu_unorderedList {
   padding: 0;
   list-style: none;
 }
 
-.kitchen-sink-current-page {
+.kitchensink {
   flex: 0 1 600px;
 }
 
-.kitchen-sink-current-page__select {
+.kitchensink__select {
   width: 50%;
 }
 
-.kitchen-sink-current-page__juicySelect {
+.kitchensink__juicySelect {
   display: block;
 }
 
-.kitchen-sink-current-page__paragraphHowTo {
+.kitchensink__paragraphHowTo {
   background-color: #FAFAFA;
   border-radius: 5px;
   border-left: 1px solid #F0F0F0;
   padding: 10px;
 }
-.kitchen-sink-menu ul {
-  padding: 0;
-  list-style: none;
-}
 
-.kitchen-sink-current-page__nested-child {
+.kitchensink__nested-child {
     padding: 10px;
     border: 1px solid #eeeeee;
 }
