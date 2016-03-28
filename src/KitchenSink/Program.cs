@@ -77,7 +77,9 @@ namespace KitchenSink
 
             handlerHelper.Register<RadioPage>("/KitchenSink/radio");
 
-            handlerHelper.Register<RedirectPage>("/KitchenSink/Redirect/{?}",
+            handlerHelper.Register<RedirectPage>("/KitchenSink/redirect");
+
+            handlerHelper.RegisterWithParam<RedirectPage>("/KitchenSink/Redirect/{?}",
                 (MasterPage master, string param) =>
                 {
                     var nav = master.CurrentPage as NavPage;

@@ -20,7 +20,7 @@ namespace KitchenSink.Herlper
             RegisterHandlers<T>(path, RegisterPartialHandler<T>);
         }
 
-        public void Register<T>(string path, Action<MasterPage, string> action) where T : Partial
+        public void RegisterWithParam<T>(string path, Action<MasterPage, string> action) where T : Partial
         {
             RegisterHandlers<T>(path, RegisterPartialHandler<T>, action);
         }
@@ -44,7 +44,6 @@ namespace KitchenSink.Herlper
             var typeName = typeof(T).Name;
             var partialName = string.Format("/KitchenSink/partial/{0}", typeName);
 
-            Handle.GET(partialName, partialHandler);
             Handle.GET(path, (string param) => {
                 var master = WrapPage<T>(partialName) as MasterPage;
                 action(master, param);
