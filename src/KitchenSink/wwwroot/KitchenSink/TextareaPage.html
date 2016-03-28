@@ -1,14 +1,11 @@
 ﻿<template>
   <template is="dom-bind">
-    <div>
-        <p class="lead">JSON's primitive value type <code>string</code> can be mapped directly to HTML form <code>textarea</code>.</p>
-    </div>
-    <div>
-        <label class="control-label">{{model.BioReaction}}</label>
-    </div>
-    <div>
-        <textarea value="{{model.Bio$::input}}" class="form-control" rows="3"></textarea>
-    </div>
+    <p class="lead">JSON's primitive value type <code>string</code> can be mapped directly to HTML form <code>textarea</code>.</p>
+    
+    <label class="control-label">{{model.BioReaction}}</label>
+    
+    <textarea value="{{model.Bio$::input}}" class="form-control" rows="3"></textarea>
+
     <dom-bind-notifier path="model" observed-object="{{model}}" deep></dom-bind-notifier>
   </template>
 </template>

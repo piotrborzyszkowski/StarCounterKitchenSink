@@ -19,109 +19,96 @@
         }
     </style>
     <template is="dom-bind">
-        <div>
-            <h3>File upload example</h3>
-        </div>
-        <div>
-            <p>Upload big files with <a href="https://github.com/Starcounter/starcounter-upload/"><code>starcounter-upload</code></a> over WebSocket</p>
-        </div>
-        <div>
-            <small>
-                <b>Warning:</b> this example requires <code>Polymer 1.3.1</code> which comes with <code>Starcounter 2.1.1367</code> or higher.
-            </small>
-        </div>
-        <div>
-            <br/>
-        </div>
-        <div>
-            <p class="lead" style="border-bottom: lightgray 1px solid;">Uploaded files</p>
-        </div>
-        <div>
-            <template is="dom-if" if="{{model.Files.length}}">
-                <table class="table">
-                    <thead>
+        <h3>File upload example</h3>
+        
+        <p>Upload big files with <a href="https://github.com/Starcounter/starcounter-upload/"><code>starcounter-upload</code></a> over WebSocket</p>
+
+        <small>
+            <b>Warning:</b> this example requires <code>Polymer 1.3.1</code> which comes with <code>Starcounter 2.1.1367</code> or higher.
+        </small>
+
+        <br />
+
+        <p class="lead" style="border-bottom: lightgray 1px solid;">Uploaded files</p>
+
+        <template is="dom-if" if="{{model.Files.length}}">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Size</th>
+                        <th>Path</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template is="dom-repeat" items="{{model.Files}}">
                         <tr>
-                            <th>Name</th>
-                            <th>Size</th>
-                            <th>Path</th>
-                            <th></th>
+                            <td>{{item.FileName}}</td>
+                            <td>{{item.FileSizeString}}</td>
+                            <td>{{item.FilePath}}</td>
+                            <td>
+                                <button type="button" class="btn btn-xs btn-link" value="{{item.DeleteClick$::click}}" onmouseup="++this.value;">Delete</button>
+                            </td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        <template is="dom-repeat" items="{{model.Files}}">
-                            <tr>
-                                <td>{{item.FileName}}</td>
-                                <td>{{item.FileSizeString}}</td>
-                                <td>{{item.FilePath}}</td>
-                                <td>
-                                    <button type="button" class="btn btn-xs btn-link" value="{{item.DeleteClick$::click}}" onmouseup="++this.value;">Delete</button>
-                                </td>
-                            </tr>
-                        </template>
-                    </tbody>
-                </table>
-                <div class="alert alert-warning">
-                    Do not forget to delete files from your temporary folder!
-                </div>
-            </template>
-        </div>
-        <div>
-            <template is="dom-if" if="{{!model.Files.length}}">
-                <p>No files uploaded so far</p>
-            </template>
-        </div>
-        <div>
-            <br />
-        </div>
-        <div>
-            <p class="lead" style="border-bottom: lightgray 1px solid;">Uploading files</p>
-        </div>
-        <div>
-            <template is="dom-if" if="{{model.Tasks.length}}">
-                <table class="table">
-                    <thead>
+                    </template>
+                </tbody>
+            </table>
+            <div class="alert alert-warning">
+                Do not forget to delete files from your temporary folder!
+            </div>
+        </template>
+
+        <template is="dom-if" if="{{!model.Files.length}}">
+            <p>No files uploaded so far</p>
+        </template>
+
+        <br />
+
+        <p class="lead" style="border-bottom: lightgray 1px solid;">Uploading files</p>
+
+
+        <template is="dom-if" if="{{model.Tasks.length}}">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Size</th>
+                        <th>Progress</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template is="dom-repeat" items="{{model.Tasks}}">
                         <tr>
-                            <th>Name</th>
-                            <th>Size</th>
-                            <th>Progress</th>
-                            <th></th>
+                            <td>{{item.FileName}}</td>
+                            <td>{{item.FileSizeString}}</td>
+                            <td>
+                                <span>{{item.Progress}}</span>%
+                            </td>
+                            <td>{{item.Message}}</td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        <template is="dom-repeat" items="{{model.Tasks}}">
-                            <tr>
-                                <td>{{item.FileName}}</td>
-                                <td>{{item.FileSizeString}}</td>
-                                <td>
-                                    <span>{{item.Progress}}</span>%
-                                </td>
-                                <td>{{item.Message}}</td>
-                            </tr>
-                        </template>
-                    </tbody>
-                </table>
-            </template>
-        </div>
-        <div>
-            <template is="dom-if" if="{{!model.Tasks.length}}">
-                <p>No ongoing uploads so far</p>
-            </template>
-        </div>
-        <div>
-            <hr />
-        </div>
+                    </template>
+                </tbody>
+            </table>
+        </template>
+
+        <template is="dom-if" if="{{!model.Tasks.length}}">
+            <p>No ongoing uploads so far</p>
+        </template>
+
+        <hr />
+
         <div>
             <starcounter-upload session-id="{{model.SessionId}}" upload-url="{{model.UploadUrl}}" tasks="{{tasks}}" multiple="true"></starcounter-upload>
         </div>
-        <div>
-            <button type="button" class="btn btn-sm btn-primary" on-click="selectFile">Select file</button>
-        </div>
-        <div>
-            <button type="button" class="btn btn-sm btn-default" on-click="cancelUpload" disabled="{{!tasks.length}}">Cancel upload</button>
-        </div>
-        <div>
-            <hr />
-        </div>
+
+        <button type="button" class="btn btn-sm btn-primary" on-click="selectFile">Select file</button>
+
+        <button type="button" class="btn btn-sm btn-default" on-click="cancelUpload" disabled="{{!tasks.length}}">Cancel upload</button>
+
+        <hr />
+
         <template is="dom-if" if="{{tasks.length}}">
             <div class="starcounter-upload-tasks">
                 <div>

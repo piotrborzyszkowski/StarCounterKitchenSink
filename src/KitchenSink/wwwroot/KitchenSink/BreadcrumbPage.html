@@ -3,20 +3,13 @@
 
 <template>
     <template is="dom-bind">
-        <div>
-            <h1>Breadcrumbs</h1>
-        </div>
-        <div>
-            <h1>Breadcrumbs</h1>
-        </div>
+        <h1>Breadcrumbs</h1>
+
+        <h1>Breadcrumbs</h1>
         
-        <div>
-            <h2>Simple breadcrumb</h2>
-        </div>
+        <h2>Simple breadcrumb</h2>
         
-        <div>
-            <p class="kitchen-sink-how-to">A JSON <code>array</code> of <code>objects</code> can used as a breadcrumb navigation. The below example uses <code>template is="dom-repeat"</code> with <code>span</code>.</p>
-        </div>
+        <p class="kitchen-sink-how-to">A JSON <code>array</code> of <code>objects</code> can used as a breadcrumb navigation. The below example uses <code>template is="dom-repeat"</code> with <code>span</code>.</p>
 
         <template is="dom-repeat" items="{{model.Breadcrumbs}}" restamp>
             <div>
@@ -29,13 +22,9 @@
             </div>
         </template>
         
-        <div>
-            <h2>Breadcrumb with navigation</h2>
-        </div>
+        <h2>Breadcrumb with navigation</h2>
 
-        <div>
-            <p class="kitchen-sink-how-to">It doesn't take much more to add a multidimensional navigation to the breadcrumb. The below example uses <code>template is="dom-repeat"</code> with <code><a href="https://github.com/Juicy/x-breadcrumb">x-breadcrumb</a></code> custom element.</p>
-        </div>
+        <p class="kitchen-sink-how-to">It doesn't take much more to add a multidimensional navigation to the breadcrumb. The below example uses <code>template is="dom-repeat"</code> with <code><a href="https://github.com/Juicy/x-breadcrumb">x-breadcrumb</a></code> custom element.</p>
 
         <style>
             x-breadcrumb {
@@ -72,26 +61,19 @@
                 </template>
             </x-breadcrumb>
         </div>
-        <div>
-            <template is="dom-if" if="{{model.CurrentTreeItem.IsAdd}}" restamp>
-                <h5>Adding a new type in <strong>{{model.CurrentTreeItem.ParentName}}</strong></h5>
-            </template>
-        </div>
-        <div>
-            <template is="dom-if" if="{{!model.CurrentTreeItem.IsAdd}}" restamp>
-                <h5>Editing <strong>{{model.CurrentTreeItem.Name$}}</strong></h5>
-            </template>
-        </div>
+        <template is="dom-if" if="{{model.CurrentTreeItem.IsAdd}}" restamp>
+            <h5>Adding a new type in <strong>{{model.CurrentTreeItem.ParentName}}</strong></h5>
+        </template>
 
-        <div>
-            <label class="control-label">Name</label>
-        </div>
-        <div>
-            <input type="text" value="{{model.CurrentTreeItem.Name$::change}}" placeholder="Name" class="form-control">
-        </div>
-        <div>
-            <button value="{{model.CurrentTreeItem.Save$::click}}" onmousedown="++this.value">Save</button>
-        </div>
+        <template is="dom-if" if="{{!model.CurrentTreeItem.IsAdd}}" restamp>
+            <h5>Editing <strong>{{model.CurrentTreeItem.Name$}}</strong></h5>
+        </template>
+
+        <label class="control-label">Name</label>
+
+        <input type="text" value="{{model.CurrentTreeItem.Name$::change}}" placeholder="Name" class="form-control">
+
+        <button value="{{model.CurrentTreeItem.Save$::click}}" onmousedown="++this.value">Save</button>
 
         <dom-bind-notifier path="model" observed-object="{{model}}" deep></dom-bind-notifier>
     </template>

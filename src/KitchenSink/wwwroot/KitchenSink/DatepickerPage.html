@@ -1,35 +1,27 @@
 ﻿<link rel="import" href="/sys/pikaday-decorator/pikaday-decorator.html" />
 <template>
     <template is="dom-bind">
-        <div>
-            <p class="lead">JSON's primitive value type <code>string</code> can be mapped directly to HTML form <code>input type="text"</code> with a datepicker.</p>
-        </div>
-        <div>
-            <label class="control-label">Date</label>
-        </div>
+        <p class="lead">JSON's primitive value type <code>string</code> can be mapped directly to HTML form <code>input type="text"</code> with a datepicker.</p>
+
+        <label class="control-label">Date</label>
         <div>
             <pikaday-decorator format="YYYY-MM-DD">
                 <input type="text" value="{{model.Value$::change}}" class="form-control" placeholder="Select a date to parse" />
             </pikaday-decorator>
         </div>
-        <div>
-            <label class="control-label">Year</label>
-        </div>
-        <div>
-            <input type="text" value="{{model.Year}}" readonly="readonly" class="form-control" />
-        </div>
-        <div>
-            <label class="control-label">Month</label>
-        </div>
-        <div>
-            <input type="text" value="{{model.Month}}" readonly="readonly" class="form-control" />
-        </div>
-        <div>
-            <label class="control-label">Day</label>
-        </div>
-        <div>
-            <input type="text" value="{{model.Day}}" readonly="readonly" class="form-control" />
-        </div>
+
+        <label class="control-label">Year</label>
+
+        <input type="text" value="{{model.Year}}" readonly="readonly" class="form-control" />
+
+        <label class="control-label">Month</label>
+
+        <input type="text" value="{{model.Month}}" readonly="readonly" class="form-control" />
+
+        <label class="control-label">Day</label>
+
+        <input type="text" value="{{model.Day}}" readonly="readonly" class="form-control" />
+
         <dom-bind-notifier path="model" observed-object="{{model}}" deep></dom-bind-notifier>
     </template>
 </template>
