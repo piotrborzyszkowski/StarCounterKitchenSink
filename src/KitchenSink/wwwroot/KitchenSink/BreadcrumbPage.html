@@ -10,13 +10,14 @@
         <h2>Simple breadcrumb</h2>
         
         <p class="kitchen-sink-how-to">A JSON <code>array</code> of <code>objects</code> can used as a breadcrumb navigation. The below example uses <code>template is="dom-repeat"</code> with <code>span</code>.</p>
-
-        <template is="dom-repeat" items="{{model.Breadcrumbs}}" restamp>
-            <template is="dom-if" if="{{index}}" restamp>
-                &gt;
+        <div>
+            <template is="dom-repeat" items="{{model.Breadcrumbs}}" restamp>
+                <template is="dom-if" if="{{index}}" restamp>
+                    &gt;
+                </template>
+                <span class="btn" select="{{item.Select$::mouseup}}" onmousedown="++this.select">{{item.Name}}</span>
             </template>
-            <span class="btn" select="{{item.Select$::mouseup}}" onmousedown="++this.select">{{item.Name}}</span>
-        </template>
+        </div>
         
         <h2>Breadcrumb with navigation</h2>
 
@@ -39,24 +40,22 @@
                     background: rgba(255, 255, 255, 0.2);
                 }
         </style>
-        <div>
-            <x-breadcrumb>
-                <template is="dom-repeat" items="{{model.Breadcrumbs}}" restamp>
-                    <x-crumb value="{{item.Name}}"
-                             search-query="{{item.SearchQuery$}}"
-                             dropdown="true"
-                             active$="{{item.IsActive}}"
-                             ghost$="{{item.IsGhost}}">
-                        <ul class="breadcrumb-suggestions">
-                            <template is="dom-repeat" items="{{item.Siblings}}" restamp>
-                                <li select="{{item.Select$::click}}" onmousedown="++this.select">{{item.Name}}</li>
-                            </template>
-                            <li select="{{item.AddSibling$::click}}" onmousedown="++this.select">+ Add a new type</li>
-                        </ul>
-                    </x-crumb>
-                </template>
-            </x-breadcrumb>
-        </div>
+        <x-breadcrumb>
+            <template is="dom-repeat" items="{{model.Breadcrumbs}}" restamp>
+                <x-crumb value="{{item.Name}}"
+                         search-query="{{item.SearchQuery$}}"
+                         dropdown="true"
+                         active$="{{item.IsActive}}"
+                         ghost$="{{item.IsGhost}}">
+                    <ul class="breadcrumb-suggestions">
+                        <template is="dom-repeat" items="{{item.Siblings}}" restamp>
+                            <li select="{{item.Select$::click}}" onmousedown="++this.select">{{item.Name}}</li>
+                        </template>
+                        <li select="{{item.AddSibling$::click}}" onmousedown="++this.select">+ Add a new type</li>
+                    </ul>
+                </x-crumb>
+            </template>
+        </x-breadcrumb>
         <template is="dom-if" if="{{model.CurrentTreeItem.IsAdd}}" restamp>
             <h5>Adding a new type in <strong>{{model.CurrentTreeItem.ParentName}}</strong></h5>
         </template>
