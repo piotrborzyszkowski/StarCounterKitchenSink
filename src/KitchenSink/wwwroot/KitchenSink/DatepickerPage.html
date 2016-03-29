@@ -4,11 +4,10 @@
         <p class="lead">JSON's primitive value type <code>string</code> can be mapped directly to HTML form <code>input type="text"</code> with a datepicker.</p>
 
         <label class="control-label">Date</label>
-        <div>
-            <pikaday-decorator format="YYYY-MM-DD">
-                <input type="text" value="{{model.Value$::change}}" class="form-control" placeholder="Select a date to parse" />
-            </pikaday-decorator>
-        </div>
+
+        <pikaday-decorator format="YYYY-MM-DD">
+            <input type="text" value="{{model.Value$::change}}" class="form-control" placeholder="Select a date to parse" />
+        </pikaday-decorator>
 
         <label class="control-label">Year</label>
 

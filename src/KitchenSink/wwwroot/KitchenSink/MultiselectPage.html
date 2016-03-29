@@ -6,17 +6,13 @@
 
         <div>Select countries you have visited:</div>
 
-        <div>
-            <juicy-select multiple="true" options="{{model.Countries}}" selected-property="Selected$" text-property="Name" value-property="Name"></juicy-select>
-        </div>
+        <juicy-select multiple="true" options="{{model.Countries}}" selected-property="Selected$" text-property="Name" value-property="Name"></juicy-select>
 
         <br />
 
         <span>Select your favorite country:</span>
 
-        <div>
-            <juicy-select caption-text="No favorite country" value="{{model.FavoriteCountry$}}" options="{{model.Countries}}" selected-property="Selected$" text-property="Name" value-property="Name"></juicy-select>
-        </div>
+        <juicy-select caption-text="No favorite country" value="{{model.FavoriteCountry$}}" options="{{model.Countries}}" selected-property="Selected$" text-property="Name" value-property="Name"></juicy-select>
 
         <p>You have visited:</p>
 

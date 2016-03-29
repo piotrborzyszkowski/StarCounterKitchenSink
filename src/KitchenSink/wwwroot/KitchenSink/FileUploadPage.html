@@ -67,7 +67,6 @@
 
         <p class="lead" style="border-bottom: lightgray 1px solid;">Uploading files</p>
 
-
         <template is="dom-if" if="{{model.Tasks.length}}">
             <table class="table">
                 <thead>
@@ -99,9 +98,7 @@
 
         <hr />
 
-        <div>
-            <starcounter-upload session-id="{{model.SessionId}}" upload-url="{{model.UploadUrl}}" tasks="{{tasks}}" multiple="true"></starcounter-upload>
-        </div>
+        <starcounter-upload session-id="{{model.SessionId}}" upload-url="{{model.UploadUrl}}" tasks="{{tasks}}" multiple="true"></starcounter-upload>
 
         <button type="button" class="btn btn-sm btn-primary" on-click="selectFile">Select file</button>
 

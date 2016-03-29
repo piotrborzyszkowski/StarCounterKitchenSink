@@ -12,14 +12,10 @@
         <p class="kitchen-sink-how-to">A JSON <code>array</code> of <code>objects</code> can used as a breadcrumb navigation. The below example uses <code>template is="dom-repeat"</code> with <code>span</code>.</p>
 
         <template is="dom-repeat" items="{{model.Breadcrumbs}}" restamp>
-            <div>
-                <template is="dom-if" if="{{index}}" restamp>
-                    &gt;
-                </template>
-            </div>
-            <div>
-                <span class="btn" select="{{item.Select$::mouseup}}" onmousedown="++this.select">{{item.Name}}</span>
-            </div>
+            <template is="dom-if" if="{{index}}" restamp>
+                &gt;
+            </template>
+            <span class="btn" select="{{item.Select$::mouseup}}" onmousedown="++this.select">{{item.Name}}</span>
         </template>
         
         <h2>Breadcrumb with navigation</h2>
