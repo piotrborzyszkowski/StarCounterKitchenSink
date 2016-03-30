@@ -4,8 +4,6 @@
 <template>
     <template is="dom-bind">
         <h1>Breadcrumbs</h1>
-
-        <h1>Breadcrumbs</h1>
         
         <h2>Simple breadcrumb</h2>
         
@@ -68,7 +66,7 @@
 
         <input type="text" value="{{model.CurrentTreeItem.Name$::change}}" placeholder="Name" class="form-control">
 
-        <button value="{{model.CurrentTreeItem.Save$::click}}" onmousedown="++this.value">Save</button>
+        <button class="btn btn-sm btn-default" value="{{model.CurrentTreeItem.Save$::click}}" onmousedown="++this.value">Save</button>
 
         <dom-bind-notifier path="model" observed-object="{{model}}" deep></dom-bind-notifier>
     </template>
