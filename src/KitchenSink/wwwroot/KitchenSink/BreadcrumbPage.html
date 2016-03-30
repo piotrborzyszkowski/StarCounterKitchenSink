@@ -7,7 +7,7 @@
         
         <h2>Simple breadcrumb</h2>
         
-        <p class="kitchensink-introduction">A JSON <code>array</code> of <code>objects</code> can used as a breadcrumb navigation. The below example uses <code>template is="dom-repeat"</code> with <code>span</code>.</p>
+        <p class="lead">A JSON <code>array</code> of <code>objects</code> can used as a breadcrumb navigation. The below example uses <code>template is="dom-repeat"</code> with <code>span</code>.</p>
         <div>
             <template is="dom-repeat" items="{{model.Breadcrumbs}}" restamp>
                 <template is="dom-if" if="{{index}}" restamp>
@@ -19,9 +19,9 @@
         
         <h2>Breadcrumb with navigation</h2>
 
-        <p class="kitchensink-introduction">It doesn't take much more to add a multidimensional navigation to the breadcrumb. The below example uses <code>template is="dom-repeat"</code> with <code><a href="https://github.com/Juicy/x-breadcrumb">x-breadcrumb</a></code> custom element.</p>
+        <p class="lead">It doesn't take much more to add a multidimensional navigation to the breadcrumb. The below example uses <code>template is="dom-repeat"</code> with <code><a href="https://github.com/Juicy/x-breadcrumb">x-breadcrumb</a></code> custom element.</p>
 
-        <x-breadcrumb>
+        <x-breadcrumb class="kitchensink-x-breadcrumb">
             <template is="dom-repeat" items="{{model.Breadcrumbs}}" restamp>
                 <x-crumb value="{{item.Name}}"
                          search-query="{{item.SearchQuery$}}"
@@ -30,9 +30,9 @@
                          ghost$="{{item.IsGhost}}">
                     <ul class="kitchensink-breadcrumb-suggestions">
                         <template is="dom-repeat" items="{{item.Siblings}}" restamp>
-                            <li class="kitchensink-breadcrumb-suggestions__list-item" select="{{item.Select$::click}}" onmousedown="++this.select">{{item.Name}}</li>
+                            <li class="kitchensink-breadcrumb-suggestions__item" select="{{item.Select$::click}}" onmousedown="++this.select">{{item.Name}}</li>
                         </template>
-                        <li class="kitchensink-breadcrumb-suggestions__list-item" select="{{item.AddSibling$::click}}" onmousedown="++this.select">+ Add a new type</li>
+                        <li class="kitchensink-breadcrumb-suggestions__item" select="{{item.AddSibling$::click}}" onmousedown="++this.select">+ Add a new type</li>
                     </ul>
                 </x-crumb>
             </template>

@@ -32,14 +32,7 @@
   display: block;
 }
 
-.kitchensink-introduction {
-  background-color: #FAFAFA;
-  border-radius: 5px;
-  border-left: 1px solid #F0F0F0;
-  padding: 10px;
-}
-
-.kitchensink-introduction-dropdownpage {
+.kitchensink-heading {
     border-bottom: lightgray 1px solid;
 }
 
@@ -48,7 +41,7 @@
     border: 1px solid #eeeeee;
 }
 
-x-breadcrumb {
+.kitchensink-x-breadcrumb {
     margin-bottom: 20px;
 }
 
@@ -59,7 +52,7 @@ x-breadcrumb {
     margin: 0;
 }
 
-.kitchensink-breadcrumb-suggestions__list-item:hover {
+.kitchensink-breadcrumb-suggestions__item:hover {
     cursor: default;
     background: rgba(255, 255, 255, 0.2);
 }    
@@ -76,16 +69,16 @@ x-breadcrumb {
     font-size: 15px;
 }
 
-google-map {
+.kitchensink-google-map {
     height: 300px;
 }
 
-button.kitchensink__button[pressed] {
+.kitchensink-toggle-button[pressed] {
     color: white;
     background: green;
 }
 
-button.kitchensink__button[disabled] {
+.kitchensink-toggle-button[disabled] {
     opacity: 0.5;
     cursor: not-allowed;
 }

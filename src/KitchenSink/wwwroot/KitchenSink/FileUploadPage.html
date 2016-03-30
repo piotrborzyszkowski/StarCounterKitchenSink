@@ -2,7 +2,7 @@
 
 <template>
     <template is="dom-bind">
-        <h3>File upload example</h3>
+        <h1>File upload example</h1>
         
         <p>Upload big files with <a href="https://github.com/Starcounter/starcounter-upload/"><code>starcounter-upload</code></a> over WebSocket</p>
 
@@ -12,7 +12,7 @@
 
         <br />
 
-        <p class="lead" style="border-bottom: lightgray 1px solid;">Uploaded files</p>
+        <h4>Uploaded files</h4>
 
         <template is="dom-if" if="{{model.Files.length}}">
             <table class="table">
@@ -48,7 +48,7 @@
 
         <br />
 
-        <p class="lead" style="border-bottom: lightgray 1px solid;">Uploading files</p>
+        <h4>Uploading files</h4>
 
         <template is="dom-if" if="{{model.Tasks.length}}">
             <table class="table">
