@@ -1,32 +1,23 @@
 ﻿<template>
     <template is="dom-bind">
-        <div>
-            <p class="lead">JSON's primitive value type <code>string</code> can be mapped directly to HTML form <code>input type="text"</code>.</p>
-        </div>
-        <div>
-            <h5>Listening to changes</h5>
-        </div>
-        <div>
-            <p>Bind to <code>::change</code> listener to send the new value to the server when the field is unfocused. Read more about the target change events in the <a href="https://www.polymer-project.org/1.0/docs/devguide/data-binding.html#two-way-native">Polymer docs</a>.</p>
-        </div>
-        <div>
-            <label class="control-label">{{model.NameReaction}}</label>
-        </div>
-        <div>
-            <input type="text" value="{{model.Name$::change}}" placeholder="Name" class="form-control">
-        </div>
-        <div>
-            <h5>Listening to changes while typing</h5>
-        </div>
-        <div>
-            <p>Need to update the server after each keystroke? Bind to <code>::input</code>:</p>
-        </div>
-        <div>
-            <label class="control-label">{{model.NameLiveReaction}}</label>
-        </div>
-        <div>
-            <input type="text" value="{{model.NameLive$::input}}" placeholder="Name" class="form-control">
-        </div>
+        <p class="lead">JSON's primitive value type <code>string</code> can be mapped directly to HTML form <code>input type="text"</code>.</p>
+        
+        <h5>Listening to changes</h5>
+
+        <p>Bind to <code>::change</code> listener to send the new value to the server when the field is unfocused. Read more about the target change events in the <a href="https://www.polymer-project.org/1.0/docs/devguide/data-binding.html#two-way-native">Polymer docs</a>.</p>
+
+        <label class="control-label">{{model.NameReaction}}</label>
+
+        <input type="text" value="{{model.Name$::change}}" placeholder="Name" class="form-control">
+
+        <h5>Listening to changes while typing</h5>
+
+        <p>Need to update the server after each keystroke? Bind to <code>::input</code>:</p>
+
+        <label class="control-label">{{model.NameLiveReaction}}</label>
+
+        <input type="text" value="{{model.NameLive$::input}}" placeholder="Name" class="form-control">
+
         <dom-bind-notifier path="model" observed-object="{{model}}" deep></dom-bind-notifier>
     </template>
 </template>

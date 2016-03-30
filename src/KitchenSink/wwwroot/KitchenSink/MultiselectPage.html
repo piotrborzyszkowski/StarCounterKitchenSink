@@ -1,41 +1,33 @@
 ﻿<link rel="import" href="/sys/juicy-select/juicy-select.html" />
+
 <template>
     <template is="dom-bind">
-        <div>
-            <p class="lead">Array of json items in combination with <code>juicy-select</code> can be used as a simple select element with multi select option.</p>
-        </div>
+        <p class="lead">Array of json items in combination with <code>juicy-select</code> can be used as a simple select element with multi select option.</p>
+
         <div>Select countries you have visited:</div>
-        <div>
-            <juicy-select class="kitchensink__juicySelect" multiple="true" options="{{model.Countries}}" selected-property="Selected$" text-property="Name" value-property="Name"></juicy-select>
-        </div>
-        <div>
-            <br />
-        </div>
-        <div>
-            <span>Select your favorite country:</span>
-        </div>
-        <div>
-            <juicy-select class="kitchensink__juicySelect" caption-text="No favorite country" value="{{model.FavoriteCountry$}}" options="{{model.Countries}}" selected-property="Selected$" text-property="Name" value-property="Name"></juicy-select>
-        </div>
-        <div>
-            <p>You have visited:</p>
-        </div>
-        <div>
-            <template is="dom-repeat" items="{{model.Countries}}">
-                <template is="dom-if" if="{{item.Selected$}}">
-                    <span>{{item.Name}}</span>;
-                </template>
+
+        <juicy-select multiple="true" options="{{model.Countries}}" selected-property="Selected$" text-property="Name" value-property="Name"></juicy-select>
+
+        <br />
+
+        <span>Select your favorite country:</span>
+
+        <juicy-select caption-text="No favorite country" value="{{model.FavoriteCountry$}}" options="{{model.Countries}}" selected-property="Selected$" text-property="Name" value-property="Name"></juicy-select>
+
+        <p>You have visited:</p>
+
+        <template is="dom-repeat" items="{{model.Countries}}">
+            <template is="dom-if" if="{{item.Selected$}}">
+                <span>{{item.Name}}</span>;
             </template>
-        </div>
-        <div>
-            <br />
-        </div>
-        <div>
-            <p>Your favorite country is:</p>
-        </div>
-        <div>
-            <span>{{model.FavoriteCountry$}}</span>
-        </div>
+        </template>
+
+        <br />
+
+        <p>Your favorite country is:</p>
+
+        <span>{{model.FavoriteCountry$}}</span>
+
         <dom-bind-notifier path="model" observed-object="{{model}}" deep></dom-bind-notifier>
     </template>
 </template>

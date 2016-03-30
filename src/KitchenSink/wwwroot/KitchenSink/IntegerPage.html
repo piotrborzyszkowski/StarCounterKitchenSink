@@ -1,17 +1,13 @@
 <template>
   <template is="dom-bind">
-    <div>
-        <p class="lead">JSON's primitive value type <code>number</code> can be mapped directly to HTML form elements <code>input type="number"</code>.</p>
-    </div>
-    <div>
-        <p>A integer value is declared in Starcounter's JSON-by-example by providing an integer value, e.g. <code>0</code></p>
-    </div>
-    <div>
-        <label class="control-label">{{model.AgeReaction}}</label>
-    </div>
-    <div>
-        <input type="number" value="{{model.Age$::input}}" placeholder="Age" class="form-control">
-    </div>
+    <p class="lead">JSON's primitive value type <code>number</code> can be mapped directly to HTML form elements <code>input type="number"</code>.</p>
+
+    <p>A integer value is declared in Starcounter's JSON-by-example by providing an integer value, e.g. <code>0</code></p>
+
+    <label class="control-label">{{model.AgeReaction}}</label>
+
+    <input type="number" value="{{model.Age$::input}}" placeholder="Age" class="form-control">
+
     <dom-bind-notifier path="model" observed-object="{{model}}" deep></dom-bind-notifier>
   </template>
 </template>

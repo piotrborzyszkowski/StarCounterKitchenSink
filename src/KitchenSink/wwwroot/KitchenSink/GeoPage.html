@@ -11,11 +11,9 @@
       }
     </style>
       
-    <div>
-        <google-map latitude="[[model.Position.lat]]" longitude="[[model.Position.lng]]" fit-to-markers zoom="12">
-          <google-map-marker title="Hi Stockholm!" latitude="[[model.Position.lat]]" longitude="[[model.Position.lng]]"></google-map-marker>
-        </google-map>
-    </div>
+    <google-map latitude="[[model.Position.lat]]" longitude="[[model.Position.lng]]" fit-to-markers zoom="12">
+        <google-map-marker title="Hi Stockholm!" latitude="[[model.Position.lat]]" longitude="[[model.Position.lng]]"></google-map-marker>
+    </google-map>
 
     <dom-bind-notifier path="model" observed-object="{{model}}" deep></dom-bind-notifier>
   </template>
