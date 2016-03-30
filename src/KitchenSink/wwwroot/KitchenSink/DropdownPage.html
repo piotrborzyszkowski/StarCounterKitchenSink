@@ -35,7 +35,7 @@
 
         <br />
         
-        <juicy-select caption-text=" " value="{{model.SelectedProductKey$}}" options="{{model.Products}}" text-property="Name" value-property="Key"></juicy-select>
+        <juicy-select class="kitchensink-juicyselect" caption-text=" " value="{{model.SelectedProductKey$}}" options="{{model.Products}}" text-property="Name" value-property="Key"></juicy-selectclass="kitchensink-juicyselect">
 
         <template is="dom-if" if="{{model.SelectedProduct.Name}}">
             <p>You have selected: <strong>{{model.SelectedProduct.Name}}</strong></p>
