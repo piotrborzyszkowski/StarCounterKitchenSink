@@ -14,14 +14,7 @@
        
          <p>When you have a special need to use the pressed state of a button, you might use <code>boolean</code> type for buttons.</p>
 
-        <style>
-            button[pressed] {
-                color: white;
-                background: green;
-            }
-        </style>
-
-        <button class="btn btn-sm btn-default" pressed$="{{model.EnableCarrotEngine$}}" model="{{model}}" onmousedown="this.model.EnableCarrotEngine$ = !this.model.EnableCarrotEngine$; return true">Enable carrot engine</button>
+        <button class="btn btn-sm btn-default kitchensink__buttonPage__button" pressed$="{{model.EnableCarrotEngine$}}" model="{{model}}" onmousedown="this.model.EnableCarrotEngine$ = !this.model.EnableCarrotEngine$; return true">Enable carrot engine</button>
 
         <span>{{model.CarrotEngineReaction}}</span>
         
@@ -29,14 +22,7 @@
         
         <p>It is possible to mark button as disabled using the <code>disabled</code> boolean attribute. The below button gets disbled when the value reaches 1.</p>
 
-        <style>
-            button[disabled] {
-                opacity: 0.5;
-                cursor: not-allowed;
-            }
-        </style>
-
-        <button class="btn btn-sm btn-default" value="{{model.AddOneCarrot$::click}}" onmousedown="++this.value" disabled="{{model.AddOneCarrotDisabled}}">Add carrots</button>
+        <button class="btn btn-sm btn-default kitchensink__buttonPage__button" value="{{model.AddOneCarrot$::click}}" onmousedown="++this.value" disabled="{{model.AddOneCarrotDisabled}}">Add carrots</button>
 
         <span>{{model.OneCarrotReaction}}</span>
 

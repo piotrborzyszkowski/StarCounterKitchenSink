@@ -15,7 +15,7 @@
   margin-top: 0;
 }
 
-.kitchensink-menu_unorderedList {
+.kitchensink-menu__unorderedList {
   padding: 0;
   list-style: none;
 }
@@ -39,7 +39,7 @@
   padding: 10px;
 }
 
-.kitchensink__nested-child {
+.kitchensink__nestedChild {
     padding: 10px;
     border: 1px solid #eeeeee;
 }
@@ -48,14 +48,14 @@ x-breadcrumb {
     margin-bottom: 20px;
 }
 
-.breadcrumb-suggestions {
+.kitchensink__breadcrumbSuggestions {
     padding: 0;
     list-style: none;
     color: white;
     margin: 0;
 }
 
-.breadcrumb-suggestions__listItem:hover {
+.kitchensink__breadcrumbSuggestions__listItem:hover {
     cursor: default;
     background: rgba(255, 255, 255, 0.2);
 }    
@@ -74,4 +74,14 @@ x-breadcrumb {
 
 google-map {
     height: 300px;
+}
+
+button.kitchensink__buttonPage__button[pressed] {
+    color: white;
+    background: green;
+}
+
+button.kitchensink__buttonPage__button[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
 }

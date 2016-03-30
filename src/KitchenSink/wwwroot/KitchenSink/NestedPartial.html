@@ -2,14 +2,7 @@
     <template is="dom-bind">
         <p class="lead">JSON's primitive value type <code>object</code> can be used for nesting of the partials. This also works for recursive nesting.</p>
 
-        <style>
-            .nested-child {
-                padding: 10px;
-                border: 1px solid #eeeeee;
-            }
-        </style>
-
-        <div class="nested-child">
+        <div class="kitchensink__nestedChild">
             <button class="btn btn-sm btn-default" value="{{model.AddChild$::click}}" onmousedown="++this.value">Add child</button>
             <div>Hi, <span>{{model.Name}}</span></div>
             <div>
