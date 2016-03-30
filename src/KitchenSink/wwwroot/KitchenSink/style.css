@@ -2,44 +2,48 @@
   display: flex;
 }
 
-.kitchensink-menu {
+.kitchensink-layout__column-left {
   flex: 0 0 160px;
   margin-right: 20px;
+}
+
+.kitchensink-layout__column-right {
+  flex: 0 1 600px;
 }
 
 .kitchensink-menu__heading {
   font-size: 100%;
 }
 
-.kitchensink-menu__headingFirst {
+.kitchensink-menu__heading--first {
   margin-top: 0;
 }
 
-.kitchensink-menu__unorderedList {
+.kitchensink-menu__unordered-list {
   padding: 0;
   list-style: none;
 }
 
-.kitchensink {
-  flex: 0 1 600px;
-}
-
-.kitchensink__select {
+.kitchensink-select {
   width: 50%;
 }
 
-.kitchensink__juicySelect {
+.kitchensink-juicyselect {
   display: block;
 }
 
-.kitchensink__paragraphHowTo {
+.kitchensink-introduction {
   background-color: #FAFAFA;
   border-radius: 5px;
   border-left: 1px solid #F0F0F0;
   padding: 10px;
 }
 
-.kitchensink__nestedChild {
+.kitchensink-introduction-dropdownpage {
+    border-bottom: lightgray 1px solid;
+}
+
+.kitchensink-nested-child {
     padding: 10px;
     border: 1px solid #eeeeee;
 }
@@ -48,19 +52,19 @@ x-breadcrumb {
     margin-bottom: 20px;
 }
 
-.kitchensink__breadcrumbSuggestions {
+.kitchensink-breadcrumb-suggestions {
     padding: 0;
     list-style: none;
     color: white;
     margin: 0;
 }
 
-.kitchensink__breadcrumbSuggestions__listItem:hover {
+.kitchensink-breadcrumb-suggestions__list-item:hover {
     cursor: default;
     background: rgba(255, 255, 255, 0.2);
 }    
 
-.starcounter-upload-tasks {
+.kitchensink-upload-tasks {
     background-color: #F0F0F0;
     padding: 5px 10px 5px 10px;
     border-left: 5px solid #C0C0C0;
@@ -68,7 +72,7 @@ x-breadcrumb {
     font-size: x-small;
 }
 
-.starcounter-upload-tasks__heading {
+.kitchensink-upload-tasks__heading {
     font-size: 15px;
 }
 
@@ -76,12 +80,12 @@ google-map {
     height: 300px;
 }
 
-button.kitchensink__buttonPage__button[pressed] {
+button.kitchensink__button[pressed] {
     color: white;
     background: green;
 }
 
-button.kitchensink__buttonPage__button[disabled] {
+button.kitchensink__button[disabled] {
     opacity: 0.5;
     cursor: not-allowed;
 }
