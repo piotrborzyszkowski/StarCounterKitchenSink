@@ -1,70 +1,63 @@
-﻿.kitchen-sink-layout {
+﻿.kitchensink-layout {
   display: flex;
 }
 
-.kitchen-sink-menu {
+.kitchensink-layout__column-left {
   flex: 0 0 160px;
   margin-right: 20px;
 }
 
-.kitchen-sink-menu__heading {
-  font-size: 100%;
-}
-
-.kitchen-sink-menu__headingFirst {
-  margin-top: 0;
-}
-
-.kitchen-sink-menu_unorderedList {
-  padding: 0;
-  list-style: none;
-}
-
-.kitchen-sink-current-page {
+.kitchensink-layout__column-right {
   flex: 0 1 600px;
 }
 
-.kitchen-sink-current-page__select {
-  width: 50%;
+.kitchensink-menu__heading {
+  font-size: 100%;
 }
 
-.kitchen-sink-current-page__juicySelect {
-  display: block;
+.kitchensink-menu__heading--first {
+  margin-top: 0;
 }
 
-.kitchen-sink-current-page__paragraphHowTo {
-  background-color: #FAFAFA;
-  border-radius: 5px;
-  border-left: 1px solid #F0F0F0;
-  padding: 10px;
-}
-.kitchen-sink-menu ul {
+.kitchensink-menu__list {
   padding: 0;
   list-style: none;
 }
 
-.kitchen-sink-current-page__nested-child {
+.kitchensink-select {
+  width: 50%;
+}
+
+.kitchensink-juicyselect {
+  display: block;
+}
+
+.kitchensink-heading {
+    border-bottom: lightgray 1px solid;
+}
+
+.kitchensink-nested-child {
     padding: 10px;
     border: 1px solid #eeeeee;
 }
 
-x-breadcrumb {
+.kitchensink-x-breadcrumb {
     margin-bottom: 20px;
 }
 
-.breadcrumb-suggestions {
+.kitchensink-breadcrumb-suggestions {
     padding: 0;
     list-style: none;
     color: white;
     margin: 0;
 }
 
-.breadcrumb-suggestions__listItem:hover {
+.kitchensink-breadcrumb-suggestions__item:hover {
     cursor: default;
     background: rgba(255, 255, 255, 0.2);
 }    
 
-.starcounter-upload-tasks {
+.kitchensink-upload-tasks {
     background-color: #F0F0F0;
     padding: 5px 10px 5px 10px;
     border-left: 5px solid #C0C0C0;
@@ -72,10 +65,20 @@ x-breadcrumb {
     font-size: x-small;
 }
 
-.starcounter-upload-tasks__heading {
+.kitchensink-upload-tasks__heading {
     font-size: 15px;
 }
 
-google-map {
+.kitchensink-google-map {
     height: 300px;
+}
+
+.kitchensink-toggle-button[pressed] {
+    color: white;
+    background: green;
+}
+
+.kitchensink-toggle-button[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
