@@ -32,65 +32,89 @@ namespace KitchenSink {
                 return Self.GET("/KitchenSink/text");
             });
 
-            Handle.GET("/KitchenSink/button", () => WrapPage(() => new ButtonPage()));
+            Handle.GET("/KitchenSink/partial/button", () =>  new ButtonPage() );
+            Handle.GET("/KitchenSink/button", () => WrapPage<ButtonPage>("/KitchenSink/partial/button"));
 
-            Handle.GET("/KitchenSink/breadcrumb", () => WrapPage(() => {
+            Handle.GET("/KitchenSink/partial/breadcrumb", () => {
                 return Db.Scope(() => {
                     return new BreadcrumbPage();
                 });
-            }));
+            });
+            Handle.GET("/KitchenSink/breadcrumb", () => WrapPage<BreadcrumbPage>("/KitchenSink/partial/breadcrumb"));
 
-            Handle.GET("/KitchenSink/chart", () => WrapPage(() => new ChartPage()));
+            Handle.GET("/KitchenSink/partial/chart", () => new ChartPage());
+            Handle.GET("/KitchenSink/chart", () => WrapPage<ChartPage>("/KitchenSink/partial/chart"));
 
-            Handle.GET("/KitchenSink/checkbox", () => WrapPage(() => new CheckboxPage()));
+            Handle.GET("/KitchenSink/partial/checkbox", () => new CheckboxPage());
+            Handle.GET("/KitchenSink/checkbox", () => WrapPage<CheckboxPage>("/KitchenSink/partial/checkbox"));
 
-            Handle.GET("/KitchenSink/datagrid", () => WrapPage(() => new DatagridPage()));
+            Handle.GET("/KitchenSink/partial/datagrid", () => new DatagridPage());
+            Handle.GET("/KitchenSink/datagrid", () => WrapPage<DatagridPage>("/KitchenSink/partial/datagrid"));
 
-            Handle.GET("/KitchenSink/decimal", () => WrapPage(() => new DecimalPage()));
+            Handle.GET("/KitchenSink/partial/decimal", () => new DecimalPage());
+            Handle.GET("/KitchenSink/decimal", () => WrapPage<DecimalPage>("/KitchenSink/partial/decimal"));
 
-            Handle.GET("/KitchenSink/dropdown", () => WrapPage(() => new DropdownPage()));
+            Handle.GET("/KitchenSink/partial/dropdown", () => new DropdownPage());
+            Handle.GET("/KitchenSink/dropdown", () => WrapPage<DropdownPage>("/KitchenSink/partial/dropdown"));
 
-            Handle.GET("/KitchenSink/html", () => WrapPage(() => new HtmlPage()));
+            Handle.GET("/KitchenSink/partial/html", () => new HtmlPage());
+            Handle.GET("/KitchenSink/html", () => WrapPage<HtmlPage>("/KitchenSink/partial/html"));
 
-            Handle.GET("/KitchenSink/integer", () => WrapPage(() => new IntegerPage()));
+            Handle.GET("/KitchenSink/partial/integer", () => new IntegerPage());
+            Handle.GET("/KitchenSink/integer", () => WrapPage<IntegerPage>("/KitchenSink/partial/integer"));
 
-            Handle.GET("/KitchenSink/Geo", () => WrapPage(() => new GeoPage()));
+            Handle.GET("/KitchenSink/partial/Geo", () => new GeoPage());
+            Handle.GET("/KitchenSink/Geo", () => WrapPage<GeoPage>("/KitchenSink/partial/Geo"));
 
-            Handle.GET("/KitchenSink/markdown", () => WrapPage(() => new MarkdownPage()));
+            Handle.GET("/KitchenSink/partial/markdown", () => new MarkdownPage());
+            Handle.GET("/KitchenSink/markdown", () => WrapPage<MarkdownPage>("/KitchenSink/partial/markdown"));
 
-            Handle.GET("/KitchenSink/nested", () => WrapPage(() => new NestedPartial() {
+            Handle.GET("/KitchenSink/partial/nested", () => new NestedPartial
+            {
                 Data = new AnyData()
-            }));
+            });
+            Handle.GET("/KitchenSink/nested", () => WrapPage<NestedPartial>("/KitchenSink/partial/nested"));
 
-            Handle.GET("/KitchenSink/radiolist", () => WrapPage(() => new RadiolistPage()));
+            Handle.GET("/KitchenSink/partial/radiolist", () => new RadiolistPage());
+            Handle.GET("/KitchenSink/radiolist", () => WrapPage<RadiolistPage>("/KitchenSink/partial/radiolist"));
 
-            Handle.GET("/KitchenSink/multiselect", () => WrapPage(() => new MultiselectPage()));
+            Handle.GET("/KitchenSink/partial/multiselect", () => new MultiselectPage());
+            Handle.GET("/KitchenSink/multiselect", () => WrapPage<MultiselectPage>("/KitchenSink/partial/multiselect"));
 
-            Handle.GET("/KitchenSink/password", () => WrapPage(() => new PasswordPage()));
+            Handle.GET("/KitchenSink/partial/password", () => new PasswordPage());
+            Handle.GET("/KitchenSink/password", () => WrapPage<PasswordPage>("/KitchenSink/partial/password"));
 
-            Handle.GET("/KitchenSink/table", () => WrapPage(() => new TablePage()));
+            Handle.GET("/KitchenSink/partial/table", () => new TablePage());
+            Handle.GET("/KitchenSink/table", () => WrapPage<TablePage>("/KitchenSink/partial/table"));
 
-            Handle.GET("/KitchenSink/text", () => WrapPage(() => new TextPage()));
+            Handle.GET("/KitchenSink/partial/text", () => new TextPage());
+            Handle.GET("/KitchenSink/text", () => WrapPage<TextPage>("/KitchenSink/partial/text"));
 
-            Handle.GET("/KitchenSink/textarea", () => WrapPage(() => new TextareaPage()));
+            Handle.GET("/KitchenSink/partial/textarea", () => new TextareaPage());
+            Handle.GET("/KitchenSink/textarea", () => WrapPage<TextareaPage>("/KitchenSink/partial/textarea"));
 
-            Handle.GET("/KitchenSink/radio", () => WrapPage(() => new RadioPage()));
+            Handle.GET("/KitchenSink/partial/radio", () => new RadioPage());
+            Handle.GET("/KitchenSink/radio", () => WrapPage<RadioPage>("/KitchenSink/partial/radio"));
 
-            Handle.GET("/KitchenSink/Redirect", () => WrapPage(() => new RedirectPage()));
+            Handle.GET("/KitchenSink/partial/Redirect", () => new RedirectPage());
+            Handle.GET("/KitchenSink/Redirect", () => WrapPage<RedirectPage>("/KitchenSink/partial/Redirect"));
 
             Handle.GET("/KitchenSink/Redirect/{?}", (string param) => {
-                var master = WrapPage(() => new RedirectPage()) as MasterPage;
+                var master = WrapPage<RedirectPage>("/KitchenSink/partial/Redirect") as MasterPage;
                 var nav = master.CurrentPage as NavPage;
                 var page = nav.CurrentPage as RedirectPage;
                 page.YourFavoriteFood = "You've got some tasty " + param;
                 return master;
             });
 
-            Handle.GET("/KitchenSink/url", () => WrapPage(() => new UrlPage()));
+            Handle.GET("/KitchenSink/partial/url", () => new UrlPage());
+            Handle.GET("/KitchenSink/url", () => WrapPage<UrlPage>("/KitchenSink/partial/url"));
 
-            Handle.GET("/KitchenSink/datepicker", () => WrapPage(() => new DatepickerPage()));
+            Handle.GET("/KitchenSink/partial/datepicker", () => new DatepickerPage());
+            Handle.GET("/KitchenSink/datepicker", () => WrapPage<DatepickerPage>("/KitchenSink/partial/datepicker"));
 
-            Handle.GET("/KitchenSink/fileupload", () => WrapPage(() => new FileUploadPage()));
+            Handle.GET("/KitchenSink/partial/fileupload", () => new FileUploadPage());
+            Handle.GET("/KitchenSink/fileupload", () => WrapPage<FileUploadPage>("/KitchenSink/partial/fileupload"));
 
             HandleFile.GET("/KitchenSink/fileupload/upload", task => {
                 Session.ScheduleTask(task.SessionId, (s, id) => {
@@ -159,7 +183,7 @@ namespace KitchenSink {
             UriMapping.Map("/KitchenSink/app-name", UriMapping.MappingUriPrefix + "/app-name");
         }
 
-        private static Partial WrapPage<T>(Func<T> partial) where T : Partial {
+        private static Partial WrapPage<T>(string partialPath) where T : Partial {
             var master = (MasterPage)Self.GET("/KitchenSink/master");
             var nav = master.CurrentPage as NavPage;
 
@@ -167,19 +191,6 @@ namespace KitchenSink {
                 return master;
             }
 
-            var currentUri = Handle.IncomingRequest.Uri;
-            var indexCallPath = IndexOfNth(currentUri, '/', 2);
-            var partialPath = currentUri.Insert(indexCallPath, "/partial");
-
-            var isRegistered = Handle.IsHandlerRegistered(string.Format("GET {0}", partialPath), null);
-            if (!isRegistered)
-            {
-                Handle.GET(partialPath, () =>
-                {
-                    var textPage = partial();
-                    return textPage;
-                });
-            }
             nav.CurrentPage = Self.GET(partialPath);
 
             if (nav.CurrentPage.Data == null) {
