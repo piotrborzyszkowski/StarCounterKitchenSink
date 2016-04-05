@@ -1,41 +1,18 @@
 ﻿using System;
-using System.Text;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using KitchenSink.Tests;
 
 namespace KitchenSink.Test {
+
     [TestFixture("firefox")]
     [TestFixture("chrome")]
     [TestFixture("edge")]
     //[TestFixture("internet explorer")]
-    public class MarcinNunit {
-        private IWebDriver driver;
-        private StringBuilder verificationErrors;
-        private string baseURL;
-        private string browser;
-
-        public MarcinNunit(string browser) {
-            this.browser = browser;
-        }
-
-        [SetUp]
-        public void SetupTest() {
-            driver = WebDriverFactory.Create(this.browser);
-            baseURL = "http://localhost:8080/KitchenSink";
-            verificationErrors = new StringBuilder();
-        }
-
-        [TearDown]
-        public void TeardownTest() {
-            try {
-                driver.Quit();
-            }
-            catch (Exception) {
-                // Ignore errors if unable to close the browser
-            }
-            Assert.AreEqual("", verificationErrors.ToString());
-        }
+    public class TextPageTest : BaseTest
+    {
+        public TextPageTest(string browser) : base(browser) {}
 
         [Test]
         public void PageLoads() {
@@ -73,16 +50,6 @@ namespace KitchenSink.Test {
                 return !label.Text.Equals(originalText);
             });
             Assert.AreEqual("Hi, M!", driver.FindElement(By.XPath("(//label[@class='control-label'])[2]")).Text);
-        }
-
-        private bool IsElementPresent(By by) {
-            try {
-                driver.FindElement(by);
-                return true;
-            }
-            catch (NoSuchElementException) {
-                return false;
-            }
         }
     }
 }
