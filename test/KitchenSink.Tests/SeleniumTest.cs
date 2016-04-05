@@ -7,7 +7,7 @@ using OpenQA.Selenium.Support.UI;
 namespace KitchenSink.Test {
     [TestFixture("firefox")]
     [TestFixture("chrome")]
-    [TestFixture("edge")]
+    //[TestFixture("edge")]
     //[TestFixture("internet explorer")]
     public class MarcinNunit {
         private IWebDriver driver;
