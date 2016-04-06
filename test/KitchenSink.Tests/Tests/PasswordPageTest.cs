@@ -31,10 +31,8 @@ namespace KitchenSink.Test {
         [Test]
         public void PasswordTooShort()
         {
-            driver.Navigate().GoToUrl(baseURL);
+            driver.Navigate().GoToUrl(baseURL + "/Password");
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            wait.Until(_driver => _driver.FindElement(By.LinkText("Password")));
-            driver.FindElement(By.LinkText("Password")).Click();
             wait.Until(_driver => _driver.FindElement(By.XPath("(//input)[1]")));
             IWebElement element = driver.FindElement(By.XPath("(//input)[1]"));
             Assert.AreEqual(element.GetAttribute("type"), "password");
@@ -46,10 +44,8 @@ namespace KitchenSink.Test {
         [Test]
         public void PasswordWithProperLength()
         {
-            driver.Navigate().GoToUrl(baseURL);
+            driver.Navigate().GoToUrl(baseURL + "/Password");
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            wait.Until(_driver => _driver.FindElement(By.LinkText("Password")));
-            driver.FindElement(By.LinkText("Password")).Click();
             wait.Until(_driver => _driver.FindElement(By.XPath("(//input)[1]")));
             IWebElement element = driver.FindElement(By.XPath("(//input)[1]"));
             Assert.AreEqual(element.GetAttribute("type"), "password");
@@ -65,10 +61,8 @@ namespace KitchenSink.Test {
         [Test]
         public void ChangingPasswordToGoodThenToShort()
         {
-            driver.Navigate().GoToUrl(baseURL);
+            driver.Navigate().GoToUrl(baseURL + "/Password");
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            wait.Until(_driver => _driver.FindElement(By.LinkText("Password")));
-            driver.FindElement(By.LinkText("Password")).Click();
             wait.Until(_driver => _driver.FindElement(By.XPath("(//input)[1]")));
             IWebElement element = driver.FindElement(By.XPath("(//input)[1]"));
             Assert.AreEqual(element.GetAttribute("type"), "password");
