@@ -26,7 +26,7 @@ namespace KitchenSink.Tests
 
             if (this.browser == "edge" && Environment.OSVersion.ToString() != "Microsoft Windows NT 10.0.10586.0")
             {
-                Assert.Ignore("You're not using Windows 10, so Microsoft Edge is unavailable. Test is omitting.");
+                Assert.Ignore("You're not using Windows 10, so Microsoft Edge is unavailable. The test is being omitted.");
             }
             driver = WebDriverFactory.Create(this.browser);
         }
