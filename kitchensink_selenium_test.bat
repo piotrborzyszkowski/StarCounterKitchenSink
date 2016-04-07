@@ -1,3 +1,5 @@
+IF "%Configuration%"=="" set Configuration=Debug
+
 star --resourcedir="%~dp0src\KitchenSink\wwwroot" "%~dp0bin/%Configuration%/KitchenSink.exe"
 IF ERRORLEVEL 1 EXIT /b 1
 
