@@ -18,7 +18,7 @@ namespace KitchenSink.Test {
         public PasswordPageTest(string browser) : base(browser) {}
 
         [Test]
-        public void PageLoads() {
+        public void PasswordPage_PageLoads() {
             driver.Navigate().GoToUrl(baseURL);
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             wait.Until(_driver => _driver.FindElement(By.LinkText("Password")));
@@ -29,7 +29,7 @@ namespace KitchenSink.Test {
         }
 
         [Test]
-        public void PasswordTooShort()
+        public void PasswordPage_PasswordTooShort()
         {
             driver.Navigate().GoToUrl(baseURL + "/Password");
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
@@ -42,7 +42,7 @@ namespace KitchenSink.Test {
         }
 
         [Test]
-        public void PasswordWithProperLength()
+        public void PasswordPage_PasswordWithProperLength()
         {
             driver.Navigate().GoToUrl(baseURL + "/Password");
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
@@ -59,7 +59,7 @@ namespace KitchenSink.Test {
         }
 
         [Test]
-        public void ChangingPasswordToGoodThenToShort()
+        public void PasswordPage_ChangingPasswordToGoodThenToShort()
         {
             driver.Navigate().GoToUrl(baseURL + "/Password");
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));

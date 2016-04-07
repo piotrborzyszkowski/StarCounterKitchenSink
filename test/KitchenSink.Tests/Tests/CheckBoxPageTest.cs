@@ -10,15 +10,15 @@ namespace KitchenSink.Test {
     [TestFixture("chrome")]
     [TestFixture("edge")]
     //[TestFixture("internet explorer")]
-    public class CheckBoxPageTest : BaseTest
+    public class CheckboxPageTest : BaseTest
     {
         private string canDrive = "You can drive";
         private string cantDrive = "You can't drive";
 
-        public CheckBoxPageTest(string browser) : base(browser) {}
+        public CheckboxPageTest(string browser) : base(browser) {}
 
         [Test]
-        public void PageLoads() {
+        public void CheckboxPage_PageLoads() {
             driver.Navigate().GoToUrl(baseURL);
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             wait.Until(_driver => _driver.FindElement(By.LinkText("Checkbox")));
@@ -29,7 +29,7 @@ namespace KitchenSink.Test {
         }
 
         [Test]
-        public void CheckboxUnchecked()
+        public void CheckboxPage_CheckboxUnchecked()
         {
             driver.Navigate().GoToUrl(baseURL + "/Checkbox");
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
@@ -45,7 +45,7 @@ namespace KitchenSink.Test {
         }
 
         [Test]
-        public void CheckboxUncheckedAndCheckedAgain()
+        public void CheckboxPage_CheckboxUncheckedAndCheckedAgain()
         {
             driver.Navigate().GoToUrl(baseURL + "/Checkbox");
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
