@@ -90,6 +90,26 @@ namespace KitchenSink {
 
             Handle.GET("/KitchenSink/datepicker", () => WrapPage(() => new DatepickerPage()));
 
+            Handle.GET("/KitchenSink/cookie", (Request request) => WrapPage(() => {
+                string name = "KitchenSink";
+                CookiePage page = new CookiePage();
+                Cookie cookie = request.Cookies.Select(x => new Cookie(x)).FirstOrDefault(x => x.Name == name);
+
+                if (cookie != null) {
+                    page.RequestCookie = cookie.Value;
+                }
+
+                cookie = new Cookie() {
+                    Name = name,
+                    Value = string.Format("KitchenSinkCookie-{0}", DateTime.Now.ToString()),
+                    Expires = DateTime.Now.AddDays(1)
+                };
+
+                Handle.AddOutgoingCookie(name, cookie.GetFullValueString());
+
+                return page;
+            }));
+
             Handle.GET("/KitchenSink/fileupload", () => WrapPage(() => new FileUploadPage()));
 
             HandleFile.GET("/KitchenSink/fileupload/upload", task => {
