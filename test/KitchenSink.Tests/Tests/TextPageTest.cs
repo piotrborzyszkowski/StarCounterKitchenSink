@@ -15,14 +15,14 @@ namespace KitchenSink.Test {
         public TextPageTest(string browser) : base(browser) {}
 
         [Test]
-        public void PasswordPage_PageLoads() {
+        public void TextPage_PageLoads() {
             driver.Navigate().GoToUrl(baseURL + "/Text");
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             wait.Until(_driver => _driver.FindElement(By.XPath("/html/body/puppet-client")));
         }
 
         [Test]
-        public void PasswordPage_TextPropagationOnUnfocus() {
+        public void TextPage_TextPropagationOnUnfocus() {
             driver.Navigate().GoToUrl(baseURL + "/Text");
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             wait.Until(_driver => _driver.FindElement(By.XPath("(//input)[1]")));
@@ -38,7 +38,7 @@ namespace KitchenSink.Test {
         }
 
         [Test]
-        public void PasswordPage_TextPropagationWhileTyping() {
+        public void TextPage_TextPropagationWhileTyping() {
             driver.Navigate().GoToUrl(baseURL + "/Text");
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
             wait.Until(_driver => _driver.FindElement(By.XPath("(//input)[2]")));
