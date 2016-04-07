@@ -116,6 +116,30 @@ namespace KitchenSink {
             Handle.GET("/KitchenSink/partial/fileupload", () => new FileUploadPage());
             Handle.GET("/KitchenSink/fileupload", () => WrapPage<FileUploadPage>("/KitchenSink/partial/fileupload"));
 
+            Handle.GET("/KitchenSink/partial/cookie", (Request request) =>
+            {
+                string name = "KitchenSink";
+                CookiePage page = new CookiePage();
+                Cookie cookie = request.Cookies.Select(x => new Cookie(x)).FirstOrDefault(x => x.Name == name);
+
+                if (cookie != null)
+                {
+                    page.RequestCookie = cookie.Value;
+                }
+
+                cookie = new Cookie()
+                {
+                    Name = name,
+                    Value = string.Format("KitchenSinkCookie-{0}", DateTime.Now.ToString()),
+                    Expires = DateTime.Now.AddDays(1)
+                };
+
+                Handle.AddOutgoingCookie(name, cookie.GetFullValueString());
+
+                return page;
+            });
+            Handle.GET("/KitchenSink/cookie", () => WrapPage<CookiePage>("/KitchenSink/partial/cookie"));
+
             HandleFile.GET("/KitchenSink/fileupload/upload", task => {
                 Session.ScheduleTask(task.SessionId, (s, id) => {
                     MasterPage master = s.Data as MasterPage;
