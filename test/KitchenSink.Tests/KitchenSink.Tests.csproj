@@ -87,7 +87,6 @@
     <Compile Include="WebDriverFactory.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.manifest" />
     <None Include="packages.config" />
   </ItemGroup>
   <Choose>
