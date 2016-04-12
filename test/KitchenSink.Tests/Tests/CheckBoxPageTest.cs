@@ -22,7 +22,9 @@ namespace KitchenSink.Test {
             driver.Navigate().GoToUrl(baseURL);
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             wait.Until(_driver => _driver.FindElement(By.LinkText("Checkbox")));
-            driver.FindElement(By.LinkText("Checkbox")).Click();
+            var passLink = driver.FindElement(By.LinkText("Checkbox"));
+            var action = new OpenQA.Selenium.Interactions.Actions(driver);
+            action.Click(passLink).Build().Perform();
             wait.Until(_driver => _driver.FindElement(By.XPath("(//input)[1]")));
             IWebElement element = driver.FindElement(By.XPath("(//input)[1]"));
             Assert.AreEqual(element.GetAttribute("type"), "checkbox");
@@ -36,7 +38,8 @@ namespace KitchenSink.Test {
             wait.Until(_driver => _driver.FindElement(By.XPath("(//input)[1]")));
             IWebElement element = driver.FindElement(By.XPath("(//input)[1]"));
             Assert.AreEqual(element.GetAttribute("type"), "checkbox");
-            element.Click();
+            var action = new OpenQA.Selenium.Interactions.Actions(driver);
+            action.Click(element).Build().Perform();
             wait.Until((x) => {
                 return !canDrive.Equals(driver.FindElement(By.CssSelector("div.kitchensink-layout__column-right > starcounter-include > div")).Text);
             });
@@ -52,13 +55,14 @@ namespace KitchenSink.Test {
             wait.Until(_driver => _driver.FindElement(By.XPath("(//input)[1]")));
             IWebElement element = driver.FindElement(By.XPath("(//input)[1]"));
             Assert.AreEqual(element.GetAttribute("type"), "checkbox");
-            element.Click();
+            var action = new OpenQA.Selenium.Interactions.Actions(driver);
+            action.Click(element).Build().Perform();
             wait.Until((x) => {
                 return !canDrive.Equals(driver.FindElement(By.CssSelector("div.kitchensink-layout__column-right > starcounter-include > div")).Text);
             });
             var uncheckedText = driver.FindElement(By.CssSelector("div.kitchensink-layout__column-right > starcounter-include > div")).Text;
             Assert.AreEqual(cantDrive, uncheckedText);
-            element.Click();
+            action.Click(element).Build().Perform();
             wait.Until((x) => {
                 return !cantDrive.Equals(driver.FindElement(By.CssSelector("div.kitchensink-layout__column-right > starcounter-include > div")).Text);
             });
