@@ -17,15 +17,15 @@ namespace KitchenSink.Test {
         [Test]
         public void TextPage_PageLoads() {
             driver.Navigate().GoToUrl(baseURL + "/Text");
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            wait.Until(_driver => _driver.FindElement(By.XPath("/html/body/puppet-client")));
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.CssSelector("html body puppet-client")));
         }
 
         [Test]
         public void TextPage_TextPropagationOnUnfocus() {
             driver.Navigate().GoToUrl(baseURL + "/Text");
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            wait.Until(_driver => _driver.FindElement(By.XPath("(//input)[1]")));
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.CssSelector("div.kitchensink-layout__column-right > starcounter-include > input[type='text']")));
             var label = driver.FindElement(By.XPath("(//label[@class='control-label'])[1]"));
             var originalText = label.Text;
             driver.FindElement(By.XPath("(//input)[1]")).Clear();
@@ -33,24 +33,20 @@ namespace KitchenSink.Test {
             var body = driver.FindElement(By.XPath("//body"));
             var action = new OpenQA.Selenium.Interactions.Actions(driver);
             action.Click(body).Build().Perform();
-            wait.Until((x) => {
-                return !label.Text.Equals(originalText);
-            });
+            wait.Until(x => !label.Text.Equals(originalText));
             Assert.AreEqual("Hi, Marcin!", driver.FindElement(By.XPath("(//label[@class='control-label'])[1]")).Text);
         }
 
         [Test]
         public void TextPage_TextPropagationWhileTyping() {
             driver.Navigate().GoToUrl(baseURL + "/Text");
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
-            wait.Until(_driver => _driver.FindElement(By.XPath("(//input)[2]")));
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.CssSelector("div.kitchensink-layout__column-right > starcounter-include > input[type='text']")));
             var label = driver.FindElement(By.XPath("(//label[@class='control-label'])[2]"));
             var originalText = label.Text;
             driver.FindElement(By.XPath("(//input)[2]")).Clear();
             driver.FindElement(By.XPath("(//input)[2]")).SendKeys("M");
-            wait.Until((x) => {
-                return !label.Text.Equals(originalText);
-            });
+            wait.Until(x => !label.Text.Equals(originalText));
             Assert.AreEqual("Hi, M!", driver.FindElement(By.XPath("(//label[@class='control-label'])[2]")).Text);
         }
     }
