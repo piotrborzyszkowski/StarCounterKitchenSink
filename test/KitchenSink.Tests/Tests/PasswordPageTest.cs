@@ -21,11 +21,11 @@ namespace KitchenSink.Test {
         public void PasswordPage_PageLoads() {
             driver.Navigate().GoToUrl(baseURL);
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            wait.Until(_driver => _driver.FindElement(By.LinkText("Password")));
+            wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.LinkText("Password")));
             var passLink = driver.FindElement(By.LinkText("Password"));
             var action = new OpenQA.Selenium.Interactions.Actions(driver);
             action.Click(passLink).Build().Perform();
-            wait.Until(_driver => _driver.FindElement(By.XPath("(//input)[1]")));
+            wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.CssSelector("div.kitchensink-layout__column-right > starcounter-include > input[type='password']")));
             IWebElement element = driver.FindElement(By.XPath("(//input)[1]"));
             Assert.AreEqual(element.GetAttribute("type"), "password");
         }

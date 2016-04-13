@@ -21,11 +21,11 @@ namespace KitchenSink.Test {
         public void CheckboxPage_PageLoads() {
             driver.Navigate().GoToUrl(baseURL);
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            wait.Until(_driver => _driver.FindElement(By.LinkText("Checkbox")));
+            wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.LinkText("Checkbox")));
             var passLink = driver.FindElement(By.LinkText("Checkbox"));
             var action = new OpenQA.Selenium.Interactions.Actions(driver);
             action.Click(passLink).Build().Perform();
-            wait.Until(_driver => _driver.FindElement(By.XPath("(//input)[1]")));
+            wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.CssSelector("div.kitchensink-layout__column-right > starcounter-include > input[type='checkbox']")));
             IWebElement element = driver.FindElement(By.XPath("(//input)[1]"));
             Assert.AreEqual(element.GetAttribute("type"), "checkbox");
         }
