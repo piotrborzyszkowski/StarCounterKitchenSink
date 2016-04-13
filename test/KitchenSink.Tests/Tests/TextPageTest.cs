@@ -30,7 +30,9 @@ namespace KitchenSink.Test {
             var originalText = label.Text;
             driver.FindElement(By.XPath("(//input)[1]")).Clear();
             driver.FindElement(By.XPath("(//input)[1]")).SendKeys("Marcin");
-            driver.FindElement(By.XPath("//body")).Click();
+            var body = driver.FindElement(By.XPath("//body"));
+            var action = new OpenQA.Selenium.Interactions.Actions(driver);
+            action.Click(body).Build().Perform();
             wait.Until((x) => {
                 return !label.Text.Equals(originalText);
             });
