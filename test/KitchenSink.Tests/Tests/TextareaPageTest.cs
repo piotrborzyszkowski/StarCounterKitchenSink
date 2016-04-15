@@ -8,13 +8,15 @@ using System.Threading;
 namespace KitchenSink.Test
 {
     [TestFixture("firefox")]
-    //[TestFixture("chrome")]
-    //[TestFixture("edge")]
-    //[TestFixture("internet explorer")]
+    [TestFixture("chrome")]
+    [TestFixture("edge")]
     public class TextareaPageTest : BaseTest
     {
         public TextareaPageTest(string browser) : base(browser) { }
 
+        /// <summary>
+        /// TextareaPage_PageLoads is a smoke test for loading the Textarea page
+        /// </summary>
         [Test]
         public void TextareaPage_PageLoads()
         {
@@ -23,6 +25,10 @@ namespace KitchenSink.Test
             wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.CssSelector("textarea.form-control")));
         }
 
+
+        /// <summary>
+        /// TextareaPage_WriteToTextArea tests if it possible to write/read to/from the textarea component
+        /// </summary>
         [Test]
         public void TextareaPage_WriteToTextArea()
         {
@@ -32,12 +38,17 @@ namespace KitchenSink.Test
 
             driver.FindElement(By.CssSelector("textarea.form-control")).Clear();
 
-            string setKeys = "Starcounter\r\nis\r\nawesome!";
-            driver.FindElement(By.CssSelector("textarea.form-control")).SendKeys(setKeys);
+            string setString = "We all love princess cake!";
+            driver.FindElement(By.CssSelector("textarea.form-control")).SendKeys(setString);
 
-            Assert.AreEqual(setKeys, driver.FindElement(By.CssSelector("textarea.form-control")).GetAttribute("value"));
+            string actualString = driver.FindElement(By.CssSelector("textarea.form-control")).GetAttribute("value");
+
+            Assert.AreEqual(setString, actualString);
         }
 
+        /// <summary>
+        /// TextareaPage_CounterPropagationWhileTyping tests if the label continuously updates as the textarea changes
+        /// </summary>
         [Test]
         public void TextareaPage_CounterPropagationWhileTyping()
         {
