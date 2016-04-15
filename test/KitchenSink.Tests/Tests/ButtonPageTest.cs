@@ -14,39 +14,51 @@ namespace KitchenSink.Test {
 
         public ButtonPageTest(string browser) : base(browser) { }
 
-        public By ButtonAddCarrots {
+        public By ButtonAddCarrotsInlineScript {
             get {
-                return By.XPath("(//div[@class='kitchensink-layout__column-right']/starcounter-include/button)[1]");
+                return By.XPath("(//p[@class='kitchensink-add-carrots']/button)[1]");
             }
         }
 
-        public By ButtonAddCarrotsReaction {
+        public By ButtonAddCarrotsFunction {
             get {
-                return By.XPath("(//div[@class='kitchensink-layout__column-right']/starcounter-include/button)[1]/following-sibling::span[1]");
+                return By.XPath("(//p[@class='kitchensink-add-carrots']/button)[2]");
+            }
+        }
+
+        public By SpanAddCarrotsFunction {
+            get {
+                return By.XPath("(//p[@class='kitchensink-add-carrots']/span)[2]");
+            }
+        }
+
+        public By AddCarrotsReaction {
+            get {
+                return By.XPath("(//div[@class='kitchensink-layout__column-right']/starcounter-include/pre)[1]");
             }
         }
 
         public By ButtonSwitch {
             get {
-                return By.XPath("(//div[@class='kitchensink-layout__column-right']/starcounter-include/button)[2]");
+                return By.XPath("(//div[@class='kitchensink-layout__column-right']/starcounter-include//button)[3]");
             }
         }
 
         public By ButtonSwitchReaction {
             get {
-                return By.XPath("(//div[@class='kitchensink-layout__column-right']/starcounter-include/button)[2]/following-sibling::span[1]");
+                return By.XPath("(//div[@class='kitchensink-layout__column-right']/starcounter-include//button)[3]/following-sibling::span[1]");
             }
         }
 
         public By ButtonDisabled {
             get {
-                return By.XPath("(//div[@class='kitchensink-layout__column-right']/starcounter-include/button)[3]");
+                return By.XPath("(//div[@class='kitchensink-layout__column-right']/starcounter-include//button)[4]");
             }
         }
 
         public By ButtonDisabledReaction {
             get {
-                return By.XPath("(//div[@class='kitchensink-layout__column-right']/starcounter-include/button)[3]/following-sibling::span[1]");
+                return By.XPath("(//div[@class='kitchensink-layout__column-right']/starcounter-include//button)[4]/following-sibling::span[1]");
             }
         }
 
@@ -57,30 +69,34 @@ namespace KitchenSink.Test {
             wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.LinkText("Button")));
             var link = driver.FindElement(By.LinkText("Button"));
             Click(link);
-            wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(ButtonAddCarrots));
-            var element = driver.FindElement(ButtonAddCarrots);
-            Assert.AreEqual(element.Text.ToLower(), "add carrots");
+            wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(ButtonAddCarrotsInlineScript));
+            var element = driver.FindElement(ButtonAddCarrotsInlineScript);
+            Assert.AreEqual(element.Text.ToLower(), "button (inline script)");
         }
 
         [Test]
         public void ButtonPageTest_AddCarrotsIncrements() {
             driver.Navigate().GoToUrl(baseURL + "/Button");
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(ButtonAddCarrots));
-            var button = driver.FindElement(ButtonAddCarrots);
-            var label = driver.FindElement(ButtonAddCarrotsReaction);
+            wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(ButtonAddCarrotsInlineScript));
+            var label = driver.FindElement(AddCarrotsReaction);
             
             Assert.AreEqual("You don't have any carrots", label.Text);
             var originalText = label.Text;
 
-            Click(button);
+            Click(driver.FindElement(ButtonAddCarrotsInlineScript));
             wait.Until(x => !label.Text.Equals(originalText));
             Assert.AreEqual("You have 1 imaginary carrots", label.Text);
             originalText = label.Text;
 
-            Click(button);
+            Click(driver.FindElement(ButtonAddCarrotsFunction));
             wait.Until(x => !label.Text.Equals(originalText));
             Assert.AreEqual("You have 2 imaginary carrots", label.Text);
+            originalText = label.Text;
+
+            Click(driver.FindElement(SpanAddCarrotsFunction));
+            wait.Until(x => !label.Text.Equals(originalText));
+            Assert.AreEqual("You have 3 imaginary carrots", label.Text);
         }
 
         [Test]
@@ -108,7 +124,7 @@ namespace KitchenSink.Test {
         public void ButtonPageTest_DisabledButton() {
             driver.Navigate().GoToUrl(baseURL + "/Button");
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(ButtonAddCarrots));
+            wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(ButtonDisabled));
             var button = driver.FindElement(ButtonDisabled);
             var label = driver.FindElement(ButtonDisabledReaction);
 

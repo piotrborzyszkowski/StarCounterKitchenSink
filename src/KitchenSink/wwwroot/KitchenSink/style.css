@@ -73,6 +73,19 @@
     height: 300px;
 }
 
+.kitchensink-add-carrots {
+    display: flex;
+    align-items: baseline;
+}
+
+.kitchensink-add-carrots > * {
+    margin-right: 10px;
+}
+
+.kitchensink-add-carrots__label {
+    font-weight: bold;
+}
+
 .kitchensink-toggle-button[pressed] {
     color: white;
     background: green;
