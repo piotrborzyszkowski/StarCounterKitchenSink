@@ -25,7 +25,8 @@
     "chart-elements": "robdodson/chart-elements#~2.0.0",
     "google-map": "GoogleWebComponents/google-map#~1.1.4",
     "juicy-select": "Juicy/juicy-select#master",
-    "x-breadcrumb": "Juicy/x-breadcrumb#gh-pages"
+    "x-breadcrumb": "Juicy/x-breadcrumb#gh-pages",
+    "paper-dialog": "PolymerElements/paper-dialog#^1.0.4"
   },
   "resolutions": {
     "polymer": "^1.1.*",
