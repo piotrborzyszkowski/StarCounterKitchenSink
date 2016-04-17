@@ -116,6 +116,9 @@ namespace KitchenSink {
             Handle.GET("/KitchenSink/partial/fileupload", () => new FileUploadPage());
             Handle.GET("/KitchenSink/fileupload", () => WrapPage<FileUploadPage>("/KitchenSink/partial/fileupload"));
 
+            Handle.GET("/KitchenSink/partial/dialog", () => new DialogPage());
+            Handle.GET("/KitchenSink/dialog", () => WrapPage<DialogPage>("/KitchenSink/partial/dialog"));
+
             Handle.GET("/KitchenSink/partial/cookie", (Request request) =>
             {
                 string name = "KitchenSink";

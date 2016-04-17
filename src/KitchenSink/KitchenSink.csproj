@@ -84,6 +84,9 @@
     <Compile Include="DatepickerPage.json.cs">
       <DependentUpon>DatepickerPage.json</DependentUpon>
     </Compile>
+    <Compile Include="DialogPage.json.cs">
+      <DependentUpon>DialogPage.json</DependentUpon>
+    </Compile>
     <Compile Include="FileUploadPage.json.cs">
       <DependentUpon>FileUploadPage.json</DependentUpon>
     </Compile>
@@ -170,6 +173,7 @@
     <Content Include="wwwroot\KitchenSink\DatagridPage.html" />
     <Content Include="wwwroot\KitchenSink\DatepickerPage.html" />
     <Content Include="wwwroot\KitchenSink\DecimalPage.html" />
+    <Content Include="wwwroot\KitchenSink\DialogPage.html" />
     <Content Include="wwwroot\KitchenSink\FileUploadPage.html" />
     <Content Include="wwwroot\KitchenSink\HtmlPage.html" />
     <Content Include="wwwroot\KitchenSink\MasterPage.html" />
@@ -312,6 +316,11 @@
   </ItemGroup>
   <ItemGroup>
     <TypedJSON Include="CookiePage.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
+  </ItemGroup>
+  <ItemGroup>
+    <TypedJSON Include="DialogPage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>
