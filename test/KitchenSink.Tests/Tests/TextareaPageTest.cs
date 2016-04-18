@@ -15,14 +15,23 @@ namespace KitchenSink.Test
         public TextareaPageTest(string browser) : base(browser) { }
 
         /// <summary>
-        /// TextareaPage_PageLoads is a smoke test for loading the Textarea page
+        /// TextareaPage_PageLoads is a which loads Textarea page from the Textarea-link
         /// </summary>
         [Test]
         public void TextareaPage_PageLoads()
         {
-            driver.Navigate().GoToUrl(baseURL + "/Textarea");
+            driver.Navigate().GoToUrl(baseURL);
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.LinkText("Textarea")));
+
+            var link = driver.FindElement(By.LinkText("Textarea"));
+            var action = new OpenQA.Selenium.Interactions.Actions(driver);
+
+            action.Click(link).Build().Perform();
             wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.CssSelector("textarea.form-control")));
+
+            var element = driver.FindElement(By.XPath("(//textarea[@class='form-control'])[1]"));
+            Assert.AreEqual(element.Text, "");
         }
 
 
@@ -60,6 +69,8 @@ namespace KitchenSink.Test
             var originalText = label.Text;
 
             driver.FindElement(By.XPath("(//textarea)[1]")).Clear();
+            Assert.AreEqual("Length of your bio: 0 chars", originalText);
+
             driver.FindElement(By.XPath("(//textarea)[1]")).SendKeys("U");
             wait.Until(x => !label.Text.Equals(originalText));
 
