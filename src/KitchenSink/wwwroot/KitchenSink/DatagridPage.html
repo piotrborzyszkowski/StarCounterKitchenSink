@@ -1,6 +1,10 @@
 ﻿<link rel="import" href="/sys/hot-table/hot-table.html" />
+<link rel="import" href="/sys/hot-table/src/hot-table-style.html" />
 
 <template>
+  <!-- this works with Shady DOM (not Shadow DOM). You don't have to use it in Shadow DOM -->
+  <style is="custom-style" include="hot-table-style"></style>
+
   <template is="dom-bind">
     <p class="lead">JSON's <code>array</code> and <code>object</code> can be used to create editable datagrid with a helper custom element, e.g. <a href="http://handsontable.github.io/hot-table/">hot-table</a>.</p>
 
