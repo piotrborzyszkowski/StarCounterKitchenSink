@@ -16,7 +16,7 @@
     "tests"
   ],
   "dependencies": {
-    "hot-table": "~0.3.0",
+    "hot-table": "handsontable/hot-table#fix-styles-issue-23",
     "juicy-markdown": "~1.0.0",
     "paper-item": "PolymerElements/paper-item#~1.0.3",
     "paper-menu": "PolymerElements/paper-menu#~1.1.1",
