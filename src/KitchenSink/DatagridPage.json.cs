@@ -31,17 +31,17 @@ namespace KitchenSink {
 
         public string CalculatedSound {
             get {
-                switch (Kind) {
-                    case "Dog":
+                switch (Kind.ToLower()) {
+                    case "dog":
                         return "Woof";
 
-                    case "Cat":
+                    case "cat":
                         return "Meow";
 
-                    case "Rabbit":
+                    case "rabbit":
                         return "Jump";
 
-                    case "Hamster":
+                    case "hamster":
                         return "Squeak";
 
                     default:
