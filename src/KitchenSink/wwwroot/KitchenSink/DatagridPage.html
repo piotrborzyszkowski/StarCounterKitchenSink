@@ -13,6 +13,16 @@
         <hot-column value="Kind$" header="Kind"></hot-column>
         <hot-column value="Sound" header="Sound" read-only></hot-column>
     </hot-table>
+    <script>
+      window.addEventListener("keyup", function () {
+        //trigger dirty checking of HOT changes in Puppet (https://github.com/Starcounter/Starcounter/issues/3191)
+        //needed because Handsontable cancels propagation of keydown event (but not keyup)
+        var puppet = document.querySelector("puppet-client");
+        if (puppet.puppet) {
+          jsonpatch.generate(puppet.puppet.observer);
+        }
+      });
+    </script>
 
     <button class="btn btn-sm btn-default" value="{{model.AddPet$::click}}" onmousedown="++this.value">Add a pet</button>
 
