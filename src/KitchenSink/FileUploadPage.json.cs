@@ -3,7 +3,8 @@ using System.IO;
 using Starcounter;
 
 namespace KitchenSink {
-    partial class FileUploadPage : Partial {
+    partial class FileUploadPage : Json
+    {
         protected override void OnData() {
             base.OnData();
 

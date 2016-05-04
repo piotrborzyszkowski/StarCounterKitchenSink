@@ -1,7 +1,8 @@
 using Starcounter;
 
 namespace KitchenSink {
-  partial class PasswordPage : Partial {
+  partial class PasswordPage : Json
+    {
 
     public string CalculatedPasswordReaction {
       get {

@@ -1,7 +1,8 @@
 using Starcounter;
 
 namespace KitchenSink {
-    partial class HtmlPage : Partial {
+    partial class HtmlPage : Json
+    {
         protected override void OnData() {
             base.OnData();
 

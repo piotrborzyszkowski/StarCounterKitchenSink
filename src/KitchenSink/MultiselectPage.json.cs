@@ -1,7 +1,8 @@
 using Starcounter;
 
 namespace KitchenSink {
-    partial class MultiselectPage : Partial {
+    partial class MultiselectPage : Json
+    {
         protected override void OnData() {
             base.OnData();
 

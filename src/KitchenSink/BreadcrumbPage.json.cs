@@ -15,7 +15,7 @@ namespace KitchenSink {
         }
     }
 
-    partial class BreadcrumbPage : Partial {
+    partial class BreadcrumbPage : Json {
         protected override void OnData() {
             base.OnData();
 

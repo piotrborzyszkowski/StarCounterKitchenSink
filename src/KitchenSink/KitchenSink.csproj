@@ -100,13 +100,15 @@
     <Compile Include="MarkdownPage.json.cs">
       <DependentUpon>MarkdownPage.json</DependentUpon>
     </Compile>
+    <Compile Include="AppMenuPage.json.cs">
+      <DependentUpon>AppMenuPage.json</DependentUpon>
+    </Compile>
     <Compile Include="MultiselectPage.json.cs">
       <DependentUpon>MultiselectPage.json</DependentUpon>
     </Compile>
     <Compile Include="NestedPartial.json.cs">
       <DependentUpon>NestedPartial.json</DependentUpon>
     </Compile>
-    <Compile Include="Partial.cs" />
     <Compile Include="PasswordPage.json.cs">
       <DependentUpon>PasswordPage.json</DependentUpon>
     </Compile>
@@ -321,6 +323,11 @@
   </ItemGroup>
   <ItemGroup>
     <TypedJSON Include="DialogPage.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
+  </ItemGroup>
+  <ItemGroup>
+    <TypedJSON Include="AppMenuPage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>

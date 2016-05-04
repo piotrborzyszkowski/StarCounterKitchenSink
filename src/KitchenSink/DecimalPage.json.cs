@@ -1,7 +1,8 @@
 using Starcounter;
 
 namespace KitchenSink {
-    partial class DecimalPage : Partial {
+    partial class DecimalPage : Json
+    {
         protected override void OnData() {
             base.OnData();
 
