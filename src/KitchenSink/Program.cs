@@ -165,7 +165,11 @@ namespace KitchenSink {
 
                     var item = page.Tasks.FirstOrDefault(x => x.FileName == task.FileName);
 
-                    if (task.State == HandleFile.UploadTaskState.Completed) {
+                    if (task.State == HandleFile.UploadTaskState.Error) {
+                        if (item != null) {
+                            page.Tasks.Remove(item);
+                        }
+                    } else if (task.State == HandleFile.UploadTaskState.Completed) {
                         if (item != null) {
                             page.Tasks.Remove(item);
                         }
@@ -187,10 +191,6 @@ namespace KitchenSink {
                         item.FileName = task.FileName;
                         item.FileSize = task.FileSize;
                         item.Progress = task.Progress;
-
-                        if (task.State == HandleFile.UploadTaskState.Error) {
-                            item.Message = "Error uploading file";
-                        }
                     }
 
                     s.CalculatePatchAndPushOnWebSocket();
