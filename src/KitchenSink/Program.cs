@@ -12,20 +12,14 @@ namespace KitchenSink {
 
             Handle.GET("/KitchenSink/master", () => {
                 Session session = Session.Current;
-
                 if (session != null && session.Data != null)
                     return session.Data;
 
                 var master = new MasterPage();
 
-                if (session == null) {
-                    session = new Session(SessionOptions.PatchVersioning);
-                }
-
                 var nav = new NavPage();
                 master.CurrentPage = nav;
 
-                master.Session = session;
                 return master;
             });
 
