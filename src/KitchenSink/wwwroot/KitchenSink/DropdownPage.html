@@ -3,7 +3,7 @@
 <template>
     <template is="dom-bind">
         <h1>Primitive array</h1>
-        
+
         <p class="lead">A combination of JSON's primitive value types <code>array</code>, <code>object</code> and <code>number</code> can be mapped to an HTML <code>select</code> element.</p>
 
         <select class="kitchensink-select" value="{{model.SelectedPet$::change}}">
@@ -17,7 +17,7 @@
         <br />
 
         <p class="lead">Objects array</p>
-        
+
         <p class="lead">A combination of object <code>array</code> and bound JSON string property can be mapped to an HTML <code>select</code> element.</p>
 
         <small>Polymer applies <code>value</code> binding before options generated. That is why there is no value.</small>
@@ -34,13 +34,11 @@
         <small>You can use <code>juicy-select</code> to workaround issue with value binding.</small>
 
         <br />
-        
+
         <juicy-select class="kitchensink-juicyselect" caption-text=" " value="{{model.SelectedProductKey$}}" options="{{model.Products}}" text-property="Name" value-property="Key"></juicy-selectclass="kitchensink-juicyselect">
 
         <template is="dom-if" if="{{model.SelectedProduct.Name}}">
             <p>You have selected: <strong>{{model.SelectedProduct.Name}}</strong></p>
         </template>
-
-        <dom-bind-notifier path="model" observed-object="{{model}}" deep></dom-bind-notifier>
     </template>
 </template>

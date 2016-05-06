@@ -27,22 +27,20 @@
         </p>
 
         <h5>Switch button</h5>
-       
+
          <p>When you have a special need to use the pressed state of a button, you might use <code>boolean</code> type for buttons.</p>
 
         <button class="btn btn-sm btn-default kitchensink-toggle-button" pressed$="{{model.EnableCarrotEngine$}}" on-click="onEnableCarrotEngineClick">Enable carrot engine</button>
 
         <span>{{model.CarrotEngineReaction}}</span>
-        
+
         <h5>Disabled button</h5>
-        
+
         <p>It is possible to mark button as disabled using the <code>disabled</code> boolean attribute. The below button gets disbled when the value reaches 1.</p>
 
         <button class="btn btn-sm btn-default kitchensink-toggle-button" value="{{model.AddOneCarrot$::click}}" onmousedown="++this.value" disabled$="{{model.AddOneCarrotDisabled}}">Add carrots</button>
 
         <span>{{model.OneCarrotReaction}}</span>
-
-        <dom-bind-notifier path="model" observed-object="{{model}}" deep></dom-bind-notifier>
     </template>
     <script>
         (function () {
