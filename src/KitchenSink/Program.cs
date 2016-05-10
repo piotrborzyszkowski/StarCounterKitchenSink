@@ -8,7 +8,6 @@ namespace KitchenSink {
             var app = Application.Current;
             app.Use(new HtmlFromJsonProvider());
             app.Use(new PartialToStandaloneHtmlProvider());
-            app.Use(new JsonAutoSessions());
 
             Handle.GET("/KitchenSink/master", () => {
                 Session session = Session.Current;
