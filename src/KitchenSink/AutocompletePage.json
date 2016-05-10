@@ -1,0 +1,20 @@
+{
+  "Html": "/KitchenSink/AutocompletePage.html",
+  
+  "PlacesSearch$": "",
+  "ClearPlaces$" :  0,
+  "FoundPlaces": [
+    {
+      "Name": "",
+      "Select$":  0  
+    }
+  ],
+  "BreadcrumbsSearch$": "",
+  "ClearBreadcrumbs$": 0,
+  "FoundBreadcrumbs": [
+    {
+      "Name": "",
+      "Select$":  0 
+    }
+  ]
+}

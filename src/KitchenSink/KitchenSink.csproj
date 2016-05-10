@@ -65,6 +65,9 @@
     <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutocompletePage.json.cs">
+      <DependentUpon>AutocompletePage.json</DependentUpon>
+    </Compile>
     <Compile Include="BreadcrumbPage.json.cs">
       <DependentUpon>BreadcrumbPage.json</DependentUpon>
     </Compile>
@@ -174,6 +177,7 @@
     <Content Include="wwwroot\KitchenSink\DatepickerPage.html" />
     <Content Include="wwwroot\KitchenSink\DecimalPage.html" />
     <Content Include="wwwroot\KitchenSink\DialogPage.html" />
+    <Content Include="wwwroot\KitchenSink\AutocompletePage.html" />
     <Content Include="wwwroot\KitchenSink\FileUploadPage.html" />
     <Content Include="wwwroot\KitchenSink\HtmlPage.html" />
     <Content Include="wwwroot\KitchenSink\MasterPage.html" />
@@ -321,6 +325,11 @@
   </ItemGroup>
   <ItemGroup>
     <TypedJSON Include="DialogPage.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
+  </ItemGroup>
+  <ItemGroup>
+    <TypedJSON Include="AutocompletePage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>

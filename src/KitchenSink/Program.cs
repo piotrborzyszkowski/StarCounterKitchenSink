@@ -197,6 +197,9 @@ namespace KitchenSink {
                 });
             });
 
+            Handle.GET("/KitchenSink/partial/autocomplete", () => new AutocompletePage());
+            Handle.GET("/KitchenSink/autocomplete", () => WrapPage<AutocompletePage>("/KitchenSink/partial/autocomplete"));
+
             //for a launcher
             Handle.GET("/KitchenSink/app-name", () => {
                 return new AppName();
