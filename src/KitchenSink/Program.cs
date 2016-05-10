@@ -17,9 +17,15 @@ namespace KitchenSink {
 
                 var master = new MasterPage();
 
+                if (session == null)
+                {
+                    session = new Session(SessionOptions.PatchVersioning);
+                }
+
                 var nav = new NavPage();
                 master.CurrentPage = nav;
 
+                master.Session = session;
                 return master;
             });
 
