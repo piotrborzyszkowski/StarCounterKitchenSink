@@ -1,8 +1,8 @@
 using Starcounter;
 
 namespace KitchenSink {
-    partial class ButtonPage : Partial {
-
+    partial class ButtonPage : Json
+    {
         void Handle(Input.AddCarrots action) {
             if (action.Value == 0) {
                 CarrotsReaction = Template.CarrotsReaction.DefaultValue;

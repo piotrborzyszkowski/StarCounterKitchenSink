@@ -1,7 +1,8 @@
 using Starcounter;
 
 namespace KitchenSink {
-    partial class RedirectPage : Partial {
+    partial class RedirectPage : Json
+    {
         void Handle(Input.GoToHomePartial Action) {
             this.MorphUrl = "/KitchenSink";
         }

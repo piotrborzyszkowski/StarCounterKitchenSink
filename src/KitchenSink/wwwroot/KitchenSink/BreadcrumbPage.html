@@ -4,9 +4,9 @@
 <template>
     <template is="dom-bind">
         <h1>Breadcrumbs</h1>
-        
+
         <h2>Simple breadcrumb</h2>
-        
+
         <p class="lead">A JSON <code>array</code> of <code>objects</code> can used as a breadcrumb navigation. The below example uses <code>template is="dom-repeat"</code> with <code>span</code>.</p>
         <div>
             <template is="dom-repeat" items="{{model.Breadcrumbs}}" restamp>
@@ -16,7 +16,7 @@
                 <span class="btn" select="{{item.Select$::mouseup}}" onmousedown="++this.select">{{item.Name}}</span>
             </template>
         </div>
-        
+
         <h2>Breadcrumb with navigation</h2>
 
         <p class="lead">It doesn't take much more to add a multidimensional navigation to the breadcrumb. The below example uses <code>template is="dom-repeat"</code> with <code><a href="https://github.com/Juicy/x-breadcrumb">x-breadcrumb</a></code> custom element.</p>
@@ -50,7 +50,5 @@
         <input type="text" value="{{model.CurrentTreeItem.Name$::change}}" placeholder="Name" class="form-control">
 
         <button class="btn btn-sm btn-default" value="{{model.CurrentTreeItem.Save$::click}}" onmousedown="++this.value">Save</button>
-
-        <dom-bind-notifier path="model" observed-object="{{model}}" deep></dom-bind-notifier>
     </template>
 </template>

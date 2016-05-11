@@ -1,7 +1,8 @@
 using Starcounter;
 
 namespace KitchenSink {
-  partial class CheckboxPage : Partial {
+  partial class CheckboxPage : Json
+    {
     public string CalculatedDrivingLicenseReaction {
       get {
         if (DrivingLicense == true) {

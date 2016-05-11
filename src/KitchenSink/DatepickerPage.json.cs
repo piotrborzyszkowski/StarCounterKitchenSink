@@ -2,7 +2,8 @@ using System;
 using Starcounter;
 
 namespace KitchenSink {
-    partial class DatepickerPage : Partial {
+    partial class DatepickerPage : Json
+    {
         protected override void OnData() {
             base.OnData();
             this.Value = DateTime.Now.ToString("yyyy-MM-dd");

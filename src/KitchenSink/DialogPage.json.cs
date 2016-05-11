@@ -1,7 +1,8 @@
 using Starcounter;
 
 namespace KitchenSink {
-    partial class DialogPage : Partial {
+    partial class DialogPage : Json
+    {
         void Handle(Input.OpenClick Action) {
             Action.Cancel();
 

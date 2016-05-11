@@ -2,7 +2,8 @@ using Starcounter;
 using System;
 
 namespace KitchenSink {
-  partial class IntegerPage : Partial {
+  partial class IntegerPage : Json
+    {
 
     public string CalculatedAgeReaction {
       get {

@@ -7,7 +7,7 @@ namespace KitchenSink {
         public string Name = "Marcin";
     }
 
-    partial class NestedPartial : Partial, IBound<AnyData> {
+    partial class NestedPartial : Json, IBound<AnyData> {
         void Handle(Input.AddChild action) {
             this.ChildPartial = new NestedPartial() {
                 Data = new AnyData(),

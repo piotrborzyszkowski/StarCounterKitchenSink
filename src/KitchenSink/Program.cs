@@ -5,15 +5,19 @@ using Starcounter;
 namespace KitchenSink {
     class Program {
         static void Main() {
+            var app = Application.Current;
+            app.Use(new HtmlFromJsonProvider());
+            app.Use(new PartialToStandaloneHtmlProvider());
+
             Handle.GET("/KitchenSink/master", () => {
                 Session session = Session.Current;
-
                 if (session != null && session.Data != null)
                     return session.Data;
 
                 var master = new MasterPage();
 
-                if (session == null) {
+                if (session == null)
+                {
                     session = new Session(SessionOptions.PatchVersioning);
                 }
 
@@ -206,14 +210,14 @@ namespace KitchenSink {
             });
 
             Handle.GET("/KitchenSink/menu", () => {
-                return new Partial() { Html = "/KitchenSink/AppMenuPage.html" };
+                return new AppMenuPage();
             });
 
             UriMapping.Map("/KitchenSink/menu", UriMapping.MappingUriPrefix + "/menu");
             UriMapping.Map("/KitchenSink/app-name", UriMapping.MappingUriPrefix + "/app-name");
         }
 
-        private static Partial WrapPage<T>(string partialPath) where T : Partial {
+        private static Json WrapPage<T>(string partialPath) where T : Json {
             var master = (MasterPage)Self.GET("/KitchenSink/master");
             var nav = master.CurrentPage as NavPage;
 

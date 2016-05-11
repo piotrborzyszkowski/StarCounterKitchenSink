@@ -1,6 +1,7 @@
 using Starcounter;
 
 namespace KitchenSink {
-  partial class NavPage : Partial {
+  partial class NavPage : Json
+    {
   }
 }

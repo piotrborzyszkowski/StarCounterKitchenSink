@@ -1,7 +1,8 @@
 using Starcounter;
 
 namespace KitchenSink {
-    partial class DatagridPage : Partial {
+    partial class DatagridPage : Json
+    {
         protected override void OnData() {
             base.OnData();
 
