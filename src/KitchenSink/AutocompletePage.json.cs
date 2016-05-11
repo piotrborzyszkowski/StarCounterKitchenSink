@@ -19,6 +19,12 @@ namespace KitchenSink {
         public void Handle(Input.BreadcrumbsSearch action) {
             var searchTerm = action.Value == "*" ? "%" : $"%{action.Value}%";
             this.FoundBreadcrumbs = Db.SQL("SELECT i FROM TreeItem i WHERE Name LIKE ?", searchTerm);
+            foreach (var breadcrumb in FoundBreadcrumbs) {
+                breadcrumb.SelectAction = () => {
+                    FoundBreadcrumbs.Clear();
+                    BreadcrumbsSearch = breadcrumb.Name;
+                };
+            }
         }
 
         public void Handle(Input.ClearBreadcrumbs _) {
@@ -27,11 +33,8 @@ namespace KitchenSink {
 
         [AutocompletePage_json.FoundBreadcrumbs]
         public partial class FoundBreadcrumbsItem {
-            void Handle(Input.Select _) {
-                var mainPage = (AutocompletePage) Parent.Parent;
-                mainPage.FoundBreadcrumbs.Clear();
-                mainPage.BreadcrumbsSearch = this.Name;
-            }
+            public Action SelectAction { get; set; }
+            void Handle(Input.Select action) => SelectAction();
         }
 
         public void Handle(Input.PlacesSearch action) {
@@ -46,6 +49,10 @@ namespace KitchenSink {
             foreach (var foundPlace in AvailablePlaces.Where(predicate)) {
                 var json = FoundPlaces.Add();
                 json.Name = foundPlace;
+                json.SelectAction = () => {
+                    FoundPlaces.Clear();
+                    PlacesSearch = foundPlace;
+                };
             }
         }
 
@@ -55,11 +62,8 @@ namespace KitchenSink {
 
         [AutocompletePage_json.FoundPlaces]
         public partial class FoundPlacesItem {
-            void Handle(Input.Select _) {
-                var mainPage = (AutocompletePage) Parent.Parent;
-                mainPage.FoundPlaces.Clear();
-                mainPage.PlacesSearch = this.Name;
-            }
+            public Action SelectAction { get; set; }
+            void Handle(Input.Select action) => SelectAction();
         }
     }
 }
