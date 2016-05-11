@@ -96,7 +96,7 @@
     cursor: not-allowed;
 }
 
-ul.kitchensink-autocomplete {
+.kitchensink-autocomplete {
     display: block;
     background-color: white;
     box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.37);
@@ -106,12 +106,6 @@ ul.kitchensink-autocomplete {
     position: absolute;
 }
 
-ul.kitchensink-autocomplete li {
+.kitchensink-autocomplete__item {
     padding: 0px;
-}
-
-ul.kitchensink-autocomplete li a {
-    display: block;
-    padding: 4px 10px;
-    color: #3d85b4;
 }

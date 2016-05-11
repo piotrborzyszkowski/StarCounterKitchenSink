@@ -2,28 +2,59 @@
     <template is="dom-bind">
         <h1>Autocomplete</h1>
 
-        <p class="lead">
-            If you want to add more elements to this autocomplete field, go to <a href="/KitchenSink/Breadcrumb">Breadcrumbs page</a>. Enter <code>'*'</code> to show all available items
-        </p>
+        <span title="breadcrumbs">
+            <p class="lead">
+                If you want to add more elements to this autocomplete field, go to <a href="/KitchenSink/Breadcrumb">Breadcrumbs page</a>. Enter <code>'*'</code> to show all available items
+            </p>
 
-        <input type="text" value="{{model.BreadcrumbsSearch$::input}}" placeholder="Things to buy..." clear="{{model.ClearBreadcrumbs$::blur}}" onblur="++this.clear;"/>
-        <ul class="kitchensink-autocomplete">
-            <template is="dom-repeat" items="{{model.FoundBreadcrumbs}}">
-                <!-- Blur fires before click, but after mousedown -->
-                <li onmousedown="this.value++;" value="{{item.Select$::mousedown}}">{{item.Name}}</li>
-            </template>
-        </ul>
+            <input type="text" value="{{model.BreadcrumbsSearch$::input}}" placeholder="Things to buy..." on-blur="clearBreadcrumbs" />
+            <ul class="kitchensink-autocomplete">
+                <template is="dom-repeat" items="{{model.FoundBreadcrumbs}}">
+                    <!-- Blur fires before click, but after mousedown -->
+                    <li on-mousedown="selectBreadcrumb" class="kitchensink-autocomplete__item" item="{{item}}">{{item.Name}}</li>
+                </template>
+            </ul>
+        </span>
         <br/>
-
-        <p class="lead">
-            This autocomplete field uses pre-defined list of places (although it's usually better to use DB as source).
-        </p>
-        <input type="text" value="{{model.PlacesSearch$::input}}" placeholder="Places to go..." clear="{{model.ClearPlaces$::blur}}" onblur="++this.clear;"/>
-        <ul class="kitchensink-autocomplete">
-            <template is="dom-repeat" items="{{model.FoundPlaces}}">
-                <li onmousedown="this.value++;" value="{{item.Select$::mousedown}}">{{item.Name}}</li>
-            </template>
-        </ul>
-        <dom-bind-notifier path="model" observed-object="{{model}}" deep></dom-bind-notifier>
+        <span title="places">
+            <p class="lead">
+                This autocomplete field uses pre-defined list of places (although it's usually better to use DB as source).
+            </p>
+            <input type="text" value="{{model.PlacesSearch$::input}}" placeholder="Places to go..." on-blur="clearPlaces" />
+            <ul class="kitchensink-autocomplete">
+                <template is="dom-repeat" items="{{model.FoundPlaces}}">
+                    <li on-mousedown="selectPlace" class="kitchensink-autocomplete__item" item="{{item}}">{{item.Name}}</li>
+                </template>
+            </ul>
+        </span>
     </template>
+    <script>
+        (function () {
+            var script = document._currentScript || document.currentScript;
+            var template = script.previousElementSibling;
+
+            template.clearPlaces = function () {
+                alert("clear places");
+                template.set("model.ClearPlaces$", ++template.model.ClearPlaces$);
+            };
+
+            template.clearBreadcrumbs = function () {
+                template.set("model.ClearBreadcrumbs$", ++template.model.ClearBreadcrumbs$);
+            };
+
+            template.selectBreadcrumb = function (ev) {
+                var item = ev.currentTarget.item;
+                var index = template.model.FoundBreadcrumbs.indexOf(item);
+                template.set("model.FoundBreadcrumbs." + index + ".Select$",
+                    ++template.model.FoundBreadcrumbs[index].Select$);
+            };
+
+            template.selectPlace = function (ev) {
+                var item = ev.currentTarget.item;
+                var index = template.model.FoundPlaces.indexOf(item);
+                template.set("model.FoundPlaces." + index + ".Select$",
+                    ++template.model.FoundPlaces[index].Select$);
+            };
+        })();
+    </script>
 </template>
