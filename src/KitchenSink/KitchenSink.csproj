@@ -72,6 +72,9 @@
     <Compile Include="ButtonPage.json.cs">
       <DependentUpon>ButtonPage.json</DependentUpon>
     </Compile>
+    <Compile Include="CallbackPage.json.cs">
+      <DependentUpon>CallbackPage.json</DependentUpon>
+    </Compile>
     <Compile Include="ChartPage.json.cs">
       <DependentUpon>ChartPage.json</DependentUpon>
     </Compile>
@@ -169,6 +172,7 @@
     <Content Include="wwwroot\KitchenSink\AppMenuPage.html" />
     <Content Include="wwwroot\KitchenSink\BreadcrumbPage.html" />
     <Content Include="wwwroot\KitchenSink\ButtonPage.html" />
+    <Content Include="wwwroot\KitchenSink\CallbackPage.html" />
     <Content Include="wwwroot\KitchenSink\ChartPage.html" />
     <Content Include="wwwroot\KitchenSink\CheckboxPage.html" />
     <Content Include="wwwroot\KitchenSink\CookiePage.html" />
@@ -328,6 +332,11 @@
   </ItemGroup>
   <ItemGroup>
     <TypedJSON Include="AppMenuPage.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
+  </ItemGroup>
+  <ItemGroup>
+    <TypedJSON Include="CallbackPage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>
