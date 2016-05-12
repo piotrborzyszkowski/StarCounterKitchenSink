@@ -80,20 +80,11 @@ Before running the steps, you need to:
 
 - Download and install Visual Studio 2015 to run the tests
 - Download and install Java, required by Selenium Standalone Server
-- Download Selenium Standalone Server from http://docs.seleniumhq.org/download/
+- Download [Selenium Standalone Server](http://docs.seleniumhq.org/download/)
 	- It controls browsers to perform the tests. 
 	- It is just a single file (`selenium-server-standalone-2.52.0.jar`). 
-	- Put this file to `C:\selenium`.
-- Download Internet Explorer Driver Server from http://docs.seleniumhq.org/download/
-	- This is just a single file (`IEDriverServer.exe`).
-	- Put this file to `C:\selenium\drivers`.
-- Download Microsoft Edge Driver from http://docs.seleniumhq.org/download/
-	- This is just a single file (`MicrosoftWebDriver.exe`).
-	- Put this file to `C:\selenium\drivers`.
-- Download Google Chrome Driver from http://docs.seleniumhq.org/download/
-  - This is just a single file (`chromedriver.exe`).
-  - Put this file to `C:\selenium\drivers`.
-- **Add `C:\selenium\drivers` to %PATH%. You may need to restart your Command Prompt (cmd) after this**
+	- Put this file wherever you like.
+- Download additional [drivers](http://docs.seleniumhq.org/download/) (those are all single files) and put them in the same directory as server
 - Firefox drivers are built-in to Selenium Standalone Server; no need to download these
 
 ### Run the test (from Visual Studio)
