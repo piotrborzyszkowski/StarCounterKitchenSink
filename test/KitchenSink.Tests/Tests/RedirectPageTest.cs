@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Linq;
-using System.Threading;
 using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 
 namespace KitchenSink.Tests.Tests {
@@ -26,35 +25,46 @@ namespace KitchenSink.Tests.Tests {
 
         [Test]
         public void ClickingOnFruitShouldChangeUrlAndText() {
-            var fruitButton = FindButton("Fruit");
-            fruitButton.Click();
+            ClickButton("Fruit");
 
-            Assert.That(fruitButton.FindElement(By.XPath("following-sibling::div")).Text, Contains.Substring("apple"));
+            // on edge juicy sometimes messes up the dom tree, so you can't be sure about its relative position to button
+            _wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//div[text()=\"You've got some tasty apple\"]")));
             Assert.That(driver.Url, Is.EqualTo($"{baseURL}/Redirect/apple"));
         }
 
         [Test]
         public void ClickingOnRedirectToAnotherPartialShouldChangeUrl() {
-            FindButton("Morph to another partial").Click();
-            Assert.That(driver.Url, Is.EqualTo(baseURL));
+            ClickButton("Morph to another partial");
+
+            // redirecting can take some time
+            _wait.Until(ExpectedConditions.UrlContains(baseURL));
         }
 
         [Test]
         public void ClickingOnRedirectToDocsShouldChangeUrl() {
-            FindButton("Redirect to Starcounter.io").Click();
+            ClickButton("Redirect to Starcounter.io");
 
             // see https://github.com/PuppetJs/puppet-redirect/issues/3
             if (browser == "firefox") {
-                _wait.Until(ExpectedConditions.AlertIsPresent());
-                driver.SwitchTo().Alert().Dismiss();
+                // depending on wheter or not Launcher will be present, the dialog will differ
+                _wait.Until(d => WaitForNoConnectionAndDismiss(d) || d.FindElements(By.XPath("//h4[text()='Connection error']")).Count != 0);
             }
 
-            // redirecting to external page can take some time
+            // redirecting can take some time
             _wait.Until(ExpectedConditions.UrlContains("http://starcounter.io/"));
         }
 
-        private IWebElement FindButton(string text) {
-            return driver.FindElement(By.XPath($"//button[text()='{text}']"));
+        private bool WaitForNoConnectionAndDismiss(IWebDriver d) {
+            try {
+                d.SwitchTo().Alert().Dismiss();
+                return true;
+            } catch (NoAlertPresentException) {
+                return false;
+            }
+        }
+
+        private void ClickButton(string text) {
+            driver.FindElement(By.XPath($"//button[text()='{text}']")).ClickUsingMouse(driver);
         }
     }
 }

@@ -30,9 +30,7 @@ namespace KitchenSink.Test {
             var originalText = label.Text;
             driver.FindElement(By.XPath("(//input)[1]")).Clear();
             driver.FindElement(By.XPath("(//input)[1]")).SendKeys("Marcin");
-            var body = driver.FindElement(By.XPath("//body"));
-            var action = new OpenQA.Selenium.Interactions.Actions(driver);
-            action.Click(body).Build().Perform();
+            driver.FindElement(By.XPath("//body")).ClickUsingMouse(driver);
             wait.Until(x => !label.Text.Equals(originalText));
             Assert.AreEqual("Hi, Marcin!", driver.FindElement(By.XPath("(//label[@class='control-label'])[1]")).Text);
         }

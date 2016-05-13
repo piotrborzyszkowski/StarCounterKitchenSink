@@ -24,10 +24,7 @@ namespace KitchenSink.Test
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.LinkText("Textarea")));
 
-            var link = driver.FindElement(By.LinkText("Textarea"));
-            var action = new OpenQA.Selenium.Interactions.Actions(driver);
-
-            action.Click(link).Build().Perform();
+            driver.FindElement(By.LinkText("Textarea")).ClickUsingMouse(driver);
             wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.CssSelector("textarea.form-control")));
 
             var element = driver.FindElement(By.XPath("(//textarea[@class='form-control'])[1]"));

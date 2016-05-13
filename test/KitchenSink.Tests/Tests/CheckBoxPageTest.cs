@@ -22,9 +22,7 @@ namespace KitchenSink.Test {
             driver.Navigate().GoToUrl(baseURL);
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.LinkText("Checkbox")));
-            var passLink = driver.FindElement(By.LinkText("Checkbox"));
-            var action = new OpenQA.Selenium.Interactions.Actions(driver);
-            action.Click(passLink).Build().Perform();
+            driver.FindElement(By.LinkText("Checkbox")).ClickUsingMouse(driver);
             wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.CssSelector("div.kitchensink-layout__column-right > starcounter-include > input[type='checkbox']")));
             var element = driver.FindElement(By.XPath("(//input)[1]"));
             Assert.AreEqual(element.GetAttribute("type"), "checkbox");
@@ -38,8 +36,7 @@ namespace KitchenSink.Test {
             wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.CssSelector("div.kitchensink-layout__column-right > starcounter-include > input[type='checkbox']")));
             var element = driver.FindElement(By.XPath("(//input)[1]"));
             Assert.AreEqual(element.GetAttribute("type"), "checkbox");
-            var action = new OpenQA.Selenium.Interactions.Actions(driver);
-            action.Click(element).Build().Perform();
+            element.ClickUsingMouse(driver);
             wait.Until(x => !canDrive.Equals(driver.FindElement(By.CssSelector("div.kitchensink-layout__column-right > starcounter-include > div")).Text));
             var uncheckedText = driver.FindElement(By.CssSelector("div.kitchensink-layout__column-right > starcounter-include > div")).Text;
             Assert.AreEqual(cantDrive, uncheckedText);
@@ -53,12 +50,11 @@ namespace KitchenSink.Test {
             wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.CssSelector("div.kitchensink-layout__column-right > starcounter-include > input[type='checkbox']")));
             var element = driver.FindElement(By.XPath("(//input)[1]"));
             Assert.AreEqual(element.GetAttribute("type"), "checkbox");
-            var action = new OpenQA.Selenium.Interactions.Actions(driver);
-            action.Click(element).Build().Perform();
+            element.ClickUsingMouse(driver);
             wait.Until(x => !canDrive.Equals(driver.FindElement(By.CssSelector("div.kitchensink-layout__column-right > starcounter-include > div")).Text));
             var uncheckedText = driver.FindElement(By.CssSelector("div.kitchensink-layout__column-right > starcounter-include > div")).Text;
             Assert.AreEqual(cantDrive, uncheckedText);
-            action.Click(element).Build().Perform();
+            element.ClickUsingMouse(driver);
             wait.Until(x => !cantDrive.Equals(driver.FindElement(By.CssSelector("div.kitchensink-layout__column-right > starcounter-include > div")).Text));
             var checkedText = driver.FindElement(By.CssSelector("div.kitchensink-layout__column-right > starcounter-include > div")).Text;
             Assert.AreEqual(canDrive, checkedText);
