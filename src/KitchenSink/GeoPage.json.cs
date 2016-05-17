@@ -7,8 +7,11 @@ namespace KitchenSink {
 
     //TODO change me to a database class (then the below setters and getters can be removed)
     public static class SharedPosition {
-        public static double Latitude = 59.3319913;
-        public static double Longitude = 18.0765409;
+        public static readonly double DefaultLatitude = 59.3319913;
+        public static readonly double DefaultLongitude = 18.0765409;
+
+        public static double Latitude = DefaultLatitude;
+        public static double Longitude = DefaultLongitude;
     }
 
     [GeoPage_json.Position]
@@ -31,6 +34,12 @@ namespace KitchenSink {
             get {
                 return SharedPosition.Longitude;
             }
+        }
+
+        public void Handle(Input.Reset action) {
+            Latitude = SharedPosition.DefaultLatitude;
+            Longitude = SharedPosition.DefaultLongitude;
+            PushChanges();
         }
 
         protected void PushChanges() {
