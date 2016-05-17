@@ -34,16 +34,12 @@ namespace KitchenSink {
         }
 
         protected void PushChanges() {
-            Session.ForAll((Session s, string sessionId) => {
-                MasterPage master = s.Data as MasterPage;
-                if (master != null && master.CurrentPage is NavPage) {
-                    NavPage navpage = (NavPage)master.CurrentPage;
-                    if (navpage.CurrentPage is GeoPage) {
-                        GeoPage page = (GeoPage)navpage.CurrentPage;
-                        if (page != null) {
-                            s.CalculatePatchAndPushOnWebSocket();
-                        }
-                    }
+            Session.ForAll((s, sessionId) => {
+                var master = s.Data as MasterPage;
+                var navpage = master?.CurrentPage as NavPage;
+                if (!(navpage?.CurrentPage is GeoPage)) return;
+                if ((GeoPage)navpage.CurrentPage != null) {
+                    s.CalculatePatchAndPushOnWebSocket();
                 }
             });
         }
