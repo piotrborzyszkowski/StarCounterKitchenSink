@@ -8,7 +8,7 @@ namespace KitchenSink {
         protected override void OnData() {
             base.OnData();
 
-            this.SessionId = Session.Current.ToAsciiString();
+            this.SessionId = Session.Current.SessionId;
         }
 
         public string GetFileSizeString(long Size) {

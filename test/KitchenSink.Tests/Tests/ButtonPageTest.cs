@@ -67,8 +67,7 @@ namespace KitchenSink.Test {
             driver.Navigate().GoToUrl(baseURL);
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.LinkText("Button")));
-            var link = driver.FindElement(By.LinkText("Button"));
-            Click(link);
+            driver.FindElement(By.LinkText("Button")).ClickUsingMouse(driver);
             wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(ButtonAddCarrotsInlineScript));
             var element = driver.FindElement(ButtonAddCarrotsInlineScript);
             Assert.AreEqual(element.Text.ToLower(), "button (inline script)");
@@ -144,8 +143,7 @@ namespace KitchenSink.Test {
         }
 
         private void Click(IWebElement element) {
-            var action = new OpenQA.Selenium.Interactions.Actions(driver);
-            action.Click(element).Build().Perform();
+            element.ClickUsingMouse(driver);
         }
     }
 }
