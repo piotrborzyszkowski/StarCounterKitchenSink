@@ -105,3 +105,7 @@ Before running the steps, you need to:
 4. Start the KitchenSink app (`run.bat`)
 5. Start the KitchenSink.Test runner (`test.bat`)
 6. Don't touch your keyboard or mouse while the tests are being executed :)
+
+## License
+
+MIT
