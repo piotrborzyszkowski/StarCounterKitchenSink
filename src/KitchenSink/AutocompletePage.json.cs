@@ -17,20 +17,20 @@ namespace KitchenSink {
         };
 
         public AutocompletePage Init() {
-            AddProduct("Bread");
-            AddProduct("Butter");
-            AddProduct("Scotch Whisky");
-            AddProduct("Irish Whiskey");
-            AddProduct("Milk");
-            AddProduct("Boiled Mutton");
+            AddProduct("Bread", 1);
+            AddProduct("Butter", 3);
+            AddProduct("Scotch Whisky", 4);
+            AddProduct("Irish Whiskey", 2);
+            AddProduct("Milk", 5);
+            AddProduct("Boiled Mutton", 7);
             Transaction.Commit();
 
             return this;
         }
 
-        private static void AddProduct(string name) {
+        private static void AddProduct(string name, int price) {
             if (Db.SQL<long>("SELECT count (p) from Simplified.Ring3.Product p WHERE name = ?", name).First() == 0) {
-                new Product() {Name = name};
+                new Product() {Name = name, Price = price};
             }
         }
 
@@ -41,6 +41,7 @@ namespace KitchenSink {
                 product.SelectAction = () => {
                     FoundProducts.Clear();
                     ProductsSearch = product.Name;
+                    ProductsText = $"{product.Name} costs ${product.Price}";
                 };
             }
         }

@@ -11,10 +11,12 @@
     }
   ],
   "ProductsSearch$": "",
+  "ProductsText": "", 
   "ClearProducts$": 0,
   "FoundProducts": [
     {
       "Name": "",
+      "Price": 0, 
       "Select$":  0 
     }
   ]

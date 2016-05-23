@@ -62,6 +62,8 @@ namespace KitchenSink.Tests.Tests {
             driver.FindElements(FoundProductsSelector)[1].Click();
             Assert.IsEmpty(driver.FindElements(FoundProductsSelector));
             Assert.AreEqual("Irish Whiskey", driver.FindElement(ProductsSearchSelector).GetAttribute("value"), "Search textbox has invalid content");
+            Assert.AreEqual("Irish Whiskey costs $2", driver.FindElement(By.Id("kitchensink-autocomplete-price")).Text,
+                "Invalid capital text");
         }
 
         private void AssertElements(By elementsSelector, params string[] expected) {
