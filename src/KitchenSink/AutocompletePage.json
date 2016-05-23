@@ -1,7 +1,8 @@
 {
   "Html": "/KitchenSink/AutocompletePage.html",
-  
+
   "PlacesSearch$": "",
+  "PlacesText":  "", 
   "ClearPlaces$" :  0,
   "FoundPlaces": [
     {
@@ -9,9 +10,9 @@
       "Select$":  0  
     }
   ],
-  "BreadcrumbsSearch$": "",
-  "ClearBreadcrumbs$": 0,
-  "FoundBreadcrumbs": [
+  "ProductsSearch$": "",
+  "ClearProducts$": 0,
+  "FoundProducts": [
     {
       "Name": "",
       "Select$":  0 

@@ -13,10 +13,10 @@ namespace KitchenSink.Tests.Tests {
     public class AutocompletePageTest : BaseTest
     {
         private WebDriverWait _wait;
-        private static readonly By PlacesSearchSelector = By.CssSelector("[placeholder='Places to go...']");
-        private static readonly By BreadcrumbsSearchSelector = By.CssSelector("[placeholder='Things to buy...']");
+        private static readonly By PlacesSearchSelector = By.CssSelector("[placeholder='Poland? Sweden?']");
+        private static readonly By ProductsSearchSelector = By.CssSelector("[placeholder='Whiskey? Whisky?']");
         private static readonly By FoundPlacesSelector = By.CssSelector("[title='places'] ul.kitchensink-autocomplete li");
-        private static readonly By FoundBreadcrumbsSelector = By.CssSelector("[title='breadcrumbs'] ul.kitchensink-autocomplete li");
+        private static readonly By FoundProductsSelector = By.CssSelector("[title='products'] ul.kitchensink-autocomplete li");
 
         public AutocompletePageTest(string browser) : base(browser) {
         }
@@ -33,11 +33,11 @@ namespace KitchenSink.Tests.Tests {
         public void FillStarExpectAllItemsShowUp() {
             driver.FindElement(PlacesSearchSelector).SendKeys("*");
             WaitForElementsToLoad(FoundPlacesSelector);
-            Assert.AreEqual(8, driver.FindElements(FoundPlacesSelector).Count);
+            Assert.AreEqual(7, driver.FindElements(FoundPlacesSelector).Count);
 
-            driver.FindElement(BreadcrumbsSearchSelector).SendKeys("*");
-            WaitForElementsToLoad(FoundBreadcrumbsSelector);
-            Assert.AreEqual(10, driver.FindElements(FoundBreadcrumbsSelector).Count);
+            driver.FindElement(ProductsSearchSelector).SendKeys("*");
+            WaitForElementsToLoad(FoundProductsSelector);
+            Assert.AreEqual(6, driver.FindElements(FoundProductsSelector).Count);
         }
 
         [Test]
@@ -49,16 +49,19 @@ namespace KitchenSink.Tests.Tests {
             driver.FindElements(FoundPlacesSelector)[0].Click();
             Assert.IsEmpty(driver.FindElements(FoundPlacesSelector));
             Assert.AreEqual("Poland", driver.FindElement(PlacesSearchSelector).GetAttribute("value"), "Search textbox has invalid content");
+            Assert.AreEqual("Poland", driver.FindElement(PlacesSearchSelector).GetAttribute("value"), "Search textbox has invalid content");
+            Assert.AreEqual("Capital of Poland is Warsaw", driver.FindElement(By.Id("kitchensink-autocomplete-capital")).Text,
+                "Invalid capital text");
         }
 
         [Test]
-        public void FillBreadcrumbNameThenSelectBreadcrumb() {
-            driver.FindElement(BreadcrumbsSearchSelector).SendKeys("Milk");
-            WaitForElementsToLoad(FoundBreadcrumbsSelector);
-            AssertElements(FoundBreadcrumbsSelector, "Milk", "Coffee Milk 5 ML", "Milk 1 L");
-            driver.FindElements(FoundBreadcrumbsSelector)[2].Click();
-            Assert.IsEmpty(driver.FindElements(FoundBreadcrumbsSelector));
-            Assert.AreEqual("Milk 1 L", driver.FindElement(BreadcrumbsSearchSelector).GetAttribute("value"), "Search textbox has invalid content");
+        public void FillProductNameThenSelectProduct() {
+            driver.FindElement(ProductsSearchSelector).SendKeys("Whisk");
+            WaitForElementsToLoad(FoundProductsSelector);
+            AssertElements(FoundProductsSelector, "Scotch Whisky", "Irish Whiskey");
+            driver.FindElements(FoundProductsSelector)[1].Click();
+            Assert.IsEmpty(driver.FindElements(FoundProductsSelector));
+            Assert.AreEqual("Irish Whiskey", driver.FindElement(ProductsSearchSelector).GetAttribute("value"), "Search textbox has invalid content");
         }
 
         private void AssertElements(By elementsSelector, params string[] expected) {
@@ -74,7 +77,7 @@ namespace KitchenSink.Tests.Tests {
             placesSearchbox.SendKeys("po");
             WaitForElementsToLoad(FoundPlacesSelector);
             placesSearchbox.SendKeys(Keys.Tab);
-            driver.FindElement(BreadcrumbsSearchSelector).Click();
+            driver.FindElement(ProductsSearchSelector).Click();
             _wait.Until(d => d.FindElements(FoundPlacesSelector).Count == 0);
             Assert.IsEmpty(driver.FindElements(FoundPlacesSelector));
         }

@@ -87,6 +87,7 @@
     <Compile Include="CookiePage.json.cs">
       <DependentUpon>CookiePage.json</DependentUpon>
     </Compile>
+    <Compile Include="Country.cs" />
     <Compile Include="DatepickerPage.json.cs">
       <DependentUpon>DatepickerPage.json</DependentUpon>
     </Compile>

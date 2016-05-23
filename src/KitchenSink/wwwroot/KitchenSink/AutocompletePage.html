@@ -2,16 +2,16 @@
     <template is="dom-bind">
         <h1>Autocomplete</h1>
 
-        <span title="breadcrumbs">
+        <span title="products">
             <p class="lead">
-                If you want to add more elements to this autocomplete field, go to <a href="/KitchenSink/Breadcrumb">Breadcrumbs page</a>. Enter <code>'*'</code> to show all available items
+                This autocomplete field uses DB as source. Enter <code>'*'</code> to show all available items
             </p>
 
-            <input type="text" value="{{model.BreadcrumbsSearch$::input}}" placeholder="Things to buy..." on-blur="clearBreadcrumbs" />
+            <input type="text" class="form-control" value="{{model.ProductsSearch$::input}}" placeholder="Whiskey? Whisky?" on-blur="clearProducts" />
             <ul class="kitchensink-autocomplete">
-                <template is="dom-repeat" items="{{model.FoundBreadcrumbs}}">
+                <template is="dom-repeat" items="{{model.FoundProducts}}">
                     <!-- Blur fires before click, but after mousedown -->
-                    <li on-mousedown="selectBreadcrumb" class="kitchensink-autocomplete__item" item="{{item}}">{{item.Name}}</li>
+                    <li on-mousedown="selectProduct" class="kitchensink-autocomplete__item" item="{{item}}">{{item.Name}}</li>
                 </template>
             </ul>
         </span>
@@ -20,12 +20,13 @@
             <p class="lead">
                 This autocomplete field uses pre-defined list of places (although it's usually better to use DB as source).
             </p>
-            <input type="text" value="{{model.PlacesSearch$::input}}" placeholder="Places to go..." on-blur="clearPlaces" />
+            <input type="text" class="form-control" value="{{model.PlacesSearch$::input}}" placeholder="Poland? Sweden?" on-blur="clearPlaces" />
             <ul class="kitchensink-autocomplete">
                 <template is="dom-repeat" items="{{model.FoundPlaces}}">
                     <li on-mousedown="selectPlace" class="kitchensink-autocomplete__item" item="{{item}}">{{item.Name}}</li>
                 </template>
             </ul>
+            <p id="kitchensink-autocomplete-capital">{{model.PlacesText}}</p>
         </span>
     </template>
     <script>
@@ -37,15 +38,15 @@
                 template.set("model.ClearPlaces$", ++template.model.ClearPlaces$);
             };
 
-            template.clearBreadcrumbs = function () {
-                template.set("model.ClearBreadcrumbs$", ++template.model.ClearBreadcrumbs$);
+            template.clearProducts = function () {
+                template.set("model.ClearProducts$", ++template.model.ClearProducts$);
             };
 
-            template.selectBreadcrumb = function (ev) {
+            template.selectProduct = function (ev) {
                 var item = ev.currentTarget.item;
-                var index = template.model.FoundBreadcrumbs.indexOf(item);
-                template.set("model.FoundBreadcrumbs." + index + ".Select$",
-                    ++template.model.FoundBreadcrumbs[index].Select$);
+                var index = template.model.FoundProducts.indexOf(item);
+                template.set("model.FoundProducts." + index + ".Select$",
+                    ++template.model.FoundProducts[index].Select$);
             };
 
             template.selectPlace = function (ev) {
