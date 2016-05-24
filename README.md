@@ -56,36 +56,13 @@ To:
 
 ## Testing
 
-### Adding tests for your project?
-
-Go to Tools → NuGet Packet Manager → Packet Manager Console.
-
-In the console, choose your test project from the "Default project" dropdown:
-
-Add packages:
-
-```
-Install-Package Selenium.WebDriver
-Install-Package Selenium.Support
-Install-Package NUnit -Version 2.6.4
-Install-Package NUnitTestAdapter
-Install-Package NUnit.Runners -Version 2.6.4
-```
-
-More info: http://training-course-material.com/training/Selenium_WebDriver_in_C-Sharp
-
 ### Prepare your environment
 
 Before running the steps, you need to:
 
 - Download and install Visual Studio 2015 to run the tests
 - Download and install Java, required by Selenium Standalone Server
-- Download [Selenium Standalone Server](http://docs.seleniumhq.org/download/)
-	- It controls browsers to perform the tests. 
-	- It is just a single file (`selenium-server-standalone-2.52.0.jar`). 
-	- Put this file wherever you like.
-- Download additional [drivers](http://docs.seleniumhq.org/download/) (those are all single files) and put them in the same directory as server
-- Firefox drivers are built-in to Selenium Standalone Server; no need to download these
+- Download Selenium Standalone Server and the drivers (Edge and Chrome) using the instructions at http://starcounter.io/guides/web/acceptance-testing-with-selenium/#install-selenium-standalone-server-and-browser-drivers
 
 ### Run the test (from Visual Studio)
 
