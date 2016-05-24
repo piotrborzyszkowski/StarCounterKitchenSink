@@ -88,6 +88,7 @@
     <Compile Include="Tests\CheckboxPageTest.cs" />
     <Compile Include="Tests\PasswordPageTest.cs" />
     <Compile Include="Tests\TextareaPageTest.cs" />
+    <Compile Include="Tests\AutocompletePageTest.cs" />
     <Compile Include="Tests\TextPageTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebDriverFactory.cs" />

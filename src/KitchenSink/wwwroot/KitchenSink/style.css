@@ -119,3 +119,17 @@
     -webkit-animation: kitchen-spin 2s infinite linear;
     animation: kitchen-spin 2s infinite linear;
 }
+
+.kitchensink-autocomplete {
+    display: block;
+    background-color: white;
+    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.37);
+    list-style-type: none;
+    padding: 0px;
+    margin: 2px 0px;
+    position: absolute;
+}
+
+.kitchensink-autocomplete__item {
+    padding: 0px;
+}
