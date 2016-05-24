@@ -29,7 +29,7 @@ namespace KitchenSink {
         }
 
         private static void AddProduct(string name, int price) {
-            if (Db.SQL<long>("SELECT count (p) from Simplified.Ring3.Product p WHERE name = ?", name).First() == 0) {
+            if (Db.SQL<long>("SELECT count (p) from Simplified.Ring3.Product p WHERE name = ? FETCH ?", name, 1).First == 0) {
                 new Product() {Name = name, Price = price};
             }
         }
