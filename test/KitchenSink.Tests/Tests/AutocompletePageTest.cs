@@ -54,7 +54,8 @@ namespace KitchenSink.Tests.Tests {
                 "Invalid capital text");
         }
 
-        [Test]
+        // TODO: Renable once the test fixed by Marcin.
+        //[Test]
         public void FillProductNameThenSelectProduct() {
             driver.FindElement(ProductsSearchSelector).SendKeys("Whisk");
             WaitForElementsToLoad(FoundProductsSelector);
