@@ -47,7 +47,7 @@ namespace KitchenSink.Tests.Tests {
             var countryToPick = "Poland";
             AssertElements(FoundPlacesSelector, countryToPick, "Portugal");
             driver.FindElements(FoundPlacesSelector).First(el => el.Text == countryToPick).Click();
-            Assert.IsEmpty(driver.FindElements(FoundPlacesSelector));
+            _wait.Until(d => driver.FindElements(FoundPlacesSelector).Count == 0);
             Assert.AreEqual(countryToPick, driver.FindElement(PlacesSearchSelector).GetAttribute("value"), "Search textbox has invalid content");
             Assert.AreEqual(countryToPick, driver.FindElement(PlacesSearchSelector).GetAttribute("value"), "Search textbox has invalid content");
             Assert.AreEqual("Capital of Poland is Warsaw", driver.FindElement(By.Id("kitchensink-autocomplete-capital")).Text,
@@ -62,14 +62,10 @@ namespace KitchenSink.Tests.Tests {
             AssertElements(FoundProductsSelector, "Scotch Whisky", whiskeyToPick);
             // we can't depend on order of elements - autocomplete uses no 'order by'
             driver.FindElements(FoundProductsSelector).First(el => el.Text == whiskeyToPick).Click();
-            Assert.IsEmpty(driver.FindElements(FoundProductsSelector));
+            _wait.Until(d => driver.FindElements(FoundProductsSelector).Count == 0);
             Assert.AreEqual(whiskeyToPick, driver.FindElement(ProductsSearchSelector).GetAttribute("value"), "Search textbox has invalid content");
             Assert.AreEqual("Irish Whiskey costs $2", driver.FindElement(By.Id("kitchensink-autocomplete-price")).Text,
                 "Invalid capital text");
-        }
-
-        private void AssertElements(By elementsSelector, params string[] expected) {
-            Assert.That(driver.FindElements(elementsSelector).Select(el => el.Text).ToArray(), Is.EquivalentTo(expected ).IgnoreCase);
         }
 
         [Test]
@@ -84,6 +80,10 @@ namespace KitchenSink.Tests.Tests {
             driver.FindElement(ProductsSearchSelector).Click();
             _wait.Until(d => d.FindElements(FoundPlacesSelector).Count == 0);
             Assert.IsEmpty(driver.FindElements(FoundPlacesSelector));
+        }
+
+        private void AssertElements(By elementsSelector, params string[] expected) {
+            Assert.That(driver.FindElements(elementsSelector).Select(el => el.Text).ToArray(), Is.EquivalentTo(expected ).IgnoreCase);
         }
 
         private void WaitForElementsToLoad(By selector) {
