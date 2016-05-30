@@ -40,8 +40,7 @@ namespace KitchenSink.Tests.Tests {
             Assert.AreEqual(6, driver.FindElements(FoundProductsSelector).Count);
         }
 
-        // TODO: Renable once the test fixed by Marcin.
-        //[Test]
+        [Test]
         public void FillCountryNameThenSelectCountry() {
             driver.FindElement(PlacesSearchSelector).SendKeys("po");
             WaitForElementsToLoad(FoundPlacesSelector);
@@ -55,8 +54,7 @@ namespace KitchenSink.Tests.Tests {
                 "Invalid capital text");
         }
 
-        // TODO: Renable once the test fixed by Marcin.
-        //[Test]
+        [Test]
         public void FillProductNameThenSelectProduct() {
             driver.FindElement(ProductsSearchSelector).SendKeys("Whisk");
             WaitForElementsToLoad(FoundProductsSelector);
