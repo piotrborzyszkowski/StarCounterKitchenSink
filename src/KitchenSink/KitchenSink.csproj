@@ -81,6 +81,9 @@
     <Compile Include="ChartPage.json.cs">
       <DependentUpon>ChartPage.json</DependentUpon>
     </Compile>
+    <Compile Include="ToggleButtonPage.json.cs">
+      <DependentUpon>ToggleButtonPage.json</DependentUpon>
+    </Compile>
     <Compile Include="CheckboxPage.json.cs">
       <DependentUpon>CheckboxPage.json</DependentUpon>
     </Compile>
@@ -178,6 +181,7 @@
     <Content Include="wwwroot\KitchenSink\ButtonPage.html" />
     <Content Include="wwwroot\KitchenSink\CallbackPage.html" />
     <Content Include="wwwroot\KitchenSink\ChartPage.html" />
+    <Content Include="wwwroot\KitchenSink\ToggleButtonPage.html" />
     <Content Include="wwwroot\KitchenSink\CheckboxPage.html" />
     <Content Include="wwwroot\KitchenSink\CookiePage.html" />
     <Content Include="wwwroot\KitchenSink\DatagridPage.html" />
@@ -347,6 +351,11 @@
   </ItemGroup>
   <ItemGroup>
     <TypedJSON Include="AutocompletePage.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
+  </ItemGroup>
+  <ItemGroup>
+    <TypedJSON Include="ToggleButtonPage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>

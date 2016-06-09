@@ -26,7 +26,8 @@
     "google-map": "GoogleWebComponents/google-map#~1.1.4",
     "juicy-select": "Juicy/juicy-select#master",
     "x-breadcrumb": "Juicy/x-breadcrumb#gh-pages",
-    "paper-dialog": "PolymerElements/paper-dialog#^1.0.4"
+    "paper-dialog": "PolymerElements/paper-dialog#^1.0.4",
+    "paper-toggle-button": "PolymerElements/paper-toggle-button#^1.1.2"
   },
   "resolutions": {
     "polymer": "^1.1.*",

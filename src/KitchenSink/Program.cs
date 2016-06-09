@@ -52,6 +52,9 @@ namespace KitchenSink {
             Handle.GET("/KitchenSink/partial/checkbox", () => new CheckboxPage());
             Handle.GET("/KitchenSink/checkbox", () => WrapPage<CheckboxPage>("/KitchenSink/partial/checkbox"));
 
+            Handle.GET("/KitchenSink/partial/togglebutton", () => new ToggleButtonPage());
+            Handle.GET("/KitchenSink/togglebutton", () => WrapPage<ToggleButtonPage>("/KitchenSink/partial/togglebutton"));
+
             Handle.GET("/KitchenSink/partial/datagrid", () => new DatagridPage());
             Handle.GET("/KitchenSink/datagrid", () => WrapPage<DatagridPage>("/KitchenSink/partial/datagrid"));
 

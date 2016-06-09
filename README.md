@@ -21,6 +21,7 @@ Shows how to model different UI patterns in JSON:
 - Boolean
    - Checkbox
    - Button
+   - Togglebutton
 
 - Array
    - Radio
