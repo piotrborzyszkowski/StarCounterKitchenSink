@@ -41,7 +41,7 @@ namespace KitchenSink.Tests.Tests {
         }
 
         [Test]
-        public void ClickingOnRedirectToDocsShouldChangeUrl() {
+        public void ClickingOnRedirectToExternalWebsiteShouldChangeUrl() {
             ClickButton("Redirect to Starcounter.io");
 
             // see https://github.com/PuppetJs/puppet-redirect/issues/3
