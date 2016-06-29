@@ -106,6 +106,9 @@ namespace KitchenSink {
             Handle.GET("/KitchenSink/partial/Redirect", () => new RedirectPage());
             Handle.GET("/KitchenSink/Redirect", () => WrapPage<RedirectPage>("/KitchenSink/partial/Redirect"));
 
+            Handle.GET("/KitchenSink/partial/Validation", () => new ValidationPage());
+            Handle.GET("/KitchenSink/Validation", () => WrapPage<ValidationPage>("/KitchenSink/partial/Validation"));
+
             Handle.GET("/KitchenSink/Redirect/{?}", (string param) => {
                 var master = WrapPage<RedirectPage>("/KitchenSink/partial/Redirect") as MasterPage;
                 var nav = master.CurrentPage as NavPage;
