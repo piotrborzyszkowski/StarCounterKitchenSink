@@ -133,3 +133,8 @@
 .kitchensink-autocomplete__item {
     padding: 0px;
 }
+
+.error-label {
+    color: red;
+    font-size: 8pt;
+}
