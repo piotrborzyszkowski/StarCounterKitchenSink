@@ -1,44 +1,38 @@
 using Starcounter;
 
 namespace KitchenSink {
-    partial class GeoPage : Json {
-
+    [Database]
+    public class SharedPosition {
+        public double Latitude;
+        public double Longitude;
     }
 
-    //TODO change me to a database class (then the below setters and getters can be removed)
-    public static class SharedPosition {
-        public static readonly double DefaultLatitude = 59.3319913;
-        public static readonly double DefaultLongitude = 18.0765409;
+    partial class GeoPage : Json {
+        //Stockholm coordinates
+        public readonly double DefaultLatitude = 59.3319913;
+        public readonly double DefaultLongitude = 18.0765409;
 
-        public static double Latitude = DefaultLatitude;
-        public static double Longitude = DefaultLongitude;
+        public void Init() {
+            Position.Data = Db.SQL<SharedPosition>("SELECT sp FROM SharedPosition sp").First;
+            if (Position.Data == null) {
+                Position.Data = new SharedPosition() {
+                    Latitude = DefaultLatitude,
+                    Longitude = DefaultLongitude
+                };
+                Transaction.Commit();
+            }
+        }
     }
 
     [GeoPage_json.Position]
-    partial class GeoPagePosition : Json {
-        public double Latitude {
-            set {
-                SharedPosition.Latitude = value;
-                PushChanges();
-            }
-            get {
-                return SharedPosition.Latitude;
-            }
-        }
-
-        public double Longitude {
-            set {
-                SharedPosition.Longitude = value;
-                PushChanges();
-            }
-            get {
-                return SharedPosition.Longitude;
-            }
-        }
-
+    partial class GeoPagePosition : Json, IBound<SharedPosition> {
         public void Handle(Input.Reset action) {
-            Latitude = SharedPosition.DefaultLatitude;
-            Longitude = SharedPosition.DefaultLongitude;
+            Latitude  = ((GeoPage)Parent).DefaultLatitude;
+            Longitude = ((GeoPage)Parent).DefaultLongitude;
+            PushChanges();
+        }
+
+        public void Handle(Input.EventPositionChange action) {
             PushChanges();
         }
 
@@ -51,6 +45,7 @@ namespace KitchenSink {
                     s.CalculatePatchAndPushOnWebSocket();
                 }
             });
+            Transaction.Commit();
         }
     }
 }
