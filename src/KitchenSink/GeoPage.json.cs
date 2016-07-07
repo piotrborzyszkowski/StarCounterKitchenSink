@@ -27,8 +27,9 @@ namespace KitchenSink {
     [GeoPage_json.Position]
     partial class GeoPagePosition : Json, IBound<SharedPosition> {
         public void Handle(Input.Reset action) {
-            Latitude  = ((GeoPage)Parent).DefaultLatitude;
-            Longitude = ((GeoPage)Parent).DefaultLongitude;
+            var geoPageParent = (GeoPage)Parent;
+            Latitude  = geoPageParent.DefaultLatitude;
+            Longitude = geoPageParent.DefaultLongitude;
             PushChanges();
         }
 
@@ -37,6 +38,7 @@ namespace KitchenSink {
         }
 
         protected void PushChanges() {
+            Transaction.Commit();
             Session.ForAll((s, sessionId) => {
                 var master = s.Data as MasterPage;
                 var navpage = master?.CurrentPage as NavPage;
@@ -45,7 +47,6 @@ namespace KitchenSink {
                     s.CalculatePatchAndPushOnWebSocket();
                 }
             });
-            Transaction.Commit();
         }
     }
 }
