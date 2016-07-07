@@ -12,10 +12,13 @@
         <button value="{{model.Position.Reset$::click}}" onclick="this.value++" class="btn btn-primary">Reset</button>
     </template>
     <script>
-        (function init(template) {
+        (function () {
+            var script = document._currentScript || document.currentScript;
+            var template = script.previousElementSibling;
+
             template.onGoogleMapMarkerDrag = function () {
                 template.set("model.Position.EventPositionChange$", template.model.Position.EventPositionChange$ + 1);
             };
-        })(document.currentScript.previousElementSibling);
+        })();
     </script>
 </template>
