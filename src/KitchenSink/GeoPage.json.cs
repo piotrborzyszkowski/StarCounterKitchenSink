@@ -1,48 +1,51 @@
 using Starcounter;
 
 namespace KitchenSink {
-    partial class GeoPage : Json {
-
+    [Database]
+    public class GeoCoordinates {
+        public double Latitude;
+        public double Longitude;
     }
 
-    //TODO change me to a database class (then the below setters and getters can be removed)
-    public static class SharedPosition {
-        public static readonly double DefaultLatitude = 59.3319913;
-        public static readonly double DefaultLongitude = 18.0765409;
+    partial class GeoPage : Json {
+        //Stockholm coordinates
+        public readonly double DefaultLatitude = 59.3319913;
+        public readonly double DefaultLongitude = 18.0765409;
 
-        public static double Latitude = DefaultLatitude;
-        public static double Longitude = DefaultLongitude;
+        public void Init() {
+            Position.Data = Db.SQL<GeoCoordinates>("SELECT gp FROM GeoCoordinates gp").First;
+            if (Position.Data == null) {
+                Db.Transact(() => {
+                    Position.Data = new GeoCoordinates() {
+                        Latitude = DefaultLatitude,
+                        Longitude = DefaultLongitude
+                    };
+                });
+            }
+        }
     }
 
     [GeoPage_json.Position]
-    partial class GeoPagePosition : Json {
-        public double Latitude {
-            set {
-                SharedPosition.Latitude = value;
-                PushChanges();
-            }
-            get {
-                return SharedPosition.Latitude;
-            }
-        }
-
-        public double Longitude {
-            set {
-                SharedPosition.Longitude = value;
-                PushChanges();
-            }
-            get {
-                return SharedPosition.Longitude;
-            }
-        }
-
+    partial class GeoPagePosition : Json, IBound<GeoCoordinates> {
         public void Handle(Input.Reset action) {
-            Latitude = SharedPosition.DefaultLatitude;
-            Longitude = SharedPosition.DefaultLongitude;
+            var geoPageParent = (GeoPage)Parent;
+            Latitude  = geoPageParent.DefaultLatitude;
+            Longitude = geoPageParent.DefaultLongitude;
+            PushChanges();
+        }
+
+        public void Handle(Input.Latitude action) {
+            Latitude = action.Value;
+            PushChanges();
+        }
+
+        public void Handle(Input.Longitude action) {
+            Longitude = action.Value;
             PushChanges();
         }
 
         protected void PushChanges() {
+            Transaction.Commit();
             Session.ForAll((s, sessionId) => {
                 var master = s.Data as MasterPage;
                 var navpage = master?.CurrentPage as NavPage;

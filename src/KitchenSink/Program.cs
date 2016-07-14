@@ -70,7 +70,13 @@ namespace KitchenSink {
             Handle.GET("/KitchenSink/partial/integer", () => new IntegerPage());
             Handle.GET("/KitchenSink/integer", () => WrapPage<IntegerPage>("/KitchenSink/partial/integer"));
 
-            Handle.GET("/KitchenSink/partial/Geo", () => new GeoPage());
+            Handle.GET("/KitchenSink/partial/Geo", () => {
+                return Db.Scope(() => {
+                    var geoPage = new GeoPage();
+                    geoPage.Init();
+                    return geoPage;
+                });
+            });
             Handle.GET("/KitchenSink/Geo", () => WrapPage<GeoPage>("/KitchenSink/partial/Geo"));
 
             Handle.GET("/KitchenSink/partial/markdown", () => new MarkdownPage());
