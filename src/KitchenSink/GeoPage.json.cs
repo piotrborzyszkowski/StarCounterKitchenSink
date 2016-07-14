@@ -2,7 +2,7 @@ using Starcounter;
 
 namespace KitchenSink {
     [Database]
-    public class SharedPosition {
+    public class GeoCoordinates {
         public double Latitude;
         public double Longitude;
     }
@@ -13,9 +13,9 @@ namespace KitchenSink {
         public readonly double DefaultLongitude = 18.0765409;
 
         public void Init() {
-            Position.Data = Db.SQL<SharedPosition>("SELECT sp FROM SharedPosition sp").First;
+            Position.Data = Db.SQL<GeoCoordinates>("SELECT gp FROM GeoCoordinates gp").First;
             if (Position.Data == null) {
-                Position.Data = new SharedPosition() {
+                Position.Data = new GeoCoordinates() {
                     Latitude = DefaultLatitude,
                     Longitude = DefaultLongitude
                 };
@@ -25,7 +25,7 @@ namespace KitchenSink {
     }
 
     [GeoPage_json.Position]
-    partial class GeoPagePosition : Json, IBound<SharedPosition> {
+    partial class GeoPagePosition : Json, IBound<GeoCoordinates> {
         public void Handle(Input.Reset action) {
             var geoPageParent = (GeoPage)Parent;
             Latitude  = geoPageParent.DefaultLatitude;
