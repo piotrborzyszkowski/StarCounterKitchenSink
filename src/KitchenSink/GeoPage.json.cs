@@ -15,11 +15,12 @@ namespace KitchenSink {
         public void Init() {
             Position.Data = Db.SQL<GeoCoordinates>("SELECT gp FROM GeoCoordinates gp").First;
             if (Position.Data == null) {
-                Position.Data = new GeoCoordinates() {
-                    Latitude = DefaultLatitude,
-                    Longitude = DefaultLongitude
-                };
-                Transaction.Commit();
+                Db.Transact(() => {
+                    Position.Data = new GeoCoordinates() {
+                        Latitude = DefaultLatitude,
+                        Longitude = DefaultLongitude
+                    };
+                });
             }
         }
     }
