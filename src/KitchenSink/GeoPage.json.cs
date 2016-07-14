@@ -34,7 +34,13 @@ namespace KitchenSink {
             PushChanges();
         }
 
-        public void Handle(Input.EventPositionChange action) {
+        public void Handle(Input.Latitude action) {
+            Latitude = action.Value;
+            PushChanges();
+        }
+
+        public void Handle(Input.Longitude action) {
+            Longitude = action.Value;
             PushChanges();
         }
 

@@ -7,18 +7,8 @@
         </p>
 
         <google-map class="kitchensink-google-map" latitude="[[model.Position.Latitude$]]" longitude="[[model.Position.Longitude$]]" fit-to-markers zoom="12">
-            <google-map-marker drag-events="true" on-google-map-marker-dragend="onGoogleMapMarkerDrag" id="kitchensink-geopage-marker" draggable="true" title="Hi Stockholm!" latitude="{{model.Position.Latitude$}}" longitude="{{model.Position.Longitude$}}"></google-map-marker>
+            <google-map-marker id="kitchensink-geopage-marker" draggable="true" title="Hi Stockholm!" latitude="{{model.Position.Latitude$}}" longitude="{{model.Position.Longitude$}}"></google-map-marker>
         </google-map>
         <button value="{{model.Position.Reset$::click}}" onclick="this.value++" class="btn btn-primary">Reset</button>
     </template>
-    <script>
-        (function () {
-            var script = document._currentScript || document.currentScript;
-            var template = script.previousElementSibling;
-
-            template.onGoogleMapMarkerDrag = function () {
-                template.set("model.Position.EventPositionChange$", template.model.Position.EventPositionChange$ + 1);
-            };
-        })();
-    </script>
 </template>
