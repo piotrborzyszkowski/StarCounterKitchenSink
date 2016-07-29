@@ -45,10 +45,11 @@ namespace KitchenSink.Tests.Tests {
             ClickButton("Redirect to Starcounter.io");
 
             // see https://github.com/PuppetJs/puppet-redirect/issues/3
-            if (browser == "firefox") {
+            // this is no longer needed, since puppet-client shows a "reconnection" message instead of alert
+            //if (browser == "firefox") {
                 // depending on wheter or not Launcher will be present, the dialog will differ
-                _wait.Until(d => WaitForNoConnectionAndDismiss(d) || d.FindElements(By.XPath("//h4[text()='Connection error']")).Count != 0);
-            }
+                // _wait.Until(d => WaitForNoConnectionAndDismiss(d) || d.FindElements(By.XPath("//h4[text()='Connection error']")).Count != 0);
+            //}
 
             // redirecting can take some time
             _wait.Until(ExpectedConditions.UrlContains("http://starcounter.io/"));
