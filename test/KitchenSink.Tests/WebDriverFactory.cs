@@ -14,25 +14,33 @@ namespace KitchenSink.Tests {
             switch (browser) {
                 case "chrome":
                     capabilities = DesiredCapabilities.Chrome();
-                    driver = new RemoteWebDriver(RemoteWebDriverUri, capabilities);
+                    driver = new RemoteWebDriver(RemoteWebDriverUri, capabilities, WebDriverTimeout);
                     break;
                 case "internet explorer":
                     InternetExplorerOptions options = new InternetExplorerOptions();
                     options.IgnoreZoomLevel = true;
                     capabilities = (DesiredCapabilities)options.ToCapabilities();
-                    driver = new RemoteWebDriver(RemoteWebDriverUri, capabilities, TimeSpan.FromSeconds(10));
+                    driver = new RemoteWebDriver(RemoteWebDriverUri, capabilities, WebDriverTimeout);
                     break;
                 case "edge":
                     capabilities = DesiredCapabilities.Edge();
-                    driver = new RemoteWebDriver(RemoteWebDriverUri, capabilities);
+                    driver = new RemoteWebDriver(RemoteWebDriverUri, capabilities, WebDriverTimeout);
                     break;
                 default:
                     capabilities = DesiredCapabilities.Firefox();
-                    driver = new RemoteWebDriver(RemoteWebDriverUri, capabilities);
+                    driver = new RemoteWebDriver(RemoteWebDriverUri, capabilities, WebDriverTimeout);
                     break;
             }
 
             return driver;
+        }
+
+        private static TimeSpan WebDriverTimeout
+        {
+            get
+            {
+                return TimeSpan.FromSeconds(30);
+            }
         }
     }
 }
