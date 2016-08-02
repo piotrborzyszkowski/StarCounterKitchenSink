@@ -12,7 +12,6 @@ namespace KitchenSink.Tests.Tests {
     [TestFixture("edge")]
     public class AutocompletePageTest : BaseTest
     {
-        private WebDriverWait _wait;
         private static readonly By PlacesSearchSelector = By.CssSelector("[placeholder='Poland? Sweden?']");
         private static readonly By ProductsSearchSelector = By.CssSelector("[placeholder='Whiskey? Whisky?']");
         private static readonly By FoundPlacesSelector = By.CssSelector("[title='places'] ul.kitchensink-autocomplete li");
@@ -23,10 +22,9 @@ namespace KitchenSink.Tests.Tests {
 
         [SetUp]
         public void Setup() {
-            _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             driver.Navigate().GoToUrl(baseURL + "/Autocomplete");
-            _wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.CssSelector("html body puppet-client")));
-            _wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(PlacesSearchSelector));
+            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.CssSelector("html body puppet-client")));
+            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(PlacesSearchSelector));
         }
 
         [Test]
@@ -47,7 +45,7 @@ namespace KitchenSink.Tests.Tests {
             var countryToPick = "Poland";
             AssertElements(FoundPlacesSelector, countryToPick, "Portugal");
             driver.FindElements(FoundPlacesSelector).First(el => el.Text == countryToPick).Click();
-            _wait.Until(d => driver.FindElements(FoundPlacesSelector).Count == 0);
+            this.WaitUntil(d => driver.FindElements(FoundPlacesSelector).Count == 0);
             Assert.AreEqual(countryToPick, driver.FindElement(PlacesSearchSelector).GetAttribute("value"), "Search textbox has invalid content");
             Assert.AreEqual(countryToPick, driver.FindElement(PlacesSearchSelector).GetAttribute("value"), "Search textbox has invalid content");
             Assert.AreEqual("Capital of Poland is Warsaw", driver.FindElement(By.Id("kitchensink-autocomplete-capital")).Text,
@@ -62,7 +60,7 @@ namespace KitchenSink.Tests.Tests {
             AssertElements(FoundProductsSelector, "Scotch Whisky", whiskeyToPick);
             // we can't depend on order of elements - autocomplete uses no 'order by'
             driver.FindElements(FoundProductsSelector).First(el => el.Text == whiskeyToPick).Click();
-            _wait.Until(d => driver.FindElements(FoundProductsSelector).Count == 0);
+            this.WaitUntil(d => driver.FindElements(FoundProductsSelector).Count == 0);
             Assert.AreEqual(whiskeyToPick, driver.FindElement(ProductsSearchSelector).GetAttribute("value"), "Search textbox has invalid content");
             Assert.AreEqual("Irish Whiskey costs $2", driver.FindElement(By.Id("kitchensink-autocomplete-price")).Text,
                 "Invalid capital text");
@@ -78,7 +76,7 @@ namespace KitchenSink.Tests.Tests {
             WaitForElementsToLoad(FoundPlacesSelector);
             placesSearchbox.SendKeys(Keys.Tab);
             driver.FindElement(ProductsSearchSelector).Click();
-            _wait.Until(d => d.FindElements(FoundPlacesSelector).Count == 0);
+            this.WaitUntil(d => d.FindElements(FoundPlacesSelector).Count == 0);
             Assert.IsEmpty(driver.FindElements(FoundPlacesSelector));
         }
 
@@ -87,7 +85,7 @@ namespace KitchenSink.Tests.Tests {
         }
 
         private void WaitForElementsToLoad(By selector) {
-            _wait.Until(d => d.FindElements(selector).Count != 0);
+            this.WaitUntil(d => d.FindElements(selector).Count != 0);
         }
     }
 }

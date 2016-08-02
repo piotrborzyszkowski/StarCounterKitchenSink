@@ -11,16 +11,13 @@ namespace KitchenSink.Tests.Tests {
     [TestFixture("edge")]
     public class RedirectPageTest : BaseTest
     {
-        private WebDriverWait _wait;
-
         public RedirectPageTest(string browser) : base(browser) {
         }
 
         [SetUp]
         public void Setup() {
-            _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             driver.Navigate().GoToUrl(baseURL + "/Redirect");
-            _wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.XPath("//button[text()='Fruit']")));
+            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.XPath("//button[text()='Fruit']")));
         }
 
         [Test]
@@ -28,7 +25,7 @@ namespace KitchenSink.Tests.Tests {
             ClickButton("Fruit");
 
             // on edge juicy sometimes messes up the dom tree, so you can't be sure about its relative position to button
-            _wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//div[text()=\"You've got some tasty apple\"]")));
+            this.WaitUntil(ExpectedConditions.ElementIsVisible(By.XPath("//div[text()=\"You've got some tasty apple\"]")));
             Assert.That(driver.Url, Is.EqualTo($"{baseURL}/Redirect/apple"));
         }
 
@@ -37,7 +34,7 @@ namespace KitchenSink.Tests.Tests {
             ClickButton("Morph to another partial");
 
             // redirecting can take some time
-            _wait.Until(ExpectedConditions.UrlContains(baseURL));
+            this.WaitUntil(ExpectedConditions.UrlContains(baseURL));
         }
 
         [Test]
@@ -52,7 +49,7 @@ namespace KitchenSink.Tests.Tests {
             //}
 
             // redirecting can take some time
-            _wait.Until(ExpectedConditions.UrlContains("http://starcounter.io/"));
+            this.WaitUntil(ExpectedConditions.UrlContains("http://starcounter.io/"));
         }
 
         private bool WaitForNoConnectionAndDismiss(IWebDriver d) {

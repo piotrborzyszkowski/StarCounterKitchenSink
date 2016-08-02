@@ -21,11 +21,10 @@ namespace KitchenSink.Test
         public void TextareaPage_PageLoads()
         {
             driver.Navigate().GoToUrl(baseURL);
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.LinkText("Textarea")));
+            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.LinkText("Textarea")));
 
             driver.FindElement(By.LinkText("Textarea")).ClickUsingMouse(driver);
-            wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.CssSelector("textarea.form-control")));
+            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.CssSelector("textarea.form-control")));
 
             var element = driver.FindElement(By.XPath("(//textarea[@class='form-control'])[1]"));
             Assert.AreEqual(element.Text, "");
@@ -39,8 +38,7 @@ namespace KitchenSink.Test
         public void TextareaPage_WriteToTextArea()
         {
             driver.Navigate().GoToUrl(baseURL + "/Textarea");
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.CssSelector("textarea.form-control")));
+            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.CssSelector("textarea.form-control")));
 
             driver.FindElement(By.CssSelector("textarea.form-control")).Clear();
 
@@ -59,8 +57,7 @@ namespace KitchenSink.Test
         public void TextareaPage_CounterPropagationWhileTyping()
         {
             driver.Navigate().GoToUrl(baseURL + "/Textarea");
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.CssSelector("div.kitchensink-layout__column-right > starcounter-include > textarea[rows='3']")));
+            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.CssSelector("div.kitchensink-layout__column-right > starcounter-include > textarea[rows='3']")));
 
             var label = driver.FindElement(By.XPath("(//label[@class='control-label'])[1]"));
             var originalText = label.Text;
@@ -69,7 +66,7 @@ namespace KitchenSink.Test
             Assert.AreEqual("Length of your bio: 0 chars", originalText);
 
             driver.FindElement(By.XPath("(//textarea)[1]")).SendKeys("U");
-            wait.Until(x => !label.Text.Equals(originalText));
+            this.WaitUntil(x => !label.Text.Equals(originalText));
 
             string actualString = driver.FindElement(By.XPath("(//label[@class='control-label'])[1]")).Text;
             Assert.AreEqual("Length of your bio: 1 chars", actualString);

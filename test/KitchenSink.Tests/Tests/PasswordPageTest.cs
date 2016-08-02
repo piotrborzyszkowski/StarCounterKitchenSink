@@ -20,10 +20,9 @@ namespace KitchenSink.Test {
         [Test]
         public void PasswordPage_PageLoads() {
             driver.Navigate().GoToUrl(baseURL);
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.LinkText("Password")));
+            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.LinkText("Password")));
             driver.FindElement(By.LinkText("Password")).ClickUsingMouse(driver);
-            wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.CssSelector("div.kitchensink-layout__column-right > starcounter-include > input[type='password']")));
+            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.CssSelector("div.kitchensink-layout__column-right > starcounter-include > input[type='password']")));
             var element = driver.FindElement(By.XPath("(//input)[1]"));
             Assert.AreEqual(element.GetAttribute("type"), "password");
         }
@@ -32,8 +31,7 @@ namespace KitchenSink.Test {
         public void PasswordPage_PasswordTooShort()
         {
             driver.Navigate().GoToUrl(baseURL + "/Password");
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.CssSelector("div.kitchensink-layout__column-right > starcounter-include > input[type='password']")));
+            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.CssSelector("div.kitchensink-layout__column-right > starcounter-include > input[type='password']")));
             var element = driver.FindElement(By.XPath("(//input)[1]"));
             Assert.AreEqual(element.GetAttribute("type"), "password");
             driver.FindElement(By.XPath("(//input)[1]")).Clear();
@@ -45,13 +43,12 @@ namespace KitchenSink.Test {
         public void PasswordPage_PasswordWithProperLength()
         {
             driver.Navigate().GoToUrl(baseURL + "/Password");
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.CssSelector("div.kitchensink-layout__column-right > starcounter-include > input[type='password']")));
+            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.CssSelector("div.kitchensink-layout__column-right > starcounter-include > input[type='password']")));
             var element = driver.FindElement(By.XPath("(//input)[1]"));
             Assert.AreEqual(element.GetAttribute("type"), "password");
             driver.FindElement(By.XPath("(//input)[1]")).Clear();
             driver.FindElement(By.XPath("(//input)[1]")).SendKeys("PerfectPass");
-            wait.Until(x => !passwordTooShort.Equals(driver.FindElement(By.XPath("(//label[@class='control-label'])[1]")).Text));
+            this.WaitUntil(x => !passwordTooShort.Equals(driver.FindElement(By.XPath("(//label[@class='control-label'])[1]")).Text));
             Assert.AreEqual(passwordWithProperLength, driver.FindElement(By.XPath("(//label[@class='control-label'])[1]")).Text);
         }
 
@@ -59,16 +56,15 @@ namespace KitchenSink.Test {
         public void PasswordPage_ChangingPasswordToGoodThenToShort()
         {
             driver.Navigate().GoToUrl(baseURL + "/Password");
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.CssSelector("div.kitchensink-layout__column-right > starcounter-include > input[type='password']")));
+            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.CssSelector("div.kitchensink-layout__column-right > starcounter-include > input[type='password']")));
             var element = driver.FindElement(By.XPath("(//input)[1]"));
             Assert.AreEqual(element.GetAttribute("type"), "password");
             driver.FindElement(By.XPath("(//input)[1]")).Clear();
             driver.FindElement(By.XPath("(//input)[1]")).SendKeys("PerfectPass");
-            wait.Until(x => !passwordTooShort.Equals(driver.FindElement(By.XPath("(//label[@class='control-label'])[1]")).Text));
+            this.WaitUntil(x => !passwordTooShort.Equals(driver.FindElement(By.XPath("(//label[@class='control-label'])[1]")).Text));
             driver.FindElement(By.XPath("(//input)[1]")).Clear();
             driver.FindElement(By.XPath("(//input)[1]")).SendKeys("Bad");
-            wait.Until(x => !passwordWithProperLength.Equals(driver.FindElement(By.XPath("(//label[@class='control-label'])[1]")).Text));
+            this.WaitUntil(x => !passwordWithProperLength.Equals(driver.FindElement(By.XPath("(//label[@class='control-label'])[1]")).Text));
             Assert.AreEqual(passwordTooShort, driver.FindElement(By.XPath("(//label[@class='control-label'])[1]")).Text);
         }
     }

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Text;
+using System.IO;
+using Microsoft.Win32;
 using NUnit.Framework;
 using OpenQA.Selenium;
-using KitchenSink.Test;
-using Microsoft.Win32;
-using System.IO;
+using OpenQA.Selenium.Support.UI;
 
 namespace KitchenSink.Tests
 {
@@ -13,12 +13,14 @@ namespace KitchenSink.Tests
         public BaseTest(string browser)
         {
             this.browser = browser;
+            this.wait = this.GetWebDriverWait();
         }
 
         protected IWebDriver driver;
-        private StringBuilder verificationErrors;
+        protected StringBuilder verificationErrors;
         protected string baseURL;
         protected string browser;
+        protected WebDriverWait wait;
 
         [SetUp]
         public void SetupTest()
@@ -47,7 +49,7 @@ namespace KitchenSink.Tests
             Assert.AreEqual("", verificationErrors.ToString());
         }
 
-        private bool IsEdgeAvailable()
+        protected bool IsEdgeAvailable()
         {
             var browserKeys = Registry.ClassesRoot.OpenSubKey(@"Local Settings\Software\Microsoft\Windows\CurrentVersion\AppModel\PackageRepository\Packages");
             if (browserKeys == null)
@@ -75,6 +77,16 @@ namespace KitchenSink.Tests
                 }
             }
             return false;
+        }
+
+        protected WebDriverWait GetWebDriverWait()
+        {
+            return new WebDriverWait(driver, TimeSpan.FromSeconds(30));
+        }
+
+        protected TResult WaitUntil<TResult>(Func<IWebDriver, TResult> condition)
+        {
+            return this.wait.Until(condition);
         }
     }
 }
