@@ -13,7 +13,6 @@ namespace KitchenSink.Tests
         public BaseTest(string browser)
         {
             this.browser = browser;
-            this.wait = this.GetWebDriverWait();
         }
 
         protected IWebDriver driver;
@@ -32,7 +31,9 @@ namespace KitchenSink.Tests
             {
                 Assert.Ignore("You're not using Windows 10, so Microsoft Edge is unavailable. The test is being omitted.");
             }
-            driver = WebDriverFactory.Create(this.browser);
+
+            this.driver = WebDriverFactory.Create(this.browser);
+            this.wait = this.GetWebDriverWait();
         }
 
         [TearDown]
