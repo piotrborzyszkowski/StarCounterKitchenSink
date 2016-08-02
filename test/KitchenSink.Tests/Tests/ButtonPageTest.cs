@@ -133,7 +133,7 @@ namespace KitchenSink.Test {
             Assert.AreEqual(button.GetAttribute("disabled"), "true");
 
             Click(button);
-            Thread.Sleep(1000);
+            //Thread.Sleep(1000);
             Assert.AreEqual("You have 1 imaginary carrots", label.Text);
             Assert.AreEqual(button.GetAttribute("disabled"), "true");
         }
