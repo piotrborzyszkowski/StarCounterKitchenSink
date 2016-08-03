@@ -47,7 +47,8 @@ namespace KitchenSink.Tests
             {
                 // Ignore errors if unable to close the browser
             }
-            Assert.AreEqual("", verificationErrors.ToString());
+
+            Assert.AreEqual(string.Empty, verificationErrors.ToString());
         }
 
         protected bool IsEdgeAvailable()

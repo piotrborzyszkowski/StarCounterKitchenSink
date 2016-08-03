@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Linq;
+using System.Collections.Generic;
+using System.Threading;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using KitchenSink.Tests;
-using System.Threading;
 
 namespace KitchenSink.Test {
 
@@ -120,6 +122,7 @@ namespace KitchenSink.Test {
         public void ButtonPageTest_DisabledButton() {
             driver.Navigate().GoToUrl(baseURL + "/Button");
             this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(ButtonDisabled));
+            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(ButtonDisabledReaction));
             var button = driver.FindElement(ButtonDisabled);
             var label = driver.FindElement(ButtonDisabledReaction);
 
@@ -133,7 +136,7 @@ namespace KitchenSink.Test {
             Assert.AreEqual(button.GetAttribute("disabled"), "true");
 
             Click(button);
-            //Thread.Sleep(1000);
+            Thread.Sleep(1000);
             Assert.AreEqual("You have 1 imaginary carrots", label.Text);
             Assert.AreEqual(button.GetAttribute("disabled"), "true");
         }
