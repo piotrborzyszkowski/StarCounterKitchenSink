@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
+using OpenQA.Selenium.Remote;
 
 namespace KitchenSink.Tests {
     public static class SeleniumExtensions {
@@ -8,7 +9,13 @@ namespace KitchenSink.Tests {
         /// Use this method instead
         /// </summary>
         public static void ClickUsingMouse(this IWebElement element, IWebDriver driver) {
-            new Actions(driver).Click(element).Build().Perform();
+            ICapabilities capabilities = ((RemoteWebDriver)driver).Capabilities;
+            if (capabilities.BrowserName == "Firefox") {
+                element.Click();
+            }
+            else {
+                new Actions(driver).Click(element).Build().Perform(); //does not work with Firefox 48, Selenium 3.0.0-beta2, GeckoDriver.exe 0.10.0
+            }
         }
     }
 }

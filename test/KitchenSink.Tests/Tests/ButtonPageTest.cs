@@ -120,6 +120,10 @@ namespace KitchenSink.Test {
 
         [Test]
         public void ButtonPageTest_DisabledButton() {
+            if (browser == "firefox") {
+                Assert.Ignore("Click on disabled button is not supported in Selenium 3.0.0-beta2 in Firefox");
+            }
+
             driver.Navigate().GoToUrl(baseURL + "/Button");
             this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(ButtonDisabled));
             this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(ButtonDisabledReaction));

@@ -40,6 +40,9 @@ namespace KitchenSink.Tests.Tests {
 
         [Test]
         public void FillCountryNameThenSelectCountry() {
+            if (browser == "firefox") {
+                Assert.Ignore("GetAttribute(\"value\") is not supported in Selenium 3.0.0-beta2 in Firefox");
+            }
             driver.FindElement(PlacesSearchSelector).SendKeys("po");
             WaitForElementsToLoad(FoundPlacesSelector);
             var countryToPick = "Poland";
@@ -47,13 +50,15 @@ namespace KitchenSink.Tests.Tests {
             driver.FindElements(FoundPlacesSelector).First(el => el.Text == countryToPick).Click();
             this.WaitUntil(d => driver.FindElements(FoundPlacesSelector).Count == 0);
             Assert.AreEqual(countryToPick, driver.FindElement(PlacesSearchSelector).GetAttribute("value"), "Search textbox has invalid content");
-            Assert.AreEqual(countryToPick, driver.FindElement(PlacesSearchSelector).GetAttribute("value"), "Search textbox has invalid content");
             Assert.AreEqual("Capital of Poland is Warsaw", driver.FindElement(By.Id("kitchensink-autocomplete-capital")).Text,
                 "Invalid capital text");
         }
 
         [Test]
         public void FillProductNameThenSelectProduct() {
+            if (browser == "firefox") {
+                Assert.Ignore("GetAttribute(\"value\") is not supported in Selenium 3.0.0-beta2 in Firefox");
+            }
             driver.FindElement(ProductsSearchSelector).SendKeys("Whisk");
             WaitForElementsToLoad(FoundProductsSelector);
             var whiskeyToPick = "Irish Whiskey";

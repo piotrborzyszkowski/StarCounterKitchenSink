@@ -35,8 +35,11 @@ namespace KitchenSink.Test
         /// TextareaPage_WriteToTextArea tests if it possible to write/read to/from the textarea component
         /// </summary>
         [Test]
-        public void TextareaPage_WriteToTextArea()
-        {
+        public void TextareaPage_WriteToTextArea() {
+            if (browser == "firefox") {
+                Assert.Ignore("GetAttribute(\"value\") is not supported in Selenium 3.0.0-beta2 in Firefox");
+            }
+
             driver.Navigate().GoToUrl(baseURL + "/Textarea");
             this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.CssSelector("textarea.form-control")));
 
