@@ -31,6 +31,10 @@ Shows how to model different UI patterns in JSON:
    - Table
    - Chart
 
+## Requirements
+
+Requires Starcounter version 2.2.1.2903
+
 ## Video
 
 Intended for 13 October 2015 webinar: http://starcounter.io/video-expressing-your-ui-in-json-plain-data-binding-advanced-data-binding/
@@ -83,6 +87,12 @@ Before running the steps, you need to:
 4. Start the KitchenSink app (`run.bat`)
 5. Start the KitchenSink.Test runner (`test.bat`)
 6. Don't touch your keyboard or mouse while the tests are being executed :)
+
+### How to release a package
+
+1. Install [Node.js](https://nodejs.org/).
+2. Run `npm install` to install all dependencies.
+3. Run `grunt package` to generate a packaged version. You can use `grunt package:minor`, `grunt package:major`, `grunt package --setversion=1.0.0-develop.0`, etc. as [grunt-bump](https://github.com/vojtajina/grunt-bump)
 
 ## License
 
