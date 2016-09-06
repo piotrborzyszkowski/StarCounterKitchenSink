@@ -36,7 +36,7 @@ namespace KitchenSink.Test {
 
         public By AddCarrotsReaction {
             get {
-                return By.XPath("(//div[@class='kitchensink-layout__column-right']/starcounter-include/pre)[1]");
+                return By.XPath("(//div[@class='kitchensink-layout__column-right']/starcounter-include//pre)[1]");
             }
         }
 
