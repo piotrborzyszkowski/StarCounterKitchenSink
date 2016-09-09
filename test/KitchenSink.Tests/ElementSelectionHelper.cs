@@ -10,31 +10,31 @@ namespace KitchenSink.Tests {
 
         public static By StarcounterIncludeWithDiv {
             get {
-                return By.CssSelector("div.kitchensink-layout__column-right > starcounter-include > div");
+                return By.CssSelector("div.kitchensink-layout__column-right > starcounter-include > juicy-composition > div");
             }
         }
 
         public static By StarcounterIncludeWithCheckbox {
             get {
-                return By.CssSelector("div.kitchensink-layout__column-right > starcounter-include > input[type='checkbox']");
+                return By.CssSelector("div.kitchensink-layout__column-right > starcounter-include > juicy-composition > input[type='checkbox']");
             }
         }
 
         public static By StarcounterIncludeWithPassword {
             get {
-                return By.CssSelector("div.kitchensink-layout__column-right > starcounter-include > input[type='password']");
+                return By.CssSelector("div.kitchensink-layout__column-right > starcounter-include > juicy-composition > input[type='password']");
             }
         }
 
         public static By StarcounterIncludeWithInputText {
             get {
-                return By.CssSelector("div.kitchensink-layout__column-right > starcounter-include > input[type='text']");
+                return By.CssSelector("div.kitchensink-layout__column-right > starcounter-include > juicy-composition > input[type='text']");
             }
         }
 
         public static By StarcounterIncludeWithTextarea3Rows {
             get {
-                return By.CssSelector("div.kitchensink-layout__column-right > starcounter-include > textarea[rows='3']");
+                return By.CssSelector("div.kitchensink-layout__column-right > starcounter-include > juicy-composition > textarea[rows='3']");
             }
         }
 
@@ -125,31 +125,31 @@ namespace KitchenSink.Tests {
 
         public static By AddCarrotsReaction {
             get {
-                return By.XPath("(//div[@class='kitchensink-layout__column-right']/starcounter-include/pre)[1]");
+                return By.XPath("(//div[@class='kitchensink-layout__column-right']/starcounter-include//pre)[1]");
             }
         }
 
         public static By ButtonSwitch {
             get {
-                return By.XPath("(//div[@class='kitchensink-layout__column-right']/starcounter-include/button)[3]");
+                return By.XPath("(//div[@class='kitchensink-layout__column-right']/starcounter-include//button)[3]");
             }
         }
 
         public static By ButtonSwitchReaction {
             get {
-                return By.XPath("(//div[@class='kitchensink-layout__column-right']/starcounter-include/button)[3]/following-sibling::span[1]");
+                return By.XPath("(//div[@class='kitchensink-layout__column-right']/starcounter-include//button)[3]/following-sibling::span[1]");
             }
         }
 
         public static By ButtonDisabled {
             get {
-                return By.XPath("(//div[@class='kitchensink-layout__column-right']/starcounter-include/button)[4]");
+                return By.XPath("(//div[@class='kitchensink-layout__column-right']/starcounter-include//button)[4]");
             }
         }
 
         public static By ButtonDisabledReaction {
             get {
-                return By.XPath("(//div[@class='kitchensink-layout__column-right']/starcounter-include/button)[4]/following-sibling::span[1]");
+                return By.XPath("(//div[@class='kitchensink-layout__column-right']/starcounter-include//button)[4]/following-sibling::span[1]");
             }
         }
     }
