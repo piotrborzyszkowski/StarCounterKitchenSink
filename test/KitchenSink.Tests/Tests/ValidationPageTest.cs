@@ -17,19 +17,19 @@ namespace KitchenSink.Test {
         [Test]
         public void ValidationPage_PageLoads() {
             driver.Navigate().GoToUrl(baseURL + "/Validation");
-            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.CssSelector("html body puppet-client")));
+            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(ByHelper.PuppetClient));
         }
 
         [Test]
         public void ValidationPage_InvalidRequireInput() {
             driver.Navigate().GoToUrl(baseURL + "/Validation");
-            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.CssSelector("div.kitchensink-layout__column-right > starcounter-include > input[type='text']")));
-            var label = driver.FindElement(By.XPath("(//label[@class='error-label'])[1]"));
+            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(ByHelper.StarcounterIncludeWithInputText));
+            var label = driver.FindElement(ByHelper.AnyErrorLabel);
             var originalText = label.Text;
             Assert.AreEqual(string.Empty, originalText);
-            driver.FindElement(By.XPath("//button")).ClickUsingMouse(driver);
+            driver.FindElement(ByHelper.AnyButton).ClickUsingMouse(driver);
             this.WaitUntil(x => !label.Text.Equals(originalText));
-            Assert.AreEqual("'Name' should not be empty.", driver.FindElement(By.XPath("(//label[@class='error-label'])[1]")).Text);
+            Assert.AreEqual("'Name' should not be empty.", driver.FindElement(ByHelper.AnyErrorLabel).Text);
         }
 
         [Test]
@@ -38,15 +38,15 @@ namespace KitchenSink.Test {
             WebDriverWait wait = this.GetWebDriverWait();
 
             driver.Navigate().GoToUrl(baseURL + "/Validation");
-            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.CssSelector("div.kitchensink-layout__column-right > starcounter-include > input[type='text']")));
-            var label = driver.FindElement(By.XPath("(//label[@class='error-label'])[1]"));
+            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(ByHelper.StarcounterIncludeWithInputText));
+            var label = driver.FindElement(ByHelper.AnyErrorLabel);
             var originalText = label.Text;
             Assert.AreEqual(string.Empty, originalText);
-            driver.FindElement(By.XPath("(//input)[1]")).Clear();
-            driver.FindElement(By.XPath("(//input)[1]")).SendKeys("Marcin");
-            this.WaitUntil(d => d.FindElement(By.XPath("(//input)[1]")).GetAttribute("value") != string.Empty);
-            driver.FindElement(By.XPath("//button")).ClickUsingMouse(driver);
-            Assert.AreEqual(string.Empty, driver.FindElement(By.XPath("(//label[@class='error-label'])[1]")).Text);
+            driver.FindElement(ByHelper.AnyInput).Clear();
+            driver.FindElement(ByHelper.AnyInput).SendKeys("Marcin");
+            this.WaitUntil(d => d.FindElement(ByHelper.AnyInput).GetAttribute("value") != string.Empty);
+            driver.FindElement(ByHelper.AnyButton).ClickUsingMouse(driver);
+            Assert.AreEqual(string.Empty, driver.FindElement(ByHelper.AnyErrorLabel).Text);
         }
     }
 }

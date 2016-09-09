@@ -16,84 +16,36 @@ namespace KitchenSink.Test {
 
         public ButtonPageTest(string browser) : base(browser) { }
 
-        public By ButtonAddCarrotsInlineScript {
-            get {
-                return By.XPath("(//p[@class='kitchensink-add-carrots']/button)[1]");
-            }
-        }
-
-        public By ButtonAddCarrotsFunction {
-            get {
-                return By.XPath("(//p[@class='kitchensink-add-carrots']/button)[2]");
-            }
-        }
-
-        public By SpanAddCarrotsFunction {
-            get {
-                return By.XPath("(//p[@class='kitchensink-add-carrots']/span)[2]");
-            }
-        }
-
-        public By AddCarrotsReaction {
-            get {
-                return By.XPath("(//div[@class='kitchensink-layout__column-right']/starcounter-include//pre)[1]");
-            }
-        }
-
-        public By ButtonSwitch {
-            get {
-                return By.XPath("(//div[@class='kitchensink-layout__column-right']/starcounter-include//button)[3]");
-            }
-        }
-
-        public By ButtonSwitchReaction {
-            get {
-                return By.XPath("(//div[@class='kitchensink-layout__column-right']/starcounter-include//button)[3]/following-sibling::span[1]");
-            }
-        }
-
-        public By ButtonDisabled {
-            get {
-                return By.XPath("(//div[@class='kitchensink-layout__column-right']/starcounter-include//button)[4]");
-            }
-        }
-
-        public By ButtonDisabledReaction {
-            get {
-                return By.XPath("(//div[@class='kitchensink-layout__column-right']/starcounter-include//button)[4]/following-sibling::span[1]");
-            }
-        }
-
         [Test]
         public void ButtonPageTest_PageLoads() {
             driver.Navigate().GoToUrl(baseURL);
-            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.LinkText("Button")));
-            driver.FindElement(By.LinkText("Button")).ClickUsingMouse(driver);
-            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(ButtonAddCarrotsInlineScript));
-            var element = driver.FindElement(ButtonAddCarrotsInlineScript);
+            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(ByHelper.AnyLinkWithText("Button")));
+            driver.FindElement(ByHelper.AnyLinkWithText("Button")).ClickUsingMouse(driver);
+            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(ByHelper.ButtonAddCarrotsInlineScript));
+            var element = driver.FindElement(ByHelper.ButtonAddCarrotsInlineScript);
             Assert.AreEqual(element.Text.ToLower(), "button (inline script)");
         }
 
         [Test]
         public void ButtonPageTest_AddCarrotsIncrements() {
             driver.Navigate().GoToUrl(baseURL + "/Button");
-            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(ButtonAddCarrotsInlineScript));
-            var label = driver.FindElement(AddCarrotsReaction);
+            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(ByHelper.ButtonAddCarrotsInlineScript));
+            var label = driver.FindElement(ByHelper.AddCarrotsReaction);
             
             Assert.AreEqual("You don't have any carrots", label.Text);
             var originalText = label.Text;
 
-            Click(driver.FindElement(ButtonAddCarrotsInlineScript));
+            Click(driver.FindElement(ByHelper.ButtonAddCarrotsInlineScript));
             this.WaitUntil(x => !label.Text.Equals(originalText));
             Assert.AreEqual("You have 1 imaginary carrots", label.Text);
             originalText = label.Text;
 
-            Click(driver.FindElement(ButtonAddCarrotsFunction));
+            Click(driver.FindElement(ByHelper.ButtonAddCarrotsFunction));
             this.WaitUntil(x => !label.Text.Equals(originalText));
             Assert.AreEqual("You have 2 imaginary carrots", label.Text);
             originalText = label.Text;
 
-            Click(driver.FindElement(SpanAddCarrotsFunction));
+            Click(driver.FindElement(ByHelper.SpanAddCarrotsFunction));
             this.WaitUntil(x => !label.Text.Equals(originalText));
             Assert.AreEqual("You have 3 imaginary carrots", label.Text);
         }
@@ -101,9 +53,9 @@ namespace KitchenSink.Test {
         [Test]
         public void ButtonPageTest_SwitchButtonToggles() {
             driver.Navigate().GoToUrl(baseURL + "/Button");
-            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(ButtonSwitch));
-            var button = driver.FindElement(ButtonSwitch);
-            var label = driver.FindElement(ButtonSwitchReaction);
+            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(ByHelper.ButtonSwitch));
+            var button = driver.FindElement(ByHelper.ButtonSwitch);
+            var label = driver.FindElement(ByHelper.ButtonSwitchReaction);
 
             Assert.AreEqual("Carrot engine is off", label.Text);
             var originalText = label.Text;
@@ -121,14 +73,14 @@ namespace KitchenSink.Test {
         [Test]
         public void ButtonPageTest_DisabledButton() {
             if (browser == "firefox") {
-                Assert.Ignore("Click on disabled button is not supported in Selenium 3.0.0-beta2 in Firefox");
+                //Assert.Ignore("Click on disabled button is not supported in Selenium 3.0.0-beta2 in Firefox");
             }
 
             driver.Navigate().GoToUrl(baseURL + "/Button");
-            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(ButtonDisabled));
-            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(ButtonDisabledReaction));
-            var button = driver.FindElement(ButtonDisabled);
-            var label = driver.FindElement(ButtonDisabledReaction);
+            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(ByHelper.ButtonDisabled));
+            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(ByHelper.ButtonDisabledReaction));
+            var button = driver.FindElement(ByHelper.ButtonDisabled);
+            var label = driver.FindElement(ByHelper.ButtonDisabledReaction);
 
             Assert.AreEqual("You don't have any carrots", label.Text);
             Assert.AreEqual(button.GetAttribute("disabled"), null);

@@ -20,10 +20,10 @@ namespace KitchenSink.Test {
         [Test]
         public void CheckboxPage_PageLoads() {
             driver.Navigate().GoToUrl(baseURL);
-            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.LinkText("Checkbox")));
-            driver.FindElement(By.LinkText("Checkbox")).ClickUsingMouse(driver);
-            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.CssSelector("div.kitchensink-layout__column-right > starcounter-include > input[type='checkbox']")));
-            var element = driver.FindElement(By.XPath("(//input)[1]"));
+            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(ByHelper.AnyLinkWithText("Checkbox")));
+            driver.FindElement(ByHelper.AnyLinkWithText("Checkbox")).ClickUsingMouse(driver);
+            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(ByHelper.StarcounterIncludeWithCheckbox));
+            var element = driver.FindElement(ByHelper.AnyInput);
             Assert.AreEqual(element.GetAttribute("type"), "checkbox");
         }
 
@@ -31,12 +31,12 @@ namespace KitchenSink.Test {
         public void CheckboxPage_CheckboxUnchecked()
         {
             driver.Navigate().GoToUrl(baseURL + "/Checkbox");
-            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.CssSelector("div.kitchensink-layout__column-right > starcounter-include > input[type='checkbox']")));
-            var element = driver.FindElement(By.XPath("(//input)[1]"));
+            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(ByHelper.StarcounterIncludeWithCheckbox));
+            var element = driver.FindElement(ByHelper.AnyInput);
             Assert.AreEqual(element.GetAttribute("type"), "checkbox");
             element.ClickUsingMouse(driver);
-            this.WaitUntil(x => !canDrive.Equals(driver.FindElement(By.CssSelector("div.kitchensink-layout__column-right > starcounter-include > div")).Text));
-            var uncheckedText = driver.FindElement(By.CssSelector("div.kitchensink-layout__column-right > starcounter-include > div")).Text;
+            this.WaitUntil(x => !canDrive.Equals(driver.FindElement(ByHelper.StarcounterIncludeWithDiv).Text));
+            var uncheckedText = driver.FindElement(ByHelper.StarcounterIncludeWithDiv).Text;
             Assert.AreEqual(cantDrive, uncheckedText);
         }
 
@@ -44,16 +44,16 @@ namespace KitchenSink.Test {
         public void CheckboxPage_CheckboxUncheckedAndCheckedAgain()
         {
             driver.Navigate().GoToUrl(baseURL + "/Checkbox");
-            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.CssSelector("div.kitchensink-layout__column-right > starcounter-include > input[type='checkbox']")));
-            var element = driver.FindElement(By.XPath("(//input)[1]"));
+            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(ByHelper.StarcounterIncludeWithCheckbox));
+            var element = driver.FindElement(ByHelper.AnyInput);
             Assert.AreEqual(element.GetAttribute("type"), "checkbox");
             element.ClickUsingMouse(driver);
-            this.WaitUntil(x => !canDrive.Equals(driver.FindElement(By.CssSelector("div.kitchensink-layout__column-right > starcounter-include > div")).Text));
-            var uncheckedText = driver.FindElement(By.CssSelector("div.kitchensink-layout__column-right > starcounter-include > div")).Text;
+            this.WaitUntil(x => !canDrive.Equals(driver.FindElement(ByHelper.StarcounterIncludeWithDiv).Text));
+            var uncheckedText = driver.FindElement(ByHelper.StarcounterIncludeWithDiv).Text;
             Assert.AreEqual(cantDrive, uncheckedText);
             element.ClickUsingMouse(driver);
-            this.WaitUntil(x => !cantDrive.Equals(driver.FindElement(By.CssSelector("div.kitchensink-layout__column-right > starcounter-include > div")).Text));
-            var checkedText = driver.FindElement(By.CssSelector("div.kitchensink-layout__column-right > starcounter-include > div")).Text;
+            this.WaitUntil(x => !cantDrive.Equals(driver.FindElement(ByHelper.StarcounterIncludeWithDiv).Text));
+            var checkedText = driver.FindElement(ByHelper.StarcounterIncludeWithDiv).Text;
             Assert.AreEqual(canDrive, checkedText);
         }
     }

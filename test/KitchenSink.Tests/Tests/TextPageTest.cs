@@ -23,26 +23,26 @@ namespace KitchenSink.Test {
         [Test]
         public void TextPage_TextPropagationOnUnfocus() {
             driver.Navigate().GoToUrl(baseURL + "/Text");
-            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.CssSelector("div.kitchensink-layout__column-right > starcounter-include > input[type='text']")));
-            var label = driver.FindElement(By.XPath("(//label[@class='control-label'])[1]"));
+            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(ByHelper.StarcounterIncludeWithInputText));
+            var label = driver.FindElement(ByHelper.AnyControlLabel);
             var originalText = label.Text;
-            driver.FindElement(By.XPath("(//input)[1]")).Clear();
-            driver.FindElement(By.XPath("(//input)[1]")).SendKeys("Marcin");
-            driver.FindElement(By.XPath("//body")).ClickUsingMouse(driver);
+            driver.FindElement(ByHelper.AnyInput).Clear();
+            driver.FindElement(ByHelper.AnyInput).SendKeys("Marcin");
+            driver.FindElement(ByHelper.Body).ClickUsingMouse(driver);
             this.WaitUntil(x => !label.Text.Equals(originalText));
-            Assert.AreEqual("Hi, Marcin!", driver.FindElement(By.XPath("(//label[@class='control-label'])[1]")).Text);
+            Assert.AreEqual("Hi, Marcin!", driver.FindElement(ByHelper.AnyControlLabel).Text);
         }
 
         [Test]
         public void TextPage_TextPropagationWhileTyping() {
             driver.Navigate().GoToUrl(baseURL + "/Text");
-            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.CssSelector("div.kitchensink-layout__column-right > starcounter-include > input[type='text']")));
-            var label = driver.FindElement(By.XPath("(//label[@class='control-label'])[2]"));
+            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(ByHelper.StarcounterIncludeWithInputText));
+            var label = driver.FindElement(ByHelper.NthControlLabel(1));
             var originalText = label.Text;
-            driver.FindElement(By.XPath("(//input)[2]")).Clear();
-            driver.FindElement(By.XPath("(//input)[2]")).SendKeys("M");
+            driver.FindElement(ByHelper.NthInput(1)).Clear();
+            driver.FindElement(ByHelper.NthInput(1)).SendKeys("M");
             this.WaitUntil(x => !label.Text.Equals(originalText));
-            Assert.AreEqual("Hi, M!", driver.FindElement(By.XPath("(//label[@class='control-label'])[2]")).Text);
+            Assert.AreEqual("Hi, M!", driver.FindElement(ByHelper.NthControlLabel(1)).Text);
         }
     }
 }

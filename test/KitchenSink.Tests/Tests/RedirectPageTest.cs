@@ -17,7 +17,7 @@ namespace KitchenSink.Tests.Tests {
         [SetUp]
         public void Setup() {
             driver.Navigate().GoToUrl(baseURL + "/Redirect");
-            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.XPath("//button[text()='Fruit']")));
+            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(ByHelper.AnyButtonWithText("Fruit")));
         }
 
         [Test]
@@ -25,7 +25,7 @@ namespace KitchenSink.Tests.Tests {
             ClickButton("Fruit");
 
             // on edge juicy sometimes messes up the dom tree, so you can't be sure about its relative position to button
-            this.WaitUntil(ExpectedConditions.ElementIsVisible(By.XPath("//div[text()=\"You've got some tasty apple\"]")));
+            this.WaitUntil(ExpectedConditions.ElementIsVisible(ByHelper.AnyDivWithText("You've got some tasty apple")));
             Assert.That(driver.Url, Is.EqualTo($"{baseURL}/Redirect/apple"));
         }
 
@@ -62,7 +62,7 @@ namespace KitchenSink.Tests.Tests {
         }
 
         private void ClickButton(string text) {
-            driver.FindElement(By.XPath($"//button[text()='{text}']")).ClickUsingMouse(driver);
+            driver.FindElement(ByHelper.AnyButtonWithText(text)).ClickUsingMouse(driver);
         }
     }
 }
