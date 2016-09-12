@@ -1,10 +1,12 @@
 using FluentValidation;
 using Starcounter;
 
-namespace KitchenSink {
+namespace KitchenSink
+{
     partial class ValidationPage : Json
     {
         private SettingsValidator _settingsValidator;
+
         protected override void OnData()
         {
             base.OnData();
@@ -16,6 +18,7 @@ namespace KitchenSink {
             _settingsValidator.Validate(this);
         }
     }
+
     public class SettingsValidator : ValidatorHelper<ValidationPage>
     {
         public SettingsValidator()

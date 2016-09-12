@@ -1,9 +1,11 @@
 using Starcounter;
 
-namespace KitchenSink {
+namespace KitchenSink
+{
     partial class ChartPage : Json
     {
-        protected override void OnData() {
+        protected override void OnData()
+        {
             base.OnData();
 
             this.AddChartData("January", 4);
@@ -14,7 +16,8 @@ namespace KitchenSink {
             this.AddChartData("June", 19);
         }
 
-        public void AddChartData(string label, int value) {
+        public void AddChartData(string label, int value)
+        {
             Json labelItem = Labels.Add();
             labelItem.StringValue = label;
 

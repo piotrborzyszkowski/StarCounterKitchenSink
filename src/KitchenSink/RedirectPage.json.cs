@@ -1,14 +1,18 @@
 using Starcounter;
 
-namespace KitchenSink {
+namespace KitchenSink
+{
     partial class RedirectPage : Json
     {
-        void Handle(Input.GoToHomePartial Action) {
+        void Handle(Input.GoToHomePartial Action)
+        {
             this.MorphUrl = "/KitchenSink";
         }
 
-        void Handle(Input.ChooseFood Action) {
-            switch (Action.Value) {
+        void Handle(Input.ChooseFood Action)
+        {
+            switch (Action.Value)
+            {
                 case "Fruit":
                     this.MorphUrl = "/KitchenSink/Redirect/apple";
                     break;
@@ -23,7 +27,8 @@ namespace KitchenSink {
             }
         }
 
-        void Handle(Input.GoToDocs Action) {
+        void Handle(Input.GoToDocs Action)
+        {
             this.RedirectUrl = "http://starcounter.io/";
         }
     }

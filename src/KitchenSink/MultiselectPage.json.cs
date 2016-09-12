@@ -1,9 +1,11 @@
 using Starcounter;
 
-namespace KitchenSink {
+namespace KitchenSink
+{
     partial class MultiselectPage : Json
     {
-        protected override void OnData() {
+        protected override void OnData()
+        {
             base.OnData();
 
             this.Countries.Add().Name = "Sweden";

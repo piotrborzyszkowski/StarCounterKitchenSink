@@ -4,5 +4,5 @@
   "AcceptTermsAndConditions$": true,
 
   "AcceptTermsAndConditionsReaction": "",
-  "$AcceptTermsAndConditionsReaction": {"Bind": "CalculatedAcceptTermsAndConditionsReaction"}
+  "$AcceptTermsAndConditionsReaction": { "Bind": "CalculatedAcceptTermsAndConditionsReaction" }
 }

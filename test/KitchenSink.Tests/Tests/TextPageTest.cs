@@ -4,24 +4,28 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using KitchenSink.Tests;
 
-namespace KitchenSink.Test {
-
+namespace KitchenSink.Test
+{
     [TestFixture("firefox")]
     [TestFixture("chrome")]
     [TestFixture("edge")]
     //[TestFixture("internet explorer")]
     public class TextPageTest : BaseTest
     {
-        public TextPageTest(string browser) : base(browser) {}
+        public TextPageTest(string browser) : base(browser)
+        {
+        }
 
         [Test]
-        public void TextPage_PageLoads() {
+        public void TextPage_PageLoads()
+        {
             driver.Navigate().GoToUrl(baseURL + "/Text");
             this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.CssSelector("html body puppet-client")));
         }
 
         [Test]
-        public void TextPage_TextPropagationOnUnfocus() {
+        public void TextPage_TextPropagationOnUnfocus()
+        {
             driver.Navigate().GoToUrl(baseURL + "/Text");
             this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(ByHelper.StarcounterIncludeWithInputText));
             var label = driver.FindElement(ByHelper.AnyControlLabel);
@@ -34,7 +38,8 @@ namespace KitchenSink.Test {
         }
 
         [Test]
-        public void TextPage_TextPropagationWhileTyping() {
+        public void TextPage_TextPropagationWhileTyping()
+        {
             driver.Navigate().GoToUrl(baseURL + "/Text");
             this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(ByHelper.StarcounterIncludeWithInputText));
             var label = driver.FindElement(ByHelper.NthControlLabel(1));

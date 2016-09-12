@@ -1,9 +1,11 @@
 using Starcounter;
 
-namespace KitchenSink {
+namespace KitchenSink
+{
     partial class MarkdownPage : Json
     {
-        protected override void OnData() {
+        protected override void OnData()
+        {
             base.OnData();
 
             this.Bio = @"# This is a strucured text

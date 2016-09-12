@@ -4,5 +4,5 @@
   "Age$": 0,
 
   "AgeReaction": "",
-  "$AgeReaction": {"Bind": "CalculatedAgeReaction"}
+  "$AgeReaction": { "Bind": "CalculatedAgeReaction" }
 }

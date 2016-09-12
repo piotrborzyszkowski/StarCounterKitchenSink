@@ -4,8 +4,8 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using KitchenSink.Tests;
 
-namespace KitchenSink.Test {
-
+namespace KitchenSink.Test
+{
     [TestFixture("firefox")]
     [TestFixture("chrome")]
     [TestFixture("edge")]
@@ -15,10 +15,13 @@ namespace KitchenSink.Test {
         private string canDrive = "You can drive";
         private string cantDrive = "You can't drive";
 
-        public CheckboxPageTest(string browser) : base(browser) {}
+        public CheckboxPageTest(string browser) : base(browser)
+        {
+        }
 
         [Test]
-        public void CheckboxPage_PageLoads() {
+        public void CheckboxPage_PageLoads()
+        {
             driver.Navigate().GoToUrl(baseURL);
             this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(ByHelper.AnyLinkWithText("Checkbox")));
             driver.FindElement(ByHelper.AnyLinkWithText("Checkbox")).ClickUsingMouse(driver);

@@ -1,6 +1,7 @@
 using Starcounter;
 
-namespace KitchenSink {
+namespace KitchenSink
+{
     partial class CookiePage : Json
     {
     }

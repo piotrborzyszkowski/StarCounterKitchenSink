@@ -1,9 +1,11 @@
 using Starcounter;
 
-namespace KitchenSink {
+namespace KitchenSink
+{
     partial class HtmlPage : Json
     {
-        protected override void OnData() {
+        protected override void OnData()
+        {
             base.OnData();
 
             this.Bio = @"<h1>This is a markup text</h1>

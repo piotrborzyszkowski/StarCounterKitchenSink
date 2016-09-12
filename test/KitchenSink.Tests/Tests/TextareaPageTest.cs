@@ -12,7 +12,9 @@ namespace KitchenSink.Test
     [TestFixture("edge")]
     public class TextareaPageTest : BaseTest
     {
-        public TextareaPageTest(string browser) : base(browser) { }
+        public TextareaPageTest(string browser) : base(browser)
+        {
+        }
 
         /// <summary>
         /// TextareaPage_PageLoads is a which loads Textarea page from the Textarea-link
@@ -35,8 +37,10 @@ namespace KitchenSink.Test
         /// TextareaPage_WriteToTextArea tests if it possible to write/read to/from the textarea component
         /// </summary>
         [Test]
-        public void TextareaPage_WriteToTextArea() {
-            if (browser == "firefox") {
+        public void TextareaPage_WriteToTextArea()
+        {
+            if (browser == "firefox")
+            {
                 Assert.Ignore("GetAttribute(\"value\") is not supported in Selenium 3.0.0-beta2 in Firefox");
             }
 
@@ -60,7 +64,8 @@ namespace KitchenSink.Test
         public void TextareaPage_CounterPropagationWhileTyping()
         {
             driver.Navigate().GoToUrl(baseURL + "/Textarea");
-            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(ByHelper.StarcounterIncludeWithTextarea3Rows));
+            this.WaitUntil(
+                ExpectedConditions.PresenceOfAllElementsLocatedBy(ByHelper.StarcounterIncludeWithTextarea3Rows));
 
             var label = driver.FindElement(ByHelper.AnyControlLabel);
             var originalText = label.Text;
@@ -74,6 +79,5 @@ namespace KitchenSink.Test
             string actualString = driver.FindElement(ByHelper.AnyControlLabel).Text;
             Assert.AreEqual("Length of your bio: 1 chars", actualString);
         }
-
     }
 }
