@@ -35,6 +35,11 @@ namespace KitchenSink
     [GeoPage_json.Position]
     partial class GeoPagePosition : Json, IBound<GeoCoordinates>
     {
+        static GeoPagePosition() {
+            DefaultTemplate.Latitude.InstanceType = typeof(double);
+            DefaultTemplate.Longitude.InstanceType = typeof(double);
+        }
+
         public void Handle(Input.Reset action)
         {
             var geoPageParent = (GeoPage) Parent;
