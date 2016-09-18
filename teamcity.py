@@ -8,6 +8,13 @@ import shutil
 if not os.path.exists("sc"):
   print("ERROR: Directory \"sc\" containing Starcounter binaries does not exist")
   sys.exit(1)
+  
+# Killing all Starcounter processes
+print("Killing Starcounter processes...")
+err_code = os.system("staradmin kill all")
+if err_code != 0:
+  print("ERROR: Kill all returned an error code {0}".format(err_code))
+  sys.exit(1)
 
 # Current path should be a checkout directory
 cur_path = os.getcwd()
@@ -50,6 +57,7 @@ for i in range(0, 5):
   time.sleep(1)
 
 # Killing all Starcounter processes
+print("Killing Starcounter processes...")
 err_code = os.system("staradmin kill all")
 if err_code != 0:
   print("ERROR: Kill all returned an error code {0}".format(err_code))
