@@ -4,17 +4,17 @@ import time
 import subprocess
 import shutil
 
-# Checking that Starcounter binaries directory exists
-if not os.path.exists("sc"):
-  print("ERROR: Directory \"sc\" containing Starcounter binaries does not exist")
-  sys.exit(1)
-  
 # Current path should be a checkout directory
 cur_path = os.getcwd()
+sc_bin_path = cur_path + "/sc/level1/bin/release"
 
+# Checking that Starcounter binaries directory exists
+if not os.path.exists(sc_bin_path):
+  print("ERROR: Directory \"{0}\" containing Starcounter binaries does not exist".format(sc_bin_path))
+  sys.exit(1)
+  
 # Setting StarcounterBin env var
 print("Adding Starcounter to path")
-sc_bin_path = cur_path + "/sc"
 os.environ["StarcounterBin"] = sc_bin_path
 os.environ["Path"] = os.environ["Path"] + ";" + sc_bin_path
 
