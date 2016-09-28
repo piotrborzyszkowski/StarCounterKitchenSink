@@ -4,6 +4,13 @@ import time
 import subprocess
 import shutil
 
+def run_cmd(cmd):
+    print(cmd)
+    err_code = os.system(cmd)
+    if err_code != 0:
+        print("ERROR: status code = {0}".format(err_code))
+        sys.exit(1)
+
 # Current path should be a checkout directory
 cur_path = os.getcwd()
 sc_bin_path = cur_path + "/sc/level1/bin/release"
@@ -12,29 +19,22 @@ sc_bin_path = cur_path + "/sc/level1/bin/release"
 if not os.path.exists(sc_bin_path):
   print("ERROR: Directory \"{0}\" containing Starcounter binaries does not exist".format(sc_bin_path))
   sys.exit(1)
-  
+
 # Setting StarcounterBin env var
 print("Adding Starcounter to path")
 os.environ["StarcounterBin"] = sc_bin_path
 os.environ["Path"] = os.environ["Path"] + ";" + sc_bin_path
 
 # Killing all Starcounter processes
-print("Killing Starcounter processes...")
-err_code = os.system("staradmin kill all")
-if err_code != 0:
-  print("ERROR: Kill all returned an error code {0}".format(err_code))
-  sys.exit(1)
+run_cmd("staradmin kill all")
 
 # Creating Starcounter server
 srv_path = sc_bin_path + "/.srv"
 if os.path.exists(srv_path):
   shutil.rmtree(srv_path)
 
-err_code = os.system("star @@CreateRepo \"{0}\"".format(srv_path))
-if err_code != 0:
-  print("ERROR: Kill all returned an error code {0}".format(err_code))
-  sys.exit(1)
-  
+run_cmd("star @@CreateRepo \"{0}\"".format(srv_path))
+
 # Saving personal.xml file(TODO: add to CreateRepo)
 personal_xml_path = sc_bin_path + "/configuration/personal.xml"
 if not os.path.exists(personal_xml_path):
@@ -51,10 +51,9 @@ text_file.close()
 print("Starting async Starcounter processes")
 sc_proc = subprocess.Popen(["scservice"])
 
-# Sleeping for some time
-for i in range(0, 5):
-  print("Wating {0}...".format(i))
-  time.sleep(1)
+# Build and run KitchenSink
+run_cmd('build.bat')
+run_cmd('test.bat')
 
 # Killing all Starcounter processes
 print("Killing Starcounter processes...")
