@@ -30,7 +30,7 @@ def main():
     prepare_starcounter(args.starcounter_bin)
     create_starcounter_repo(args.starcounter_work_dir, args.starcounter_bin)
     build_and_run(args.solution_dir,
-        args.starcounter_bin,
+        abspath(args.starcounter_bin), # intermittent problems with msbuild occur without abs here
         args.msbuild,
         args.nuget,
         args.nunit_args,
