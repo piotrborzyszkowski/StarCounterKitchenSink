@@ -58,9 +58,11 @@ def prepare_starcounter(sc_bin_path):
         print_err('ERROR: Directory "{0}" containing Starcounter binaries does not exist'.format(sc_bin_path))
         sys.exit(1)
 
+    # adding relative path to env would be silly
+    abs_sc_bin_path = abspath(sc_bin_path)
     print("Adding Starcounter to path")
-    os.environ["StarcounterBin"] = sc_bin_path
-    os.environ["Path"] = os.environ["Path"] + ";" + sc_bin_path
+    os.environ["StarcounterBin"] = abs_sc_bin_path
+    os.environ["Path"] = os.environ["Path"] + ";" + abs_sc_bin_path
 
     run_check(["staradmin", "kill", "all"])
 
@@ -74,7 +76,7 @@ def create_starcounter_repo(srv_path, sc_bin_path):
     # Saving personal.xml file(TODO: add to CreateRepo)
     personal_xml_path = sc_bin_path + "/configuration/personal.xml"
     if not os.path.exists(personal_xml_path):
-        print_err("WARNING: Personal XML file does not exist", file=stderr)
+        print_err("WARNING: Personal XML file does not exist")
 
     with open(personal_xml_path, "w") as personal_xml_file:
         personal_xml_file.write('<?xml version="1.0" encoding="UTF-8"?>')
