@@ -4,24 +4,28 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using KitchenSink.Tests;
 
-namespace KitchenSink.Test {
-
+namespace KitchenSink.Test
+{
     [TestFixture("firefox")]
     [TestFixture("chrome")]
     [TestFixture("edge")]
     //[TestFixture("internet explorer")]
     public class ValidationPageTest : BaseTest
     {
-        public ValidationPageTest(string browser) : base(browser) {}
+        public ValidationPageTest(string browser) : base(browser)
+        {
+        }
 
         [Test]
-        public void ValidationPage_PageLoads() {
+        public void ValidationPage_PageLoads()
+        {
             driver.Navigate().GoToUrl(baseURL + "/Validation");
             this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(ByHelper.PuppetClient));
         }
 
         [Test]
-        public void ValidationPage_InvalidRequireInput() {
+        public void ValidationPage_InvalidRequireInput()
+        {
             driver.Navigate().GoToUrl(baseURL + "/Validation");
             this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(ByHelper.StarcounterIncludeWithInputText));
             var label = driver.FindElement(ByHelper.AnyErrorLabel);

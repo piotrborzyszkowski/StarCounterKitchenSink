@@ -4,5 +4,5 @@
   "DrivingLicense$": true,
 
   "DrivingLicenseReaction": "",
-  "$DrivingLicenseReaction": {"Bind": "CalculatedDrivingLicenseReaction"}
+  "$DrivingLicenseReaction": { "Bind": "CalculatedDrivingLicenseReaction" }
 }

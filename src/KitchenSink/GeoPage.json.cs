@@ -1,22 +1,29 @@
 using Starcounter;
 
-namespace KitchenSink {
+namespace KitchenSink
+{
     [Database]
-    public class GeoCoordinates {
+    public class GeoCoordinates
+    {
         public double Latitude;
         public double Longitude;
     }
 
-    partial class GeoPage : Json {
+    partial class GeoPage : Json
+    {
         //Stockholm coordinates
         public readonly double DefaultLatitude = 59.3319913;
         public readonly double DefaultLongitude = 18.0765409;
 
-        public void Init() {
+        public void Init()
+        {
             Position.Data = Db.SQL<GeoCoordinates>("SELECT gp FROM GeoCoordinates gp").First;
-            if (Position.Data == null) {
-                Db.Transact(() => {
-                    Position.Data = new GeoCoordinates() {
+            if (Position.Data == null)
+            {
+                Db.Transact(() =>
+                {
+                    Position.Data = new GeoCoordinates()
+                    {
                         Latitude = DefaultLatitude,
                         Longitude = DefaultLongitude
                     };
@@ -26,31 +33,38 @@ namespace KitchenSink {
     }
 
     [GeoPage_json.Position]
-    partial class GeoPagePosition : Json, IBound<GeoCoordinates> {
-        public void Handle(Input.Reset action) {
-            var geoPageParent = (GeoPage)Parent;
-            Latitude  = geoPageParent.DefaultLatitude;
+    partial class GeoPagePosition : Json, IBound<GeoCoordinates>
+    {
+        public void Handle(Input.Reset action)
+        {
+            var geoPageParent = (GeoPage) Parent;
+            Latitude = geoPageParent.DefaultLatitude;
             Longitude = geoPageParent.DefaultLongitude;
             PushChanges();
         }
 
-        public void Handle(Input.Latitude action) {
+        public void Handle(Input.Latitude action)
+        {
             Latitude = action.Value;
             PushChanges();
         }
 
-        public void Handle(Input.Longitude action) {
+        public void Handle(Input.Longitude action)
+        {
             Longitude = action.Value;
             PushChanges();
         }
 
-        protected void PushChanges() {
+        protected void PushChanges()
+        {
             Transaction.Commit();
-            Session.ForAll((s, sessionId) => {
+            Session.ForAll((s, sessionId) =>
+            {
                 var master = s.Data as MasterPage;
                 var navpage = master?.CurrentPage as NavPage;
                 if (!(navpage?.CurrentPage is GeoPage)) return;
-                if ((GeoPage)navpage.CurrentPage != null) {
+                if ((GeoPage) navpage.CurrentPage != null)
+                {
                     s.CalculatePatchAndPushOnWebSocket();
                 }
             });

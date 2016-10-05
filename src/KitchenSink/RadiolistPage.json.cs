@@ -1,9 +1,11 @@
 using Starcounter;
 
-namespace KitchenSink {
+namespace KitchenSink
+{
     partial class RadiolistPage : Json
     {
-        protected override void OnData() {
+        protected override void OnData()
+        {
             base.OnData();
 
             MenuOptionsElement a;
@@ -14,19 +16,22 @@ namespace KitchenSink {
             this.SelectOption(0);
         }
 
-        public void SelectOption(int index) {
+        public void SelectOption(int index)
+        {
             SelectedItemLabel = MenuOptions[index].Label;
         }
 
-        void Handle(Input.SelectedItemIndex action) {
-            SelectOption((int)action.Value);
+        void Handle(Input.SelectedItemIndex action)
+        {
+            SelectOption((int) action.Value);
         }
     }
 
     [RadiolistPage_json.MenuOptions]
-    partial class MenuOptionsElement : Json {
-
-        void Handle(Input.Choose action) {
+    partial class MenuOptionsElement : Json
+    {
+        void Handle(Input.Choose action)
+        {
             Label = "!";
         }
     }

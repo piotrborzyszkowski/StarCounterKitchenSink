@@ -14,7 +14,7 @@ namespace KitchenSink
             var result = base.Validate(instance);
             foreach (PropertyRule rule in this)
             {
-                var error = (BindErrorProperty<T>)rule.Validators.FirstOrDefault(e => e is BindErrorProperty<T>);
+                var error = (BindErrorProperty<T>) rule.Validators.FirstOrDefault(e => e is BindErrorProperty<T>);
                 if (error != null)
                 {
                     var errorValidation = result.Errors.FirstOrDefault(e => e.PropertyName == rule.PropertyName);
@@ -27,7 +27,8 @@ namespace KitchenSink
 
     public static class FluentValidationExtensions
     {
-        public static IRuleBuilderOptions<T, TProperty> BindError<T, TProperty>(this IRuleBuilder<T, TProperty> rule, Action<T, string> setupError)
+        public static IRuleBuilderOptions<T, TProperty> BindError<T, TProperty>(this IRuleBuilder<T, TProperty> rule,
+            Action<T, string> setupError)
         {
             return rule
                 .SetValidator(new BindErrorProperty<T>(setupError))

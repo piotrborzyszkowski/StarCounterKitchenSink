@@ -7,17 +7,20 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using KitchenSink.Tests;
 
-namespace KitchenSink.Test {
-
+namespace KitchenSink.Test
+{
     [TestFixture("firefox")]
     [TestFixture("chrome")]
     [TestFixture("edge")]
-    public class ButtonPageTest : BaseTest {
-
-        public ButtonPageTest(string browser) : base(browser) { }
+    public class ButtonPageTest : BaseTest
+    {
+        public ButtonPageTest(string browser) : base(browser)
+        {
+        }
 
         [Test]
-        public void ButtonPageTest_PageLoads() {
+        public void ButtonPageTest_PageLoads()
+        {
             driver.Navigate().GoToUrl(baseURL);
             this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(ByHelper.AnyLinkWithText("Button")));
             driver.FindElement(ByHelper.AnyLinkWithText("Button")).ClickUsingMouse(driver);
@@ -27,11 +30,12 @@ namespace KitchenSink.Test {
         }
 
         [Test]
-        public void ButtonPageTest_AddCarrotsIncrements() {
+        public void ButtonPageTest_AddCarrotsIncrements()
+        {
             driver.Navigate().GoToUrl(baseURL + "/Button");
             this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(ByHelper.ButtonAddCarrotsInlineScript));
             var label = driver.FindElement(ByHelper.AddCarrotsReaction);
-            
+
             Assert.AreEqual("You don't have any carrots", label.Text);
             var originalText = label.Text;
 
@@ -51,7 +55,8 @@ namespace KitchenSink.Test {
         }
 
         [Test]
-        public void ButtonPageTest_SwitchButtonToggles() {
+        public void ButtonPageTest_SwitchButtonToggles()
+        {
             driver.Navigate().GoToUrl(baseURL + "/Button");
             this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(ByHelper.ButtonSwitch));
             var button = driver.FindElement(ByHelper.ButtonSwitch);
@@ -71,8 +76,10 @@ namespace KitchenSink.Test {
         }
 
         [Test]
-        public void ButtonPageTest_DisabledButton() {
-            if (browser == "firefox") {
+        public void ButtonPageTest_DisabledButton()
+        {
+            if (browser == "firefox")
+            {
                 Assert.Ignore("Click on disabled button is not supported in Selenium 3.0.0-beta2 in Firefox");
             }
 
@@ -97,7 +104,8 @@ namespace KitchenSink.Test {
             Assert.AreEqual(button.GetAttribute("disabled"), "true");
         }
 
-        private void Click(IWebElement element) {
+        private void Click(IWebElement element)
+        {
             element.ClickUsingMouse(driver);
         }
     }

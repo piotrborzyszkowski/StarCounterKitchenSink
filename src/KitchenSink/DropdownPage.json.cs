@@ -1,14 +1,17 @@
 using Starcounter;
 using Simplified.Ring3;
 
-namespace KitchenSink {
+namespace KitchenSink
+{
     partial class DropdownPage : Json
     {
-        static DropdownPage() {
+        static DropdownPage()
+        {
             DropdownPage.DefaultTemplate.SelectedProductKey.Bind = "SelectedProductKeyBind";
         }
 
-        protected override void OnData() {
+        protected override void OnData()
+        {
             base.OnData();
 
             DropdownPage.PetsElementJson pet;
@@ -24,10 +27,12 @@ namespace KitchenSink {
             this.SelectedPet = "dogs";
 
             // Generate some dummy data
-            if (Db.SQL("SELECT p FROM Simplified.Ring3.Product p").First == null) {
-                Db.Transact(() => {
-                    new Product() { Name = "Starcounter Database" };
-                    new Product() { Name = "Polymer JavaScript library" };
+            if (Db.SQL("SELECT p FROM Simplified.Ring3.Product p").First == null)
+            {
+                Db.Transact(() =>
+                {
+                    new Product() {Name = "Starcounter Database"};
+                    new Product() {Name = "Polymer JavaScript library"};
                 });
             }
 
@@ -35,22 +40,26 @@ namespace KitchenSink {
             this.SelectedProduct.Data = Db.SQL("SELECT p FROM Simplified.Ring3.Product p ORDER BY p.Name DESC").First;
         }
 
-        public string CalculatedPetReaction {
-            get {
-                return "You like " + SelectedPet;
-            }
+        public string CalculatedPetReaction
+        {
+            get { return "You like " + SelectedPet; }
         }
 
-        public string SelectedProductKeyBind {
-            get {
-                if (this.SelectedProduct == null) {
+        public string SelectedProductKeyBind
+        {
+            get
+            {
+                if (this.SelectedProduct == null)
+                {
                     return null;
                 }
 
                 return this.SelectedProduct.Key;
             }
-            set {
-                if (string.IsNullOrEmpty(value)) {
+            set
+            {
+                if (string.IsNullOrEmpty(value))
+                {
                     this.SelectedProduct.Data = null;
                     return;
                 }

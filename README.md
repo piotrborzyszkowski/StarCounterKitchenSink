@@ -71,7 +71,7 @@ Before running the steps, you need to:
 
 ### Run the test (from Visual Studio)
 
-1. Start Selenium Remote Driver: `java -jar selenium-server-standalone-2.52.0.jar`
+1. Start Selenium Remote Driver: `java -jar selenium-server-standalone-3.0.0-beta3.jar`
 2. Open `KitchenSink.sln` in Visual Studio and enable Test Explorer (Test > Window > Test Explorer)
 3. Start the KitchenSink app
 4. Press "Run all" in Test Explorer
@@ -80,7 +80,7 @@ Before running the steps, you need to:
 
 ### Run the test (from command line)
 
-1. Start Selenium Remote Driver: `java -jar selenium-server-standalone-2.52.0.jar`
+1. Start Selenium Remote Driver: `java -jar selenium-server-standalone-3.0.0-beta3.jar`
 2. Go to the solution folder and run `nuget restore` to make sure you have the test dependencies (listed in `test\KitchenSink.Tests\packages.config`)
  - if you don't have `nuget.exe`, get it from [here](http://docs.nuget.org/Consume/Command-Line-Reference)
 3. Build the solution ('msbuild KitchenSink.sln')

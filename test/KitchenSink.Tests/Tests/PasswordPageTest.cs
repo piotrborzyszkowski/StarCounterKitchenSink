@@ -4,8 +4,8 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using KitchenSink.Tests;
 
-namespace KitchenSink.Test {
-
+namespace KitchenSink.Test
+{
     [TestFixture("firefox")]
     [TestFixture("chrome")]
     [TestFixture("edge")]
@@ -15,10 +15,13 @@ namespace KitchenSink.Test {
         private string passwordTooShort = "Password must be at least 6 chars long";
         private string passwordWithProperLength = "Good password!";
 
-        public PasswordPageTest(string browser) : base(browser) {}
+        public PasswordPageTest(string browser) : base(browser)
+        {
+        }
 
         [Test]
-        public void PasswordPage_PageLoads() {
+        public void PasswordPage_PageLoads()
+        {
             driver.Navigate().GoToUrl(baseURL);
             this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(ByHelper.AnyLinkWithText("Password")));
             driver.FindElement(ByHelper.AnyLinkWithText("Password")).ClickUsingMouse(driver);

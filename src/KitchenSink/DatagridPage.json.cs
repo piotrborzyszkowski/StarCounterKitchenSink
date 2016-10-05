@@ -1,9 +1,11 @@
 using Starcounter;
 
-namespace KitchenSink {
+namespace KitchenSink
+{
     partial class DatagridPage : Json
     {
-        protected override void OnData() {
+        protected override void OnData()
+        {
             base.OnData();
 
             DatagridPagePetsElementJson pet;
@@ -20,7 +22,8 @@ namespace KitchenSink {
             pet.Kind = "Rabbit";
         }
 
-        void Handle(Input.AddPet action) {
+        void Handle(Input.AddPet action)
+        {
             var p = Pets.Add();
             p.Name = "Cecil";
             p.Kind = "Hamster";
@@ -28,11 +31,14 @@ namespace KitchenSink {
     }
 
     [DatagridPage_json.Pets]
-    partial class DatagridPagePetsElementJson : Json {
-
-        public string CalculatedSound {
-            get {
-                switch (Kind.ToLower()) {
+    partial class DatagridPagePetsElementJson : Json
+    {
+        public string CalculatedSound
+        {
+            get
+            {
+                switch (Kind.ToLower())
+                {
                     case "dog":
                         return "Woof";
 

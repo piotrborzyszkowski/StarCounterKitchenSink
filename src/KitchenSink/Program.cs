@@ -2,14 +2,18 @@
 using System.Linq;
 using Starcounter;
 
-namespace KitchenSink {
-    class Program {
-        static void Main() {
+namespace KitchenSink
+{
+    class Program
+    {
+        static void Main()
+        {
             var app = Application.Current;
             app.Use(new HtmlFromJsonProvider());
             app.Use(new PartialToStandaloneHtmlProvider());
 
-            Handle.GET("/KitchenSink/master", () => {
+            Handle.GET("/KitchenSink/master", () =>
+            {
                 Session session = Session.Current;
                 if (session != null && session.Data != null)
                     return session.Data;
@@ -28,22 +32,15 @@ namespace KitchenSink {
                 return master;
             });
 
-            Handle.GET("/KitchenSink/json", () => {
-                return new Json();
-            });
+            Handle.GET("/KitchenSink/json", () => { return new Json(); });
 
-            Handle.GET("/KitchenSink", () => {
-                return Self.GET("/KitchenSink/text");
-            });
+            Handle.GET("/KitchenSink", () => { return Self.GET("/KitchenSink/text"); });
 
-            Handle.GET("/KitchenSink/partial/button", () =>  new ButtonPage() );
+            Handle.GET("/KitchenSink/partial/button", () => new ButtonPage());
             Handle.GET("/KitchenSink/button", () => WrapPage<ButtonPage>("/KitchenSink/partial/button"));
 
-            Handle.GET("/KitchenSink/partial/breadcrumb", () => {
-                return Db.Scope(() => {
-                    return new BreadcrumbPage();
-                });
-            });
+            Handle.GET("/KitchenSink/partial/breadcrumb",
+                () => { return Db.Scope(() => { return new BreadcrumbPage(); }); });
             Handle.GET("/KitchenSink/breadcrumb", () => WrapPage<BreadcrumbPage>("/KitchenSink/partial/breadcrumb"));
 
             Handle.GET("/KitchenSink/partial/chart", () => new ChartPage());
@@ -53,7 +50,8 @@ namespace KitchenSink {
             Handle.GET("/KitchenSink/checkbox", () => WrapPage<CheckboxPage>("/KitchenSink/partial/checkbox"));
 
             Handle.GET("/KitchenSink/partial/togglebutton", () => new ToggleButtonPage());
-            Handle.GET("/KitchenSink/togglebutton", () => WrapPage<ToggleButtonPage>("/KitchenSink/partial/togglebutton"));
+            Handle.GET("/KitchenSink/togglebutton",
+                () => WrapPage<ToggleButtonPage>("/KitchenSink/partial/togglebutton"));
 
             Handle.GET("/KitchenSink/partial/datagrid", () => new DatagridPage());
             Handle.GET("/KitchenSink/datagrid", () => WrapPage<DatagridPage>("/KitchenSink/partial/datagrid"));
@@ -70,8 +68,10 @@ namespace KitchenSink {
             Handle.GET("/KitchenSink/partial/integer", () => new IntegerPage());
             Handle.GET("/KitchenSink/integer", () => WrapPage<IntegerPage>("/KitchenSink/partial/integer"));
 
-            Handle.GET("/KitchenSink/partial/Geo", () => {
-                return Db.Scope(() => {
+            Handle.GET("/KitchenSink/partial/Geo", () =>
+            {
+                return Db.Scope(() =>
+                {
                     var geoPage = new GeoPage();
                     geoPage.Init();
                     return geoPage;
@@ -115,7 +115,8 @@ namespace KitchenSink {
             Handle.GET("/KitchenSink/partial/Validation", () => new ValidationPage());
             Handle.GET("/KitchenSink/Validation", () => WrapPage<ValidationPage>("/KitchenSink/partial/Validation"));
 
-            Handle.GET("/KitchenSink/Redirect/{?}", (string param) => {
+            Handle.GET("/KitchenSink/Redirect/{?}", (string param) =>
+            {
                 var master = WrapPage<RedirectPage>("/KitchenSink/partial/Redirect") as MasterPage;
                 var nav = master.CurrentPage as NavPage;
                 var page = nav.CurrentPage as RedirectPage;
@@ -162,48 +163,62 @@ namespace KitchenSink {
             });
             Handle.GET("/KitchenSink/cookie", () => WrapPage<CookiePage>("/KitchenSink/partial/cookie"));
 
-            HandleFile.GET("/KitchenSink/fileupload/upload", task => {
-                Session.ScheduleTask(task.SessionId, (s, id) => {
+            HandleFile.GET("/KitchenSink/fileupload/upload", task =>
+            {
+                Session.ScheduleTask(task.SessionId, (s, id) =>
+                {
                     MasterPage master = s.Data as MasterPage;
 
-                    if (master == null) {
+                    if (master == null)
+                    {
                         return;
                     }
 
                     NavPage nav = master.CurrentPage as NavPage;
 
-                    if (nav == null) {
+                    if (nav == null)
+                    {
                         return;
                     }
 
                     FileUploadPage page = nav.CurrentPage as FileUploadPage;
 
-                    if (page == null) {
+                    if (page == null)
+                    {
                         return;
                     }
 
                     var item = page.Tasks.FirstOrDefault(x => x.FileName == task.FileName);
 
-                    if (task.State == HandleFile.UploadTaskState.Error) {
-                        if (item != null) {
+                    if (task.State == HandleFile.UploadTaskState.Error)
+                    {
+                        if (item != null)
+                        {
                             page.Tasks.Remove(item);
                         }
-                    } else if (task.State == HandleFile.UploadTaskState.Completed) {
-                        if (item != null) {
+                    }
+                    else if (task.State == HandleFile.UploadTaskState.Completed)
+                    {
+                        if (item != null)
+                        {
                             page.Tasks.Remove(item);
                         }
 
                         var file = page.Files.FirstOrDefault(x => x.FileName == task.FileName);
 
-                        if (file == null) {
+                        if (file == null)
+                        {
                             file = page.Files.Add();
                         }
 
                         file.FileName = task.FileName;
                         file.FileSize = task.FileSize;
                         file.FilePath = task.FilePath;
-                    } else {
-                        if (item == null) {
+                    }
+                    else
+                    {
+                        if (item == null)
+                        {
                             item = page.Tasks.Add();
                         }
 
@@ -217,32 +232,32 @@ namespace KitchenSink {
             });
 
             Handle.GET("/KitchenSink/partial/autocomplete", () => Db.Scope(() => new AutocompletePage().Init()));
-            Handle.GET("/KitchenSink/autocomplete", () => WrapPage<AutocompletePage>("/KitchenSink/partial/autocomplete"));
+            Handle.GET("/KitchenSink/autocomplete",
+                () => WrapPage<AutocompletePage>("/KitchenSink/partial/autocomplete"));
 
             //for a launcher
-            Handle.GET("/KitchenSink/app-name", () => {
-                return new AppName();
-            });
+            Handle.GET("/KitchenSink/app-name", () => { return new AppName(); });
 
-            Handle.GET("/KitchenSink/menu", () => {
-                return new AppMenuPage();
-            });
+            Handle.GET("/KitchenSink/menu", () => { return new AppMenuPage(); });
 
             UriMapping.Map("/KitchenSink/menu", UriMapping.MappingUriPrefix + "/menu");
             UriMapping.Map("/KitchenSink/app-name", UriMapping.MappingUriPrefix + "/app-name");
         }
 
-        private static Json WrapPage<T>(string partialPath) where T : Json {
-            var master = (MasterPage)Self.GET("/KitchenSink/master");
+        private static Json WrapPage<T>(string partialPath) where T : Json
+        {
+            var master = (MasterPage) Self.GET("/KitchenSink/master");
             var nav = master.CurrentPage as NavPage;
 
-            if (nav.CurrentPage != null && nav.CurrentPage.GetType().Equals(typeof(T))) {
+            if (nav.CurrentPage != null && nav.CurrentPage.GetType().Equals(typeof(T)))
+            {
                 return master;
             }
 
             nav.CurrentPage = Self.GET(partialPath);
 
-            if (nav.CurrentPage.Data == null) {
+            if (nav.CurrentPage.Data == null)
+            {
                 nav.CurrentPage.Data = null; //trick to invoke OnData in partial
             }
 

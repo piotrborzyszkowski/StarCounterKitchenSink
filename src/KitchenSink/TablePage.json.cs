@@ -1,9 +1,11 @@
 using Starcounter;
 
-namespace KitchenSink {
+namespace KitchenSink
+{
     partial class TablePage : Json
     {
-        protected override void OnData() {
+        protected override void OnData()
+        {
             base.OnData();
 
             TablePage.PetsElementJson pet;
@@ -20,7 +22,8 @@ namespace KitchenSink {
             pet.Kind = "Rabbit";
         }
 
-        void Handle(Input.AddPet action) {
+        void Handle(Input.AddPet action)
+        {
             var p = Pets.Add();
             p.Name = "Cecil";
             p.Kind = "Hamster";

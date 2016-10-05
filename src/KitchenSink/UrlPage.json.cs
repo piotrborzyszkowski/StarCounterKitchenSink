@@ -1,9 +1,11 @@
 using Starcounter;
 
-namespace KitchenSink {
-  partial class UrlPage : Json
+namespace KitchenSink
+{
+    partial class UrlPage : Json
     {
-        protected override void OnData() {
+        protected override void OnData()
+        {
             base.OnData();
 
             this.Url = "/KitchenSink";

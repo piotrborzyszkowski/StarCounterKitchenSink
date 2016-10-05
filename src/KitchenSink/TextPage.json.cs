@@ -1,25 +1,34 @@
 using Starcounter;
 
-namespace KitchenSink {
+namespace KitchenSink
+{
     partial class TextPage : Json
     {
-        public string CalculatedNameReaction {
-            get {
-                if (Name == "") {
+        public string CalculatedNameReaction
+        {
+            get
+            {
+                if (Name == "")
+                {
                     return "What's your name?";
                 }
-                else {
+                else
+                {
                     return "Hi, " + Name + "!";
                 }
             }
         }
 
-        public string CalculatedNameLiveReaction {
-            get {
-                if (NameLive == "") {
+        public string CalculatedNameLiveReaction
+        {
+            get
+            {
+                if (NameLive == "")
+                {
                     return "What's your name?";
                 }
-                else {
+                else
+                {
                     return "Hi, " + NameLive + "!";
                 }
             }

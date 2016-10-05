@@ -34,7 +34,8 @@ namespace KitchenSink.Tests
 
             if (browser == "edge" && !IsEdgeAvailable())
             {
-                Assert.Ignore("You're not using Windows 10, so Microsoft Edge is unavailable. The test is being omitted.");
+                Assert.Ignore(
+                    "You're not using Windows 10, so Microsoft Edge is unavailable. The test is being omitted.");
             }
 
             this.driver = WebDriverFactory.Create(this.browser);
@@ -58,7 +59,9 @@ namespace KitchenSink.Tests
 
         protected bool IsEdgeAvailable()
         {
-            var browserKeys = Registry.ClassesRoot.OpenSubKey(@"Local Settings\Software\Microsoft\Windows\CurrentVersion\AppModel\PackageRepository\Packages");
+            var browserKeys =
+                Registry.ClassesRoot.OpenSubKey(
+                    @"Local Settings\Software\Microsoft\Windows\CurrentVersion\AppModel\PackageRepository\Packages");
             if (browserKeys == null)
             {
                 return false;

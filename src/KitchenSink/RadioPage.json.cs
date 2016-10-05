@@ -1,9 +1,11 @@
 using Starcounter;
 
-namespace KitchenSink {
+namespace KitchenSink
+{
     partial class RadioPage : Json
     {
-        protected override void OnData() {
+        protected override void OnData()
+        {
             base.OnData();
 
             RadioPage.PetsElementJson pet;
@@ -19,10 +21,9 @@ namespace KitchenSink {
             this.SelectedPet = "dogs";
         }
 
-        public string CalculatedPetReaction {
-            get {
-                return "You like " + SelectedPet;
-            }
+        public string CalculatedPetReaction
+        {
+            get { return "You like " + SelectedPet; }
         }
     }
 }

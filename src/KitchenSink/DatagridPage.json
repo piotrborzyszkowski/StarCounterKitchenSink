@@ -6,9 +6,9 @@
       "Name$": "",
       "Kind$": "",
       "Sound": "",
-      "$Sound":  {"Bind": "CalculatedSound"}
+      "$Sound": { "Bind": "CalculatedSound" }
     }
   ],
 
-  "AddPet$":  0
+  "AddPet$": 0
 }
