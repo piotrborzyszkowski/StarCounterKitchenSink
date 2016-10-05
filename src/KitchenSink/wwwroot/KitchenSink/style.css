@@ -87,7 +87,11 @@
 }
 
 .kitchensink-regenerating-carrots {
-    float: left;
+    display: flex;
+    align-items: baseline;
+}
+
+.kitchensink-regenerating-carrots > * {
     margin-right: 10px;
 }
 
