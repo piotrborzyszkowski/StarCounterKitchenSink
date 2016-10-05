@@ -86,6 +86,11 @@
     font-weight: bold;
 }
 
+.kitchensink-regenerating-carrots {
+    float: left;
+    margin-right: 10px;
+}
+
 .kitchensink-toggle-button[pressed] {
     color: white;
     background: green;
