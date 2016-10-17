@@ -7,9 +7,10 @@ namespace KitchenSink
     partial class ProgressBarPage : Json
     {
         public int ProgressValue = 0;
-        public string ProgressDisplay = "Testers";
         string seshId;
+        private Timer timer;
 
+        #region Buttons
         void Handle(Input.StartSlowProgress action)
         {
             StartProgressBar(50);
@@ -41,6 +42,7 @@ namespace KitchenSink
                 this.ButtonsDisabled = false;
             }
         }
+        #endregion
 
         protected override void OnData()
         {
@@ -48,12 +50,10 @@ namespace KitchenSink
             seshId = Session.SessionId;
         }
 
-        private Timer timer;
-
         void StartProgressBar(int time)
         {
-            int timerTime = 1 * time;
-            timer = new Timer(timerTime); // 60 * 1000 = 1 minute interval
+            int frequency = 1 * time;
+            timer = new Timer(frequency); // 60 * 1000 = 1 minute interval
             timer.AutoReset = true;
             timer.Elapsed += OnTimer;
             timer.Start(); // Update the Starcounter io - Add this to the example http://starcounter.io/guides/transactions/running-background-jobs/
@@ -85,15 +85,7 @@ namespace KitchenSink
 
         static ProgressBarPage()
         {
-            DefaultTemplate.Display.Bind = nameof(nameBind);
             DefaultTemplate.Progress.Bind = nameof(numberBind);
-        }
-
-        public string nameBind
-        {
-            get {
-                return ProgressDisplay;
-            }
         }
 
         public int numberBind
