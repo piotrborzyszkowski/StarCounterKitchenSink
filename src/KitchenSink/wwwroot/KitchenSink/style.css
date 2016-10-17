@@ -105,6 +105,20 @@
     cursor: not-allowed;
 }
 
+.kitchensink-progress-bar__container {
+    width: 400px;
+    height: 40px;
+    border: 1px solid #969696;
+    overflow: hidden;
+}
+
+.kitchensink-progress-bar__fill {
+    margin-left: -398px;
+    width: calc(400px - 2px);
+    height: calc(40px - 2px);
+    background-color: rgba(235, 135, 50, 0.43);
+}
+
 
 @-moz-keyframes kitchen-spin {
     from { -moz-transform: rotate(0deg); }

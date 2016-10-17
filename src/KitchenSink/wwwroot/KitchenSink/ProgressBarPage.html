@@ -1,0 +1,16 @@
+﻿<template>
+    <template is="dom-bind">
+        <p class="lead">Progress Bar.</p>
+        <p> test </p>
+        <p>{{model.Name}} + {{model.Number}}</p>
+        <button class="btn btn-sm btn-default" value="{{model.StartSlowProgress$::click}}" onmousedown="++this.value"> Slow Progression </button>
+        <button class="btn btn-sm btn-default" value="{{model.StartMediumProgress$::click}}" onmousedown="++this.value"> Medium Progression </button>
+        <button class="btn btn-sm btn-default" value="{{model.StartFastProgress$::click}}" onmousedown="++this.value"> Fast Progression </button>
+        <div class="kitchensink-progress-bar__container">
+            <div class="kitchensink-progress-bar__fill">
+                
+            </div>
+        </div>
+        <button class="btn btn-sm btn-default" value="{{model.StopTimer$::click}}" onmousedown="++this.value"> Stop Progress </button>
+    </template>
+</template>
