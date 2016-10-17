@@ -2,15 +2,48 @@
     <template is="dom-bind">
         <p class="lead">Progress Bar.</p>
         <p> test </p>
-        <p>{{model.Name}} + {{model.Number}}</p>
-        <button class="btn btn-sm btn-default" value="{{model.StartSlowProgress$::click}}" onmousedown="++this.value"> Slow Progression </button>
-        <button class="btn btn-sm btn-default" value="{{model.StartMediumProgress$::click}}" onmousedown="++this.value"> Medium Progression </button>
-        <button class="btn btn-sm btn-default" value="{{model.StartFastProgress$::click}}" onmousedown="++this.value"> Fast Progression </button>
+        <p>{{model.Display}} + {{model.Progress}}</p>
+        <div class="kitchensink-progress-bar__button-container">
+            <button class="btn btn-sm btn-default" value="{{model.StartSlowProgress$::click}}" onmousedown="++this.value" disabled$="{{model.ButtonsDisabled}}"> Slow Progression </button>
+            <button class="btn btn-sm btn-default" value="{{model.StartMediumProgress$::click}}" onmousedown="++this.value" disabled$="{{model.ButtonsDisabled}}"> Medium Progression </button>
+            <button class="btn btn-sm btn-default" value="{{model.StartFastProgress$::click}}" onmousedown="++this.value" disabled$="{{model.ButtonsDisabled}}"> Fast Progression </button>
+        </div>
         <div class="kitchensink-progress-bar__container">
-            <div class="kitchensink-progress-bar__fill">
+            <span class="kitchensink-progress-bar__percentages"> {{model.Progress}}% </span>
+            <div class="kitchensink-progress-bar__fill" style="width:{{getProgressStyle(model.Progress)}}%">
                 
             </div>
         </div>
-        <button class="btn btn-sm btn-default" value="{{model.StopTimer$::click}}" onmousedown="++this.value"> Stop Progress </button>
+        <div class="kitchensink-progress-bar__button-container--bottom">
+            <button class="btn btn-sm btn-default" value="{{model.StopProgress$::click}}" onmousedown="++this.value" disabled$="{{!model.ButtonsDisabled}}"> Reset Progress </button>
+            <button class="btn btn-sm btn-default" value="{{model.PauseProgress$::click}}" onmousedown="++this.value" disabled$="{{pauseButtonDisablement(model.ButtonsDisabled, model.Progress)}}"> Pause Progress </button>
+        </div>
     </template>
+    <script>
+        (function () {
+            var script = document._currentScript || document.currentScript;
+            var template = script.previousElementSibling;
+
+            template.onEnableCarrotEngineClick = function () {
+                template.set("model.EnableCarrotEngine$", !template.model.EnableCarrotEngine$);
+            };
+
+            template.onAddCarrotsClick = function () {
+                template.set("model.AddCarrots$", ++template.model.AddCarrots$);
+            };
+
+            template.getProgressStyle = function (value) {
+                var progressStyle = "width: " + value;
+                return value;
+            };
+
+            template.pauseButtonDisablement = function (buttonsDisabled, progress) {
+                if (progress == 100 || !buttonsDisabled) {
+                    return true;
+                }
+
+                return false;
+            }
+        })();
+    </script>
 </template>

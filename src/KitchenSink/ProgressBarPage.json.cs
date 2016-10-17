@@ -6,29 +6,40 @@ namespace KitchenSink
 {
     partial class ProgressBarPage : Json
     {
-        public int NumberOutput = 0;
-        public string StringOutput = "Testers";
+        public int ProgressValue = 0;
+        public string ProgressDisplay = "Testers";
         string seshId;
 
         void Handle(Input.StartSlowProgress action)
         {
-            StartProgressBar(80);
+            StartProgressBar(50);
         }
 
         void Handle(Input.StartMediumProgress action)
         {
-            StartProgressBar(40);
+            StartProgressBar(30);
         }
 
         void Handle(Input.StartFastProgress action)
         {
-            StartProgressBar(20);
+            StartProgressBar(10);
         }
 
-        void Handle(Input.StopTimer action)
+        void Handle(Input.StopProgress action)
         {
-            this.StartFastProgress = this.StartMediumProgress = this.StartFastProgress = NumberOutput = 0;
             timer.Stop();
+            this.StartFastProgress = this.StartMediumProgress = this.StartFastProgress = ProgressValue = 0;
+            this.ButtonsDisabled = false;
+        }
+
+        void Handle(Input.PauseProgress action)
+        {
+            timer.Stop();
+            if (ProgressValue != 100)
+            {
+                this.StartFastProgress = this.StartMediumProgress = this.StartFastProgress = ProgressValue;
+                this.ButtonsDisabled = false;
+            }
         }
 
         protected override void OnData()
@@ -45,7 +56,8 @@ namespace KitchenSink
             timer = new Timer(timerTime); // 60 * 1000 = 1 minute interval
             timer.AutoReset = true;
             timer.Elapsed += OnTimer;
-            timer.Start(); // Update the Starcounter io
+            timer.Start(); // Update the Starcounter io - Add this to the example http://starcounter.io/guides/transactions/running-background-jobs/
+            this.ButtonsDisabled = true; // Disabled the buttons
         }
 
         void OnTimer(object sender, ElapsedEventArgs e)
@@ -62,21 +74,25 @@ namespace KitchenSink
         {
             Session.ScheduleTask(seshId, (s, id) =>
             {
-                this.NumberOutput++;
+                this.ProgressValue++;
+                if (ProgressValue == 100)
+                {
+                    timer.Stop();
+                }
                 s.CalculatePatchAndPushOnWebSocket();
             });
         }
 
         static ProgressBarPage()
         {
-            DefaultTemplate.Name.Bind = nameof(nameBind);
-            DefaultTemplate.Number.Bind = nameof(numberBind);
+            DefaultTemplate.Display.Bind = nameof(nameBind);
+            DefaultTemplate.Progress.Bind = nameof(numberBind);
         }
 
         public string nameBind
         {
             get {
-                return StringOutput;
+                return ProgressDisplay;
             }
         }
 
@@ -84,7 +100,7 @@ namespace KitchenSink
         {
             get
             {
-                return NumberOutput;
+                return ProgressValue;
             }
         }
     }

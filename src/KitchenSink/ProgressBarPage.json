@@ -1,10 +1,12 @@
 {
   "Html": "/KitchenSink/ProgressBarPage.html",
-  "Name": "",
-  "Number": 0,
-  "StopTimer$": 0,
-  "StartTimer$": 0,
+  "Display": "",
+  "Progress": 0,
+
   "StartSlowProgress$": 0,
   "StartMediumProgress$": 0,
-  "StartFastProgress$": 0
+  "StartFastProgress$": 0,
+  "StopProgress$": 0,
+  "PauseProgress$": 0,
+  "ButtonsDisabled": false
 }
