@@ -56,7 +56,7 @@ namespace KitchenSink
             timer = new Timer(frequency); // 60 * 1000 = 1 minute interval
             timer.AutoReset = true;
             timer.Elapsed += OnTimer;
-            timer.Start(); // Update the Starcounter io - Add this to the example http://starcounter.io/guides/transactions/running-background-jobs/
+            timer.Start();
             this.ButtonsDisabled = true; // Disabled the buttons
         }
 
