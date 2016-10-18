@@ -25,22 +25,8 @@
 
         <button class="btn btn-sm btn-default kitchensink-progress-bar__button" value="{{model.StartProgress$::click}}" onmousedown="++this.value"> {{model.DownloadButtonText}} </button>
 
-        <template is="dom-if" if="{{checkFileDownload(model.Progress)}}">
+        <template is="dom-if" if="{{model.Progress}}">
             <p> {{model.FileDownloadText}} </p>
         </template>
     </template>
-    <script>
-        (function () {
-            var script = document._currentScript || document.currentScript;
-            var template = script.previousElementSibling;
-
-            template.checkFileDownload = function (value) {
-                if (value != 0) {
-                    return true
-                }
-                return false;
-            }
-
-        })();
-    </script>
 </template>
