@@ -1,5 +1,3 @@
-using System;
-using System.Timers;
 using Starcounter;
 
 namespace KitchenSink
@@ -8,41 +6,6 @@ namespace KitchenSink
     {
         public int ProgressValue = 0;
         string seshId;
-        private Timer timer;
-
-        #region Buttons
-        void Handle(Input.StartSlowProgress action)
-        {
-            StartProgressBar(50);
-        }
-
-        void Handle(Input.StartMediumProgress action)
-        {
-            StartProgressBar(30);
-        }
-
-        void Handle(Input.StartFastProgress action)
-        {
-            StartProgressBar(10);
-        }
-
-        void Handle(Input.StopProgress action)
-        {
-            timer.Stop();
-            this.StartFastProgress = this.StartMediumProgress = this.StartFastProgress = ProgressValue = 0;
-            this.ButtonsDisabled = false;
-        }
-
-        void Handle(Input.PauseProgress action)
-        {
-            timer.Stop();
-            if (ProgressValue != 100)
-            {
-                this.StartFastProgress = this.StartMediumProgress = this.StartFastProgress = ProgressValue;
-                this.ButtonsDisabled = false;
-            }
-        }
-        #endregion
 
         protected override void OnData()
         {
@@ -50,50 +13,52 @@ namespace KitchenSink
             seshId = Session.SessionId;
         }
 
-        void StartProgressBar(int time)
-        {
-            int frequency = 1 * time;
-            timer = new Timer(frequency); // 60 * 1000 = 1 minute interval
-            timer.AutoReset = true;
-            timer.Elapsed += OnTimer;
-            timer.Start();
-            this.ButtonsDisabled = true; // Disabled the buttons
-        }
-
-        void OnTimer(object sender, ElapsedEventArgs e)
-        {
-            // Schedule a job on scheduler 0 without waiting for its completion.
-            Scheduling.ScheduleTask(() =>
-            {
-                System.Threading.Thread.CurrentThread.Join(0);
-                UpdateProgressBar();
-            });
-        }
-
-        void UpdateProgressBar ()
-        {
-            Session.ScheduleTask(seshId, (s, id) =>
-            {
-                this.ProgressValue++;
-                if (ProgressValue == 100)
-                {
-                    timer.Stop();
-                }
-                s.CalculatePatchAndPushOnWebSocket();
-            });
-        }
-
         static ProgressBarPage()
         {
-            DefaultTemplate.Progress.Bind = nameof(numberBind);
+            DefaultTemplate.Progress.Bind = nameof(ProgressValueBind); // Binds ProgressValue to progress in the viewmodel
         }
 
-        public int numberBind
+        public int ProgressValueBind
         {
             get
             {
                 return ProgressValue;
             }
+        }
+
+        void Handle(Input.StartProgress action) // Button Input
+        {
+            if (ProgressValue == 0 || ProgressValue == 100)
+            {
+                ProgressValue = 0;
+                StartSimpleProgressBar(30);
+            }
+
+            ProgressValue = 0;
+        }
+
+        void StartSimpleProgressBar(int timer)
+        {
+            Scheduling.ScheduleTask(() =>
+            {
+                while (ProgressValue < 100)
+                {
+                    System.Threading.Thread.CurrentThread.Join(timer); // sleep function - handles the delay between the incrementation of ProgressValue
+                    SimpleProgressUpdate();
+                }
+            });
+        }
+
+        void SimpleProgressUpdate()
+        {
+            Session.ScheduleTask(seshId, (s, id) =>
+            {
+                if (ProgressValue < 100)
+                {
+                    ProgressValue++;
+                }
+                s.CalculatePatchAndPushOnWebSocket();
+            });
         }
     }
 }

@@ -2,10 +2,5 @@
   "Html": "/KitchenSink/ProgressBarPage.html",
   "Progress": 0,
 
-  "StartSlowProgress$": 0,
-  "StartMediumProgress$": 0,
-  "StartFastProgress$": 0,
-  "StopProgress$": 0,
-  "PauseProgress$": 0,
-  "ButtonsDisabled": false
+  "StartProgress$": 0
 }

@@ -106,7 +106,6 @@
 }
 
 .kitchensink-progress-bar__container {
-    margin-left: 20px;
     width: 400px;
     height: 40px;
     border: 1px solid #969696;
@@ -128,19 +127,9 @@
     margin-top: 5px;
 }
 
-.kitchensink-progress-bar__button-container,
-.kitchensink-progress-bar__button-container--bottom {
-    display: flex;
-    align-items: baseline;
-}
-
-.kitchensink-progress-bar__button-container > *,
-.kitchensink-progress-bar__button-container--bottom > * {
-    margin: 10px 10px 10px 0px;
-}
-
-.kitchensink-progress-bar__button-container--bottom {
-    margin-left: 90px;
+.kitchensink-progress-bar__button {
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 

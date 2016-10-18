@@ -10,44 +10,12 @@
 
         <p> Manipulating data is not the only usage for <code>Scheduling.ScheduleTask</code>. In the following example, it is used as a means of creating a progress bar </p>
         
-        <div class="kitchensink-progress-bar__button-container">
-            <button class="btn btn-sm btn-default" value="{{model.StartSlowProgress$::click}}" onmousedown="++this.value" disabled$="{{model.ButtonsDisabled}}"> Slow Progression </button>
-            <button class="btn btn-sm btn-default" value="{{model.StartMediumProgress$::click}}" onmousedown="++this.value" disabled$="{{model.ButtonsDisabled}}"> Medium Progression </button>
-            <button class="btn btn-sm btn-default" value="{{model.StartFastProgress$::click}}" onmousedown="++this.value" disabled$="{{model.ButtonsDisabled}}"> Fast Progression </button>
-        </div>
         <div class="kitchensink-progress-bar__container">
             <span class="kitchensink-progress-bar__percentages"> {{model.Progress}}% </span>
-            <div class="kitchensink-progress-bar__fill" style="width:{{getProgressStyle(model.Progress)}}%">
+            <div class="kitchensink-progress-bar__fill" style="width:{{model.Progress}}%">
             </div>
         </div>
-        <div class="kitchensink-progress-bar__button-container--bottom">
-            <button class="btn btn-sm btn-default" value="{{model.StopProgress$::click}}" onmousedown="++this.value" disabled$="{{resetButtonDisablement(model.Progress)}}"> Reset Progress </button>
-            <button class="btn btn-sm btn-default" value="{{model.PauseProgress$::click}}" onmousedown="++this.value" disabled$="{{pauseButtonDisablement(model.ButtonsDisabled, model.Progress)}}"> Pause Progress </button>
-        </div>
+
+        <button class="btn btn-sm btn-default kitchensink-progress-bar__button" value="{{model.StartProgress$::click}}" onmousedown="++this.value"> Start Progress </button>
     </template>
-    <script>
-        (function () {
-            var script = document._currentScript || document.currentScript;
-            var template = script.previousElementSibling;
-
-            template.getProgressStyle = function (value) {
-                return value;
-            };
-
-            template.pauseButtonDisablement = function (buttonsDisabled, progress) {
-                if (progress == 100 || !buttonsDisabled) {
-                    return true;
-                }
-                return false;
-            }
-
-            template.resetButtonDisablement = function (progress) {
-                if (progress > 0 && progress <= 100) {
-                    return false;
-                }
-                return true;
-            }
-
-        })();
-    </script>
 </template>
