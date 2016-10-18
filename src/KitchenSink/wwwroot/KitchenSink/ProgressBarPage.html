@@ -4,11 +4,18 @@
         
         <h5> Background jobs </h5>
 
-        <p> <code>Scheduling.ScheduleTask</code> can also be used if a user wants to manipulate database data every X minute. To read more about backround jobs, <a href="http://starcounter.io/guides/transactions/running-background-jobs/"> click here! </a> </p>
+        <p> <code>Scheduling.ScheduleTask</code> can also be used if a user wants to manipulate database data every X minute. To read more about background jobs, <a href="http://starcounter.io/guides/transactions/running-background-jobs/"> click here! </a> </p>
         
         <h5> Alternative usage </h5>
 
-        <p> Manipulating data is not the only usage for <code>Scheduling.ScheduleTask</code>. In the following example, it is used as a means of creating a progress bar </p>
+        <p> Manipulating data is not the only usage for <code>Scheduling.ScheduleTask</code>. In the following example, it is used as a means of creating a progress bar. </p>
+        
+        <h5> Simple Progress Bar </h5>
+        
+        <p> The task is started as the user presses the "Download (Imaginary) file" button, and the task starts running in the background. Since this all happens in the background,
+            it does not prevent code that follows from being executed </p>
+
+        <p> </p>
         
         <div class="kitchensink-progress-bar__container">
             <span class="kitchensink-progress-bar__percentages"> {{model.Progress}}% </span>
@@ -16,6 +23,24 @@
             </div>
         </div>
 
-        <button class="btn btn-sm btn-default kitchensink-progress-bar__button" value="{{model.StartProgress$::click}}" onmousedown="++this.value"> Start Progress </button>
+        <button class="btn btn-sm btn-default kitchensink-progress-bar__button" value="{{model.StartProgress$::click}}" onmousedown="++this.value"> {{model.DownloadButtonText}} </button>
+
+        <template is="dom-if" if="{{checkFileDownload(model.Progress)}}">
+            <p> {{model.FileDownloadText}} </p>
+        </template>
     </template>
+    <script>
+        (function () {
+            var script = document._currentScript || document.currentScript;
+            var template = script.previousElementSibling;
+
+            template.checkFileDownload = function (value) {
+                if (value != 0) {
+                    return true
+                }
+                return false;
+            }
+
+        })();
+    </script>
 </template>

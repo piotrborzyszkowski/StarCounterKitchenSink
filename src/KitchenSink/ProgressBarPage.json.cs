@@ -4,58 +4,49 @@ namespace KitchenSink
 {
     partial class ProgressBarPage : Json
     {
-        public int ProgressValue = 0;
-        string seshId;
-
         protected override void OnData()
         {
             base.OnData();
-            seshId = Session.SessionId;
-        }
-
-        static ProgressBarPage()
-        {
-            DefaultTemplate.Progress.Bind = nameof(ProgressValueBind); // Binds ProgressValue to progress in the viewmodel
-        }
-
-        public int ProgressValueBind
-        {
-            get
-            {
-                return ProgressValue;
-            }
         }
 
         void Handle(Input.StartProgress action) // Button Input
         {
-            if (ProgressValue == 0 || ProgressValue == 100)
+            string sessionId = Session.SessionId;
+
+            if (this.Progress == 0 || this.Progress == 100)
             {
-                ProgressValue = 0;
-                StartSimpleProgressBar(30);
+                this.Progress = 0;
+                StartSimpleProgressBar(30, sessionId);
             }
 
-            ProgressValue = 0;
+            this.Progress = 0;
         }
 
-        void StartSimpleProgressBar(int timer)
+        void StartSimpleProgressBar(int delay, string sessionId)
         {
+            this.FileDownloadText = "Downloading File";
             Scheduling.ScheduleTask(() =>
             {
-                while (ProgressValue < 100)
+                while (this.Progress < 100)
                 {
-                    System.Threading.Thread.CurrentThread.Join(timer); // sleep function - handles the delay between the incrementation of ProgressValue
-                    SimpleProgressUpdate();
+                    System.Threading.Thread.CurrentThread.Join(delay); // sleep function - handles the delay between the incrementation of this.Progress
+                    SimpleProgressUpdate(sessionId);
                 }
-            });
+            }, false); // Wait for completion - If false: it will continue to run the script even though the scheduleTask is running in the background
         }
 
-        void SimpleProgressUpdate()
+        void SimpleProgressUpdate(string sessionId)
         {
-            Session.ScheduleTask(seshId, (s, id) =>
+            Session.ScheduleTask(sessionId, (s, id) =>
             {
-                if (ProgressValue < 100)
+                if (this.Progress < 100)
                 {
-                    ProgressValue++;
+                    this.Progress++;
+                }
+                else
+                {
+                    this.FileDownloadText = "Download Complete";
+                    this.DownloadButtonText = "Download another (maginary) file!";
                 }
                 s.CalculatePatchAndPushOnWebSocket();
             });
