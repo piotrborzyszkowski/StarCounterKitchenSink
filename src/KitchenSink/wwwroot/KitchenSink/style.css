@@ -116,7 +116,7 @@
 .kitchensink-progress-bar__fill {
     max-width: calc(400px - 2px);
     height: calc(40px - 2px);
-    background-color: rgba(255, 133, 0, 0.50);
+    background-color: rgba(255, 133, 0, 0.60);
 }
 
 .kitchensink-progress-bar__percentages {

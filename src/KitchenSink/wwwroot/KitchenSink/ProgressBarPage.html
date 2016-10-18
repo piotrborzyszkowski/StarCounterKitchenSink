@@ -12,7 +12,8 @@
             </div>
         </div>
         <div class="kitchensink-progress-bar__button-container--bottom">
-            <button class="btn btn-sm btn-default" value="{{model.StopProgress$::click}}" onmousedown="++this.value" disabled$="{{!model.ButtonsDisabled}}"> Reset Progress </button>
+            <!--<button class="btn btn-sm btn-default" value="{{model.StopProgress$::click}}" onmousedown="++this.value" disabled$="{{!model.ButtonsDisabled}}"> Reset Progress </button>-->
+            <button class="btn btn-sm btn-default" value="{{model.StopProgress$::click}}" onmousedown="++this.value" disabled$="{{resetButtonDisablement(model.Progress)}}"> Reset Progress </button>
             <button class="btn btn-sm btn-default" value="{{model.PauseProgress$::click}}" onmousedown="++this.value" disabled$="{{pauseButtonDisablement(model.ButtonsDisabled, model.Progress)}}"> Pause Progress </button>
         </div>
     </template>
@@ -30,6 +31,13 @@
                     return true;
                 }
                 return false;
+            }
+
+            template.resetButtonDisablement = function (progress) {
+                if (progress > 0 && progress <= 100) {
+                    return false;
+                }
+                return true;
             }
 
         })();
