@@ -25,6 +25,7 @@ namespace KitchenSink
         void StartSimpleProgressBar(int delay, string sessionId)
         {
             this.FileDownloadText = "Downloading File";
+
             Scheduling.ScheduleTask(() =>
             {
                 while (this.Progress < 100)
@@ -32,7 +33,7 @@ namespace KitchenSink
                     System.Threading.Thread.CurrentThread.Join(delay); // sleep function - handles the delay between the incrementation of this.Progress
                     SimpleProgressUpdate(sessionId);
                 }
-            }, false); // Wait for completion - If false: it will continue to run the script even though the scheduleTask is running in the background
+            }, false); // Wait for completion - If false: it will continue to run the script even though the scheduled task is running in the background
         }
 
         void SimpleProgressUpdate(string sessionId)
@@ -46,7 +47,7 @@ namespace KitchenSink
                 else
                 {
                     this.FileDownloadText = "Download Complete";
-                    this.DownloadButtonText = "Download another (maginary) file!";
+                    this.DownloadButtonText = "Download another (imaginary) file!";
                 }
                 s.CalculatePatchAndPushOnWebSocket();
             });
