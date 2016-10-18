@@ -1,6 +1,15 @@
 ﻿<template>
     <template is="dom-bind">
         <p class="lead"> <code>Scheduling.ScheduleTask</code> Has a few different usage areas. But it can also be used to make a progress bar!</p>
+        
+        <h5> Background jobs </h5>
+
+        <p> <code>Scheduling.ScheduleTask</code> can also be used if a user wants to manipulate database data every X minute. To read more about backround jobs, <a href="http://starcounter.io/guides/transactions/running-background-jobs/"> click here! </a> </p>
+        
+        <h5> Alternative usage </h5>
+
+        <p> Manipulating data is not the only usage for <code>Scheduling.ScheduleTask</code>. In the following example, it is used as a means of creating a progress bar </p>
+        
         <div class="kitchensink-progress-bar__button-container">
             <button class="btn btn-sm btn-default" value="{{model.StartSlowProgress$::click}}" onmousedown="++this.value" disabled$="{{model.ButtonsDisabled}}"> Slow Progression </button>
             <button class="btn btn-sm btn-default" value="{{model.StartMediumProgress$::click}}" onmousedown="++this.value" disabled$="{{model.ButtonsDisabled}}"> Medium Progression </button>
