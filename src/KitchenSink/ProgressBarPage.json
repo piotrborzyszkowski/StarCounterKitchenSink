@@ -4,6 +4,8 @@
 
   "StartProgress$": 0,
 
+  "TaskIsRunnning": false,
+
   "FileDownloadText": "",
   "DownloadButtonText": "Download (imaginary) file!"
 }
