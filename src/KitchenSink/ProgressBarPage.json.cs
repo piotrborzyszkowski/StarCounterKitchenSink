@@ -15,18 +15,17 @@ namespace KitchenSink
             {
                 return;
             }
-            this.TaskIsRunnning = true;
-            string sessionId = Session.SessionId;
 
             this.Progress = 0;
-            StartSimpleProgressBar(30, sessionId);
-
+            this.TaskIsRunnning = true;
+            StartSimpleProgressBar(30, Session.SessionId);
         }
 
         void StartSimpleProgressBar(int delay, string sessionId)
         {
+            long tempProgress = this.Progress;
             this.FileDownloadText = "Downloading File";
-            var tempProgress = this.Progress;
+            
             Scheduling.ScheduleTask(() =>
             {
                 while (tempProgress < 100)
@@ -38,18 +37,26 @@ namespace KitchenSink
             }, false); // Wait for completion - If false: it will continue to run the script even though the scheduled task is running in the background
         }
 
-        void SimpleProgressUpdate(string sessionId, long tempProgress)
+        void SimpleProgressUpdate(string sessionId, long progress)
         {
-            Session.ScheduleTask(sessionId, (s, id) =>
+            Session.ScheduleTask(sessionId, (session, id) =>
             {
-                this.Progress = tempProgress;
+                // The session might be disposed if user disconnects before the task has change to execute
+                if (session == null)
+                {
+                    return;
+                }
+
+                this.Progress = progress;
+
                 if (this.Progress >= 100)
                 {
                     this.FileDownloadText = "Download Complete";
                     this.DownloadButtonText = "Download another (imaginary) file!";
                     this.TaskIsRunnning = false;
                 }
-                s.CalculatePatchAndPushOnWebSocket();
+
+                session.CalculatePatchAndPushOnWebSocket();
             });
         }
     }
