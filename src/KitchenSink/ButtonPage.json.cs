@@ -1,4 +1,5 @@
 using Starcounter;
+using System.Threading;
 
 namespace KitchenSink
 {
@@ -39,6 +40,17 @@ namespace KitchenSink
                 OneCarrotReaction = "You have " + action.Value + " imaginary carrots";
                 AddOneCarrotDisabled = true;
             }
+        }
+
+        void Handle(Input.TakeOneRegeneratingCarrot action)
+        {
+            action.Cancel();
+        }
+
+        void Handle(Input.TakeOneFakeRegeneratingCarrot action)
+        {
+            Thread.Sleep(500);
+            action.Cancel();
         }
     }
 }
