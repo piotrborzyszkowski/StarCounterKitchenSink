@@ -30,6 +30,7 @@ namespace KitchenSink.Test
             var originalText = label.Text;
             Assert.AreEqual(string.Empty, originalText);
             driver.FindElement(ByHelper.AnyButton).ClickUsingMouse(driver);
+            this.WaitUntil(x => !label.Text.Equals(originalText));
             Assert.AreEqual("'Name' should not be empty.", driver.FindElement(ByHelper.AnyErrorLabel).Text);
         }
 
@@ -42,6 +43,7 @@ namespace KitchenSink.Test
             Assert.AreEqual(string.Empty, originalText);
             driver.FindElement(ByHelper.AnyInput).Clear();
             driver.FindElement(ByHelper.AnyInput).SendKeys("Marcin");
+            this.WaitUntil(d => d.FindElement(ByHelper.AnyInput).GetAttribute("value") != string.Empty);
             driver.FindElement(ByHelper.AnyButton).ClickUsingMouse(driver);
             Assert.AreEqual(string.Empty, driver.FindElement(ByHelper.AnyErrorLabel).Text);
         }

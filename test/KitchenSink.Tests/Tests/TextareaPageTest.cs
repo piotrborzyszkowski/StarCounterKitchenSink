@@ -69,6 +69,7 @@ namespace KitchenSink.Test
             Assert.AreEqual("Length of your bio: 0 chars", originalText);
 
             driver.FindElement(ByHelper.AnyTextarea).SendKeys("U");
+            this.WaitUntil(x => !label.Text.Equals(originalText));
 
             string actualString = driver.FindElement(ByHelper.AnyControlLabel).Text;
             Assert.AreEqual("Length of your bio: 1 chars", actualString);

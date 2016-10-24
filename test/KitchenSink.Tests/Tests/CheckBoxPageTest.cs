@@ -35,6 +35,7 @@ namespace KitchenSink.Test
             var element = driver.FindElement(ByHelper.AnyInput);
             Assert.AreEqual(element.GetAttribute("type"), "checkbox");
             element.ClickUsingMouse(driver);
+            this.WaitUntil(x => !canDrive.Equals(driver.FindElement(ByHelper.StarcounterIncludeWithDiv).Text));
             var uncheckedText = driver.FindElement(ByHelper.StarcounterIncludeWithDiv).Text;
             Assert.AreEqual(cantDrive, uncheckedText);
         }
@@ -46,9 +47,11 @@ namespace KitchenSink.Test
             var element = driver.FindElement(ByHelper.AnyInput);
             Assert.AreEqual(element.GetAttribute("type"), "checkbox");
             element.ClickUsingMouse(driver);
+            this.WaitUntil(x => !canDrive.Equals(driver.FindElement(ByHelper.StarcounterIncludeWithDiv).Text));
             var uncheckedText = driver.FindElement(ByHelper.StarcounterIncludeWithDiv).Text;
             Assert.AreEqual(cantDrive, uncheckedText);
             element.ClickUsingMouse(driver);
+            this.WaitUntil(x => !cantDrive.Equals(driver.FindElement(ByHelper.StarcounterIncludeWithDiv).Text));
             var checkedText = driver.FindElement(ByHelper.StarcounterIncludeWithDiv).Text;
             Assert.AreEqual(canDrive, checkedText);
         }

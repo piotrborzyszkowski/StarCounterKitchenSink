@@ -47,6 +47,7 @@ namespace KitchenSink.Test
             Assert.AreEqual(element.GetAttribute("type"), "password");
             driver.FindElement(ByHelper.AnyInput).Clear();
             driver.FindElement(ByHelper.AnyInput).SendKeys("PerfectPass");
+            this.WaitUntil(x => !passwordTooShort.Equals(driver.FindElement(ByHelper.AnyControlLabel).Text));
             Assert.AreEqual(passwordWithProperLength, driver.FindElement(ByHelper.AnyControlLabel).Text);
         }
 
@@ -58,8 +59,10 @@ namespace KitchenSink.Test
             Assert.AreEqual(element.GetAttribute("type"), "password");
             driver.FindElement(ByHelper.AnyInput).Clear();
             driver.FindElement(ByHelper.AnyInput).SendKeys("PerfectPass");
+            this.WaitUntil(x => !passwordTooShort.Equals(driver.FindElement(ByHelper.AnyControlLabel).Text));
             driver.FindElement(ByHelper.AnyInput).Clear();
             driver.FindElement(ByHelper.AnyInput).SendKeys("Bad");
+            this.WaitUntil(x => !passwordWithProperLength.Equals(driver.FindElement(ByHelper.AnyControlLabel).Text));
             Assert.AreEqual(passwordTooShort, driver.FindElement(ByHelper.AnyControlLabel).Text);
         }
     }
