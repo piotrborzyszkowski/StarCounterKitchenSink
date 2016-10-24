@@ -13,7 +13,7 @@ namespace KitchenSink.Tests
         public static void ClickUsingMouse(this IWebElement element, IWebDriver driver)
         {
             ICapabilities capabilities = ((RemoteWebDriver) driver).Capabilities;
-            if (capabilities.BrowserName == "Firefox")
+            if (capabilities.BrowserName.ToLower() == "firefox")
             {
                 element.Click();
             }
