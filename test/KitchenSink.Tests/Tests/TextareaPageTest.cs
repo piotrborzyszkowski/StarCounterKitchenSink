@@ -23,10 +23,8 @@ namespace KitchenSink.Test
         public void TextareaPage_PageLoads()
         {
             driver.Navigate().GoToUrl(baseURL);
-            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(ByHelper.AnyLinkWithText("Textarea")));
 
             driver.FindElement(ByHelper.AnyLinkWithText("Textarea")).ClickUsingMouse(driver);
-            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(ByHelper.AnyTextareaFormControl));
 
             var element = driver.FindElement(ByHelper.AnyTextareaFormControl);
             Assert.AreEqual(element.Text, "");
@@ -45,7 +43,6 @@ namespace KitchenSink.Test
             }
 
             driver.Navigate().GoToUrl(baseURL + "/Textarea");
-            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(ByHelper.AnyTextareaFormControl));
 
             driver.FindElement(ByHelper.AnyTextareaFormControl).Clear();
 
@@ -64,8 +61,6 @@ namespace KitchenSink.Test
         public void TextareaPage_CounterPropagationWhileTyping()
         {
             driver.Navigate().GoToUrl(baseURL + "/Textarea");
-            this.WaitUntil(
-                ExpectedConditions.PresenceOfAllElementsLocatedBy(ByHelper.StarcounterIncludeWithTextarea3Rows));
 
             var label = driver.FindElement(ByHelper.AnyControlLabel);
             var originalText = label.Text;
@@ -74,7 +69,6 @@ namespace KitchenSink.Test
             Assert.AreEqual("Length of your bio: 0 chars", originalText);
 
             driver.FindElement(ByHelper.AnyTextarea).SendKeys("U");
-            this.WaitUntil(x => !label.Text.Equals(originalText));
 
             string actualString = driver.FindElement(ByHelper.AnyControlLabel).Text;
             Assert.AreEqual("Length of your bio: 1 chars", actualString);

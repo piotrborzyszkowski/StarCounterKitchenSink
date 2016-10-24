@@ -23,9 +23,7 @@ namespace KitchenSink.Test
         public void PasswordPage_PageLoads()
         {
             driver.Navigate().GoToUrl(baseURL);
-            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(ByHelper.AnyLinkWithText("Password")));
             driver.FindElement(ByHelper.AnyLinkWithText("Password")).ClickUsingMouse(driver);
-            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(ByHelper.StarcounterIncludeWithPassword));
             var element = driver.FindElement(ByHelper.AnyInput);
             Assert.AreEqual(element.GetAttribute("type"), "password");
         }
@@ -34,7 +32,6 @@ namespace KitchenSink.Test
         public void PasswordPage_PasswordTooShort()
         {
             driver.Navigate().GoToUrl(baseURL + "/Password");
-            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(ByHelper.StarcounterIncludeWithPassword));
             var element = driver.FindElement(ByHelper.AnyInput);
             Assert.AreEqual(element.GetAttribute("type"), "password");
             driver.FindElement(ByHelper.AnyInput).Clear();
@@ -46,12 +43,10 @@ namespace KitchenSink.Test
         public void PasswordPage_PasswordWithProperLength()
         {
             driver.Navigate().GoToUrl(baseURL + "/Password");
-            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(ByHelper.StarcounterIncludeWithPassword));
             var element = driver.FindElement(ByHelper.AnyInput);
             Assert.AreEqual(element.GetAttribute("type"), "password");
             driver.FindElement(ByHelper.AnyInput).Clear();
             driver.FindElement(ByHelper.AnyInput).SendKeys("PerfectPass");
-            this.WaitUntil(x => !passwordTooShort.Equals(driver.FindElement(ByHelper.AnyControlLabel).Text));
             Assert.AreEqual(passwordWithProperLength, driver.FindElement(ByHelper.AnyControlLabel).Text);
         }
 
@@ -59,15 +54,12 @@ namespace KitchenSink.Test
         public void PasswordPage_ChangingPasswordToGoodThenToShort()
         {
             driver.Navigate().GoToUrl(baseURL + "/Password");
-            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(ByHelper.StarcounterIncludeWithPassword));
             var element = driver.FindElement(ByHelper.AnyInput);
             Assert.AreEqual(element.GetAttribute("type"), "password");
             driver.FindElement(ByHelper.AnyInput).Clear();
             driver.FindElement(ByHelper.AnyInput).SendKeys("PerfectPass");
-            this.WaitUntil(x => !passwordTooShort.Equals(driver.FindElement(ByHelper.AnyControlLabel).Text));
             driver.FindElement(ByHelper.AnyInput).Clear();
             driver.FindElement(ByHelper.AnyInput).SendKeys("Bad");
-            this.WaitUntil(x => !passwordWithProperLength.Equals(driver.FindElement(ByHelper.AnyControlLabel).Text));
             Assert.AreEqual(passwordTooShort, driver.FindElement(ByHelper.AnyControlLabel).Text);
         }
     }

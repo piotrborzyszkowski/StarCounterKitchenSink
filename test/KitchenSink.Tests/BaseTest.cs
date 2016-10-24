@@ -19,7 +19,6 @@ namespace KitchenSink.Tests
         protected StringBuilder verificationErrors;
         protected string baseURL;
         protected string browser;
-        protected WebDriverWait wait;
 
         [SetUp]
         public void SetupTest()
@@ -39,7 +38,6 @@ namespace KitchenSink.Tests
             }
 
             this.driver = WebDriverFactory.Create(this.browser);
-            this.wait = this.GetWebDriverWait();
         }
 
         [TearDown]
@@ -87,16 +85,6 @@ namespace KitchenSink.Tests
                 }
             }
             return false;
-        }
-
-        protected WebDriverWait GetWebDriverWait()
-        {
-            return new WebDriverWait(driver, TimeSpan.FromSeconds(30));
-        }
-
-        protected TResult WaitUntil<TResult>(Func<IWebDriver, TResult> condition)
-        {
-            return this.wait.Until(condition);
         }
     }
 }
