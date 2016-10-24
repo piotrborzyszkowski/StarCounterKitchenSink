@@ -32,19 +32,24 @@ namespace KitchenSink.Test
         {
             driver.Navigate().GoToUrl(baseURL + "/Button");
             var label = driver.FindElement(ByHelper.AddCarrotsReaction);
-
             Assert.AreEqual("You don't have any carrots", label.Text);
             var originalText = label.Text;
 
             Click(driver.FindElement(ByHelper.ButtonAddCarrotsInlineScript));
+
+            label = driver.FindElement(ByHelper.AddCarrotsReaction);
             Assert.AreEqual("You have 1 imaginary carrots", label.Text);
             originalText = label.Text;
 
             Click(driver.FindElement(ByHelper.ButtonAddCarrotsFunction));
+
+            label = driver.FindElement(ByHelper.AddCarrotsReaction);
             Assert.AreEqual("You have 2 imaginary carrots", label.Text);
             originalText = label.Text;
 
             Click(driver.FindElement(ByHelper.SpanAddCarrotsFunction));
+
+            label = driver.FindElement(ByHelper.AddCarrotsReaction);
             Assert.AreEqual("You have 3 imaginary carrots", label.Text);
         }
 
@@ -53,8 +58,8 @@ namespace KitchenSink.Test
         {
             driver.Navigate().GoToUrl(baseURL + "/Button");
             var button = driver.FindElement(ByHelper.ButtonSwitch);
-            var label = driver.FindElement(ByHelper.ButtonSwitchReaction);
 
+            var label = driver.FindElement(ByHelper.ButtonSwitchReaction);
             Assert.AreEqual("Carrot engine is off", label.Text);
             var originalText = label.Text;
 
@@ -85,11 +90,16 @@ namespace KitchenSink.Test
             var originalText = label.Text;
 
             Click(button);
+
+            button = driver.FindElement(ByHelper.ButtonDisabled);
+            label = driver.FindElement(ByHelper.ButtonDisabledReaction);
             Assert.AreEqual("You have 1 imaginary carrots", label.Text);
             Assert.AreEqual(button.GetAttribute("disabled"), "true");
 
             Click(button);
-            Thread.Sleep(1000);
+
+            button = driver.FindElement(ByHelper.ButtonDisabled);
+            label = driver.FindElement(ByHelper.ButtonDisabledReaction);
             Assert.AreEqual("You have 1 imaginary carrots", label.Text);
             Assert.AreEqual(button.GetAttribute("disabled"), "true");
         }
