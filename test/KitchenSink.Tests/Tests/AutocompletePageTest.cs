@@ -88,6 +88,7 @@ namespace KitchenSink.Tests.Tests
             var placesSearchbox = driver.FindElement(PlacesSearchSelector);
             placesSearchbox.SendKeys("po");
             placesSearchbox.SendKeys(Keys.Tab);
+            this.WaitUntil(d => d.FindElements(FoundPlacesSelector).Count != 0);
             driver.FindElement(ProductsSearchSelector).Click();
             this.WaitUntil(d => d.FindElements(FoundPlacesSelector).Count == 0);
             Assert.IsEmpty(driver.FindElements(FoundPlacesSelector));
