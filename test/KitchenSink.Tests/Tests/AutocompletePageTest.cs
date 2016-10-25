@@ -52,6 +52,7 @@ namespace KitchenSink.Tests.Tests
             var countryToPick = "Poland";
             AssertElements(FoundPlacesSelector, countryToPick, "Portugal");
             driver.FindElements(FoundPlacesSelector).First(el => el.Text == countryToPick).Click();
+            this.WaitUntil(d => driver.FindElements(FoundPlacesSelector).Count == 0);
             Assert.AreEqual(countryToPick, driver.FindElement(PlacesSearchSelector).GetAttribute("value"),
                 "Search textbox has invalid content");
             Assert.AreEqual("Capital of Poland is Warsaw",
@@ -70,6 +71,7 @@ namespace KitchenSink.Tests.Tests
             var whiskeyToPick = "Irish Whiskey";
             AssertElements(FoundProductsSelector, "Scotch Whisky", whiskeyToPick);
             driver.FindElements(FoundProductsSelector).First(el => el.Text == whiskeyToPick).Click();
+            this.WaitUntil(d => driver.FindElements(FoundProductsSelector).Count == 0);
             Assert.AreEqual(whiskeyToPick, driver.FindElement(ProductsSearchSelector).GetAttribute("value"),
                 "Search textbox has invalid content");
             Assert.AreEqual("Irish Whiskey costs $2", driver.FindElement(By.Id("kitchensink-autocomplete-price")).Text,
@@ -87,6 +89,7 @@ namespace KitchenSink.Tests.Tests
             placesSearchbox.SendKeys("po");
             placesSearchbox.SendKeys(Keys.Tab);
             driver.FindElement(ProductsSearchSelector).Click();
+            this.WaitUntil(d => d.FindElements(FoundPlacesSelector).Count == 0);
             Assert.IsEmpty(driver.FindElements(FoundPlacesSelector));
         }
 
