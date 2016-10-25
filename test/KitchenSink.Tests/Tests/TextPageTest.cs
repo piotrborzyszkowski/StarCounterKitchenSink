@@ -28,8 +28,14 @@ namespace KitchenSink.Test
             driver.Navigate().GoToUrl(baseURL + "/Text");
             var label = driver.FindElement(ByHelper.AnyControlLabel);
             var originalText = label.Text;
-            driver.FindElement(ByHelper.AnyInput).Clear();
-            driver.FindElement(ByHelper.AnyInput).SendKeys("Marcin");
+            var input = driver.FindElement(ByHelper.AnyInput);
+            input.Clear();
+            input.SendKeys("M");
+            input.SendKeys("a");
+            input.SendKeys("r");
+            input.SendKeys("c");
+            input.SendKeys("i");
+            input.SendKeys("n");
             driver.FindElement(ByHelper.Body).ClickUsingMouse(driver);
             this.WaitUntil(x => !label.Text.Equals(originalText));
             Assert.AreEqual("Hi, Marcin!", driver.FindElement(ByHelper.AnyControlLabel).Text);
