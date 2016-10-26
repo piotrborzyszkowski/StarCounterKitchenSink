@@ -19,7 +19,6 @@ namespace KitchenSink.Tests.Tests
         public void Setup()
         {
             driver.Navigate().GoToUrl(baseURL + "/Redirect");
-            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(ByHelper.AnyButtonWithText("Fruit")));
         }
 
         [Test]

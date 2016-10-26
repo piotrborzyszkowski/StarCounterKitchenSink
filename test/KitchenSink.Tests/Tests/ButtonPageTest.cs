@@ -22,9 +22,7 @@ namespace KitchenSink.Test
         public void ButtonPageTest_PageLoads()
         {
             driver.Navigate().GoToUrl(baseURL);
-            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(ByHelper.AnyLinkWithText("Button")));
             driver.FindElement(ByHelper.AnyLinkWithText("Button")).ClickUsingMouse(driver);
-            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(ByHelper.ButtonAddCarrotsInlineScript));
             var element = driver.FindElement(ByHelper.ButtonAddCarrotsInlineScript);
             Assert.AreEqual(element.Text.ToLower(), "button (inline script)");
         }
@@ -33,9 +31,7 @@ namespace KitchenSink.Test
         public void ButtonPageTest_AddCarrotsIncrements()
         {
             driver.Navigate().GoToUrl(baseURL + "/Button");
-            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(ByHelper.ButtonAddCarrotsInlineScript));
             var label = driver.FindElement(ByHelper.AddCarrotsReaction);
-
             Assert.AreEqual("You don't have any carrots", label.Text);
             var originalText = label.Text;
 
@@ -58,10 +54,9 @@ namespace KitchenSink.Test
         public void ButtonPageTest_SwitchButtonToggles()
         {
             driver.Navigate().GoToUrl(baseURL + "/Button");
-            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(ByHelper.ButtonSwitch));
             var button = driver.FindElement(ByHelper.ButtonSwitch);
-            var label = driver.FindElement(ByHelper.ButtonSwitchReaction);
 
+            var label = driver.FindElement(ByHelper.ButtonSwitchReaction);
             Assert.AreEqual("Carrot engine is off", label.Text);
             var originalText = label.Text;
 
@@ -84,8 +79,6 @@ namespace KitchenSink.Test
             }
 
             driver.Navigate().GoToUrl(baseURL + "/Button");
-            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(ByHelper.ButtonDisabled));
-            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(ByHelper.ButtonDisabledReaction));
             var button = driver.FindElement(ByHelper.ButtonDisabled);
             var label = driver.FindElement(ByHelper.ButtonDisabledReaction);
 

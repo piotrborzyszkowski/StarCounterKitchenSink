@@ -23,10 +23,8 @@ namespace KitchenSink.Test
         public void TextareaPage_PageLoads()
         {
             driver.Navigate().GoToUrl(baseURL);
-            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(ByHelper.AnyLinkWithText("Textarea")));
 
             driver.FindElement(ByHelper.AnyLinkWithText("Textarea")).ClickUsingMouse(driver);
-            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(ByHelper.AnyTextareaFormControl));
 
             var element = driver.FindElement(ByHelper.AnyTextareaFormControl);
             Assert.AreEqual(element.Text, "");
@@ -45,7 +43,6 @@ namespace KitchenSink.Test
             }
 
             driver.Navigate().GoToUrl(baseURL + "/Textarea");
-            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(ByHelper.AnyTextareaFormControl));
 
             driver.FindElement(ByHelper.AnyTextareaFormControl).Clear();
 
@@ -64,8 +61,6 @@ namespace KitchenSink.Test
         public void TextareaPage_CounterPropagationWhileTyping()
         {
             driver.Navigate().GoToUrl(baseURL + "/Textarea");
-            this.WaitUntil(
-                ExpectedConditions.PresenceOfAllElementsLocatedBy(ByHelper.StarcounterIncludeWithTextarea3Rows));
 
             var label = driver.FindElement(ByHelper.AnyControlLabel);
             var originalText = label.Text;

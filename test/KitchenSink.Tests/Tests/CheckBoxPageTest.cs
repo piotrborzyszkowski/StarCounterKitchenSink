@@ -23,9 +23,7 @@ namespace KitchenSink.Test
         public void CheckboxPage_PageLoads()
         {
             driver.Navigate().GoToUrl(baseURL);
-            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(ByHelper.AnyLinkWithText("Checkbox")));
             driver.FindElement(ByHelper.AnyLinkWithText("Checkbox")).ClickUsingMouse(driver);
-            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(ByHelper.StarcounterIncludeWithCheckbox));
             var element = driver.FindElement(ByHelper.AnyInput);
             Assert.AreEqual(element.GetAttribute("type"), "checkbox");
         }
@@ -34,7 +32,6 @@ namespace KitchenSink.Test
         public void CheckboxPage_CheckboxUnchecked()
         {
             driver.Navigate().GoToUrl(baseURL + "/Checkbox");
-            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(ByHelper.StarcounterIncludeWithCheckbox));
             var element = driver.FindElement(ByHelper.AnyInput);
             Assert.AreEqual(element.GetAttribute("type"), "checkbox");
             element.ClickUsingMouse(driver);
@@ -47,7 +44,6 @@ namespace KitchenSink.Test
         public void CheckboxPage_CheckboxUncheckedAndCheckedAgain()
         {
             driver.Navigate().GoToUrl(baseURL + "/Checkbox");
-            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(ByHelper.StarcounterIncludeWithCheckbox));
             var element = driver.FindElement(ByHelper.AnyInput);
             Assert.AreEqual(element.GetAttribute("type"), "checkbox");
             element.ClickUsingMouse(driver);

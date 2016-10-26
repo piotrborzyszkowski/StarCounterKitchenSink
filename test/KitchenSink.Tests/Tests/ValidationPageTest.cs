@@ -20,14 +20,12 @@ namespace KitchenSink.Test
         public void ValidationPage_PageLoads()
         {
             driver.Navigate().GoToUrl(baseURL + "/Validation");
-            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(ByHelper.PuppetClient));
         }
 
         [Test]
         public void ValidationPage_InvalidRequireInput()
         {
             driver.Navigate().GoToUrl(baseURL + "/Validation");
-            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(ByHelper.StarcounterIncludeWithInputText));
             var label = driver.FindElement(ByHelper.AnyErrorLabel);
             var originalText = label.Text;
             Assert.AreEqual(string.Empty, originalText);
@@ -39,10 +37,7 @@ namespace KitchenSink.Test
         [Test]
         public void ValidationPage_ValidRequireInput()
         {
-            WebDriverWait wait = this.GetWebDriverWait();
-
             driver.Navigate().GoToUrl(baseURL + "/Validation");
-            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(ByHelper.StarcounterIncludeWithInputText));
             var label = driver.FindElement(ByHelper.AnyErrorLabel);
             var originalText = label.Text;
             Assert.AreEqual(string.Empty, originalText);

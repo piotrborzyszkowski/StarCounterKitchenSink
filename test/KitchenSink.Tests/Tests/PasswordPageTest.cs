@@ -23,9 +23,7 @@ namespace KitchenSink.Test
         public void PasswordPage_PageLoads()
         {
             driver.Navigate().GoToUrl(baseURL);
-            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(ByHelper.AnyLinkWithText("Password")));
             driver.FindElement(ByHelper.AnyLinkWithText("Password")).ClickUsingMouse(driver);
-            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(ByHelper.StarcounterIncludeWithPassword));
             var element = driver.FindElement(ByHelper.AnyInput);
             Assert.AreEqual(element.GetAttribute("type"), "password");
         }
@@ -34,7 +32,6 @@ namespace KitchenSink.Test
         public void PasswordPage_PasswordTooShort()
         {
             driver.Navigate().GoToUrl(baseURL + "/Password");
-            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(ByHelper.StarcounterIncludeWithPassword));
             var element = driver.FindElement(ByHelper.AnyInput);
             Assert.AreEqual(element.GetAttribute("type"), "password");
             driver.FindElement(ByHelper.AnyInput).Clear();
@@ -46,7 +43,6 @@ namespace KitchenSink.Test
         public void PasswordPage_PasswordWithProperLength()
         {
             driver.Navigate().GoToUrl(baseURL + "/Password");
-            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(ByHelper.StarcounterIncludeWithPassword));
             var element = driver.FindElement(ByHelper.AnyInput);
             Assert.AreEqual(element.GetAttribute("type"), "password");
             driver.FindElement(ByHelper.AnyInput).Clear();
@@ -59,7 +55,6 @@ namespace KitchenSink.Test
         public void PasswordPage_ChangingPasswordToGoodThenToShort()
         {
             driver.Navigate().GoToUrl(baseURL + "/Password");
-            this.WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(ByHelper.StarcounterIncludeWithPassword));
             var element = driver.FindElement(ByHelper.AnyInput);
             Assert.AreEqual(element.GetAttribute("type"), "password");
             driver.FindElement(ByHelper.AnyInput).Clear();

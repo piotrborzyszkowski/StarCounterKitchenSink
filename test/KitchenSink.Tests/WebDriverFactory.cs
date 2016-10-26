@@ -35,6 +35,7 @@ namespace KitchenSink.Tests
                     driver = new RemoteWebDriver(RemoteWebDriverUri, capabilities, WebDriverTimeout);
                     break;
             }
+            driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(5));
 
             return driver;
         }
