@@ -1,15 +1,24 @@
 ﻿<link rel="import" href="/sys/polymer/polymer.html">
+<link rel="import" href="/sys/paper-radio-group/paper-radio-group.html" />
+<link rel="import" href="/sys/paper-radio-button/paper-radio-button.html" />
+
 <template>
     <template is="dom-bind">
+        <ul class="pagination">
+            <label>Entries per page:</label>
+            <li><button class="btn btn-default" value="{{model.EntriesPerPage$::click}}" onclick="this.value = 5">5</button></li>
+            <li><button class="btn btn-default" value="{{model.EntriesPerPage$::click}}" onclick="this.value = 15">15</button></li>
+            <li><button class="btn btn-default" value="{{model.EntriesPerPage$::click}}" onclick="this.value = 30">30</button></li>
+        </ul>
         <template is="dom-repeat" items="{{model.Library}}" as="book">
             <h4>{{book.Title}} - {{book.Author}}</h4>
         </template>
         <ul class="pagination">
             <li><button class="btn btn-default" value="{{model.PreviousPage$::click}}" onclick="++this.value">Previous</button></li>
-            <li><button class="btn btn-default" value="{{model.ChangePage$::click}}" onclick="this.value = 0">1</button></li>
-            <li><button class="btn btn-default" value="{{model.ChangePage$::click}}" onclick="this.value = 5">2</button></li>
-            <li><button class="btn btn-default" value="{{model.ChangePage$::click}}" onclick="this.value = 10">3</button></li>
-            <li><button class="btn btn-default" value="{{model.ChangePage$::click}}" onclick="this.value = 15">4</button></li>
+            <li><button class="btn btn-default" value="{{model.ChangePage$::click}}" onclick="this.value = 1">1</button></li>
+            <li><button class="btn btn-default" value="{{model.ChangePage$::click}}" onclick="this.value = 2">2</button></li>
+            <li><button class="btn btn-default" value="{{model.ChangePage$::click}}" onclick="this.value = 3">3</button></li>
+            <li><button class="btn btn-default" value="{{model.ChangePage$::click}}" onclick="this.value = 4">4</button></li>
             <li><button class="btn btn-default" value="{{model.NextPage$::click}}" onclick="++this.value">Next</button></li>
         </ul>
     </template>

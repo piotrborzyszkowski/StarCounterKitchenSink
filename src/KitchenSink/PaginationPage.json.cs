@@ -19,11 +19,10 @@ namespace KitchenSink
             var firstBook = Db.SQL<Book>("SELECT b FROM KitchenSink.Book b").First;
             if (firstBook == null)
             {
-                createBooks(30);
+                createBooks(100);
             }
 
-            //setAllOffsetKeys();
-            getFirstFivePages();
+            this.Library.Data = Db.SQL<Book>("SELECT b FROM KitchenSink.Book b FETCH ? OFFSET ?", this.EntriesPerPage, this.EntriesPerPage * (currentValue - 1));
         }
 
         public void createBooks(int numberOfBooks)
@@ -41,69 +40,31 @@ namespace KitchenSink
             });
         }
 
-        byte[] k = null;
-        List<Book> books = new List<Book>();
-        //List<byte[]> offsetKeys = new List<byte[]>();
+        long currentValue = 0;
 
-        //public void setAllOffsetKeys()
-        //{
-        //    for (int i = 0; i < 30; i++)
-        //    {
-        //        using (IRowEnumerator<Book> a = Db.SQL<Book>("SELECT e FROM Book e FETCH ?", 1).GetEnumerator())
-        //        {
-        //            while (a.MoveNext()){};
-        //            offsetKeys.Insert(i, a.GetOffsetKey());
-        //        }
-        //    }
-        //}
-
-        public void getFirstFivePages()
+        void Handle(Input.EntriesPerPage action)
         {
-            using (IRowEnumerator<Book> a = Db.SQL<Book>("SELECT e FROM Book e FETCH ?", 5).GetEnumerator())
-            {
-                while (a.MoveNext())
-                {
-                    books.Add(a.Current);
-                };
-                this.Library.Data = books;
-                k = a.GetOffsetKey();
-            }
+            this.Library.Data = Db.SQL<Book>("SELECT b FROM KitchenSink.Book b FETCH ? OFFSET ?", action.Value, action.Value * (currentValue - 1));
         }
 
         void Handle(Input.ChangePage action)
         {
-            this.Library.Data = Db.SQL<Book>("SELECT b FROM KitchenSink.Book b FETCH ? OFFSET ?", 5, action.Value);
-            var test = offsetKeys;
+            currentValue = this.EntriesPerPage * (action.Value - 1);
+            this.Library.Data = Db.SQL<Book>("SELECT b FROM KitchenSink.Book b FETCH ? OFFSET ?", this.EntriesPerPage, this.EntriesPerPage * (action.Value - 1));
         }
 
         void Handle(Input.PreviousPage action)
         {
-            if (k == null) return;
-            books.Clear();
-            using (IRowEnumerator<Book> a = Db.SQL<Book>("SELECT e FROM Book e FETCH ? OFFSETKEY ?", 5, k).GetEnumerator())
-            {
-                while (a.MoveNext())
-                {
-                    books.Add(a.Current);
-                }
-                this.Library.Data = books;
-                k = a.GetOffsetKey();
-            }
+            //don't change currentValue if scrolling beyond the range of the database
+            currentValue = currentValue - this.EntriesPerPage;
+            this.Library.Data = Db.SQL<Book>("SELECT b FROM KitchenSink.Book b FETCH ? OFFSET ?", this.EntriesPerPage, currentValue);
         }
 
         void Handle(Input.NextPage action)
         {
-            if (k == null) return;
-            books.Clear();
-            using (IRowEnumerator<Book> a = Db.SQL<Book>("SELECT e FROM Book e FETCH ? OFFSETKEY ?", 5, k).GetEnumerator())
-            {
-                while (a.MoveNext())
-                {
-                    books.Add(a.Current);
-                }
-                this.Library.Data = books;
-                k = a.GetOffsetKey();
-            }
+            //limit so it can't go outside of database range
+            currentValue = currentValue + this.EntriesPerPage;
+            this.Library.Data = Db.SQL<Book>("SELECT b FROM KitchenSink.Book b FETCH ? OFFSET ?", this.EntriesPerPage, currentValue);
         }
     }
 }
