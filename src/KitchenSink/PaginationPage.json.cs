@@ -48,37 +48,20 @@ namespace KitchenSink
 
         void Handle(Input.ChangePage action)
         {
-            currentValue = action.Value;
+            currentValue = this.EntriesPerPage * (action.Value - 1);
             this.Library.Data = Db.SQL<Book>("SELECT b FROM KitchenSink.Book b FETCH ? OFFSET ?", this.EntriesPerPage, this.EntriesPerPage * (action.Value - 1));
         }
 
         void Handle(Input.PreviousPage action)
         {
-            if (currentValue > 0)
-            {
-                currentValue = currentValue - this.EntriesPerPage;
-                this.Library.Data = Db.SQL<Book>("SELECT b FROM KitchenSink.Book b FETCH ? OFFSET ?", this.EntriesPerPage, currentValue);
-            }
+            currentValue = currentValue - this.EntriesPerPage;
+            this.Library.Data = Db.SQL<Book>("SELECT b FROM KitchenSink.Book b FETCH ? OFFSET ?", this.EntriesPerPage, currentValue);
         }
 
         void Handle(Input.NextPage action)
         {
-            if (currentValue < countBooks() - this.EntriesPerPage)
-            {
-                currentValue = currentValue + this.EntriesPerPage;
-                this.Library.Data = Db.SQL<Book>("SELECT b FROM KitchenSink.Book b FETCH ? OFFSET ?", this.EntriesPerPage, currentValue);
-            }
-        }
-
-        private int countBooks()
-        {
-            var books = Db.SQL<Book>("SELECT b FROM KitchenSink.Book");
-            int count = 0;
-            foreach (var book in books)
-            {
-                count++;
-            }
-            return count;
+            currentValue = currentValue + this.EntriesPerPage;
+            this.Library.Data = Db.SQL<Book>("SELECT b FROM KitchenSink.Book b FETCH ? OFFSET ?", this.EntriesPerPage, currentValue);
         }
     }
 }
