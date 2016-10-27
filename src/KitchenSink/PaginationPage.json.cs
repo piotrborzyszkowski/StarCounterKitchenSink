@@ -18,10 +18,10 @@ namespace KitchenSink
             var firstBook = Db.SQL<Book>("SELECT b FROM KitchenSink.Book b").First;
             if (firstBook == null)
             {
-                createBooks(30);
+                createBooks(100);
             }
 
-            this.Library.Data = Db.SQL<Book>("SELECT b FROM KitchenSink.Book b FETCH ?", 5);
+            this.Library.Data = Db.SQL<Book>("SELECT b FROM KitchenSink.Book b FETCH ? OFFSET ?", this.EntriesPerPage, this.EntriesPerPage * (currentValue - 1));
         }
 
         public void createBooks(int numberOfBooks)
@@ -41,28 +41,44 @@ namespace KitchenSink
 
         long currentValue = 0;
 
+        void Handle(Input.EntriesPerPage action)
+        {
+            this.Library.Data = Db.SQL<Book>("SELECT b FROM KitchenSink.Book b FETCH ? OFFSET ?", action.Value, action.Value * (currentValue - 1));
+        }
+
         void Handle(Input.ChangePage action)
         {
             currentValue = action.Value;
-            this.Library.Data = Db.SQL<Book>("SELECT b FROM KitchenSink.Book b FETCH ? OFFSET ?", 5, action.Value);
+            this.Library.Data = Db.SQL<Book>("SELECT b FROM KitchenSink.Book b FETCH ? OFFSET ?", this.EntriesPerPage, this.EntriesPerPage * (action.Value - 1));
         }
 
         void Handle(Input.PreviousPage action)
         {
             if (currentValue > 0)
             {
-                currentValue = currentValue - 5;
-                this.Library.Data = Db.SQL<Book>("SELECT b FROM KitchenSink.Book b FETCH ? OFFSET ?", 5, currentValue);
+                currentValue = currentValue - this.EntriesPerPage;
+                this.Library.Data = Db.SQL<Book>("SELECT b FROM KitchenSink.Book b FETCH ? OFFSET ?", this.EntriesPerPage, currentValue);
             }
         }
 
         void Handle(Input.NextPage action)
         {
-            if (currentValue < 25)
+            if (currentValue < countBooks() - this.EntriesPerPage)
             {
-                currentValue = currentValue + 5;
-                this.Library.Data = Db.SQL<Book>("SELECT b FROM KitchenSink.Book b FETCH ? OFFSET ?", 5, currentValue);
+                currentValue = currentValue + this.EntriesPerPage;
+                this.Library.Data = Db.SQL<Book>("SELECT b FROM KitchenSink.Book b FETCH ? OFFSET ?", this.EntriesPerPage, currentValue);
             }
+        }
+
+        private int countBooks()
+        {
+            var books = Db.SQL<Book>("SELECT b FROM KitchenSink.Book");
+            int count = 0;
+            foreach (var book in books)
+            {
+                count++;
+            }
+            return count;
         }
     }
 }
