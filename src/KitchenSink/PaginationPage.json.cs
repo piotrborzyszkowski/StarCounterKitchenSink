@@ -1,4 +1,5 @@
 using Starcounter;
+using System.Collections.Generic;
 
 namespace KitchenSink
 {
@@ -21,7 +22,8 @@ namespace KitchenSink
                 createBooks(30);
             }
 
-            this.Library.Data = Db.SQL<Book>("SELECT b FROM KitchenSink.Book b FETCH ?", 5);
+            //setAllOffsetKeys();
+            getFirstFivePages();
         }
 
         public void createBooks(int numberOfBooks)
@@ -39,29 +41,68 @@ namespace KitchenSink
             });
         }
 
-        long currentValue = 0;
+        byte[] k = null;
+        List<Book> books = new List<Book>();
+        //List<byte[]> offsetKeys = new List<byte[]>();
+
+        //public void setAllOffsetKeys()
+        //{
+        //    for (int i = 0; i < 30; i++)
+        //    {
+        //        using (IRowEnumerator<Book> a = Db.SQL<Book>("SELECT e FROM Book e FETCH ?", 1).GetEnumerator())
+        //        {
+        //            while (a.MoveNext()){};
+        //            offsetKeys.Insert(i, a.GetOffsetKey());
+        //        }
+        //    }
+        //}
+
+        public void getFirstFivePages()
+        {
+            using (IRowEnumerator<Book> a = Db.SQL<Book>("SELECT e FROM Book e FETCH ?", 5).GetEnumerator())
+            {
+                while (a.MoveNext())
+                {
+                    books.Add(a.Current);
+                };
+                this.Library.Data = books;
+                k = a.GetOffsetKey();
+            }
+        }
 
         void Handle(Input.ChangePage action)
         {
-            currentValue = action.Value;
             this.Library.Data = Db.SQL<Book>("SELECT b FROM KitchenSink.Book b FETCH ? OFFSET ?", 5, action.Value);
+            var test = offsetKeys;
         }
 
         void Handle(Input.PreviousPage action)
         {
-            if (currentValue > 0)
+            if (k == null) return;
+            books.Clear();
+            using (IRowEnumerator<Book> a = Db.SQL<Book>("SELECT e FROM Book e FETCH ? OFFSETKEY ?", 5, k).GetEnumerator())
             {
-                currentValue = currentValue - 5;
-                this.Library.Data = Db.SQL<Book>("SELECT b FROM KitchenSink.Book b FETCH ? OFFSET ?", 5, currentValue);
+                while (a.MoveNext())
+                {
+                    books.Add(a.Current);
+                }
+                this.Library.Data = books;
+                k = a.GetOffsetKey();
             }
         }
 
         void Handle(Input.NextPage action)
         {
-            if (currentValue < 25)
+            if (k == null) return;
+            books.Clear();
+            using (IRowEnumerator<Book> a = Db.SQL<Book>("SELECT e FROM Book e FETCH ? OFFSETKEY ?", 5, k).GetEnumerator())
             {
-                currentValue = currentValue + 5;
-                this.Library.Data = Db.SQL<Book>("SELECT b FROM KitchenSink.Book b FETCH ? OFFSET ?", 5, currentValue);
+                while (a.MoveNext())
+                {
+                    books.Add(a.Current);
+                }
+                this.Library.Data = books;
+                k = a.GetOffsetKey();
             }
         }
     }
