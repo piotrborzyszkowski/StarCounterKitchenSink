@@ -1,0 +1,16 @@
+﻿<link rel="import" href="/sys/polymer/polymer.html">
+<template>
+    <template is="dom-bind">
+        <template is="dom-repeat" items="{{model.Library}}" as="book">
+            <h4>{{book.Title}} - {{book.Author}}</h4>
+        </template>
+        <ul class="pagination">
+            <li><button class="btn btn-default" value="{{model.PreviousPage$::click}}" onclick="++this.value">Previous</button></li>
+            <li><button class="btn btn-default" value="{{model.ChangePage$::click}}" onclick="this.value = 0">1</button></li>
+            <li><button class="btn btn-default" value="{{model.ChangePage$::click}}" onclick="this.value = 5">2</button></li>
+            <li><button class="btn btn-default" value="{{model.ChangePage$::click}}" onclick="this.value = 10">3</button></li>
+            <li><button class="btn btn-default" value="{{model.ChangePage$::click}}" onclick="this.value = 15">4</button></li>
+            <li><button class="btn btn-default" value="{{model.NextPage$::click}}" onclick="++this.value">Next</button></li>
+        </ul>
+    </template>
+</template>
