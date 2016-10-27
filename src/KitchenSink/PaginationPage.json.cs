@@ -55,14 +55,16 @@ namespace KitchenSink
 
         void Handle(Input.PreviousPage action)
         {
-            //don't change currentValue if scrolling beyond the range of the database
-            currentValue = currentValue - this.EntriesPerPage;
-            this.Library.Data = Db.SQL<Book>("SELECT b FROM KitchenSink.Book b FETCH ? OFFSET ?", this.EntriesPerPage, currentValue);
+            if (currentValue - this.EntriesPerPage < 0)
+            {
+                currentValue = currentValue - this.EntriesPerPage;
+                this.Library.Data = Db.SQL<Book>("SELECT b FROM KitchenSink.Book b FETCH ? OFFSET ?", this.EntriesPerPage, currentValue);
+            }
         }
 
         void Handle(Input.NextPage action)
         {
-            //limit so it can't go outside of database range
+            var test = Db.SlowSQL<Book>("SELECT COUNT(e) FROM KitchenSink.Book e");
             currentValue = currentValue + this.EntriesPerPage;
             this.Library.Data = Db.SQL<Book>("SELECT b FROM KitchenSink.Book b FETCH ? OFFSET ?", this.EntriesPerPage, currentValue);
         }

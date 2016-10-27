@@ -1,15 +1,20 @@
 ﻿<link rel="import" href="/sys/polymer/polymer.html">
-<link rel="import" href="/sys/paper-radio-group/paper-radio-group.html" />
-<link rel="import" href="/sys/paper-radio-button/paper-radio-button.html" />
+<link rel="import" href="/sys/paper-dropdown-menu/paper-dropdown-menu.html" />
+<link rel="import" href="/sys/paper-listbox/paper-listbox.html" />
+<link rel="import" href="/sys/paper-item/paper-item.html" />
+
 
 <template>
     <template is="dom-bind">
-        <ul class="pagination">
-            <label>Entries per page:</label>
-            <li><button class="btn btn-default" value="{{model.EntriesPerPage$::click}}" onclick="this.value = 5">5</button></li>
-            <li><button class="btn btn-default" value="{{model.EntriesPerPage$::click}}" onclick="this.value = 15">15</button></li>
-            <li><button class="btn btn-default" value="{{model.EntriesPerPage$::click}}" onclick="this.value = 30">30</button></li>
-        </ul>
+        <div>
+            <paper-dropdown-menu>
+                <paper-listbox class="dropdown-content" selected="0">
+                    <paper-item value="{{model.EntriesPerPage$::click}}" onclick="this.value = 5">5 entries per page</paper-item>
+                    <paper-item value="{{model.EntriesPerPage$::click}}" onclick="this.value = 15">15 entries per page</paper-item>
+                    <paper-item value="{{model.EntriesPerPage$::click}}" onclick="this.value = 30">30 entries per page</paper-item>
+                </paper-listbox>
+            </paper-dropdown-menu>
+        </div>
         <template is="dom-repeat" items="{{model.Library}}" as="book">
             <h4>{{book.Title}} - {{book.Author}}</h4>
         </template>
