@@ -1,6 +1,21 @@
 ﻿<link rel="import" href="/sys/polymer/polymer.html">
+<link rel="import" href="/sys/paper-dropdown-menu/paper-dropdown-menu.html" />
+<link rel="import" href="/sys/paper-listbox/paper-listbox.html" />
+<link rel="import" href="/sys/paper-item/paper-item.html" />
+
 
 <template>
+    <style>
+        .issue2497fix {
+            pointer-events: none;
+        }
+        .pagination-box {
+            width: 42px;
+        }
+        .pagination-box p {
+            width:0;
+        }
+    </style>
     <template is="dom-bind">
         <select class="kitchensink-select" value="{{model.EntriesPerPage$::change}}">
             <template is="dom-repeat" items="{{model.PageEntries}}">
@@ -13,20 +28,33 @@
         <nav aria-label="Page navigation">
             <ul class="pagination">
                 <li class="page-item">
-                    <a value="{{model.PreviousPage$::click}}" onclick="++this.value" href="">
-                        <span>&laquo;</span>
+                    <a class="pagination-box" value="{{model.FirstPage$::click}}" onclick="++this.value" href="">
+                        <span class="issue2497fix"><<</span>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="pagination-box" value="{{model.PreviousPage$::click}}" onclick="++this.value" href="">
+                        <span class="issue2497fix"><</span>
                     </a>
                 </li>
                 <template is="dom-repeat" items="{{model.Pages}}">
-                    <li class="page-item"><a class="page-link" on-click="onChangePageClick" href="">{{item.PageNumber}}</a></li>
+                    <li class="page-item">
+                        <a class="page-link pagination-box" on-click="onChangePageClick" href="">{{item.PageNumber}}</a>
+                    </li>
                 </template>
                 <li class="page-item">
-                    <a value="{{model.NextPage$::click}}" onclick="++this.value" href="">
-                        <span>&raquo;</span>
+                    <a class="pagination-box" value="{{model.NextPage$::click}}" onclick="++this.value" href="">
+                        <span class="issue2497fix">></span>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="pagination-box" value="{{model.LastPage$::click}}" onclick="++this.value" href="">
+                        <span class="issue2497fix">>></span>
                     </a>
                 </li>
             </ul>
         </nav>
+        <p>page {{model.CurrentPage}} of {{model.TotalPages}}</p>
     </template>
     <script>
         (function () {

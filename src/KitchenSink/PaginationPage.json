@@ -3,6 +3,8 @@
   "ChangePage$": 0,
   "NextPage$": 0,
   "PreviousPage$": 0,
+  "LastPage$": 0,
+  "FirstPage$": 0,
   "Library": [
     {
       "Author": "",
@@ -23,5 +25,7 @@
     }
   ],
 
-  "TotalEntries$": 0
+  "TotalEntries": 0,
+  "TotalPages": 0,
+  "CurrentPage": 0
 }
