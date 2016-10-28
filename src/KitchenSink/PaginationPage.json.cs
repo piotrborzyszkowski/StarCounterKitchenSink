@@ -20,7 +20,7 @@ namespace KitchenSink
             if (firstBook == null)
             {
                 // creates some dummy data
-                int elementsInTotal = 100;
+                int elementsInTotal = 160;
                 Db.Transact(() =>
                 {
                     for (int i = 0; i < elementsInTotal; i++)
@@ -34,16 +34,17 @@ namespace KitchenSink
                 });
             }
 
-            setPageEntries();
             this.EntriesPerPage = 5;
             this.TotalEntries = Db.SQL<long>("SELECT COUNT(e) FROM KitchenSink.Book e").First;
             this.Library.Data = Db.SQL<Book>("SELECT b FROM KitchenSink.Book b FETCH ? OFFSET ?", this.EntriesPerPage, this.EntriesPerPage * (currentOffset - 1));
             this.TotalPages = this.TotalEntries / this.EntriesPerPage;
             this.CurrentPage = 1;
             createNavButtons(this.EntriesPerPage);
+            setPageEntries();
         }
 
-        // Decides the number of entries the user can choose between
+        long currentOffset = 0;
+
         public void setPageEntries()
         {
             int[] entryChoices = new int[] { 5, 15, 30 };
@@ -58,9 +59,10 @@ namespace KitchenSink
         {
             this.Pages.Clear();
             long pagesNeeded = this.TotalEntries / entriesPerPage + 1;
-            long currentPage = currentOffset / entriesPerPage;
+            long currentPage = currentOffset / entriesPerPage + 1;
+            this.CurrentPage = currentPage;
 
-            for (long i = currentPage - 1; i < currentPage + 4; i++)
+            for (long i = currentPage - 2; i < currentPage + 3; i++)
             {
                 if (i > 0 && i < pagesNeeded)
                 {
@@ -68,16 +70,21 @@ namespace KitchenSink
                     page.PageNumber = i;
                 }
             }
-            this.CurrentPage = currentOffset / entriesPerPage + 1;
         }
 
-        long currentOffset = 0;
+        public void changePage(long currentOffset)
+        {
+            this.Library.Data = Db.SQL<Book>("SELECT b FROM KitchenSink.Book b FETCH ? OFFSET ?", this.EntriesPerPage, currentOffset);
+            createNavButtons(this.EntriesPerPage, currentOffset);
+        }
 
         void Handle(Input.EntriesPerPage action)
         {
-            createNavButtons(action.Value, currentOffset);
+            currentOffset = currentOffset - (this.EntriesPerPage * 2 + action.Value);
             this.Library.Data = Db.SQL<Book>("SELECT b FROM KitchenSink.Book b FETCH ? OFFSET ?", action.Value, currentOffset);
+            this.EntriesPerPage = action.Value;
             this.TotalPages = this.TotalEntries / this.EntriesPerPage;
+            createNavButtons(action.Value, currentOffset);
         }
 
         void Handle(Input.ChangePage action)
@@ -112,12 +119,6 @@ namespace KitchenSink
         {
             currentOffset = 0;
             changePage(currentOffset);
-        }
-
-        public void changePage(long currentOffset)
-        {
-            this.Library.Data = Db.SQL<Book>("SELECT b FROM KitchenSink.Book b FETCH ? OFFSET ?", this.EntriesPerPage, currentOffset);
-            createNavButtons(this.EntriesPerPage, currentOffset);
         }
     }
 }
