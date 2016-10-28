@@ -19,54 +19,85 @@ namespace KitchenSink
             var firstBook = Db.SQL<Book>("SELECT b FROM KitchenSink.Book b").First;
             if (firstBook == null)
             {
-                createBooks(100);
+                // creates some dummy data
+                int elementsInTotal = 100;
+                Db.Transact(() =>
+                {
+                    for (int i = 0; i < elementsInTotal; i++)
+                    {
+                        var book = new Book()
+                        {
+                            Author = "George R.R Martin",
+                            Title = "Game of Thrones " + (i + 1).ToString()
+                        };
+                    }
+                });
             }
 
-            this.Library.Data = Db.SQL<Book>("SELECT b FROM KitchenSink.Book b FETCH ? OFFSET ?", this.EntriesPerPage, this.EntriesPerPage * (currentValue - 1));
+            setPageEntries();
+            this.EntriesPerPage = 5;
+            this.Library.Data = Db.SQL<Book>("SELECT b FROM KitchenSink.Book b FETCH ? OFFSET ?", this.EntriesPerPage, this.EntriesPerPage * (currentOffset - 1));
+            createPages(this.EntriesPerPage);
         }
 
-        public void createBooks(int numberOfBooks)
+        long totalEntries = Db.SQL<long>("SELECT COUNT(e) FROM KitchenSink.Book e").First;
+
+        // Decides the number of entries the user can choose between
+        public void setPageEntries()
         {
-            Db.Transact(() =>
-            {
-                for (int i = 1; i < numberOfBooks + 1; i++)
-                {
-                    var book = new Book()
-                    {
-                        Author = "George R.R Martin",
-                        Title = "Game of Thrones " + i.ToString()
-                    };
-                }
-            });
+            var page = this.PageEntries.Add();
+            page.Amount = 5;
+
+            page = this.PageEntries.Add();
+            page.Amount = 15;
+
+            page = this.PageEntries.Add();
+            page.Amount = 30;
         }
 
-        long currentValue = 0;
+        public void createPages(long entriesPerPage)
+        {
+            this.Pages.Clear();
+            long pagesNeeded = (totalEntries / entriesPerPage) + 1;
+
+
+
+            for (int i = 1; i < pagesNeeded; i++)
+            {
+                var page = this.Pages.Add();
+                page.PageNumber = i;
+            }
+        }
+
+        long currentOffset = 0;
 
         void Handle(Input.EntriesPerPage action)
         {
-            this.Library.Data = Db.SQL<Book>("SELECT b FROM KitchenSink.Book b FETCH ? OFFSET ?", action.Value, action.Value * (currentValue - 1));
+            createPages(action.Value);
+            this.Library.Data = Db.SQL<Book>("SELECT b FROM KitchenSink.Book b FETCH ? OFFSET ?", action.Value, currentOffset);
         }
 
+        // Handles the click on the number buttons
         void Handle(Input.ChangePage action)
         {
-            currentValue = this.EntriesPerPage * (action.Value - 1);
+            currentOffset = this.EntriesPerPage * (action.Value - 1);
             this.Library.Data = Db.SQL<Book>("SELECT b FROM KitchenSink.Book b FETCH ? OFFSET ?", this.EntriesPerPage, this.EntriesPerPage * (action.Value - 1));
         }
 
+        // Handles click on previous button
         void Handle(Input.PreviousPage action)
         {
-            if (currentValue - this.EntriesPerPage < 0)
-            {
-                currentValue = currentValue - this.EntriesPerPage;
-                this.Library.Data = Db.SQL<Book>("SELECT b FROM KitchenSink.Book b FETCH ? OFFSET ?", this.EntriesPerPage, currentValue);
-            }
+            currentOffset = currentOffset - this.EntriesPerPage >= 0 ? currentOffset - this.EntriesPerPage : 0;
+            this.Library.Data = Db.SQL<Book>("SELECT b FROM KitchenSink.Book b FETCH ? OFFSET ?", this.EntriesPerPage, currentOffset);
         }
 
         void Handle(Input.NextPage action)
         {
-            var test = Db.SlowSQL<Book>("SELECT COUNT(e) FROM KitchenSink.Book e");
-            currentValue = currentValue + this.EntriesPerPage;
-            this.Library.Data = Db.SQL<Book>("SELECT b FROM KitchenSink.Book b FETCH ? OFFSET ?", this.EntriesPerPage, currentValue);
+            if (currentOffset + this.EntriesPerPage < totalEntries)
+            {
+                currentOffset = currentOffset + this.EntriesPerPage;
+            }
+            this.Library.Data = Db.SQL<Book>("SELECT b FROM KitchenSink.Book b FETCH ? OFFSET ?", this.EntriesPerPage, currentOffset);
         }
     }
 }

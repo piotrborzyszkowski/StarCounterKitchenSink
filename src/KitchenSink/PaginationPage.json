@@ -9,5 +9,19 @@
       "Title": ""
     }
   ],
-  "EntriesPerPage$": 5
+
+  "EntriesPerPage$": 0,
+  "PageEntries": [
+    {
+      "Amount": 0
+    }
+  ],
+
+  "Pages": [
+    {
+      "PageNumber": 0
+    }
+  ],
+
+  "TotalEntries$": 0
 }
