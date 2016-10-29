@@ -1,5 +1,4 @@
 using Starcounter;
-using System.Collections.Generic;
 
 namespace KitchenSink
 {
@@ -20,31 +19,36 @@ namespace KitchenSink
             if (firstBook == null)
             {
                 // creates some dummy data
-                int elementsInTotal = 160;
+                // change the number of element with adjusting elementsInTotal
+                int elementsInTotal = 100;
                 Db.Transact(() =>
                 {
                     for (int i = 0; i < elementsInTotal; i++)
                     {
                         var book = new Book()
                         {
-                            Author = "George R.R Martin",
-                            Title = "Game of Thrones " + (i + 1).ToString()
+                            Author = "Arbitrary Author",
+                            Title = "Arbitrary Book " + (i + 1).ToString()
                         };
                     }
                 });
             }
 
-            this.EntriesPerPage = 5;
             this.TotalEntries = Db.SQL<long>("SELECT COUNT(e) FROM KitchenSink.Book e").First;
-            this.Library.Data = Db.SQL<Book>("SELECT b FROM KitchenSink.Book b FETCH ? OFFSET ?", this.EntriesPerPage, this.EntriesPerPage * (currentOffset - 1));
-            this.TotalPages = this.TotalEntries / this.EntriesPerPage;
-            this.CurrentPage = 1;
+            initPage();
+        }
+
+        // Initializes the page by calling all the neccesary methods to set the page to 1
+        public void initPage()
+        {
+            getNewPage();
+            setTotalPages();
             createNavButtons(this.EntriesPerPage);
             setPageEntries();
         }
 
-        long currentOffset = 0;
-
+        // Creates the choices for page entries.
+        // Modify the array entryChoices to modify how many entries per page the user can choose between.
         public void setPageEntries()
         {
             int[] entryChoices = new int[] { 5, 15, 30 };
@@ -55,70 +59,115 @@ namespace KitchenSink
             }
         }
 
-        public void createNavButtons(long entriesPerPage, long currentOffset = 1)
+        // Sets the JSON value for total pages    
+        public void setTotalPages()
+        {
+            var totalPagesRounded = this.TotalEntries / this.EntriesPerPage;
+            this.TotalPages = this.TotalEntries % this.EntriesPerPage == 0 ? totalPagesRounded : totalPagesRounded + 1;
+        }
+
+        // Establishes the navigation buttons.
+        // Displays all the page buttons if there are less then 10,
+        // Otherwise it shows the current page, the two before and after.
+        public void createNavButtons(long entriesPerPage)
         {
             this.Pages.Clear();
-            long pagesNeeded = this.TotalEntries / entriesPerPage + 1;
-            long currentPage = currentOffset / entriesPerPage + 1;
-            this.CurrentPage = currentPage;
+            this.CurrentPage = this.CurrentOffset / entriesPerPage + 1;
 
-            for (long i = currentPage - 2; i < currentPage + 3; i++)
+            if (this.TotalPages < 10)
             {
-                if (i > 0 && i < pagesNeeded)
+                for (long i = 1; i < this.TotalPages + 1; i++)
                 {
-                    var page = this.Pages.Add();
-                    page.PageNumber = i;
+                    createButton(i);
+                }
+            }
+
+            else if (this.TotalPages >= 10)
+            {
+                long pagesBefore = -2;
+                long pagesAfter = 3;
+
+                if (this.CurrentPage + pagesAfter > this.TotalPages)
+                {
+                    pagesBefore -= (this.CurrentPage + pagesAfter - 1) % this.TotalPages;
+                }
+
+                if (this.CurrentPage + pagesBefore <= 0)
+                {
+                    pagesAfter -= (this.CurrentPage + pagesBefore - 1);
+                }
+
+                for (long i = this.CurrentPage + pagesBefore; i < this.CurrentPage + pagesAfter; i++)
+                {
+                    if (i > 0 && i < this.TotalPages + 1)
+                    {
+                        createButton(i);
+                    }
                 }
             }
         }
 
-        public void changePage(long currentOffset)
+        // Creates a nav button by setting the JSON to the current page number and if it's active.
+        private void createButton(long pageNumber)
         {
-            this.Library.Data = Db.SQL<Book>("SELECT b FROM KitchenSink.Book b FETCH ? OFFSET ?", this.EntriesPerPage, currentOffset);
-            createNavButtons(this.EntriesPerPage, currentOffset);
+            var page = this.Pages.Add();
+            page.PageNumber = pageNumber;
+            page.Active = (this.CurrentPage == pageNumber);
         }
 
+        // Switch to the desired page depeding on the current offset.
+        public void getNewPage()
+        {
+            this.Library.Data = Db.SQL<Book>("SELECT b FROM KitchenSink.Book b FETCH ? OFFSET ?", this.EntriesPerPage, this.CurrentOffset);
+            createNavButtons(this.EntriesPerPage);
+        }
+
+        // Changes the number of entries per page depending on input and sets the page to 1
         void Handle(Input.EntriesPerPage action)
         {
-            currentOffset = currentOffset - (this.EntriesPerPage * 2 + action.Value);
-            this.Library.Data = Db.SQL<Book>("SELECT b FROM KitchenSink.Book b FETCH ? OFFSET ?", action.Value, currentOffset);
+            this.CurrentOffset = 0;
             this.EntriesPerPage = action.Value;
-            this.TotalPages = this.TotalEntries / this.EntriesPerPage;
-            createNavButtons(action.Value, currentOffset);
+            setTotalPages();
+            getNewPage();
         }
 
+        // Sets the current page when the user clicks on one of the numbered buttons
         void Handle(Input.ChangePage action)
         {
-            currentOffset = this.EntriesPerPage * (action.Value - 1);
-            this.Library.Data = Db.SQL<Book>("SELECT b FROM KitchenSink.Book b FETCH ? OFFSET ?", this.EntriesPerPage, this.EntriesPerPage * (action.Value - 1));
-            createNavButtons(this.EntriesPerPage, currentOffset);
+            this.CurrentOffset = this.EntriesPerPage * (action.Value - 1);
+            getNewPage();
         }
 
-        void Handle(Input.PreviousPage action)
-        {
-            currentOffset = currentOffset - this.EntriesPerPage >= 0 ? currentOffset - this.EntriesPerPage : 0;
-            changePage(currentOffset);
-        }
-
+        // Goes to the next page on click
         void Handle(Input.NextPage action)
         {
-            if (currentOffset + this.EntriesPerPage < this.TotalEntries)
+            if (this.CurrentOffset + this.EntriesPerPage < this.TotalEntries)
             {
-                currentOffset = currentOffset + this.EntriesPerPage;
+                this.CurrentOffset = this.CurrentOffset + this.EntriesPerPage;
             }
-            changePage(currentOffset);
+            getNewPage();
         }
 
+        // Goes to the previous page on click
+        void Handle(Input.PreviousPage action)
+        {
+            this.CurrentOffset = this.CurrentOffset - this.EntriesPerPage >= 0 ? this.CurrentOffset - this.EntriesPerPage : 0;
+            getNewPage();
+        }
+
+        // Goes to the last page on click
         void Handle(Input.LastPage action)
         {
-            currentOffset = this.TotalEntries - this.EntriesPerPage;
-            changePage(currentOffset);
+            var remainder = this.TotalEntries % this.EntriesPerPage;
+            this.CurrentOffset = remainder != 0 ? this.TotalEntries - (remainder) : this.TotalEntries - this.EntriesPerPage;
+            getNewPage();
         }
 
+        // Goes to the first page on click
         void Handle(Input.FirstPage action)
         {
-            currentOffset = 0;
-            changePage(currentOffset);
+            this.CurrentOffset = 0;
+            getNewPage();
         }
     }
 }

@@ -4,14 +4,11 @@
 
 <template>
     <style>
-        .issue2497fix {
+        .polymerIssue2497fix {
             pointer-events: none;
         }
         .pagination-box {
             width: 42px;
-        }
-        .pagination-box p {
-            width:0;
         }
     </style>
     <template is="dom-bind">
@@ -27,27 +24,34 @@
             <ul class="pagination">
                 <li class="page-item">
                     <a class="pagination-box" value="{{model.FirstPage$::click}}" onclick="++this.value" href="">
-                        <span class="issue2497fix"><<</span>
+                        <span class="polymerIssue2497fix"><<</span>
                     </a>
                 </li>
                 <li class="page-item">
                     <a class="pagination-box" value="{{model.PreviousPage$::click}}" onclick="++this.value" href="">
-                        <span class="issue2497fix"><</span>
+                        <span class="polymerIssue2497fix"><</span>
                     </a>
                 </li>
                 <template is="dom-repeat" items="{{model.Pages}}">
-                    <li class="page-item">
-                        <a class="page-link pagination-box" on-click="onChangePageClick" href="">{{item.PageNumber}}</a>
-                    </li>
+                    <template is="dom-if" if="{{item.Active}}">
+                        <li class="page-item active">
+                            <a class="page-link pagination-box" on-click="onChangePageClick" href="">{{item.PageNumber}}</a>
+                        </li>
+                    </template>
+                    <template is="dom-if" if="{{!item.Active}}">
+                        <li class="page-item">
+                            <a class="page-link pagination-box" on-click="onChangePageClick" href="">{{item.PageNumber}}</a>
+                        </li>
+                    </template>
                 </template>
                 <li class="page-item">
                     <a class="pagination-box" value="{{model.NextPage$::click}}" onclick="++this.value" href="">
-                        <span class="issue2497fix">></span>
+                        <span class="polymerIssue2497fix">></span>
                     </a>
                 </li>
                 <li class="page-item">
                     <a class="pagination-box" value="{{model.LastPage$::click}}" onclick="++this.value" href="">
-                        <span class="issue2497fix">>></span>
+                        <span class="polymerIssue2497fix">>></span>
                     </a>
                 </li>
             </ul>
