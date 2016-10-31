@@ -3,14 +3,6 @@
 
 
 <template>
-    <style>
-        .polymerIssue2497fix {
-            pointer-events: none;
-        }
-        .pagination-box {
-            width: 42px;
-        }
-    </style>
     <template is="dom-bind">
         <select class="kitchensink-select" value="{{model.EntriesPerPage$::change}}">
             <template is="dom-repeat" items="{{model.PageEntries}}">
@@ -20,39 +12,31 @@
         <template is="dom-repeat" items="{{model.Library}}" as="book">
             <paper-item>{{book.Title}} - {{book.Author}}</paper-item>
         </template>
-        <nav aria-label="Page navigation">
+        <nav>
             <ul class="pagination">
-                <li class="page-item">
-                    <a class="pagination-box" value="{{model.FirstPage$::click}}" onclick="++this.value" href="">
-                        <span class="polymerIssue2497fix"><<</span>
-                    </a>
+                <li>
+                    <button class="pagination-box btn btn-default" value="{{model.FirstPage$::click}}" onmousedown="++this.value" href="">&lt;&lt;</button>
                 </li>
-                <li class="page-item">
-                    <a class="pagination-box" value="{{model.PreviousPage$::click}}" onclick="++this.value" href="">
-                        <span class="polymerIssue2497fix"><</span>
-                    </a>
+                <li>
+                    <button class="pagination-box btn btn-default" value="{{model.PreviousPage$::click}}" onmousedown="++this.value">&lt;</button>
                 </li>
                 <template is="dom-repeat" items="{{model.Pages}}">
                     <template is="dom-if" if="{{item.Active}}">
-                        <li class="page-item active">
-                            <a class="page-link pagination-box" on-click="onChangePageClick" href="">{{item.PageNumber}}</a>
+                        <li>
+                            <button class="page-link pagination-box btn btn-default active" on-click="onChangePageClick">{{item.PageNumber}}</button>
                         </li>
                     </template>
                     <template is="dom-if" if="{{!item.Active}}">
-                        <li class="page-item">
-                            <a class="page-link pagination-box" on-click="onChangePageClick" href="">{{item.PageNumber}}</a>
+                        <li>
+                            <button class="page-link pagination-box btn btn-default" on-click="onChangePageClick">{{item.PageNumber}}</button>
                         </li>
                     </template>
                 </template>
-                <li class="page-item">
-                    <a class="pagination-box" value="{{model.NextPage$::click}}" onclick="++this.value" href="">
-                        <span class="polymerIssue2497fix">></span>
-                    </a>
+                <li>
+                    <button class="pagination-box btn btn-default" value="{{model.NextPage$::click}}" onmousedown="++this.value">&gt;</button>
                 </li>
-                <li class="page-item">
-                    <a class="pagination-box" value="{{model.LastPage$::click}}" onclick="++this.value" href="">
-                        <span class="polymerIssue2497fix">>></span>
-                    </a>
+                <li>
+                    <button class="pagination-box btn btn-default" value="{{model.LastPage$::click}}" onmousedown="++this.value">&gt;&gt;</button>
                 </li>
             </ul>
         </nav>
@@ -63,7 +47,7 @@
             var script = document._currentScript || document.currentScript;
             var template = script.previousElementSibling;
 
-            template.onChangePageClick = function () {
+            template.onChangePageClick = function (event) {
                 template.set("model.ChangePage$", event.currentTarget.innerHTML);
             };
         })();
