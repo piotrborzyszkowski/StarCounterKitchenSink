@@ -23,8 +23,8 @@ namespace KitchenSink.Test
 
             driver.FindElement(ByHelper.AnyLinkWithText("Pagination")).ClickUsingMouse(driver);
 
-            var element = driver.FindElement(ByHelper.AnyButtonWithText("1"));
-            Assert.AreEqual(element.GetAttribute("class"), "page-link pagination-box btn btn-default active");
+            var element = driver.FindElements(By.ClassName("kitchensink-pagination-entry"));
+            Assert.IsNotEmpty(element);
         }
 
         [Test]
@@ -34,24 +34,65 @@ namespace KitchenSink.Test
             var dropDown = driver.FindElement(By.TagName("select"));
             var firstOption = dropDown.FindElement(By.TagName("option"));
             Assert.AreEqual(firstOption.GetAttribute("value"), firstOption.Text);
-            Assert.AreEqual(driver.FindElements(By.TagName("paper-item")).Count, 5);
+            Assert.AreEqual(driver.FindElements(By.ClassName("kitchensink-pagination-entry")).Count, 5);
             dropDown.ClickUsingMouse(driver);
             dropDown.SendKeys(Keys.Down);
             dropDown.SendKeys(Keys.Enter);
-            Assert.AreEqual(driver.FindElements(By.TagName("paper-item")).Count, 15);
+            Assert.AreEqual(driver.FindElements(By.ClassName("kitchensink-pagination-entry")).Count, 15);
+        }
+
+        public void ClickButton(string buttonID, string initialElementText)
+        {
+            driver.FindElement(By.Id(buttonID)).ClickUsingMouse(driver);
+            wait.Until((x) => {
+                var currentText = driver.FindElement(By.ClassName("kitchensink-pagination-entry")).Text;
+                return !initialElementText.Equals(currentText);
+            });
         }
 
         [Test]
-        public void PaginationPage_FirstLastButtonsTest()
+        public void PaginationPage_LastButtonTest()
         {
             driver.Navigate().GoToUrl(baseURL + "/pagination");
 
-            var initialElement = driver.FindElement(By.TagName("paper-item"));
-            driver.FindElement(ByHelper.AnyButtonWithText(">>")).ClickUsingMouse(driver);
-            this.WaitUntil((x) => !initialElement.Equals(By.TagName("paper-item")));
-            driver.FindElement(ByHelper.AnyButtonWithText("<<")).ClickUsingMouse(driver);
-            var finalElement = driver.FindElement(By.TagName("paper-item"));
-            Assert.AreEqual(initialElement, finalElement);
+            var initialElementText = driver.FindElement(By.ClassName("kitchensink-pagination-entry")).Text;
+            ClickButton("kitchensink-pagination-last", initialElementText);
+            Assert.AreNotEqual(initialElementText, driver.FindElement(By.ClassName("kitchensink-pagination-entry")).Text);
+        }
+
+
+        // This test is dependent on the last button
+        [Test]
+        public void PaginationPage_FirstButtonTest()
+        {
+            driver.Navigate().GoToUrl(baseURL + "/pagination");
+
+            ClickButton("kitchensink-pagination-last", driver.FindElement(By.ClassName("kitchensink-pagination-entry")).Text);
+            var initialElementText = driver.FindElement(By.ClassName("kitchensink-pagination-entry")).Text;
+            ClickButton("kitchensink-pagination-first", initialElementText);
+            Assert.AreNotEqual(initialElementText, driver.FindElement(By.ClassName("kitchensink-pagination-entry")).Text);
+        }
+
+        [Test]
+        public void PaginationPage_NextButtonTest()
+        {
+            driver.Navigate().GoToUrl(baseURL + "/pagination");
+
+            var initialElementText = driver.FindElement(By.ClassName("kitchensink-pagination-entry")).Text;
+            ClickButton("kitchensink-pagination-next", initialElementText);
+            Assert.AreNotEqual(initialElementText, driver.FindElement(By.ClassName("kitchensink-pagination-entry")).Text);
+        }
+
+        // This test is dependent on the next button
+        [Test]
+        public void PaginationPage_PreviousButtonTest()
+        {
+            driver.Navigate().GoToUrl(baseURL + "/pagination");
+
+            ClickButton("kitchensink-pagination-next", driver.FindElement(By.ClassName("kitchensink-pagination-entry")).Text);
+            var initialElementText = driver.FindElement(By.ClassName("kitchensink-pagination-entry")).Text;
+            ClickButton("kitchensink-pagination-previous", initialElementText);
+            Assert.AreNotEqual(initialElementText, driver.FindElement(By.ClassName("kitchensink-pagination-entry")).Text);
         }
 
         [Test]
@@ -59,20 +100,33 @@ namespace KitchenSink.Test
         {
             driver.Navigate().GoToUrl(baseURL + "/pagination");
 
-            string[] buttonText = new string[] { "3", ">", "<", "4" };
+            var buttons = driver.FindElements(By.ClassName("kitchensink-pagination-change"));
 
-            foreach (string text in buttonText)
+            System.Diagnostics.Debug.WriteLine("HERE");
+
+            foreach (var button in buttons)
             {
-                var initialElementText = driver.FindElement(By.TagName("paper-item")).Text;
-                driver.FindElement(ByHelper.AnyButtonWithText(text)).ClickUsingMouse(driver);
-
+                System.Diagnostics.Debug.Write("HERE");
+                var initialElementText = driver.FindElement(By.ClassName("kitchensink-pagination-entry")).Text;
+                button.ClickUsingMouse(driver);
                 wait.Until((x) => {
-                    var currentText = driver.FindElement(By.TagName("paper-item")).Text;
+                    var currentText = driver.FindElement(By.ClassName("kitchensink-pagination-entry")).Text;
+                    if (button.Text == "1")
+                    {
+                        return initialElementText.Equals(currentText);
+                    }
                     return !initialElementText.Equals(currentText);
                 });
-
-                var finalElementText = driver.FindElement(By.TagName("paper-item")).Text;
-                Assert.AreNotEqual(initialElementText, finalElementText);
+                // If you get through the wait.Until, then it must be true 
+                // could probabaly replace with Assert.True(true) without any issues
+                if (button.Text == "1")
+                {
+                    Assert.AreEqual(initialElementText, driver.FindElement(By.ClassName("kitchensink-pagination-entry")).Text);
+                }
+                else
+                {
+                    Assert.AreNotEqual(initialElementText, driver.FindElement(By.ClassName("kitchensink-pagination-entry")).Text);
+                }
             }
         }
     }

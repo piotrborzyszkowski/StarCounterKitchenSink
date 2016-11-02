@@ -29,5 +29,7 @@
   "TotalEntries": 0,
   "TotalPages": 0,
   "CurrentPage": 1,
-  "CurrentOffset": 0
+  "CurrentOffset": 0,
+  "DisableFirst": true,
+  "DisableLast": false
 }
