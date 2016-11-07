@@ -34,7 +34,6 @@ namespace KitchenSink.Test
             var dropDown = driver.FindElement(By.TagName("select"));
             var firstOption = dropDown.FindElement(By.TagName("option"));
             Assert.AreEqual(firstOption.GetAttribute("value"), firstOption.Text);
-            Assert.AreEqual(driver.FindElements(By.ClassName("kitchensink-pagination-entry")).Count, 5);
             dropDown.ClickUsingMouse(driver);
             dropDown.SendKeys(Keys.Down);
             dropDown.SendKeys(Keys.Enter);
