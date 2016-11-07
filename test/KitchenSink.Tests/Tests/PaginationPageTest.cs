@@ -38,6 +38,10 @@ namespace KitchenSink.Test
             dropDown.ClickUsingMouse(driver);
             dropDown.SendKeys(Keys.Down);
             dropDown.SendKeys(Keys.Enter);
+            wait.Until((x) => {
+                var currentCount = driver.FindElements(By.ClassName("kitchensink-pagination-entry")).Count;
+                return !currentCount.Equals(5);
+            });
             Assert.AreEqual(driver.FindElements(By.ClassName("kitchensink-pagination-entry")).Count, 15);
         }
 
@@ -101,8 +105,6 @@ namespace KitchenSink.Test
             driver.Navigate().GoToUrl(baseURL + "/pagination");
 
             var buttons = driver.FindElements(By.ClassName("kitchensink-pagination-change"));
-
-            System.Diagnostics.Debug.WriteLine("HERE");
 
             foreach (var button in buttons)
             {
