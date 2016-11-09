@@ -4,6 +4,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using KitchenSink.Tests;
 using System.Threading;
+using System.Collections.Generic;
 
 namespace KitchenSink.Test
 {
@@ -32,16 +33,9 @@ namespace KitchenSink.Test
         {
             driver.Navigate().GoToUrl(baseURL + "/pagination");
             var dropDown = driver.FindElement(By.TagName("select"));
-            var firstOption = dropDown.FindElement(By.TagName("option"));
-            Assert.AreEqual(firstOption.GetAttribute("value"), firstOption.Text);
-            dropDown.ClickUsingMouse(driver);
-            dropDown.SendKeys(Keys.Down);
-            dropDown.SendKeys(Keys.Enter);
-            wait.Until((x) => {
-                var currentCount = driver.FindElements(By.ClassName("kitchensink-pagination-entry")).Count;
-                return !currentCount.Equals(5);
-            });
-            Assert.AreEqual(driver.FindElements(By.ClassName("kitchensink-pagination-entry")).Count, 15);
+            var dropDownOptions = dropDown.FindElements(By.TagName("option"));
+            Assert.AreEqual(dropDownOptions[0].Text, "5");
+            Assert.AreEqual(dropDownOptions[1].Text, "15");
         }
 
         public void ClickButton(string buttonID, string initialElementText)
