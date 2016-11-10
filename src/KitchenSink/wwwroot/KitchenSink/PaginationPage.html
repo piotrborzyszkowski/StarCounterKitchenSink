@@ -9,17 +9,12 @@
         }
     </style>
     <template is="dom-bind">
-        <select class="kitchensink-select" value="{{model.EntriesPerPage$::change}}">
-            <template is="dom-repeat" items="{{model.PageEntries}}">
-                <option value="{{item.Amount}}">{{item.Amount}}</option>
-            </template>
-        </select>
-        <!--<juicy-select class="kitchensink-juicyselect dropdown"
+        <juicy-select class="kitchensink-juicyselect dropdown"
                       value="{{model.EntriesPerPage$::change}}"
                       options="{{model.PageEntries}}"
                       text-property="Amount"
                       value-property="Amount">
-        </juicy-select>-->
+        </juicy-select>
         <ul>
             <template is="dom-repeat" items="{{model.Library}}" as="book">
                 <li class="kitchensink-pagination-entry">{{book.Title}} - {{book.Author}}</li>

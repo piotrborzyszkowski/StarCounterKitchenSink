@@ -53,7 +53,6 @@ namespace KitchenSink.Test
                 var dropDown = driver.FindElement(By.TagName("select"));
                 var dropDownSelect = new SelectElement(dropDown);
                 dropDownSelect.SelectByIndex(i);
-
                 wait.Until(x => driver.FindElements(By.ClassName("kitchensink-pagination-entry")).Count == entriesPerPage[i]);
             }
         }
@@ -65,8 +64,6 @@ namespace KitchenSink.Test
             wait.Until(x => driver.FindElement(By.ClassName("kitchensink-pagination-entry")).Text == "Arbitrary Book 96 - Arbitrary Author");
         }
 
-
-        // This test is dependent on the last button
         [Test]
         public void PaginationPage_FirstButton_GoesToFirstPage()
         {
@@ -82,7 +79,6 @@ namespace KitchenSink.Test
             wait.Until(x => driver.FindElement(By.ClassName("kitchensink-pagination-entry")).Text == "Arbitrary Book 6 - Arbitrary Author");
         }
 
-        // This test is dependent on the next button
         [Test]
         public void PaginationPage_PreviousButton_GoesToPreviousPage()
         {
