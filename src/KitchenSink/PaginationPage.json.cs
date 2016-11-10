@@ -38,8 +38,56 @@ namespace KitchenSink
             InitPage();
         }
 
+        // Changes the number of entries per page depending on input and sets the page to 1
+        void Handle(Input.EntriesPerPage action)
+        {
+            this.CurrentOffset = 0;
+            this.EntriesPerPage = action.Value;
+            SetTotalPages();
+            GetNewPage();
+        }
+
+        // Sets the current page when the user clicks on one of the numbered buttons
+        void Handle(Input.ChangePage action)
+        {
+            this.CurrentOffset = this.EntriesPerPage * (action.Value - 1);
+            GetNewPage();
+        }
+
+        // Goes to the next page on click
+        void Handle(Input.NextPage action)
+        {
+            if (this.CurrentOffset + this.EntriesPerPage < this.TotalEntries)
+            {
+                this.CurrentOffset = this.CurrentOffset + this.EntriesPerPage;
+            }
+            GetNewPage();
+        }
+
+        // Goes to the previous page on click
+        void Handle(Input.PreviousPage action)
+        {
+            this.CurrentOffset = this.CurrentOffset - this.EntriesPerPage >= 0 ? this.CurrentOffset - this.EntriesPerPage : 0;
+            GetNewPage();
+        }
+
+        // Goes to the last page on click
+        void Handle(Input.LastPage action)
+        {
+            var remainder = this.TotalEntries % this.EntriesPerPage;
+            this.CurrentOffset = remainder != 0 ? this.TotalEntries - (remainder) : this.TotalEntries - this.EntriesPerPage;
+            GetNewPage();
+        }
+
+        // Goes to the first page on click
+        void Handle(Input.FirstPage action)
+        {
+            this.CurrentOffset = 0;
+            GetNewPage();
+        }
+
         // Initializes the page by calling all the neccesary methods to set the page to 1
-        public void InitPage()
+        private void InitPage()
         {
             GetNewPage();
             SetTotalPages();
@@ -49,7 +97,7 @@ namespace KitchenSink
 
         // Creates the choices for page entries.
         // Modify the array entryChoices to modify how many entries per page the user can choose between.
-        public void SetPageEntries()
+        private void SetPageEntries()
         {
             int[] entryChoices = new int[] { 5, 15, 30 };
             foreach (int entry in entryChoices)
@@ -60,7 +108,7 @@ namespace KitchenSink
         }
 
         // Sets the JSON value for total pages    
-        public void SetTotalPages()
+        private void SetTotalPages()
         {
             var totalPagesRounded = this.TotalEntries / this.EntriesPerPage;
             this.TotalPages = this.TotalEntries % this.EntriesPerPage == 0 ? totalPagesRounded : totalPagesRounded + 1;
@@ -69,7 +117,7 @@ namespace KitchenSink
         // Establishes the navigation buttons.
         // Displays all the page buttons if there are less then 10,
         // Otherwise it shows the current page, the two before and after.
-        public void CreateNavButtons(long entriesPerPage)
+        private void CreateNavButtons(long entriesPerPage)
         {
             this.Pages.Clear();
             this.CurrentPage = this.CurrentOffset / entriesPerPage + 1;
@@ -118,58 +166,10 @@ namespace KitchenSink
         }
 
         // Switch to the desired page depeding on the current offset.
-        public void GetNewPage()
+        private void GetNewPage()
         {
             this.Library.Data = Db.SQL<Book>("SELECT b FROM KitchenSink.Book b FETCH ? OFFSET ?", this.EntriesPerPage, this.CurrentOffset);
             CreateNavButtons(this.EntriesPerPage);
-        }
-
-        // Changes the number of entries per page depending on input and sets the page to 1
-        void Handle(Input.EntriesPerPage action)
-        {
-            this.CurrentOffset = 0;
-            this.EntriesPerPage = action.Value;
-            SetTotalPages();
-            GetNewPage();
-        }
-
-        // Sets the current page when the user clicks on one of the numbered buttons
-        void Handle(Input.ChangePage action)
-        {
-            this.CurrentOffset = this.EntriesPerPage * (action.Value - 1);
-            GetNewPage();
-        }
-
-        // Goes to the next page on click
-        void Handle(Input.NextPage action)
-        {
-            if (this.CurrentOffset + this.EntriesPerPage < this.TotalEntries)
-            {
-                this.CurrentOffset = this.CurrentOffset + this.EntriesPerPage;
-            }
-            GetNewPage();
-        }
-
-        // Goes to the previous page on click
-        void Handle(Input.PreviousPage action)
-        {
-            this.CurrentOffset = this.CurrentOffset - this.EntriesPerPage >= 0 ? this.CurrentOffset - this.EntriesPerPage : 0;
-            GetNewPage();
-        }
-
-        // Goes to the last page on click
-        void Handle(Input.LastPage action)
-        {
-            var remainder = this.TotalEntries % this.EntriesPerPage;
-            this.CurrentOffset = remainder != 0 ? this.TotalEntries - (remainder) : this.TotalEntries - this.EntriesPerPage;
-            GetNewPage();
-        }
-
-        // Goes to the first page on click
-        void Handle(Input.FirstPage action)
-        {
-            this.CurrentOffset = 0;
-            GetNewPage();
         }
     }
 }
