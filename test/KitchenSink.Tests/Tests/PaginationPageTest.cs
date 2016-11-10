@@ -28,7 +28,6 @@ namespace KitchenSink.Test
         public void PaginationPage_PageLoads()
         {
             driver.Navigate().GoToUrl(baseURL);
-
             driver.FindElement(ByHelper.AnyLinkWithText("Pagination")).ClickUsingMouse(driver);
             wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.ClassName("kitchensink-pagination-entry")));
         }
@@ -38,7 +37,7 @@ namespace KitchenSink.Test
         {
             var dropDownOptions = driver.FindElements(By.XPath("//select/option"));
             string[] entriesPerPage = new string[] { "5", "15", "30" };
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < dropDownOptions.Count; i++)
             {
                 Assert.AreEqual(dropDownOptions[i].Text, entriesPerPage[i]);
             }
@@ -55,17 +54,15 @@ namespace KitchenSink.Test
                 var dropDownSelect = new SelectElement(dropDown);
                 dropDownSelect.SelectByIndex(i);
 
-                wait.Until((x) => x.FindElements(By.ClassName("kitchensink-pagination-entry")).Count.Equals(entriesPerPage[i]));
+                wait.Until(x => driver.FindElements(By.ClassName("kitchensink-pagination-entry")).Count == entriesPerPage[i]);
             }
         }
 
         [Test]
         public void PaginationPage_LastButton_GoesToLastPage()
         {
-            var initialElementText = driver.FindElement(By.ClassName("kitchensink-pagination-entry")).Text;
-            ClickButton("kitchensink-pagination-last", initialElementText);
-
-            Assert.AreEqual(driver.FindElement(By.ClassName("kitchensink-pagination-entry")).Text, "Arbitrary Book 96 - Arbitrary Author");
+            driver.FindElement(By.Id("kitchensink-pagination-last")).ClickUsingMouse(driver);
+            wait.Until(x => driver.FindElement(By.ClassName("kitchensink-pagination-entry")).Text == "Arbitrary Book 96 - Arbitrary Author");
         }
 
 
@@ -73,28 +70,25 @@ namespace KitchenSink.Test
         [Test]
         public void PaginationPage_FirstButton_GoesToFirstPage()
         {
-            ClickButton("kitchensink-pagination-last", driver.FindElement(By.ClassName("kitchensink-pagination-entry")).Text);
-            var initialElementText = driver.FindElement(By.ClassName("kitchensink-pagination-entry")).Text;
-            ClickButton("kitchensink-pagination-first", initialElementText);
-            Assert.AreEqual(driver.FindElement(By.ClassName("kitchensink-pagination-entry")).Text, "Arbitrary Book 1 - Arbitrary Author");
+            PaginationPage_LastButton_GoesToLastPage();
+            driver.FindElement(By.Id("kitchensink-pagination-first")).ClickUsingMouse(driver);
+            wait.Until(x => driver.FindElement(By.ClassName("kitchensink-pagination-entry")).Text == "Arbitrary Book 1 - Arbitrary Author");
         }
 
         [Test]
         public void PaginationPage_NextButton_GoesToNextPage()
         {
-            var initialElementText = driver.FindElement(By.ClassName("kitchensink-pagination-entry")).Text;
-            ClickButton("kitchensink-pagination-next", initialElementText);
-            Assert.AreEqual(driver.FindElement(By.ClassName("kitchensink-pagination-entry")).Text, "Arbitrary Book 6 - Arbitrary Author");
+            driver.FindElement(By.Id("kitchensink-pagination-next")).ClickUsingMouse(driver);
+            wait.Until(x => driver.FindElement(By.ClassName("kitchensink-pagination-entry")).Text == "Arbitrary Book 6 - Arbitrary Author");
         }
 
         // This test is dependent on the next button
         [Test]
         public void PaginationPage_PreviousButton_GoesToPreviousPage()
         {
-            ClickButton("kitchensink-pagination-next", driver.FindElement(By.ClassName("kitchensink-pagination-entry")).Text);
-            var initialElementText = driver.FindElement(By.ClassName("kitchensink-pagination-entry")).Text;
-            ClickButton("kitchensink-pagination-previous", initialElementText);
-            Assert.AreEqual(driver.FindElement(By.ClassName("kitchensink-pagination-entry")).Text, "Arbitrary Book 1 - Arbitrary Author");
+            PaginationPage_NextButton_GoesToNextPage();
+            driver.FindElement(By.Id("kitchensink-pagination-previous")).ClickUsingMouse(driver);
+            wait.Until(x => driver.FindElement(By.ClassName("kitchensink-pagination-entry")).Text == "Arbitrary Book 1 - Arbitrary Author");
         }
 
         [Test]
@@ -104,22 +98,9 @@ namespace KitchenSink.Test
             for (int i = 0; i < 3; i++)
             {
                 buttons[i].ClickUsingMouse(driver);
-                wait.Until((x) => {
-                    var expectedFirstEntryText = "Arbitrary Book " + (Int32.Parse(buttons[i].Text) * 5 - 4).ToString() + " - Arbitrary Author";
-                    var firstEntryText = driver.FindElement(By.ClassName("kitchensink-pagination-entry")).Text;
-                    return expectedFirstEntryText == firstEntryText;
-               });
+                wait.Until(x => "Arbitrary Book " + (Int32.Parse(buttons[i].Text) * 5 - 4).ToString() + " - Arbitrary Author" == driver.FindElement(By.ClassName("kitchensink-pagination-entry")).Text);
             }
 
-        }
-        
-        private void ClickButton(string buttonID, string initialElementText)
-        {
-            driver.FindElement(By.Id(buttonID)).ClickUsingMouse(driver);
-            wait.Until((x) => {
-                var currentText = driver.FindElement(By.ClassName("kitchensink-pagination-entry")).Text;
-                return !initialElementText.Equals(currentText);
-            });
         }
     }
 }
