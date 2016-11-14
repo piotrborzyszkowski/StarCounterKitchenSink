@@ -7,6 +7,7 @@ namespace KitchenSink
     {
         public string Author;
         public string Title;
+        public long Position;
     }
 
     partial class PaginationPage : Json
@@ -28,7 +29,8 @@ namespace KitchenSink
                         var book = new Book()
                         {
                             Author = "Arbitrary Author",
-                            Title = "Arbitrary Book " + (i + 1).ToString()
+                            Title = "Arbitrary Book " + (i + 1).ToString(),
+                            Position = i + 1
                         };
                     }
                 });
@@ -168,7 +170,7 @@ namespace KitchenSink
         // Switch to the desired page depeding on the current offset.
         private void GetNewPage()
         {
-            this.Library.Data = Db.SQL<Book>("SELECT b FROM KitchenSink.Book b FETCH ? OFFSET ?", this.EntriesPerPage, this.CurrentOffset);
+            this.Library.Data = Db.SQL<Book>("SELECT b FROM KitchenSink.Book b ORDER BY b.Position FETCH ? OFFSET ?", this.EntriesPerPage, this.CurrentOffset);
             CreateNavButtons(this.EntriesPerPage);
         }
     }
