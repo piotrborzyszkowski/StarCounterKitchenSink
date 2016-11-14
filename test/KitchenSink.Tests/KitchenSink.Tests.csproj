@@ -84,6 +84,7 @@
     <Compile Include="BaseTest.cs" />
     <Compile Include="ElementSelectionHelper.cs" />
     <Compile Include="SeleniumExtensions.cs" />
+    <Compile Include="Tests\PaginationPageTest.cs" />
     <Compile Include="Tests\RedirectPageTest.cs" />
     <Compile Include="Tests\ButtonPageTest.cs" />
     <Compile Include="Tests\CheckboxPageTest.cs" />
