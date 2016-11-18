@@ -1,5 +1,6 @@
 using Starcounter;
 using System.Threading;
+using System;
 
 namespace KitchenSink
 {
@@ -43,22 +44,12 @@ namespace KitchenSink
                 }
             }
 
-            // TODO
-            // Need to base the data retrieval on ScheduleTasks, And somehow make them not overlap. And somehow make them "canellable" if the user hovers another target.
-            // If the user hovers something else, the scheduleTask should not complete (setTimeout?.. somehow),
-
-
             public void Handle(Input.IsHovered action)
             {
-                if (!this.DataIsLoaded && !this.RetrievingData)
+                if (!this.DataIsLoaded && action.Value != 0)
                 {
-                    this.RetrievingData = true;
-                    StartDataRetrieval(10, Session.SessionId);
-                    if (this.ParentPage.SelectedPersonsName == this.FirstName) // Not Working - Check if the person is still hovered - Does not get updated during sleep
-                    {
-                        this.ParentPage.DisplayedData.DataContent = this.FavoriteGame = this.DataToShow; // This should happen once it HAS the data, and the same person is hovered (meaning the loading was completed)
-                        this.DataIsLoaded = true; // - similar to the above, move somewhere
-                    }
+                    Random rnd = new Random(); // Adding a random load-time, between half a second, and 1 second.
+                    StartDataRetrieval(rnd.Next(5, 10), Session.SessionId);
                 }
             }
 
@@ -81,27 +72,27 @@ namespace KitchenSink
             {
                 Session.ScheduleTask(sessionId, (session, id) =>
                 {
-                    // The session might be disposed if user disconnects before the task has change to execute
                     if (session == null)
                     {
                         return;
                     }
 
-                    if (loadingProgress >= 100) // If progress is finished
+                    if (loadingProgress >= 100)
                     {
-                        //Check if the selected person is still target, if yes, then it shoul "get" the data.
-                        //if (this.ParentPage.SelectedPersonsName == this.FirstName)
-                        //{
-                        RetrieveDataFromFakeDataBase(this.FirstName);
-                        //}
-                        //return;
+                        if (this.ParentPage.SelectedPersonsName == this.FirstName) 
+                        // Can still be bugged, if the person spam hovers 2 targets for example, there is a change that this person is hovered again*, which will cause the data to load instantly
+                        {
+                            RetrieveDataFromFakeDataBase(this.FirstName);
+                            this.DataIsLoaded = true;
+                            this.ParentPage.DisplayedData.DataContent = this.FavoriteGame = this.DataToShow;
+                        }
                     }
 
                     session.CalculatePatchAndPushOnWebSocket();
                 });
             }
 
-            public void RetrieveDataFromFakeDataBase(string firstName) // Picks out different "data" depending on who is invoking this function
+            public void RetrieveDataFromFakeDataBase(string firstName) // Retrieves different "data" depending on who's calling this function
             {
                 switch (firstName)
                 {
