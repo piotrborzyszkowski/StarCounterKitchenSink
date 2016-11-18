@@ -1,0 +1,24 @@
+{
+  "Html": "/Kitchensink/LazyLoadingPage.html",
+  "People": [
+    {
+      "Order": 0,
+      "FirstName": "",
+      "LastName": "",
+      "FavoriteGame": "",
+      "IsHovered$": 0,
+      "DataIsLoaded": false,
+      "RetrievingData": false,
+      "DataToShow": ""
+    }
+  ],
+  "SelectedPersonsName$": "",
+  "SelectedPersonsData$": 0,
+  "LoadVisualCss$": "",
+  "DataVisualCss$": "",
+  "DisplayHoverBox$": false,
+  "DisplayedData": 
+  {
+    "DataContent$": ""
+  }
+}

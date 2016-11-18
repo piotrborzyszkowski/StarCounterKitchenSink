@@ -145,6 +145,9 @@ namespace KitchenSink
             Handle.GET("/KitchenSink/partial/pagination", () => new PaginationPage());
             Handle.GET("/Kitchensink/pagination", () => WrapPage<PaginationPage>("/KitchenSink/partial/pagination"));
 
+            Handle.GET("/KitchenSink/partial/lazyloading", () => new LazyLoadingPage());
+            Handle.GET("/Kitchensink/lazyloading", () => WrapPage<LazyLoadingPage>("/KitchenSink/partial/lazyloading"));
+
             Handle.GET("/KitchenSink/partial/cookie", (Request request) =>
             {
                 string name = "KitchenSink";
