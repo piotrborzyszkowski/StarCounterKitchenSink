@@ -49,7 +49,7 @@ namespace KitchenSink
                 if (!this.DataIsLoaded && action.Value != 0)
                 {
                     Random rnd = new Random(); // Adding a random load-time, between half a second, and 1 second.
-                    StartDataRetrieval(rnd.Next(5, 10), Session.SessionId);
+                    StartDataRetrieval(rnd.Next(3, 10), Session.SessionId);
                 }
             }
 
