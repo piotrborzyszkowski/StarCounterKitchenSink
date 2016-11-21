@@ -61,11 +61,11 @@ namespace KitchenSink
                 {
                     while (loadingProgress < 100)
                     {
-                        System.Threading.Thread.CurrentThread.Join(delay); // sleep function - handles the delay between the incrementation of this.Progress
+                        System.Threading.Thread.CurrentThread.Join(delay);
                         loadingProgress++;
                         DataRetrievalUpate(sessionId, loadingProgress);
                     }
-                }, false); // Wait for completion - If false: it will continue to run the script even though the scheduled task is running in the background
+                }, false); // wait for completion: false = Will run in background.
             }
 
             void DataRetrievalUpate(string sessionId, long loadingProgress)
@@ -80,7 +80,6 @@ namespace KitchenSink
                     if (loadingProgress >= 100)
                     {
                         if (this.ParentPage.SelectedPersonsName == this.FirstName) 
-                        // Can still be bugged, if the person spam hovers 2 targets for example, there is a change that this person is hovered again*, which will cause the data to load instantly
                         {
                             RetrieveDataFromFakeDataBase(this.FirstName);
                             this.DataIsLoaded = true;
@@ -92,7 +91,8 @@ namespace KitchenSink
                 });
             }
 
-            public void RetrieveDataFromFakeDataBase(string firstName) // Retrieves different "data" depending on who's calling this function
+            // Acts as a fake database, and provide each person with a favorite game
+            public void RetrieveDataFromFakeDataBase(string firstName)
             {
                 switch (firstName)
                 {
