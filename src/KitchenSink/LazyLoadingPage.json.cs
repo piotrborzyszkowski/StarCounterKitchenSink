@@ -14,16 +14,16 @@ namespace KitchenSink
 
         private void FillDummyData()
         {
-            CreatePerson(1, "Alicia", "Alcott", "");
-            CreatePerson(2, "Beatrice", "Black", "");
-            CreatePerson(3, "Claire", "Clancy", "");
-            CreatePerson(4, "Delilah", "Darcy", "");
-            CreatePerson(5, "Ellie", "Earnhart", "");
-            CreatePerson(6, "Faith", "Fahrlander", "");
-            CreatePerson(7, "Grace", "Gather", "");
+            CreatePerson(1, "Alicia", "Alcott");
+            CreatePerson(2, "Beatrice", "Black");
+            CreatePerson(3, "Claire", "Clancy");
+            CreatePerson(4, "Delilah", "Darcy");
+            CreatePerson(5, "Ellie", "Earnhart");
+            CreatePerson(6, "Faith", "Fahrlander");
+            CreatePerson(7, "Grace", "Gather");
         }
 
-        private void CreatePerson(int order, string firstName, string lastName, string favoriteGame)
+        private void CreatePerson(int order, string firstName, string lastName, string favoriteGame = "")
         {
             LazyLoadingPagePeople person;
             person = People.Add();
