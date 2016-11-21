@@ -71,6 +71,7 @@
                 clearTimeout(startDataRetrievalTest);
                 template.set("model.DisplayHoverBox$", false);
                 template.set("model.People." + currentTargetIndex + ".IsHovered$", 0);
+                triggerMouseup(event.currentTarget);
             };
 
             // Fakes a mouseclick, Is called on hover.

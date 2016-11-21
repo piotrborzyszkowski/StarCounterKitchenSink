@@ -48,8 +48,8 @@ namespace KitchenSink
             {
                 if (!this.DataIsLoaded && action.Value != 0)
                 {
-                    Random rnd = new Random(); // Adding a random load-time, between half a second, and 1 second.
-                    StartDataRetrieval(rnd.Next(3, 10), Session.SessionId);
+                    Random rnd = new Random();
+                    StartDataRetrieval(rnd.Next(300,1000), Session.SessionId);
                 }
             }
 
@@ -59,7 +59,7 @@ namespace KitchenSink
 
                 Scheduling.ScheduleTask(() =>
                 {
-                    while (loadingProgress < 100)
+                    while (loadingProgress < 1)
                     {
                         System.Threading.Thread.CurrentThread.Join(delay);
                         loadingProgress++;
@@ -77,9 +77,9 @@ namespace KitchenSink
                         return;
                     }
 
-                    if (loadingProgress >= 100)
+                    if (loadingProgress >= 1)
                     {
-                        if (this.ParentPage.SelectedPersonsName == this.FirstName) 
+                        if (this.IsHovered > 0)
                         {
                             RetrieveDataFromFakeDataBase(this.FirstName);
                             this.DataIsLoaded = true;
