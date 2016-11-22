@@ -142,6 +142,9 @@ namespace KitchenSink
             Handle.GET("/KitchenSink/partial/progressbar", () => new ProgressBarPage());
             Handle.GET("/Kitchensink/progressbar", () => WrapPage<ProgressBarPage>("/KitchenSink/partial/progressbar"));
 
+            Handle.GET("/KitchenSink/partial/lazyloading", () => new LazyLoadingPage());
+            Handle.GET("/Kitchensink/lazyloading", () => WrapPage<LazyLoadingPage>("/KitchenSink/partial/lazyloading"));
+
             Handle.GET("/KitchenSink/partial/pagination", () => new PaginationPage());
             Handle.GET("/Kitchensink/pagination", () => WrapPage<PaginationPage>("/KitchenSink/partial/pagination"));
 
