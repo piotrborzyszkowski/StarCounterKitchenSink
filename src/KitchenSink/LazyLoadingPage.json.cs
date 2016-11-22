@@ -36,6 +36,9 @@ namespace KitchenSink
         [LazyLoadingPage_json.People]
         partial class LazyLoadingPagePeople : Json
         {
+            protected int minDataRetrievalDelay = 300;
+            protected int maxDataRetrievalDelay = 1000;
+
             public LazyLoadingPage ParentPage
             {
                 get
@@ -44,30 +47,29 @@ namespace KitchenSink
                 }
             }
 
-            // Acion & isHovered is set on the client side. Every time a person gets hovered, isHovered is set to 1.
+            // IsHovered is set on the client side. Every time a person gets hovered, isHovered is set to 1.
             // And the value is set to 0 on blur.
             public void Handle(Input.IsHovered action)
             {
                 if (!this.DataIsLoaded && action.Value != 0)
                 {
                     Random rnd = new Random();
-                    StartDataRetrieval(rnd.Next(300, 1000), Session.SessionId);
+                    StartDataRetrieval(rnd.Next(minDataRetrievalDelay, maxDataRetrievalDelay), Session.SessionId);
                 }
             }
 
             void StartDataRetrieval(int delay, string sessionId)
             {
-                long loadingProgress = 0;
-
                 Scheduling.ScheduleTask(() =>
                 {
-                    System.Threading.Thread.CurrentThread.Join(delay);
-                    loadingProgress++;
-                    DataRetrievalUpate(sessionId, loadingProgress);
-                }, false); // wait for completion: false = Will run in background.
+                    string data = this.RetrieveDataFromFakeDataBase(this.FirstName);
+
+                    Thread.CurrentThread.Join(delay);
+                    DataRetrievalUpate(sessionId, data);
+                }, false); // wait for completion: false = run in background.
             }
 
-            void DataRetrievalUpate(string sessionId, long loadingProgress)
+            void DataRetrievalUpate(string sessionId, string data)
             {
                 Session.ScheduleTask(sessionId, (session, id) =>
                 {
@@ -76,11 +78,13 @@ namespace KitchenSink
                         return;
                     }
 
-                    if (loadingProgress >= 1 && this.IsHovered > 0)
+                    this.DataIsLoaded = true;
+                    this.DataToShow = data;
+                    this.FavoriteGame = data;
+
+                    if (this.IsHovered == 1)
                     {
-                        RetrieveDataFromFakeDataBase(this.FirstName);
-                        this.DataIsLoaded = true;
-                        this.ParentPage.DisplayedData.DataContent = this.FavoriteGame = this.DataToShow;
+                        this.ParentPage.DisplayedData.DataContent = data;
                     }
 
                     session.CalculatePatchAndPushOnWebSocket();
@@ -88,37 +92,32 @@ namespace KitchenSink
             }
 
             // Acts as a fake database, and provide each person with a favorite game
-            public void RetrieveDataFromFakeDataBase(string firstName)
+            public string RetrieveDataFromFakeDataBase(string firstName)
             {
                 switch (firstName)
                 {
                     case "Alicia":
-                        this.DataToShow = this.FavoriteGame = "The Last of Us";
-                        break;
+                        return this.FavoriteGame = "The Last of Us";
 
                     case "Beatrice":
-                        this.DataToShow = this.FavoriteGame = "Dragon Age: Inquisition";
-                        break;
+                        return this.FavoriteGame = "Dragon Age: Inquisition";
 
                     case "Claire":
-                        this.DataToShow = this.FavoriteGame = "Final Fantasy XIII";
-                        break;
+                        return this.FavoriteGame = "Final Fantasy XIII";
 
                     case "Delilah":
-                        this.DataToShow = this.FavoriteGame = "World of Warcraft";
-                        break;
+                        return this.FavoriteGame = "World of Warcraft";
 
                     case "Ellie":
-                        this.DataToShow = this.FavoriteGame = "Overwatch";
-                        break;
+                        return this.FavoriteGame = "Overwatch";
 
                     case "Faith":
-                        this.DataToShow = this.FavoriteGame = "Pokemon X";
-                        break;
+                        return this.FavoriteGame = "Pokemon X";
 
                     case "Grace":
-                        this.DataToShow = this.FavoriteGame = "Counter Strike";
-                        break;
+                        return this.FavoriteGame = "Counter Strike";
+                    default:
+                        throw new ArgumentException();
                 }
             }
         }
