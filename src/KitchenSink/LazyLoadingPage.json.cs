@@ -44,6 +44,8 @@ namespace KitchenSink
                 }
             }
 
+            // Acion & isHovered is set on the client side. Every time a person gets hovered, isHovered is set to 1.
+            // And the value is set to 0 on blur.
             public void Handle(Input.IsHovered action)
             {
                 if (!this.DataIsLoaded && action.Value != 0)
@@ -59,12 +61,9 @@ namespace KitchenSink
 
                 Scheduling.ScheduleTask(() =>
                 {
-                    while (loadingProgress < 1)
-                    {
-                        System.Threading.Thread.CurrentThread.Join(delay);
-                        loadingProgress++;
-                        DataRetrievalUpate(sessionId, loadingProgress);
-                    }
+                    System.Threading.Thread.CurrentThread.Join(delay);
+                    loadingProgress++;
+                    DataRetrievalUpate(sessionId, loadingProgress);
                 }, false); // wait for completion: false = Will run in background.
             }
 
@@ -77,14 +76,11 @@ namespace KitchenSink
                         return;
                     }
 
-                    if (loadingProgress >= 1)
+                    if (loadingProgress >= 1 && this.IsHovered > 0)
                     {
-                        if (this.IsHovered > 0)
-                        {
-                            RetrieveDataFromFakeDataBase(this.FirstName);
-                            this.DataIsLoaded = true;
-                            this.ParentPage.DisplayedData.DataContent = this.FavoriteGame = this.DataToShow;
-                        }
+                        RetrieveDataFromFakeDataBase(this.FirstName);
+                        this.DataIsLoaded = true;
+                        this.ParentPage.DisplayedData.DataContent = this.FavoriteGame = this.DataToShow;
                     }
 
                     session.CalculatePatchAndPushOnWebSocket();
