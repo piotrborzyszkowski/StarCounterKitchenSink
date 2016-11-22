@@ -49,7 +49,7 @@ namespace KitchenSink
                 if (!this.DataIsLoaded && action.Value != 0)
                 {
                     Random rnd = new Random();
-                    StartDataRetrieval(rnd.Next(300,1000), Session.SessionId);
+                    StartDataRetrieval(rnd.Next(300, 1000), Session.SessionId);
                 }
             }
 
