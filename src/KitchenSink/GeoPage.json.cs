@@ -20,14 +20,11 @@ namespace KitchenSink
             Position.Data = Db.SQL<GeoCoordinates>("SELECT gp FROM GeoCoordinates gp").First;
             if (Position.Data == null)
             {
-                Db.Transact(() =>
+                Position.Data = new GeoCoordinates()
                 {
-                    Position.Data = new GeoCoordinates()
-                    {
-                        Latitude = DefaultLatitude,
-                        Longitude = DefaultLongitude
-                    };
-                });
+                    Latitude = DefaultLatitude,
+                    Longitude = DefaultLongitude
+                };
             }
         }
     }
