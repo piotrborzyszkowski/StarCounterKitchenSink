@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace KitchenSink.Test
+namespace KitchenSink.Test.Array
 {
     [TestFixture]
     class DropdownPageTest : BaseTest

@@ -1,9 +1,7 @@
-﻿using System;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
-using OpenQA.Selenium.Support.UI;
 
-namespace KitchenSink.Test
+namespace KitchenSink.Test.String
 {
     public class DatepickerPage : BasePage
     {

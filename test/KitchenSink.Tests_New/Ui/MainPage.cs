@@ -1,4 +1,7 @@
-﻿using OpenQA.Selenium;
+﻿using KitchenSink.Test.Array;
+using KitchenSink.Test.Object;
+using KitchenSink.Test.String;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
 namespace KitchenSink.Test

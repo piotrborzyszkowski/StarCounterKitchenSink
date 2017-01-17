@@ -1,7 +1,6 @@
-﻿using KitchenSink.Test;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
-namespace KitchenSink.Tests
+namespace KitchenSink.Test.Array
 {
     [TestFixture]
     class TablePageTest : BaseTest

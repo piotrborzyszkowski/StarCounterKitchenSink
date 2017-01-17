@@ -1,13 +1,12 @@
-﻿using KitchenSink.Test;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
-namespace KitchenSink.Tests
-{ 
+namespace KitchenSink.Test.String
+{
     [TestFixture]
-    class DatapickerPageTest : BaseTest
+    class DatepickerPageTest : BaseTest
     {
         [Test]
-        public void DatapickerTest()
+        public void DatepickerTest()
         {
             MainPage mainPage = new MainPage(Driver);
             DatepickerPage datePicker = mainPage.GoToDatePickerPage();

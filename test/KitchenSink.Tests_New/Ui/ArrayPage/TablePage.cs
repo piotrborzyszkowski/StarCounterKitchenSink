@@ -2,7 +2,7 @@
 using OpenQA.Selenium.Support.PageObjects;
 using System.Collections.Generic;
 
-namespace KitchenSink.Test
+namespace KitchenSink.Test.Array
 {
     public class TablePage : BasePage
     {

@@ -2,7 +2,7 @@
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
 
-namespace KitchenSink.Test
+namespace KitchenSink.Test.Array
 {
     public class DropdownPage : BasePage
     {
