@@ -1,4 +1,5 @@
 ﻿using KitchenSink.Test.Array;
+using KitchenSink.Test.Boolean;
 using KitchenSink.Test.Object;
 using KitchenSink.Test.String;
 using OpenQA.Selenium;
@@ -35,6 +36,24 @@ namespace KitchenSink.Test
         {
             ClickOn(TablePageLink);
             return new TablePage(Driver);
+        }
+
+        public ValidationPage GoToValidationPage()
+        {
+            ClickOn(ValidationPageLink);
+            return new ValidationPage(Driver);
+        }
+
+        public CheckboxPage GoToCheckboxPage()
+        {
+            ClickOn(CheckboxPageLink);
+            return new CheckboxPage(Driver);
+        }
+
+        public ButtonPage GoToButtonPage()
+        {
+            ClickOn(ButtonPageLink);
+            return new ButtonPage(Driver);
         }
     }
 }

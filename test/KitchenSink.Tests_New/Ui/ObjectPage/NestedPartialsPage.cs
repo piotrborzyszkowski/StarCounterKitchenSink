@@ -20,6 +20,7 @@ namespace KitchenSink.Test.Object
 
         public void AddChild()
         {
+            WaitForElementToBeClickable(addChildButton, 3);
             ClickOn(addChildButton);
         }
 

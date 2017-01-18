@@ -6,7 +6,7 @@ namespace KitchenSink.Test.Object
     class NestedPartialsPageTest : BaseTest
     {
         [Test]
-        public void NestedPartialsTest()
+        public void NestedPartialsPage_AddNewChild()
         {
             MainPage mainPage = new MainPage(Driver);
             NestedPartialsPage nestedPartialsPage = mainPage.GoToNestedPartialsPage();

@@ -6,7 +6,7 @@ namespace KitchenSink.Test.Array
     class DropdownPageTest : BaseTest
     {
         [Test]
-        public void PetsDropdownTest()
+        public void PetsDropdown_SelectPets()
         {
             MainPage mainPage = new MainPage(Driver);
             DropdownPage dropDownPage = mainPage.GoToDropdownPage();
@@ -22,7 +22,7 @@ namespace KitchenSink.Test.Array
         }
 
         [Test]
-        public void JuicyDropdownTest1()
+        public void JuicyDropdown_SelectJuicy()
         {
             MainPage mainPage = new MainPage(Driver);
             DropdownPage dropDownPage = mainPage.GoToDropdownPage();
@@ -41,7 +41,7 @@ namespace KitchenSink.Test.Array
         }
 
         [Test]
-        public void JuicyDropdownTest2()
+        public void JuicyDropdown_SelectAlko()
         {
             MainPage mainPage = new MainPage(Driver);
             DropdownPage dropDownPage = mainPage.GoToDropdownPage();

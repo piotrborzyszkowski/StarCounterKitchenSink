@@ -6,7 +6,7 @@ namespace KitchenSink.Test.Array
     class TablePageTest : BaseTest
     {
         [Test]
-        public void TableTest()
+        public void TablePage_AddNewRow()
         {
             MainPage mainPage = new MainPage(Driver);
             TablePage tablePage = mainPage.GoToTablePage();

@@ -29,9 +29,10 @@ namespace KitchenSink.Test
                     }
             }
 
-            driver = new EventListener(driver);
+            IWebDriver eventDriver = new EventListener(driver);
+            driver = eventDriver;
             driver.Navigate().GoToUrl(portalUrl);
-            driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(ImplicitlyTimeout));
+            //driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(ImplicitlyTimeout));
             driver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(timeout));
             driver.Manage().Timeouts().SetScriptTimeout(TimeSpan.FromSeconds(timeout));
             driver.Manage().Window.Maximize();

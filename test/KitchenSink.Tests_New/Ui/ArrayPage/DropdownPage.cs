@@ -1,21 +1,22 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
+using System;
 
 namespace KitchenSink.Test.Array
 {
     public class DropdownPage : BasePage
     {
-        [FindsBy(How = How.XPath, Using = "//select[@slot = '2']")]
+        [FindsBy(How = How.XPath, Using = "//select[@slot = 'KitchenSink/2']")]
         public IWebElement petsSelect { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "//div[@slot = '3']")]
+        [FindsBy(How = How.XPath, Using = "//div[@slot = 'KitchenSink/3']")]
         public IWebElement petLikeLabel { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "//select[@slot = '9']")]
+        [FindsBy(How = How.XPath, Using = "//select[@slot = 'KitchenSink/9']")]
         public IWebElement juicySelect { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "//p[@slot = '13']")]
+        [FindsBy(How = How.XPath, Using = "//p[@slot = 'KitchenSink/13']")]
         public IWebElement juicySelectLabel { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//juicy-select[@class = 'kitchensink-juicyselect']//select")]
@@ -28,12 +29,14 @@ namespace KitchenSink.Test.Array
 
         public void SelectPet(string petName)
         {
+            WaitForElementToBeClickable(petsSelect, 3);
             SelectElement sel = new SelectElement(petsSelect);
             sel.SelectByText(petName);
         }
 
         public void SelectJuicy(string juicyName)
         {
+            WaitForElementToBeClickable(juicySelect, 3);
             SelectElement sel = new SelectElement(juicySelect);
             sel.SelectByText(juicyName);
         }
@@ -53,6 +56,7 @@ namespace KitchenSink.Test.Array
 
         public void SelectJuicy2(string juicyName)
         {
+            WaitForElementToBeClickable(juicySelect2, 3);
             SelectElement sel = new SelectElement(juicySelect2);
             sel.SelectByText(juicyName);
         }
