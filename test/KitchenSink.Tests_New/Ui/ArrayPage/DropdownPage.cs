@@ -29,14 +29,12 @@ namespace KitchenSink.Test.Array
 
         public void SelectPet(string petName)
         {
-            WaitForElementToBeClickable(petsSelect, 3);
             SelectElement sel = new SelectElement(petsSelect);
             sel.SelectByText(petName);
         }
 
         public void SelectJuicy(string juicyName)
         {
-            WaitForElementToBeClickable(juicySelect, 3);
             SelectElement sel = new SelectElement(juicySelect);
             sel.SelectByText(juicyName);
         }
@@ -45,7 +43,6 @@ namespace KitchenSink.Test.Array
         {
             SelectElement sel = new SelectElement(juicySelect);
             return sel.SelectedOption.Text;
-
         }
 
         public string GetJuicySelect2Value()
@@ -56,7 +53,6 @@ namespace KitchenSink.Test.Array
 
         public void SelectJuicy2(string juicyName)
         {
-            WaitForElementToBeClickable(juicySelect2, 3);
             SelectElement sel = new SelectElement(juicySelect2);
             sel.SelectByText(juicyName);
         }

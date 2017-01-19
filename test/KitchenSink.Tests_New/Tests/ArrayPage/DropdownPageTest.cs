@@ -5,58 +5,61 @@ namespace KitchenSink.Test.Array
     [TestFixture]
     class DropdownPageTest : BaseTest
     {
-        [Test]
-        public void PetsDropdown_SelectPets()
+        private DropdownPage _dropDownPage;
+
+        [OneTimeSetUp]
+        public void OnteTimeSetUp()
         {
-            MainPage mainPage = new MainPage(Driver);
-            DropdownPage dropDownPage = mainPage.GoToDropdownPage();
-
-            dropDownPage.SelectPet("dogs");
-            Assert.AreEqual("You like dogs", dropDownPage.petLikeLabel.Text);
-
-            dropDownPage.SelectPet("cats");
-            Assert.AreEqual("You like cats", dropDownPage.petLikeLabel.Text);
-
-            dropDownPage.SelectPet("rabbit");
-            Assert.AreEqual("You like rabbit", dropDownPage.petLikeLabel.Text);
+            var mainPage = new MainPage(Driver);
+            _dropDownPage = mainPage.GoToDropdownPage();
         }
 
         [Test]
-        public void JuicyDropdown_SelectJuicy()
+        public void DropdownPage_PetsDropdown_SelectPets()
         {
-            MainPage mainPage = new MainPage(Driver);
-            DropdownPage dropDownPage = mainPage.GoToDropdownPage();
+            WaitUntil(x => _dropDownPage.petsSelect.Displayed);
+            _dropDownPage.SelectPet("dogs");
+            Assert.AreEqual("You like dogs", _dropDownPage.petLikeLabel.Text);
 
-            dropDownPage.SelectJuicy("Bread");
-            Assert.AreEqual("You have selected: Bread", dropDownPage.juicySelectLabel.Text);
-            Assert.AreEqual("Bread", dropDownPage.GetJuicySelect2Value());
+            _dropDownPage.SelectPet("cats");
+            Assert.AreEqual("You like cats", _dropDownPage.petLikeLabel.Text);
 
-            dropDownPage.SelectJuicy("Butter");
-            Assert.AreEqual("You have selected: Butter", dropDownPage.juicySelectLabel.Text);
-            Assert.AreEqual("Butter", dropDownPage.GetJuicySelect2Value());
-
-            dropDownPage.SelectJuicy("Milk");
-            Assert.AreEqual("You have selected: Milk", dropDownPage.juicySelectLabel.Text);
-            Assert.AreEqual("Milk", dropDownPage.GetJuicySelect2Value());
+            _dropDownPage.SelectPet("rabbit");
+            Assert.AreEqual("You like rabbit", _dropDownPage.petLikeLabel.Text);
         }
 
         [Test]
-        public void JuicyDropdown_SelectAlko()
+        public void DropdownPage_JuicyDropdown_SelectJuicy()
         {
-            MainPage mainPage = new MainPage(Driver);
-            DropdownPage dropDownPage = mainPage.GoToDropdownPage();
+            WaitUntil(x => _dropDownPage.juicySelect.Displayed);
+            _dropDownPage.SelectJuicy("Bread");
+            Assert.AreEqual("You have selected: Bread", _dropDownPage.juicySelectLabel.Text);
+            Assert.AreEqual("Bread", _dropDownPage.GetJuicySelect2Value());
 
-            dropDownPage.SelectJuicy2("Irish Whiskey");
-            Assert.AreEqual("You have selected: Irish Whiskey", dropDownPage.juicySelectLabel.Text);
-            Assert.AreEqual("Irish Whiskey", dropDownPage.GetJuicySelectValue());
+            _dropDownPage.SelectJuicy("Butter");
+            Assert.AreEqual("You have selected: Butter", _dropDownPage.juicySelectLabel.Text);
+            Assert.AreEqual("Butter", _dropDownPage.GetJuicySelect2Value());
 
-            dropDownPage.SelectJuicy2("Scotch Whisky");
-            Assert.AreEqual("You have selected: Scotch Whisky", dropDownPage.juicySelectLabel.Text);
-            Assert.AreEqual("Scotch Whisky", dropDownPage.GetJuicySelectValue());
+            _dropDownPage.SelectJuicy("Milk");
+            Assert.AreEqual("You have selected: Milk", _dropDownPage.juicySelectLabel.Text);
+            Assert.AreEqual("Milk", _dropDownPage.GetJuicySelect2Value());
+        }
 
-            dropDownPage.SelectJuicy2("Boiled Mutton");
-            Assert.AreEqual("You have selected: Boiled Mutton", dropDownPage.juicySelectLabel.Text);
-            Assert.AreEqual("Boiled Mutton", dropDownPage.GetJuicySelectValue());
+        [Test]
+        public void DropdownPage_JuicyDropdown_SelectAlko()
+        {
+            WaitUntil(x => _dropDownPage.juicySelect2.Displayed);
+            _dropDownPage.SelectJuicy2("Irish Whiskey");
+            Assert.AreEqual("You have selected: Irish Whiskey", _dropDownPage.juicySelectLabel.Text);
+            Assert.AreEqual("Irish Whiskey", _dropDownPage.GetJuicySelectValue());
+
+            _dropDownPage.SelectJuicy2("Scotch Whisky");
+            Assert.AreEqual("You have selected: Scotch Whisky", _dropDownPage.juicySelectLabel.Text);
+            Assert.AreEqual("Scotch Whisky", _dropDownPage.GetJuicySelectValue());
+
+            _dropDownPage.SelectJuicy2("Boiled Mutton");
+            Assert.AreEqual("You have selected: Boiled Mutton", _dropDownPage.juicySelectLabel.Text);
+            Assert.AreEqual("Boiled Mutton", _dropDownPage.GetJuicySelectValue());
         }
     }
 }

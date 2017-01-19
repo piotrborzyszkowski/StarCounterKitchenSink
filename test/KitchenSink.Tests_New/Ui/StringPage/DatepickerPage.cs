@@ -11,19 +11,19 @@ namespace KitchenSink.Test.String
     {
 
         [FindsBy(How = How.XPath, Using = "//pikaday-decorator[@slot = 'KitchenSink/2']//input[@class = 'form-control']")]
-        public IWebElement datePicker { get; set; }
+        public IWebElement DatePicker { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//div[@class = 'pika-lendar']//table//tbody//td[@class = 'is-selected']//button[@class = 'pika-button pika-day']")]
-        public IWebElement selectedDay { get; set; }
+        public IWebElement SelectedDay { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//input[@slot = 'KitchenSink/4']")]
-        public IWebElement yearInput { get; set; }
+        public IWebElement YearInput { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//input[@slot = 'KitchenSink/6']")]
-        public IWebElement monthInput { get; set; }
+        public IWebElement MonthInput { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//input[@slot = 'KitchenSink/8']")]
-        public IWebElement dayInput { get; set; }
+        public IWebElement DayInput { get; set; }
 
         public DatepickerPage(IWebDriver driver) : base(driver)
         {
@@ -32,29 +32,27 @@ namespace KitchenSink.Test.String
 
         public void SelectDate(string date)
         {
-            WaitForElementToBeClickable(datePicker, 3);
-
-            datePicker.Clear();
-            datePicker.SendKeys(date);
-            datePicker.SendKeys(Keys.Enter);
-            ClickOn(selectedDay);
+            DatePicker.Clear();
+            DatePicker.SendKeys(date);
+            DatePicker.SendKeys(Keys.Enter);
+            ClickOn(SelectedDay);
         }
 
         public string GetYear()
         {
-            var year = yearInput.GetAttribute("value");
+            var year = YearInput.GetAttribute("value");
             return year;
         }
 
         public string GetMonth()
         {
-            var month = monthInput.GetAttribute("value");
+            var month = MonthInput.GetAttribute("value");
             return month;
         }
 
         public string GetDay()
         {
-            var day = dayInput.GetAttribute("value");
+            var day = DayInput.GetAttribute("value");
             return day;
         }
     }

@@ -20,7 +20,6 @@ namespace KitchenSink.Test.Array
 
         public void AddPet()
         {
-            WaitForElementToBeClickable(addPetButton, 3);
             ClickOn(addPetButton);
         }
 

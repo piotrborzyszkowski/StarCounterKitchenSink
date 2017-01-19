@@ -1,6 +1,4 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Interactions;
-using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
 using System;
@@ -10,7 +8,6 @@ namespace KitchenSink.Test
     public class BasePage
     {
         public IWebDriver Driver;
-
 
         [FindsBy(How = How.XPath, Using = "//a[text() = 'Datepicker']")]
         public IWebElement DatepickerPageLink { get; set; }
@@ -33,6 +30,24 @@ namespace KitchenSink.Test
         [FindsBy(How = How.XPath, Using = "//a[text() = 'Checkbox']")]
         public IWebElement CheckboxPageLink { get; set; }
 
+        [FindsBy(How = How.XPath, Using = "//a[text() = 'Text']")]
+        public IWebElement TextPageLink { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//a[text() = 'Textarea']")]
+        public IWebElement TextareaPageLink { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//a[text() = 'Redirect']")]
+        public IWebElement RedirectPageLink { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//a[text() = 'Password']")]
+        public IWebElement PasswordPageLink { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//a[text() = 'Pagination']")]
+        public IWebElement PaginationPageLink { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//a[text() = 'Autocomplete']")]
+        public IWebElement AutoCompletePageLink { get; set; }
+
         public BasePage(IWebDriver driver)
         {
             Driver = driver;
@@ -41,11 +56,11 @@ namespace KitchenSink.Test
 
         public IWebElement WaitForElementToBeClickable(IWebElement elementName, int seconds)
         {
-            //var wait = new WebDriverWait(new SystemClock(), Driver, TimeSpan.FromSeconds(seconds), TimeSpan.FromMilliseconds(50));
+            WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(30));
             IWebElement element = null;
             try
             {
-                element = WaitUntil(ExpectedConditions.ElementToBeClickable(elementName));
+                element = wait.Until(ExpectedConditions.ElementToBeClickable(elementName));
             }
             catch (WebDriverTimeoutException)
             {
@@ -60,12 +75,6 @@ namespace KitchenSink.Test
             {
                 element.Click();
             }
-        }
-
-        protected TResult WaitUntil<TResult>(Func<IWebDriver, TResult> condition)
-        {
-            WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(30));
-            return wait.Until(condition);
         }
     }
 }

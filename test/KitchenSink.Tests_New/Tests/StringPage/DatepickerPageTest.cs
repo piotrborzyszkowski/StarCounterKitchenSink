@@ -5,16 +5,25 @@ namespace KitchenSink.Test.String
     [TestFixture]
     class DatepickerPageTest : BaseTest
     {
-        [Test]
-        public void Datepicker_SelectDate()
-        {
-            MainPage mainPage = new MainPage(Driver);
-            DatepickerPage datePicker = mainPage.GoToDatePickerPage();
-            datePicker.SelectDate("2016-01-01");
+        private DatepickerPage _datePicker;
 
-            Assert.AreEqual("2016", datePicker.GetYear());
-            Assert.AreEqual("January", datePicker.GetMonth());
-            Assert.AreEqual("1", datePicker.GetDay());
+        [OneTimeSetUp]
+        public void OneTimeSetUp()
+        {
+            var mainPage = new MainPage(Driver);
+            _datePicker = mainPage.GoToDatePickerPage();
+        }
+
+        [Test]
+        public void DatepickerPage_SelectDate()
+        {
+            WaitUntil(x => _datePicker.DatePicker.Displayed);
+
+            _datePicker.SelectDate("2016-01-01");
+
+            Assert.AreEqual("2016", _datePicker.GetYear());
+            Assert.AreEqual("January", _datePicker.GetMonth());
+            Assert.AreEqual("1", _datePicker.GetDay());
         }
     }
 }

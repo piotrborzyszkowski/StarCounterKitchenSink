@@ -5,39 +5,57 @@ namespace KitchenSink.Test.String
     [TestFixture]
     class RedirectPageTest : BaseTest
     {
-        [Test]
-        public void ClickingOnFruitShouldChangeUrlAndText()
-        {
-            //ClickButton("Fruit");
+        private RedirectPage _redirectPage;
 
-            //// on edge juicy sometimes messes up the dom tree, so you can't be sure about its relative position to button
-            //this.WaitUntil(ExpectedConditions.ElementIsVisible(ByHelper.AnyDivWithText("You've got some tasty apple")));
-            //Assert.That(driver.Url, Is.EqualTo($"{baseURL}/Redirect/apple"));
+        [OneTimeSetUp]
+        public void OneTimeSetUp()
+        {
+            MainPage mainPage = new MainPage(Driver);
+            _redirectPage = mainPage.GoToRedirectPage();
         }
 
         [Test]
-        public void ClickingOnRedirectToAnotherPartialShouldChangeUrl()
+        public void RedirectPage_ClickingOnFruitShouldChangeUrlAndText()
         {
-            //ClickButton("Morph to another partial");
 
-            //// redirecting can take some time
-            //this.WaitUntil(ExpectedConditions.UrlContains(baseURL));
+            var oryginalText = "Select your favorite food";
+
+            _redirectPage.ClickButton("Fruit");
+            WaitUntil(x => _redirectPage.InfoLabel.Text != oryginalText);
+            Assert.AreEqual("You\'ve got some tasty apple", _redirectPage.InfoLabel.Text);
+            Assert.AreEqual("http://localhost:8080/KitchenSink/Redirect/apple", Driver.Url);
+            
+            oryginalText = "You\'ve got some tasty apple";
+            _redirectPage.ClickButton("Vegetable");
+            WaitUntil(x => _redirectPage.InfoLabel.Text != oryginalText);
+            Assert.AreEqual("You\'ve got some tasty carrot", _redirectPage.InfoLabel.Text);
+            Assert.AreEqual("http://localhost:8080/KitchenSink/Redirect/carrot", Driver.Url);
+
+            oryginalText = "You\'ve got some tasty carrot";
+            _redirectPage.ClickButton("Bread");
+            WaitUntil(x => _redirectPage.InfoLabel.Text != oryginalText);
+            Assert.AreEqual("You\'ve got some tasty baguette", _redirectPage.InfoLabel.Text);
+            Assert.AreEqual("http://localhost:8080/KitchenSink/Redirect/baguette", Driver.Url);
         }
 
         [Test]
-        public void ClickingOnRedirectToExternalWebsiteShouldChangeUrl()
+        public void RedirectPage_ClickingOnRedirectToAnotherPartialShouldChangeUrl()
         {
-            //ClickButton("Redirect to Starcounter.io");
+            MainPage mainPage = new MainPage(Driver);
+            RedirectPage redirectPage = mainPage.GoToRedirectPage();
 
-            //// see https://github.com/PuppetJs/puppet-redirect/issues/3
-            //// this is no longer needed, since puppet-client shows a "reconnection" message instead of alert
-            ////if (browser == "firefox") {
-            //// depending on wheter or not Launcher will be present, the dialog will differ
-            //// _wait.Until(d => WaitForNoConnectionAndDismiss(d) || d.FindElements(By.XPath("//h4[text()='Connection error']")).Count != 0);
-            ////}
+            redirectPage.ClickButton("Morph");
+            Assert.AreEqual("http://localhost:8080/KitchenSink", Driver.Url);
+        }
 
-            //// redirecting can take some time
-            //this.WaitUntil(ExpectedConditions.UrlContains("https://starcounter.io/"));
+        [Test]
+        public void RedirectPage_ClickingOnRedirectToExternalWebsiteShouldChangeUrl()
+        {
+            MainPage mainPage = new MainPage(Driver);
+            RedirectPage redirectPage = mainPage.GoToRedirectPage();
+
+            redirectPage.ClickButton("Redirect");
+            Assert.AreEqual("https://starcounter.io/", Driver.Url);
         }
     }
 }

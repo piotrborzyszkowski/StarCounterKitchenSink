@@ -1,28 +1,39 @@
 ﻿using NUnit.Framework;
+using OpenQA.Selenium.Support.UI;
 
 namespace KitchenSink.Test.Boolean
 {
     [TestFixture]
     class CheckboxPageTest : BaseTest
     {
+        private CheckboxPage _checkboxPage;
+
+        [OneTimeSetUp]
+        public void SetUp()
+        {
+            var mainPage = new MainPage(Driver);
+            _checkboxPage = mainPage.GoToCheckboxPage();
+        }
+
         [Test]
         public void CheckboxPage_CheckboxUncheckedAndCheckedAgain()
         {
-            MainPage mainPage = new MainPage(Driver);
-            CheckboxPage checkboxPage = mainPage.GoToCheckboxPage();
+            WaitUntil(x => _checkboxPage.Checkbox.Displayed);
 
-            if (checkboxPage.GetCheckboxState())
+            if (_checkboxPage.GetCheckboxState())
             {
-                Assert.AreEqual("You can drive", checkboxPage.GetInfoLabelString());
-                checkboxPage.ChangeCheckboxState();
-                Assert.AreEqual("You can't drive", checkboxPage.GetInfoLabelString());
+                Assert.AreEqual("You can drive", _checkboxPage.InfoLabel.Text);
+                _checkboxPage.ChangeCheckboxState();
+                WaitUntil(ExpectedConditions.ElementSelectionStateToBe(_checkboxPage.Checkbox, false));
+                Assert.AreEqual("You can't drive", _checkboxPage.InfoLabel.Text);
             }
 
-            if (!checkboxPage.GetCheckboxState())
+            if (!_checkboxPage.GetCheckboxState())
             {
-                Assert.AreEqual("You can't drive", checkboxPage.GetInfoLabelString());
-                checkboxPage.ChangeCheckboxState();
-                Assert.AreEqual("You can drive", checkboxPage.GetInfoLabelString());
+                Assert.AreEqual("You can't drive", _checkboxPage.InfoLabel.Text);
+                _checkboxPage.ChangeCheckboxState();
+                WaitUntil(ExpectedConditions.ElementSelectionStateToBe(_checkboxPage.Checkbox, true));
+                Assert.AreEqual("You can drive", _checkboxPage.InfoLabel.Text);
             }
         }
     }

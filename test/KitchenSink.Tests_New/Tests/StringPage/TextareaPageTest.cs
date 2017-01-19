@@ -5,53 +5,35 @@ namespace KitchenSink.Test.String
     [TestFixture]
     class TextareaPageTest : BaseTest
     {
-        [Test]
-        public void TextareaPage_PageLoads()
+        private TextareaPage _textareaPage;
+
+        [OneTimeSetUp]
+        public void SetUp()
         {
-            //driver.Navigate().GoToUrl(baseURL);
-
-            //driver.FindElement(ByHelper.AnyLinkWithText("Textarea")).ClickUsingMouse(driver);
-
-            //var element = driver.FindElement(ByHelper.AnyTextareaFormControl);
-            //Assert.AreEqual(element.Text, "");
+            var mainPage = new MainPage(Driver);
+            _textareaPage = mainPage.GoToTextareaPage();
         }
 
         [Test]
         public void TextareaPage_WriteToTextArea()
         {
-            //if (browser == "firefox")
-            //{
-            //    Assert.Ignore("GetAttribute(\"value\") is not supported in Selenium 3.0.0-beta2 in Firefox");
-            //}
+            const string newText = "We all love princess cake!";
 
-            //driver.Navigate().GoToUrl(baseURL + "/Textarea");
-
-            //driver.FindElement(ByHelper.AnyTextareaFormControl).Clear();
-
-            //string setString = "We all love princess cake!";
-            //driver.FindElement(ByHelper.AnyTextareaFormControl).SendKeys(setString);
-
-            //string actualString = driver.FindElement(ByHelper.AnyTextareaFormControl).GetAttribute("value");
-
-            //Assert.AreEqual(setString, actualString);
+            _textareaPage.ClearTextarea();
+            _textareaPage.FillTextarea(newText);
+            Assert.AreEqual("Length of your bio: 26 chars", _textareaPage.GetTextareaInfoLabel());
         }
 
         [Test]
         public void TextareaPage_CounterPropagationWhileTyping()
         {
-            //driver.Navigate().GoToUrl(baseURL + "/Textarea");
+            const string newText = "Love";
 
-            //var label = driver.FindElement(ByHelper.AnyControlLabel);
-            //var originalText = label.Text;
-
-            //driver.FindElement(ByHelper.AnyTextarea).Clear();
-            //Assert.AreEqual("Length of your bio: 0 chars", originalText);
-
-            //driver.FindElement(ByHelper.AnyTextarea).SendKeys("U");
-            //this.WaitUntil(x => !label.Text.Equals(originalText));
-
-            //string actualString = driver.FindElement(ByHelper.AnyControlLabel).Text;
-            //Assert.AreEqual("Length of your bio: 1 chars", actualString);
+            _textareaPage.ClearTextarea();
+            _textareaPage.FillTextarea(newText);
+            Assert.AreEqual("Length of your bio: 4 chars", _textareaPage.GetTextareaInfoLabel());
+            _textareaPage.ClearTextarea();
+            Assert.AreEqual("Length of your bio: 0 chars", _textareaPage.GetTextareaInfoLabel());
         }
     }
 }

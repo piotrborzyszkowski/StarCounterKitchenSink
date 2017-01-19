@@ -1,5 +1,7 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 
 namespace KitchenSink.Test
 {
@@ -17,6 +19,12 @@ namespace KitchenSink.Test
         public void TestFixtureTearDown()
         {
             WebDriverManager.StopDriver();
+        }
+
+        protected TResult WaitUntil<TResult>(Func<IWebDriver, TResult> condition)
+        {
+            WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(30));
+            return wait.Until(condition);
         }
     }
 }

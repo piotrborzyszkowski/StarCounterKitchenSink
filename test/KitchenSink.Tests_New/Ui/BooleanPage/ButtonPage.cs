@@ -78,25 +78,5 @@ namespace KitchenSink.Test.Boolean
         {
             ClickOn(SelfButton2);
         }
-
-        public bool CheckSwitchButtonLabelText(string text)
-        {
-            return WaitUntil(ExpectedConditions.TextToBePresentInElement(SwitchButtonLabel, text));
-        }
-
-        public bool CheckDisableButtonLabelText(string text)
-        {
-            return WaitUntil(ExpectedConditions.TextToBePresentInElement(DisableButtonLabel, text));
-        }
-
-        public bool CheckSelfButtonLabelText(string text)
-        {
-            return WaitUntil(x => SelfButtonLabel.GetAttribute("style") != "display: none;");
-        }
-
-        public bool CheckRegularButtonLabelText(string text)
-        {
-            return WaitUntil(ExpectedConditions.TextToBePresentInElement(InfoLabel, text));
-        }
     }
 }

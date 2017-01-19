@@ -3,31 +3,42 @@
 namespace KitchenSink.Test.String
 {
     [TestFixture]
-    class TextPageTest : BaseTest
+    internal class TextPageTest : BaseTest
     {
+        private TextPage _textPage;
+
+        [OneTimeSetUp]
+        public void OneTimeSetUp()
+        {
+            var mainPage = new MainPage(Driver);
+            _textPage = mainPage.GoToTextPage();
+        }
+
         [Test]
         public void TextPage_TextPropagationOnUnfocus()
         {
-            //driver.Navigate().GoToUrl(baseURL + "/Text");
-            //var label = driver.FindElement(ByHelper.AnyControlLabel);
-            //var originalText = label.Text;
-            //driver.FindElement(ByHelper.AnyInput).Clear();
-            //driver.FindElement(ByHelper.AnyInput).SendKeys("Marcin");
-            //driver.FindElement(ByHelper.AnyInput).SendKeys(Keys.Tab);
-            //this.WaitUntil(x => !label.Text.Equals(originalText));
-            //Assert.AreEqual("Hi, Marcin!", driver.FindElement(ByHelper.AnyControlLabel).Text);
+            const string oryginalText = "What\'s your name?";
+            const string newText = "Krystian";
+
+            _textPage.FillInput(newText);
+            WaitUntil(x => _textPage.InputInfoLabel1.Text != oryginalText);
+            Assert.AreEqual("Hi, Krystian!", _textPage.InputInfoLabel1.Text);
+            _textPage.ClearInput();
+            Assert.AreEqual(oryginalText, _textPage.InputInfoLabel1.Text);
         }
 
         [Test]
         public void TextPage_TextPropagationWhileTyping()
         {
-            //driver.Navigate().GoToUrl(baseURL + "/Text");
-            //var label = driver.FindElement(ByHelper.NthControlLabel(1));
-            //var originalText = label.Text;
-            //driver.FindElement(ByHelper.NthInput(1)).Clear();
-            //driver.FindElement(ByHelper.NthInput(1)).SendKeys("M");
-            //this.WaitUntil(x => !label.Text.Equals(originalText));
-            //Assert.AreEqual("Hi, M!", driver.FindElement(ByHelper.NthControlLabel(1)).Text);
+            const string oryginalText = "What\'s your name?";
+            const string newText = "K";
+
+            _textPage.FillInputDynamic(newText);
+            WaitUntil(x => _textPage.InputInfoLabel2.Text != oryginalText);
+            Assert.AreEqual("Hi, K!", _textPage.InputInfoLabel2.Text);
+            _textPage.ClearInputDynamic();
+            WaitUntil(x => _textPage.InputInfoLabel2.Text != "Hi, K!");
+            Assert.AreEqual(oryginalText, _textPage.InputInfoLabel2.Text);
         }
     }
 }

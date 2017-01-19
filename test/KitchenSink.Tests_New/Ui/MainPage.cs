@@ -1,5 +1,6 @@
 ﻿using KitchenSink.Test.Array;
 using KitchenSink.Test.Boolean;
+using KitchenSink.Test.Custom;
 using KitchenSink.Test.Object;
 using KitchenSink.Test.String;
 using OpenQA.Selenium;
@@ -54,6 +55,42 @@ namespace KitchenSink.Test
         {
             ClickOn(ButtonPageLink);
             return new ButtonPage(Driver);
+        }
+
+        public TextPage GoToTextPage()
+        {
+            ClickOn(TextPageLink);
+            return new TextPage(Driver);
+        }
+
+        public PaginationPage GoToPaginationPage()
+        {
+            ClickOn(PaginationPageLink);
+            return new PaginationPage(Driver);
+        }
+
+        public AutoCompletePage GoToAutoCompletePage()
+        {
+            ClickOn(AutoCompletePageLink);
+            return new AutoCompletePage(Driver);
+        }
+
+        public PasswordPage GoToPasswordPage()
+        {
+            ClickOn(PasswordPageLink);
+            return new PasswordPage(Driver);
+        }
+
+        public RedirectPage GoToRedirectPage()
+        {
+            ClickOn(RedirectPageLink);
+            return new RedirectPage(Driver);
+        }
+
+        public TextareaPage GoToTextareaPage()
+        {
+            ClickOn(TextareaPageLink);
+            return new TextareaPage(Driver);
         }
     }
 }

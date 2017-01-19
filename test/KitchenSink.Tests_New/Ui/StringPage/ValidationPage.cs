@@ -27,13 +27,11 @@ namespace KitchenSink.Test.String
 
         public void InsertName(string name)
         {
-            WaitForElementToBeClickable(NameInput, 4);
             NameInput.SendKeys(name);
         }
 
         public void InsertLastName(string lastName)
         {
-            WaitForElementToBeClickable(LastNameInput, 4);
             LastNameInput.SendKeys(lastName);
         }
 

@@ -16,7 +16,6 @@ namespace KitchenSink.Test.Boolean
             PageFactory.InitElements(Driver, this);
         }
 
-
         public bool GetCheckboxState()
         {
             return Checkbox.Selected;
@@ -25,11 +24,6 @@ namespace KitchenSink.Test.Boolean
         public void ChangeCheckboxState()
         {
             ClickOn(Checkbox);
-        }
-
-        public string GetInfoLabelString()
-        {
-            return InfoLabel.Text;
         }
     }
 }

@@ -5,51 +5,48 @@ namespace KitchenSink.Test.String
     [TestFixture]
     class PasswordPageTest : BaseTest
     {
-        [Test]
-        public void PasswordPage_PageLoads()
+        private PasswordPage _passwordPage;
+
+        [OneTimeSetUp]
+        public void SetUp()
         {
-            //driver.Navigate().GoToUrl(baseURL);
-            //driver.FindElement(ByHelper.AnyLinkWithText("Password")).ClickUsingMouse(driver);
-            //var element = driver.FindElement(ByHelper.AnyInput);
-            //Assert.AreEqual(element.GetAttribute("type"), "password");
+            var mainPage = new MainPage(Driver);
+            _passwordPage = mainPage.GoToPasswordPage();
         }
+
 
         [Test]
         public void PasswordPage_PasswordTooShort()
         {
-            //driver.Navigate().GoToUrl(baseURL + "/Password");
-            //var element = driver.FindElement(ByHelper.AnyInput);
-            //Assert.AreEqual(element.GetAttribute("type"), "password");
-            //driver.FindElement(ByHelper.AnyInput).Clear();
-            //driver.FindElement(ByHelper.AnyInput).SendKeys("Short");
-            //Assert.AreEqual(passwordTooShort, driver.FindElement(ByHelper.AnyControlLabel).Text);
+            const string orygnalLabel = "Password must be at least 6 chars long";
+            const string password = "123";
+
+            _passwordPage.ClearPassword();
+            _passwordPage.FillPassword(password);
+            Assert.AreEqual(orygnalLabel, _passwordPage.GetPasswordInfoLabel());
         }
 
         [Test]
         public void PasswordPage_PasswordWithProperLength()
         {
-            //driver.Navigate().GoToUrl(baseURL + "/Password");
-            //var element = driver.FindElement(ByHelper.AnyInput);
-            //Assert.AreEqual(element.GetAttribute("type"), "password");
-            //driver.FindElement(ByHelper.AnyInput).Clear();
-            //driver.FindElement(ByHelper.AnyInput).SendKeys("PerfectPass");
-            //this.WaitUntil(x => !passwordTooShort.Equals(driver.FindElement(ByHelper.AnyControlLabel).Text));
-            //Assert.AreEqual(passwordWithProperLength, driver.FindElement(ByHelper.AnyControlLabel).Text);
+            const string password = "123456";
+
+            _passwordPage.ClearPassword();
+            _passwordPage.FillPassword(password);
+            Assert.AreEqual("Good password!", _passwordPage.GetPasswordInfoLabel());
         }
 
         [Test]
         public void PasswordPage_ChangingPasswordToGoodThenToShort()
         {
-            //driver.Navigate().GoToUrl(baseURL + "/Password");
-            //var element = driver.FindElement(ByHelper.AnyInput);
-            //Assert.AreEqual(element.GetAttribute("type"), "password");
-            //driver.FindElement(ByHelper.AnyInput).Clear();
-            //driver.FindElement(ByHelper.AnyInput).SendKeys("PerfectPass");
-            //this.WaitUntil(x => !passwordTooShort.Equals(driver.FindElement(ByHelper.AnyControlLabel).Text));
-            //driver.FindElement(ByHelper.AnyInput).Clear();
-            //driver.FindElement(ByHelper.AnyInput).SendKeys("Bad");
-            //this.WaitUntil(x => !passwordWithProperLength.Equals(driver.FindElement(ByHelper.AnyControlLabel).Text));
-            //Assert.AreEqual(passwordTooShort, driver.FindElement(ByHelper.AnyControlLabel).Text);
+            const string password = "123456";
+
+            _passwordPage.ClearPassword();
+            _passwordPage.FillPassword(password);
+            Assert.AreEqual("Good password!", _passwordPage.GetPasswordInfoLabel());
+            _passwordPage.ClearPassword();
+            _passwordPage.FillPassword("123");
+            Assert.AreEqual("Password must be at least 6 chars long", _passwordPage.GetPasswordInfoLabel());
         }
     }
 }
