@@ -19,9 +19,10 @@ namespace KitchenSink.Test.String
         {
             const string newText = "We all love princess cake!";
 
+            WaitUntil(x => _textareaPage.Textarea.Displayed);
             _textareaPage.ClearTextarea();
             _textareaPage.FillTextarea(newText);
-            Assert.AreEqual("Length of your bio: 26 chars", _textareaPage.GetTextareaInfoLabel());
+            Assert.AreEqual("Length of your bio: 26 chars", _textareaPage.TextareaInfoLabel.Text);
         }
 
         [Test]
@@ -29,11 +30,12 @@ namespace KitchenSink.Test.String
         {
             const string newText = "Love";
 
+            WaitUntil(x => _textareaPage.Textarea.Displayed);
             _textareaPage.ClearTextarea();
             _textareaPage.FillTextarea(newText);
-            Assert.AreEqual("Length of your bio: 4 chars", _textareaPage.GetTextareaInfoLabel());
+            Assert.AreEqual("Length of your bio: 4 chars", _textareaPage.TextareaInfoLabel.Text);
             _textareaPage.ClearTextarea();
-            Assert.AreEqual("Length of your bio: 0 chars", _textareaPage.GetTextareaInfoLabel());
+            Assert.AreEqual("Length of your bio: 0 chars", _textareaPage.TextareaInfoLabel.Text);
         }
     }
 }

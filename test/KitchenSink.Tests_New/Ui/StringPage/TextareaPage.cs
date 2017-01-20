@@ -30,10 +30,5 @@ namespace KitchenSink.Test.String
                 Textarea.SendKeys(Keys.Backspace);
             }
         }
-
-        public string GetTextareaInfoLabel()
-        {
-            return TextareaInfoLabel.Text;
-        }
     }
 }

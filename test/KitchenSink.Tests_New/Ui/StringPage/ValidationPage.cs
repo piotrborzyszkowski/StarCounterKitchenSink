@@ -27,7 +27,7 @@ namespace KitchenSink.Test.String
 
         public void InsertName(string name)
         {
-            NameInput.SendKeys(name);
+            NameInput.SendKeys(name);  
         }
 
         public void InsertLastName(string lastName)
@@ -38,16 +38,6 @@ namespace KitchenSink.Test.String
         public void Validate()
         {
             ClickOn(ValidateButton);
-        }
-
-        public string GetNameError()
-        {
-            return NameErrorLabel.Text;
-        }
-
-        public string GetLastNameError()
-        {
-            return LastNameErrorLabel.Text;
         }
     }
 }

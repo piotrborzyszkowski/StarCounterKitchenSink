@@ -7,7 +7,7 @@ namespace KitchenSink.Test.String
     {
         private RedirectPage _redirectPage;
 
-        [OneTimeSetUp]
+        [SetUp]
         public void OneTimeSetUp()
         {
             MainPage mainPage = new MainPage(Driver);
@@ -17,7 +17,6 @@ namespace KitchenSink.Test.String
         [Test]
         public void RedirectPage_ClickingOnFruitShouldChangeUrlAndText()
         {
-
             var oryginalText = "Select your favorite food";
 
             _redirectPage.ClickButton("Fruit");
@@ -41,20 +40,16 @@ namespace KitchenSink.Test.String
         [Test]
         public void RedirectPage_ClickingOnRedirectToAnotherPartialShouldChangeUrl()
         {
-            MainPage mainPage = new MainPage(Driver);
-            RedirectPage redirectPage = mainPage.GoToRedirectPage();
-
-            redirectPage.ClickButton("Morph");
+            _redirectPage.ClickButton("Morph");
+            WaitUntil(x => Driver.Url == "http://localhost:8080/KitchenSink");
             Assert.AreEqual("http://localhost:8080/KitchenSink", Driver.Url);
         }
 
         [Test]
         public void RedirectPage_ClickingOnRedirectToExternalWebsiteShouldChangeUrl()
         {
-            MainPage mainPage = new MainPage(Driver);
-            RedirectPage redirectPage = mainPage.GoToRedirectPage();
-
-            redirectPage.ClickButton("Redirect");
+            _redirectPage.ClickButton("Redirect");
+            WaitUntil(x => Driver.Url == "https://starcounter.io/");
             Assert.AreEqual("https://starcounter.io/", Driver.Url);
         }
     }

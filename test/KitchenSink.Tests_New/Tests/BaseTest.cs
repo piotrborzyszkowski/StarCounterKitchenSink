@@ -12,7 +12,7 @@ namespace KitchenSink.Test
         [OneTimeSetUp]
         public void TestFixtureSetUp()
         {
-            Driver = WebDriverManager.StartDriver(Config.Browser.Chrome, Config.Url, Config.Timeout, Config.RemoteWebDriverUri, Config.ImplicitlyTimeout);
+            Driver = WebDriverManager.StartDriver(Config.Browser.Firefox, Config.Url, Config.Timeout, Config.RemoteWebDriverUri, Config.ImplicitlyTimeout);
         }
 
         [OneTimeTearDown]

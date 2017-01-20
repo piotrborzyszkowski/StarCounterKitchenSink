@@ -5,15 +5,23 @@ namespace KitchenSink.Test.Object
     [TestFixture]
     class NestedPartialsPageTest : BaseTest
     {
+        private NestedPartialsPage _nestedPartialsPage;
+
+        [OneTimeSetUp]
+        public void OneTimeSetUp()
+        {
+            var mainPage = new MainPage(Driver);
+            _nestedPartialsPage = mainPage.GoToNestedPartialsPage();
+        }
+
         [Test]
         public void NestedPartialsPage_AddNewChild()
         {
-            MainPage mainPage = new MainPage(Driver);
-            NestedPartialsPage nestedPartialsPage = mainPage.GoToNestedPartialsPage();
-
-            var divsBefore = nestedPartialsPage.CountChildDivs();
-            nestedPartialsPage.AddChild();
-            var divsAfter = nestedPartialsPage.CountChildDivs();
+            WaitUntil(x => _nestedPartialsPage.CountChildDivs() > 0);
+            var divsBefore = _nestedPartialsPage.CountChildDivs();
+            _nestedPartialsPage.AddChild();
+            WaitUntil(x => _nestedPartialsPage.CountChildDivs() > divsBefore);
+            var divsAfter = _nestedPartialsPage.CountChildDivs();
 
             Assert.Greater(divsAfter, divsBefore);
         }

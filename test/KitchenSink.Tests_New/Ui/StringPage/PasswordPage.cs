@@ -21,11 +21,6 @@ namespace KitchenSink.Test.String
             PasswordInput.SendKeys(password);
         }
 
-        public string GetPasswordInfoLabel()
-        {
-            return PaswordInputInfoLabel.Text;
-        }
-
         public void ClearPassword()
         {
             PasswordInput.Clear();

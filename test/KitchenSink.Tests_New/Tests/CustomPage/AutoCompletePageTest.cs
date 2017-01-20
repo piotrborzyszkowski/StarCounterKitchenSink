@@ -17,11 +17,13 @@ namespace KitchenSink.Test.Custom
         [Test]
         public void AutoCompletePage_FillStarExpectAllItemsShowUp()
         {
+            WaitUntil(x => _autoCompletePage.ProductsInput.Displayed);
             _autoCompletePage.ClearProductsInput();
             _autoCompletePage.SendKeyProductsInput("*");
             WaitUntil(x => _autoCompletePage.ProductsAutoComplete.Count > 0);
             Assert.AreEqual(8, _autoCompletePage.ProductsAutoComplete.Count);
 
+            WaitUntil(x => _autoCompletePage.PlaceInput.Displayed);
             _autoCompletePage.ClearPlaceInput();
             _autoCompletePage.SendKeyPlacesInput("*");
             WaitUntil(x => _autoCompletePage.PlacesAutoComplete.Count > 0);
@@ -31,6 +33,7 @@ namespace KitchenSink.Test.Custom
         [Test]
         public void AutoCompletePage_FillCountryNameThenSelectCountry()
         {
+            WaitUntil(x => _autoCompletePage.PlaceInput.Displayed);
             _autoCompletePage.ClearPlaceInput();
             _autoCompletePage.SendKeyPlacesInput("P");
             WaitUntil(x => _autoCompletePage.PlacesAutoComplete.Count > 0);
@@ -41,6 +44,7 @@ namespace KitchenSink.Test.Custom
         [Test]
         public void AutoCompletePage_FillProductNameThenSelectProduct()
         {
+            WaitUntil(x => _autoCompletePage.ProductsInput.Displayed);
             _autoCompletePage.ClearProductsInput();
             _autoCompletePage.SendKeyProductsInput("B");
             WaitUntil(x => _autoCompletePage.ProductsAutoComplete.Count > 0);
