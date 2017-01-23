@@ -9,12 +9,13 @@ namespace KitchenSink.Tests_New.Tests.BooleanPage
     class CheckboxPageTest : BaseTest
     {
         private CheckboxPage _checkboxPage;
+        private MainPage _mainPage;
 
         [SetUp]
         public void SetUp()
         {
-            var mainPage = new MainPage(Driver);
-            _checkboxPage = mainPage.GoToCheckboxPage();
+            _mainPage = new MainPage(Driver).GoToMainPage();
+            _checkboxPage = _mainPage.GoToCheckboxPage();
         }
 
         [Test]

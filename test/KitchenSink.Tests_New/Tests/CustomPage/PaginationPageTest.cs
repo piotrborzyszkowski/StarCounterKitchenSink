@@ -8,12 +8,13 @@ namespace KitchenSink.Tests_New.Tests.CustomPage
     class PaginationPageTest : BaseTest
     {
         private PaginationPage _paginationPage;
+        private MainPage _mainPage;
 
         [SetUp]
         public void SetUp()
         {
-            var mainPage = new MainPage(Driver);
-            _paginationPage = mainPage.GoToPaginationPage();
+            _mainPage = new MainPage(Driver).GoToMainPage();
+            _paginationPage = _mainPage.GoToPaginationPage();
         }
 
         [Test]

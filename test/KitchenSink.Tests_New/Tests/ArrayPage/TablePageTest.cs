@@ -8,12 +8,13 @@ namespace KitchenSink.Tests_New.Tests.ArrayPage
     class TablePageTest : BaseTest
     {
         private TablePage _tablePage;
+        private MainPage _mainPage;
 
         [SetUp]
         public void SetUp()
         {
-            var mainPage = new MainPage(Driver);
-            _tablePage = mainPage.GoToTablePage();
+            _mainPage = new MainPage(Driver).GoToMainPage();
+            _tablePage = _mainPage.GoToTablePage();
         }
 
         [Test]

@@ -8,12 +8,13 @@ namespace KitchenSink.Tests_New.Tests.StringPage
     class TextareaPageTest : BaseTest
     {
         private TextareaPage _textareaPage;
+        private MainPage _mainPage;
 
         [SetUp]
         public void SetUp()
         {
-            var mainPage = new MainPage(Driver);
-            _textareaPage = mainPage.GoToTextareaPage();
+            _mainPage = new MainPage(Driver).GoToMainPage();
+            _textareaPage = _mainPage.GoToTextareaPage();
         }
 
         [Test]

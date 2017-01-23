@@ -9,12 +9,13 @@ namespace KitchenSink.Tests_New.Tests.StringPage
     class ValidationPageTest : BaseTest
     {
         private ValidationPage _validationPage;
+        private MainPage _mainPage;
 
         [SetUp]
         public void SetUp()
         {
-            var mainPage = new MainPage(Driver);
-            _validationPage = mainPage.GoToValidationPage();
+            _mainPage = new MainPage(Driver).GoToMainPage();
+            _validationPage = _mainPage.GoToValidationPage();
         }
 
         [Test]

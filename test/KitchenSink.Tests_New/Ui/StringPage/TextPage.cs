@@ -39,6 +39,7 @@ namespace KitchenSink.Tests_New.Ui.StringPage
         public void ClearInput()
         {
             Input.Clear();
+            Input.SendKeys(Keys.Enter);
         }
 
         public void ClearInputDynamic()
@@ -49,6 +50,8 @@ namespace KitchenSink.Tests_New.Ui.StringPage
             {
                 InputDynamic.SendKeys(Keys.Backspace);
             }
+
+            InputDynamic.SendKeys(Keys.Enter);
         }
     }
 }

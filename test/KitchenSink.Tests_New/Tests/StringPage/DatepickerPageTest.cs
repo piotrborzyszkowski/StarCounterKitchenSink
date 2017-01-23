@@ -8,12 +8,13 @@ namespace KitchenSink.Tests_New.Tests.StringPage
     class DatepickerPageTest : BaseTest
     {
         private DatepickerPage _datePicker;
+        private MainPage _mainPage;
 
         [SetUp]
         public void SetUp()
         {
-            var mainPage = new MainPage(Driver);
-            _datePicker = mainPage.GoToDatePickerPage();
+            _mainPage = new MainPage(Driver).GoToMainPage();
+            _datePicker = _mainPage.GoToDatePickerPage();
         }
 
         [Test]

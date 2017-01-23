@@ -8,12 +8,13 @@ namespace KitchenSink.Tests_New.Tests.StringPage
     internal class TextPageTest : BaseTest
     {
         private TextPage _textPage;
+        private MainPage _mainPage;
 
         [SetUp]
         public void SetUp()
         {
-            var mainPage = new MainPage(Driver);
-            _textPage = mainPage.GoToTextPage();
+            _mainPage = new MainPage(Driver).GoToMainPage();
+            _textPage = _mainPage.GoToTextPage();
         }
 
         [Test]
@@ -26,6 +27,7 @@ namespace KitchenSink.Tests_New.Tests.StringPage
             WaitUntil(x => _textPage.InputInfoLabel1.Text != oryginalText);
             Assert.AreEqual("Hi, Krystian!", _textPage.InputInfoLabel1.Text);
             _textPage.ClearInput();
+            WaitUntil(x => _textPage.Input.GetAttribute("test-value") == string.Empty);
             Assert.AreEqual(oryginalText, _textPage.InputInfoLabel1.Text);
         }
 
@@ -39,7 +41,7 @@ namespace KitchenSink.Tests_New.Tests.StringPage
             WaitUntil(x => _textPage.InputInfoLabel2.Text != oryginalText);
             Assert.AreEqual("Hi, K!", _textPage.InputInfoLabel2.Text);
             _textPage.ClearInputDynamic();
-            WaitUntil(x => _textPage.InputInfoLabel2.Text != "Hi, K!");
+            WaitUntil(x => _textPage.InputDynamic.GetAttribute("test-value") == string.Empty);
             Assert.AreEqual(oryginalText, _textPage.InputInfoLabel2.Text);
         }
     }

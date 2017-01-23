@@ -8,12 +8,13 @@ namespace KitchenSink.Tests_New.Tests.CustomPage
     class AutoCompletePageTest : BaseTest
     {
         private AutoCompletePage _autoCompletePage;
+        private MainPage _mainPage;
 
         [SetUp]
         public void SetUp()
         {
-            var mainPage = new MainPage(Driver);
-            _autoCompletePage = mainPage.GoToAutoCompletePage();
+            _mainPage = new MainPage(Driver).GoToMainPage();
+            _autoCompletePage = _mainPage.GoToAutoCompletePage();
         }
 
         [Test]

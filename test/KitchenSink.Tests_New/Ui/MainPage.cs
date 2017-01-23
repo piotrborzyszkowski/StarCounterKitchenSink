@@ -3,6 +3,7 @@ using KitchenSink.Tests_New.Ui.BooleanPage;
 using KitchenSink.Tests_New.Ui.CustomPage;
 using KitchenSink.Tests_New.Ui.ObjectPage;
 using KitchenSink.Tests_New.Ui.StringPage;
+using KitchenSink.Tests_New.Utilities;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
@@ -12,7 +13,14 @@ namespace KitchenSink.Tests_New.Ui
     {
         public MainPage(IWebDriver driver) : base(driver)
         {
-            PageFactory.InitElements(Driver, this);
+            //PageFactory.InitElements(Driver, this);
+        }
+
+        public MainPage GoToMainPage()
+        {
+            //ClickOn(MainPageLink);
+            Driver.Navigate().GoToUrl(Config.Url);
+            return this;
         }
 
         public DatepickerPage GoToDatePickerPage()

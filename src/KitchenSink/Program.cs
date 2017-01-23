@@ -34,7 +34,10 @@ namespace KitchenSink
 
             Handle.GET("/KitchenSink/json", () => { return new Json(); });
 
-            Handle.GET("/KitchenSink", () => { return Self.GET("/KitchenSink/text"); });
+            Handle.GET("/KitchenSink/partial/mainpage", () => new MainPage());
+            Handle.GET("/KitchenSink/mainpage", () => WrapPage<MainPage>("/KitchenSink/partial/mainpage"));
+
+            Handle.GET("/KitchenSink", () => { return Self.GET("/KitchenSink/mainpage"); });
 
             Handle.GET("/KitchenSink/partial/button", () => new ButtonPage());
             Handle.GET("/KitchenSink/button", () => WrapPage<ButtonPage>("/KitchenSink/partial/button"));

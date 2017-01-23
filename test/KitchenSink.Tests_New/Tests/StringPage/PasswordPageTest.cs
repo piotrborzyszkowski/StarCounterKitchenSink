@@ -8,14 +8,14 @@ namespace KitchenSink.Tests_New.Tests.StringPage
     class PasswordPageTest : BaseTest
     {
         private PasswordPage _passwordPage;
+        private MainPage _mainPage;
 
         [SetUp]
         public void SetUp()
         {
-            var mainPage = new MainPage(Driver);
-            _passwordPage = mainPage.GoToPasswordPage();
+            _mainPage = new MainPage(Driver).GoToMainPage();
+            _passwordPage = _mainPage.GoToPasswordPage();
         }
-
 
         [Test]
         public void PasswordPage_PasswordTooShort()

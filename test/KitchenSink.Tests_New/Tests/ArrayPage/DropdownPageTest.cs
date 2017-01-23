@@ -8,12 +8,13 @@ namespace KitchenSink.Tests_New.Tests.ArrayPage
     class DropdownPageTest : BaseTest
     {
         private DropdownPage _dropDownPage;
+        private MainPage _mainPage;
 
         [SetUp]
         public void SetUp()
         {
-            var mainPage = new MainPage(Driver);
-            _dropDownPage = mainPage.GoToDropdownPage();
+            _mainPage = new MainPage(Driver).GoToMainPage();
+            _dropDownPage = _mainPage.GoToDropdownPage();
         }
 
         [Test]

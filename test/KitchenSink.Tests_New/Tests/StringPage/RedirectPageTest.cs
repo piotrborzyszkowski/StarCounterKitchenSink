@@ -8,12 +8,13 @@ namespace KitchenSink.Tests_New.Tests.StringPage
     class RedirectPageTest : BaseTest
     {
         private RedirectPage _redirectPage;
+        private MainPage _mainPage;
 
         [SetUp]
         public void SetUp()
         {
-            var mainPage = new MainPage(Driver);
-            _redirectPage = mainPage.GoToRedirectPage();
+            _mainPage = new MainPage(Driver).GoToMainPage();
+            _redirectPage = _mainPage.GoToRedirectPage();
         }
 
         [Test]

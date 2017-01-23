@@ -31,11 +31,10 @@ namespace KitchenSink.Tests_New.Utilities
 
             IWebDriver eventDriver = new EventListener(driver);
             driver = eventDriver;
-            driver.Navigate().GoToUrl(portalUrl);
-            //driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(ImplicitlyTimeout));
+            driver.Manage().Window.Maximize();
+            //driver.Navigate().GoToUrl(portalUrl);
             driver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(timeout));
             driver.Manage().Timeouts().SetScriptTimeout(TimeSpan.FromSeconds(timeout));
-            driver.Manage().Window.Maximize();
             return driver;
         }
 

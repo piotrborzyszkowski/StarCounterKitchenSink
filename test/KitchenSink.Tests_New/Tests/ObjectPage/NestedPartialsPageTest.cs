@@ -8,12 +8,13 @@ namespace KitchenSink.Tests_New.Tests.ObjectPage
     class NestedPartialsPageTest : BaseTest
     {
         private NestedPartialsPage _nestedPartialsPage;
+        private MainPage _mainPage;
 
         [SetUp]
         public void SetUp()
         {
-            var mainPage = new MainPage(Driver);
-            _nestedPartialsPage = mainPage.GoToNestedPartialsPage();
+            _mainPage = new MainPage(Driver).GoToMainPage();
+            _nestedPartialsPage = _mainPage.GoToNestedPartialsPage();
         }
 
         [Test]

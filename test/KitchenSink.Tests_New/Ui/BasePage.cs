@@ -9,6 +9,9 @@ namespace KitchenSink.Tests_New.Ui
     {
         public IWebDriver Driver;
 
+        [FindsBy(How = How.XPath, Using = "//a[text() = 'MainPage']")]
+        public IWebElement MainPageLink { get; set; }
+
         [FindsBy(How = How.XPath, Using = "//a[text() = 'Datepicker']")]
         public IWebElement DatepickerPageLink { get; set; }
 
@@ -56,7 +59,7 @@ namespace KitchenSink.Tests_New.Ui
 
         public IWebElement WaitForElementToBeClickable(IWebElement elementName, int seconds)
         {
-            WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(30));
+            WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(seconds));
             IWebElement element = null;
             try
             {
