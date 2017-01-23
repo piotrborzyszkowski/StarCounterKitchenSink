@@ -1,14 +1,16 @@
-﻿using NUnit.Framework;
+﻿using KitchenSink.Tests_New.Ui;
+using KitchenSink.Tests_New.Ui.StringPage;
+using NUnit.Framework;
 
-namespace KitchenSink.Test.String
+namespace KitchenSink.Tests_New.Tests.StringPage
 {
     [TestFixture]
     class DatepickerPageTest : BaseTest
     {
         private DatepickerPage _datePicker;
 
-        [OneTimeSetUp]
-        public void OneTimeSetUp()
+        [SetUp]
+        public void SetUp()
         {
             var mainPage = new MainPage(Driver);
             _datePicker = mainPage.GoToDatePickerPage();

@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
-namespace KitchenSink.Test.Boolean
+namespace KitchenSink.Tests_New.Ui.BooleanPage
 {
     public class ToggleButtonPage : BasePage
     {

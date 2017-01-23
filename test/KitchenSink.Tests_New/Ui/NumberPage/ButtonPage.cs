@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
-namespace KitchenSink.Test.Number
+namespace KitchenSink.Tests_New.Ui.NumberPage
 {
     public class ButtonPage : BasePage
     {

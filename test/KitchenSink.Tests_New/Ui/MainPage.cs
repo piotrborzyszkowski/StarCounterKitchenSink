@@ -1,12 +1,12 @@
-﻿using KitchenSink.Test.Array;
-using KitchenSink.Test.Boolean;
-using KitchenSink.Test.Custom;
-using KitchenSink.Test.Object;
-using KitchenSink.Test.String;
+﻿using KitchenSink.Tests_New.Ui.ArrayPage;
+using KitchenSink.Tests_New.Ui.BooleanPage;
+using KitchenSink.Tests_New.Ui.CustomPage;
+using KitchenSink.Tests_New.Ui.ObjectPage;
+using KitchenSink.Tests_New.Ui.StringPage;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
-namespace KitchenSink.Test
+namespace KitchenSink.Tests_New.Ui
 {
     public class MainPage : BasePage
     {

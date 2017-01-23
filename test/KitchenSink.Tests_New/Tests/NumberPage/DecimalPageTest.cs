@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace KitchenSink.Test.Number
+namespace KitchenSink.Tests_New.Tests.NumberPage
 {
     [TestFixture]
     class DecimalPageTest : BaseTest

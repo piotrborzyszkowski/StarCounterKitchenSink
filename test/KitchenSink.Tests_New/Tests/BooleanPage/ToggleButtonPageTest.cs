@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace KitchenSink.Test.Boolean
+namespace KitchenSink.Tests_New.Tests.BooleanPage
 {
     [TestFixture]
     class ToggleButtonPageTest : BaseTest

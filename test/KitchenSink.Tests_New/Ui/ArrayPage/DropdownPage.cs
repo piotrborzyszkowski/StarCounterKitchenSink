@@ -1,26 +1,25 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
-using System;
 
-namespace KitchenSink.Test.Array
+namespace KitchenSink.Tests_New.Ui.ArrayPage
 {
     public class DropdownPage : BasePage
     {
-        [FindsBy(How = How.XPath, Using = "//select[@slot = 'KitchenSink/2']")]
-        public IWebElement petsSelect { get; set; }
+        [FindsBy(How = How.CssSelector, Using = ".automated-tests-petsSelect")]
+        public IWebElement PetsSelect { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "//div[@slot = 'KitchenSink/3']")]
-        public IWebElement petLikeLabel { get; set; }
+        [FindsBy(How = How.CssSelector, Using = ".automated-tests-petLikeLabel")]
+        public IWebElement PetLikeLabel { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "//select[@slot = 'KitchenSink/9']")]
-        public IWebElement juicySelect { get; set; }
+        [FindsBy(How = How.CssSelector, Using = ".automated-tests-productSelect")]
+        public IWebElement JuicySelect { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "//p[@slot = 'KitchenSink/13']")]
-        public IWebElement juicySelectLabel { get; set; }
+        [FindsBy(How = How.CssSelector, Using = ".automated-tests-juicySelectLabel")]
+        public IWebElement JuicySelectLabel { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "//juicy-select[@class = 'kitchensink-juicyselect']//select")]
-        public IWebElement juicySelect2 { get; set; }
+        [FindsBy(How = How.CssSelector, Using = ".automated-tests-juicySelect select")]
+        public IWebElement JuicySelect2 { get; set; }
 
         public DropdownPage(IWebDriver driver) : base(driver)
         {
@@ -29,31 +28,31 @@ namespace KitchenSink.Test.Array
 
         public void SelectPet(string petName)
         {
-            SelectElement sel = new SelectElement(petsSelect);
+            SelectElement sel = new SelectElement(PetsSelect);
             sel.SelectByText(petName);
         }
 
         public void SelectJuicy(string juicyName)
         {
-            SelectElement sel = new SelectElement(juicySelect);
+            SelectElement sel = new SelectElement(JuicySelect);
             sel.SelectByText(juicyName);
         }
 
         public string GetJuicySelectValue()
         {
-            SelectElement sel = new SelectElement(juicySelect);
+            SelectElement sel = new SelectElement(JuicySelect);
             return sel.SelectedOption.Text;
         }
 
         public string GetJuicySelect2Value()
         {
-            SelectElement sel = new SelectElement(juicySelect2);
+            SelectElement sel = new SelectElement(JuicySelect2);
             return sel.SelectedOption.Text;
         }
 
         public void SelectJuicy2(string juicyName)
         {
-            SelectElement sel = new SelectElement(juicySelect2);
+            SelectElement sel = new SelectElement(JuicySelect2);
             sel.SelectByText(juicyName);
         }
     }

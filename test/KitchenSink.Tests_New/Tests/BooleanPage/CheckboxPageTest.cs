@@ -1,14 +1,16 @@
-﻿using NUnit.Framework;
+﻿using KitchenSink.Tests_New.Ui;
+using KitchenSink.Tests_New.Ui.BooleanPage;
+using NUnit.Framework;
 using OpenQA.Selenium.Support.UI;
 
-namespace KitchenSink.Test.Boolean
+namespace KitchenSink.Tests_New.Tests.BooleanPage
 {
     [TestFixture]
     class CheckboxPageTest : BaseTest
     {
         private CheckboxPage _checkboxPage;
 
-        [OneTimeSetUp]
+        [SetUp]
         public void SetUp()
         {
             var mainPage = new MainPage(Driver);

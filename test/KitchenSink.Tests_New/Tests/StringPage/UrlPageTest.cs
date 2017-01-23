@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace KitchenSink.Test.String
+namespace KitchenSink.Tests_New.Tests.StringPage
 {
     [TestFixture]
     class UrlPageTest : BaseTest

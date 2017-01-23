@@ -1,14 +1,16 @@
-﻿using NUnit.Framework;
+﻿using KitchenSink.Tests_New.Ui;
+using KitchenSink.Tests_New.Ui.ObjectPage;
+using NUnit.Framework;
 
-namespace KitchenSink.Test.Object
+namespace KitchenSink.Tests_New.Tests.ObjectPage
 {
     [TestFixture]
     class NestedPartialsPageTest : BaseTest
     {
         private NestedPartialsPage _nestedPartialsPage;
 
-        [OneTimeSetUp]
-        public void OneTimeSetUp()
+        [SetUp]
+        public void SetUp()
         {
             var mainPage = new MainPage(Driver);
             _nestedPartialsPage = mainPage.GoToNestedPartialsPage();

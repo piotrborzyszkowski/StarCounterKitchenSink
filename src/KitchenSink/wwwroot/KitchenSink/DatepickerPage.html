@@ -6,19 +6,19 @@
         <label class="control-label">Date</label>
 
         <pikaday-decorator format="YYYY-MM-DD">
-            <input type="text" value="{{model.Value$::change}}" class="form-control" placeholder="Select a date to parse" />
+            <input type="text" value="{{model.Value$::change}}" class="form-control automated-tests-pikadayInput" placeholder="Select a date to parse" />
         </pikaday-decorator>
 
         <label class="control-label">Year</label>
 
-        <input type="text" value="{{model.Year}}" readonly="readonly" class="form-control" />
+        <input type="text" value="{{model.Year}}" readonly="readonly" class="form-control automated-tests-yearInput" />
 
         <label class="control-label">Month</label>
 
-        <input type="text" value="{{model.Month}}" readonly="readonly" class="form-control" />
+        <input type="text" value="{{model.Month}}" readonly="readonly" class="form-control automated-tests-monthInput" />
 
         <label class="control-label">Day</label>
 
-        <input type="text" value="{{model.Day}}" readonly="readonly" class="form-control" />
+        <input type="text" value="{{model.Day}}" readonly="readonly" class="form-control automated-tests-dayInput" />
     </template>
 </template>

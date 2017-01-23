@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
-namespace KitchenSink.Test.Array
+namespace KitchenSink.Tests_New.Ui.ArrayPage
 {
     public class MultiselectPage : BasePage
     {

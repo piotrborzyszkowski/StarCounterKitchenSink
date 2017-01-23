@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
-namespace KitchenSink.Test.String
+namespace KitchenSink.Tests_New.Ui.StringPage
 {
     public class ValidationPage : BasePage
     {
@@ -14,10 +14,10 @@ namespace KitchenSink.Test.String
         [FindsBy(How = How.XPath, Using = "//button[text() = 'Validate']")]
         public IWebElement ValidateButton { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "//label[@class = 'error-label' and @slot = 'KitchenSink/3']")]
+        [FindsBy(How = How.CssSelector, Using = ".automated-tests-nameErrorlabel")]
         public IWebElement NameErrorLabel { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "//label[@class = 'error-label' and @slot = 'KitchenSink/7']")]
+        [FindsBy(How = How.CssSelector, Using = ".automated-tests-lastNameErrorLabel")]
         public IWebElement LastNameErrorLabel { get; set; }
 
         public ValidationPage(IWebDriver driver) : base(driver)
@@ -28,11 +28,13 @@ namespace KitchenSink.Test.String
         public void InsertName(string name)
         {
             NameInput.SendKeys(name);  
+            NameInput.SendKeys(Keys.Enter);
         }
 
         public void InsertLastName(string lastName)
         {
             LastNameInput.SendKeys(lastName);
+            LastNameInput.SendKeys(Keys.Enter);
         }
 
         public void Validate()

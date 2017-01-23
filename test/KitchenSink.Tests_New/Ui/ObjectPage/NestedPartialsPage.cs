@@ -1,17 +1,17 @@
-﻿using OpenQA.Selenium;
+﻿using System.Collections.Generic;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
-using System.Collections.Generic;
 
-namespace KitchenSink.Test.Object
+namespace KitchenSink.Tests_New.Ui.ObjectPage
 {
     public class NestedPartialsPage : BasePage
     {
         [FindsBy(How = How.XPath, Using = "//button[text() = 'Add child']")]
-        public IWebElement addChildButton { get; set; }
+        public IWebElement AddChildButton { get; set; }
 
         [FindsByAll]
         [FindsBy(How = How.XPath, Using = "//div[@class = 'kitchensink-nested-child']")]
-        public IList<IWebElement> childDivs { get; set; }
+        public IList<IWebElement> ChildDivs { get; set; }
         
         public NestedPartialsPage(IWebDriver driver) : base(driver)
         {
@@ -20,12 +20,12 @@ namespace KitchenSink.Test.Object
 
         public void AddChild()
         {
-            ClickOn(addChildButton);
+            ClickOn(AddChildButton);
         }
 
         public int CountChildDivs()
         {
-            return childDivs.Count;
+            return ChildDivs.Count;
         }
     }
 }

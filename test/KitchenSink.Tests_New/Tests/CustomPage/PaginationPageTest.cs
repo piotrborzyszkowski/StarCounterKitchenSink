@@ -1,6 +1,8 @@
-﻿using NUnit.Framework;
+﻿using KitchenSink.Tests_New.Ui;
+using KitchenSink.Tests_New.Ui.CustomPage;
+using NUnit.Framework;
 
-namespace KitchenSink.Test.Custom
+namespace KitchenSink.Tests_New.Tests.CustomPage
 {
     [TestFixture]
     class PaginationPageTest : BaseTest

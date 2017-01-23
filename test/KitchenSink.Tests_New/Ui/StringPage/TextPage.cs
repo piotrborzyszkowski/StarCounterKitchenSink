@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
-namespace KitchenSink.Test.String
+namespace KitchenSink.Tests_New.Ui.StringPage
 {
     public class TextPage : BasePage
     {

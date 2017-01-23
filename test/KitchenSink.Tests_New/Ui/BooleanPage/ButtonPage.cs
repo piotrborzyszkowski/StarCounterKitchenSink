@@ -1,12 +1,11 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
-using OpenQA.Selenium.Support.UI;
 
-namespace KitchenSink.Test.Boolean
+namespace KitchenSink.Tests_New.Ui.BooleanPage
 {
     public class ButtonPage : BasePage
     {
-        [FindsBy(How = How.XPath, Using = "//pre[@slot = 'KitchenSink/5']")]
+        [FindsBy(How = How.CssSelector, Using = ".automated-tests-carrotsReactionLabel")]
         public IWebElement InfoLabel { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//button[text() = 'Button (inline script)']")]
@@ -24,10 +23,10 @@ namespace KitchenSink.Test.Boolean
         [FindsBy(How = How.XPath, Using = "//button[text() = 'Add carrots']")]
         public IWebElement DisableButton { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "//span[@slot = 'KitchenSink/10']")]
+        [FindsBy(How = How.CssSelector, Using = ".automated-tests-carrotEngineReactionLabel")]
         public IWebElement SwitchButtonLabel { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "//span[@slot = 'KitchenSink/14']")]
+        [FindsBy(How = How.CssSelector, Using = ".automated-tests-oneCarrotReactionLabel")]
         public IWebElement DisableButtonLabel { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//button[text() = 'Take one Regenerating Carrot']")]
@@ -36,7 +35,7 @@ namespace KitchenSink.Test.Boolean
         [FindsBy(How = How.XPath, Using = "//button[text() = 'Take one Regenerating Carrot(with delay)']")]
         public IWebElement SelfButton2 { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "//div[@slot = 'KitchenSink/17']//div//p")]
+        [FindsBy(How = How.CssSelector, Using = ".automated-tests-selButtonLabel")]
         public IWebElement SelfButtonLabel { get; set; }
         
         public ButtonPage(IWebDriver driver) : base(driver)

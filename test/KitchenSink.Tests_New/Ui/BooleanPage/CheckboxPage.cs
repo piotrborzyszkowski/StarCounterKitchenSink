@@ -1,14 +1,14 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
-namespace KitchenSink.Test.Boolean
+namespace KitchenSink.Tests_New.Ui.BooleanPage
 {
     public class CheckboxPage : BasePage
     {
-        [FindsBy(How = How.XPath, Using = "//div[@slot = 'KitchenSink/3']")]
+        [FindsBy(How = How.CssSelector, Using = ".automated-tests-driverLicenseLabel")]
         public IWebElement InfoLabel { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "//input[@type = 'checkbox']")]
+        [FindsBy(How = How.CssSelector, Using = ".automated-tests-driverLicenseInput")]
         public IWebElement Checkbox { get; set; }
 
         public CheckboxPage(IWebDriver driver) : base(driver)

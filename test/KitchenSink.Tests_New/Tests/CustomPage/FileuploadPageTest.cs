@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace KitchenSink.Test.Custom
+namespace KitchenSink.Tests_New.Tests.CustomPage
 {
     [TestFixture]
     class FileUploadPageTest : BaseTest

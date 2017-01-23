@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace KitchenSink.Test.Array
+namespace KitchenSink.Tests_New.Tests.ArrayPage
 { 
     [TestFixture]
     class RadioPageTest : BaseTest

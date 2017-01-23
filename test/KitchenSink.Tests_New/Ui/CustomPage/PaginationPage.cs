@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
 
-namespace KitchenSink.Test.Custom
+namespace KitchenSink.Tests_New.Ui.CustomPage
 {
     public class PaginationPage : BasePage
     {

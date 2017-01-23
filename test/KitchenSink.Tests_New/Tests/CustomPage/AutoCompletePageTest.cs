@@ -1,14 +1,16 @@
-﻿using NUnit.Framework;
+﻿using KitchenSink.Tests_New.Ui;
+using KitchenSink.Tests_New.Ui.CustomPage;
+using NUnit.Framework;
 
-namespace KitchenSink.Test.Custom
+namespace KitchenSink.Tests_New.Tests.CustomPage
 {
     [TestFixture]
     class AutoCompletePageTest : BaseTest
     {
         private AutoCompletePage _autoCompletePage;
 
-        [OneTimeSetUp]
-        public void OneTimeSetUp()
+        [SetUp]
+        public void SetUp()
         {
             var mainPage = new MainPage(Driver);
             _autoCompletePage = mainPage.GoToAutoCompletePage();

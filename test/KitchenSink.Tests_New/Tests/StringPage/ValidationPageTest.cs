@@ -1,6 +1,9 @@
-﻿using NUnit.Framework;
+﻿using KitchenSink.Tests_New.Ui;
+using KitchenSink.Tests_New.Ui.StringPage;
+using NUnit.Framework;
+using OpenQA.Selenium;
 
-namespace KitchenSink.Test.String
+namespace KitchenSink.Tests_New.Tests.StringPage
 {
     [TestFixture]
     class ValidationPageTest : BaseTest
@@ -8,7 +11,7 @@ namespace KitchenSink.Test.String
         private ValidationPage _validationPage;
 
         [SetUp]
-        public void OneTimeSetUp()
+        public void SetUp()
         {
             var mainPage = new MainPage(Driver);
             _validationPage = mainPage.GoToValidationPage();
@@ -29,10 +32,11 @@ namespace KitchenSink.Test.String
         {
             WaitUntil(x => _validationPage.NameInput.Displayed);
             _validationPage.InsertName("TestName");
-            WaitUntil(x => _validationPage.NameInput.Text != string.Empty);
+
             WaitUntil(x => _validationPage.LastNameInput.Displayed);
             _validationPage.InsertLastName("TestLastName");
-            WaitUntil(x => _validationPage.LastNameInput.Text != string.Empty);
+
+            WaitUntil(x => _validationPage.NameInput.GetAttribute("test-value") != string.Empty && _validationPage.LastNameInput.GetAttribute("test-value") != string.Empty);
             _validationPage.Validate();
 
             Assert.AreEqual(string.Empty, _validationPage.NameErrorLabel.Text);

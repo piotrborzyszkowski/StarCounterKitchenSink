@@ -1,9 +1,10 @@
 ﻿using System;
+using KitchenSink.Tests_New.Utilities;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 
-namespace KitchenSink.Test
+namespace KitchenSink.Tests_New.Tests
 {
     public class BaseTest
     {
@@ -12,7 +13,7 @@ namespace KitchenSink.Test
         [OneTimeSetUp]
         public void TestFixtureSetUp()
         {
-            Driver = WebDriverManager.StartDriver(Config.Browser.Firefox, Config.Url, Config.Timeout, Config.RemoteWebDriverUri, Config.ImplicitlyTimeout);
+            Driver = WebDriverManager.StartDriver(Config.Browser.Chrome, Config.Url, Config.Timeout, Config.RemoteWebDriverUri, Config.ImplicitlyTimeout);
         }
 
         [OneTimeTearDown]

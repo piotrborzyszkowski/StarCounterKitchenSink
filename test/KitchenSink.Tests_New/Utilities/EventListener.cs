@@ -1,7 +1,8 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.Events;
+using Screenshot = KitchenSink.Tests_New.Utilities.Screenshot;
 
-namespace KitchenSink.Test
+namespace KitchenSink.Tests_New.Utilities
 {
     class EventListener : EventFiringWebDriver
     {

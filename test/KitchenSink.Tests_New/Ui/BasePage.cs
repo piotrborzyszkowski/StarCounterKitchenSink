@@ -1,9 +1,9 @@
-﻿using OpenQA.Selenium;
+﻿using System;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
-using System;
 
-namespace KitchenSink.Test
+namespace KitchenSink.Tests_New.Ui
 {
     public class BasePage
     {

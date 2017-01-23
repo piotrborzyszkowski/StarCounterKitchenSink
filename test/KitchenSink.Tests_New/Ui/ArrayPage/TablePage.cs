@@ -1,17 +1,17 @@
-﻿using OpenQA.Selenium;
+﻿using System.Collections.Generic;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
-using System.Collections.Generic;
 
-namespace KitchenSink.Test.Array
+namespace KitchenSink.Tests_New.Ui.ArrayPage
 {
     public class TablePage : BasePage
     {
         [FindsBy(How = How.XPath, Using = "//button[text() = 'Add a pet']")]
-        public IWebElement addPetButton { get; set; }
+        public IWebElement AddPetButton { get; set; }
 
         [FindsByAll]
         [FindsBy(How = How.XPath, Using = "//table[@class='table table-striped']//tbody//tr")]
-        public IList<IWebElement> petsTableRows { get; set; }
+        public IList<IWebElement> PetsTableRows { get; set; }
       
         public TablePage(IWebDriver driver) : base(driver)
         {
@@ -20,12 +20,12 @@ namespace KitchenSink.Test.Array
 
         public void AddPet()
         {
-            ClickOn(addPetButton);
+            ClickOn(AddPetButton);
         }
 
         public int CountTableRows()
         {
-            return petsTableRows.Count;
+            return PetsTableRows.Count;
         }
     }
 }

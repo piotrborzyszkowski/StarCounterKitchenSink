@@ -1,14 +1,16 @@
-﻿using NUnit.Framework;
+﻿using KitchenSink.Tests_New.Ui;
+using KitchenSink.Tests_New.Ui.StringPage;
+using NUnit.Framework;
 
-namespace KitchenSink.Test.String
+namespace KitchenSink.Tests_New.Tests.StringPage
 {
     [TestFixture]
     internal class TextPageTest : BaseTest
     {
         private TextPage _textPage;
 
-        [OneTimeSetUp]
-        public void OneTimeSetUp()
+        [SetUp]
+        public void SetUp()
         {
             var mainPage = new MainPage(Driver);
             _textPage = mainPage.GoToTextPage();

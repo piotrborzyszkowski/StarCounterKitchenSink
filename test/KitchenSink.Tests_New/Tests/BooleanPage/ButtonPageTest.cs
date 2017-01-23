@@ -1,15 +1,17 @@
-﻿using NUnit.Framework;
+﻿using KitchenSink.Tests_New.Ui;
+using KitchenSink.Tests_New.Ui.BooleanPage;
+using NUnit.Framework;
 using OpenQA.Selenium.Support.UI;
 
-namespace KitchenSink.Test.Boolean
+namespace KitchenSink.Tests_New.Tests.BooleanPage
 {
     [TestFixture]
     class ButtonPageTest : BaseTest
     {
         private ButtonPage _buttonPage;
 
-        [OneTimeSetUp]
-        public void OneTimeSetUp()
+        [SetUp]
+        public void SetUp()
         {
             var mainPage = new MainPage(Driver);
             _buttonPage = mainPage.GoToButtonPage();

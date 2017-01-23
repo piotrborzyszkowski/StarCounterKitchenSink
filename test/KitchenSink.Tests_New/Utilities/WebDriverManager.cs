@@ -1,8 +1,8 @@
-﻿using OpenQA.Selenium;
+﻿using System;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Remote;
-using System;
 
-namespace KitchenSink.Test
+namespace KitchenSink.Tests_New.Utilities
 {
     public class WebDriverManager
     {

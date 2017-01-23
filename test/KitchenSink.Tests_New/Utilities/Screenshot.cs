@@ -1,9 +1,9 @@
 ﻿using System;
-using OpenQA.Selenium;
 using System.Drawing.Imaging;
 using NUnit.Framework;
+using OpenQA.Selenium;
 
-namespace KitchenSink.Test
+namespace KitchenSink.Tests_New.Utilities
 {
     class Screenshot
     {
@@ -16,7 +16,7 @@ namespace KitchenSink.Test
                 if (null != screenShot)
                 {
                     var now = DateTime.Now.ToString("yyyyMMddHHmmss");
-                    var path = string.Format(@"\webdriver_screenshot_{0}.png", now);
+                    var path = $@"\webdriver_screenshot_{now}.png";
 
                     screenShot.SaveAsFile(TestContext.CurrentContext.TestDirectory + path, ImageFormat.Png);
                 }

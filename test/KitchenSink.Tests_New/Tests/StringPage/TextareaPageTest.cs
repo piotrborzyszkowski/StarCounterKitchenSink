@@ -1,13 +1,15 @@
-﻿using NUnit.Framework;
+﻿using KitchenSink.Tests_New.Ui;
+using KitchenSink.Tests_New.Ui.StringPage;
+using NUnit.Framework;
 
-namespace KitchenSink.Test.String
+namespace KitchenSink.Tests_New.Tests.StringPage
 {
     [TestFixture]
     class TextareaPageTest : BaseTest
     {
         private TextareaPage _textareaPage;
 
-        [OneTimeSetUp]
+        [SetUp]
         public void SetUp()
         {
             var mainPage = new MainPage(Driver);

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace KitchenSink.Test
+namespace KitchenSink.Tests_New.Utilities
 {
     public class Config
     {

@@ -1,28 +1,24 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
-using OpenQA.Selenium.Support.UI;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 
-namespace KitchenSink.Test.String
+namespace KitchenSink.Tests_New.Ui.StringPage
 {
     public class DatepickerPage : BasePage
     {
 
-        [FindsBy(How = How.XPath, Using = "//pikaday-decorator[@slot = 'KitchenSink/2']//input[@class = 'form-control']")]
+        [FindsBy(How = How.CssSelector, Using = ".automated-tests-pikadayInput")]
         public IWebElement DatePicker { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//div[@class = 'pika-lendar']//table//tbody//td[@class = 'is-selected']//button[@class = 'pika-button pika-day']")]
         public IWebElement SelectedDay { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "//input[@slot = 'KitchenSink/4']")]
+        [FindsBy(How = How.CssSelector, Using = ".automated-tests-yearInput")]
         public IWebElement YearInput { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "//input[@slot = 'KitchenSink/6']")]
+        [FindsBy(How = How.CssSelector, Using = ".automated-tests-monthInput")]
         public IWebElement MonthInput { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "//input[@slot = 'KitchenSink/8']")]
+        [FindsBy(How = How.CssSelector, Using = ".automated-tests-dayInput")]
         public IWebElement DayInput { get; set; }
 
         public DatepickerPage(IWebDriver driver) : base(driver)

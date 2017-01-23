@@ -1,6 +1,8 @@
-﻿using NUnit.Framework;
+﻿using KitchenSink.Tests_New.Ui;
+using KitchenSink.Tests_New.Ui.StringPage;
+using NUnit.Framework;
 
-namespace KitchenSink.Test.String
+namespace KitchenSink.Tests_New.Tests.StringPage
 {
     [TestFixture]
     class RedirectPageTest : BaseTest
@@ -8,9 +10,9 @@ namespace KitchenSink.Test.String
         private RedirectPage _redirectPage;
 
         [SetUp]
-        public void OneTimeSetUp()
+        public void SetUp()
         {
-            MainPage mainPage = new MainPage(Driver);
+            var mainPage = new MainPage(Driver);
             _redirectPage = mainPage.GoToRedirectPage();
         }
 
