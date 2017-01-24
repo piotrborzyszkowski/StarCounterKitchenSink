@@ -10,25 +10,25 @@
 
         <label>Morph to some: </label>
 
-        <button class="btn btn-sm btn-default automated-tests-FruitButton" value="{{model.ChooseFood$::click}}" onmousedown="this.value = 'Fruit'">Fruit</button>
+        <button class="btn btn-sm btn-default automated-tests-fruit__button" value="{{model.ChooseFood$::click}}" onmousedown="this.value = 'Fruit'">Fruit</button>
 
-        <button class="btn btn-sm btn-default automated-tests-VegetableButton" value="{{model.ChooseFood$::click}}" onmousedown="this.value = 'Vegetable'">Vegetable</button>
+        <button class="btn btn-sm btn-default automated-tests-vegetable__button" value="{{model.ChooseFood$::click}}" onmousedown="this.value = 'Vegetable'">Vegetable</button>
 
-        <button class="btn btn-sm btn-default automated-tests-BreadButton" value="{{model.ChooseFood$::click}}" onmousedown="this.value = 'Bread'">Bread</button>
+        <button class="btn btn-sm btn-default automated-tests-bread__button" value="{{model.ChooseFood$::click}}" onmousedown="this.value = 'Bread'">Bread</button>
 
-        <div class="automated-tests-label">{{model.YourFavoriteFood}}</div>
+        <div class="automated-tests-favourite-food__label">{{model.YourFavoriteFood}}</div>
 
         <h5>Morph to another partial</h5>
 
         <p>Want to morph to another partial? It's as easy.</p>
 
-        <button class="btn btn-sm btn-default automated-tests-MorphButton" value="{{model.GoToHomePartial$::click}}" onmousedown="++this.value">Morph to another partial</button>
+        <button class="btn btn-sm btn-default automated-tests-morph__button" value="{{model.GoToHomePartial$::click}}" onmousedown="++this.value">Morph to another partial</button>
 
         <h5>Redirect to an external link</h5>
 
         <p>Drop the <code>history</code> attribute to redirect to an external link (without morphing).</p>
 
-        <button class="btn btn-sm btn-default automated-tests-RedirectButton" value="{{model.GoToDocs$::click}}" onmousedown="++this.value">Redirect to Starcounter.io</button>
+        <button class="btn btn-sm btn-default automated-tests-redirect__button" value="{{model.GoToDocs$::click}}" onmousedown="++this.value">Redirect to Starcounter.io</button>
 
         <link is="puppet-redirect" history url$="{{model.MorphUrl$}}" />
         <link is="puppet-redirect" url$="{{model.RedirectUrl$}}" />

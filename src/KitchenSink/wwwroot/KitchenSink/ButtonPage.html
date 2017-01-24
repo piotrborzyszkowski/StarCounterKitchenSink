@@ -14,7 +14,7 @@
             <li>Any other element (<code>span</code>, etc) with a helper function</li>
         </ol>
 
-        <pre class="automated-tests-carrotsReactionLabel">{{model.CarrotsReaction}}</pre>
+        <pre class="automated-tests-carrots-reaction__label">{{model.CarrotsReaction}}</pre>
 
         <p class="kitchensink-add-carrots">
             <span class="kitchensink-add-carrots__label">Add carrots:</span>
@@ -32,7 +32,7 @@
 
         <button class="btn btn-sm btn-default kitchensink-toggle-button" pressed$="{{model.EnableCarrotEngine$}}" on-click="onEnableCarrotEngineClick">Enable carrot engine</button>
 
-        <span class="automated-tests-carrotEngineReactionLabel">{{model.CarrotEngineReaction}}</span>
+        <span class="automated-tests-carrot-engine-reaction__label">{{model.CarrotEngineReaction}}</span>
 
         <h5>Disabled button</h5>
 
@@ -40,7 +40,7 @@
 
         <button class="btn btn-sm btn-default kitchensink-toggle-button" value="{{model.AddOneCarrot$::click}}" onmousedown="++this.value" disabled$="{{model.AddOneCarrotDisabled}}">Add carrots</button>
 
-        <span class="automated-tests-oneCarrotReactionLabel">{{model.OneCarrotReaction}}</span>
+        <span class="automated-tests-one-carrot-reaction__label">{{model.OneCarrotReaction}}</span>
 
         <h5>Self Disabling/Enabling Button</h5>
 
@@ -49,14 +49,14 @@
             <div>
                 <button class="btn btn-sm btn-default kitchensink-toggle-button" value="{{model.TakeOneRegeneratingCarrot$::click}}" disabled="{{model.TakeOneRegeneratingCarrot$}}" onmouseup="++this.value">Take one Regenerating Carrot</button>
                 <template is="dom-if" if="{{model.TakeOneRegeneratingCarrot$}}">
-                    <p class="automated-tests-selButtonLabel">Currently Regenerating!</p>
+                    <p class="automated-tests-self-button__label">Currently Regenerating!</p>
                 </template>
             </div>
 
             <div>
                 <button class="btn btn-sm btn-default kitchensink-toggle-button" value="{{model.TakeOneFakeRegeneratingCarrot$::click}}" disabled="{{model.TakeOneFakeRegeneratingCarrot$}}" onmouseup="++this.value">Take one Regenerating Carrot(with delay)</button>
                 <template is="dom-if" if="{{model.TakeOneFakeRegeneratingCarrot$}}">
-                    <p class="automated-tests-selButtonLabel">Currently Regenerating!</p>
+                    <p class="automated-tests-self-button__label">Currently Regenerating!</p>
                 </template>
             </div>
         </div>

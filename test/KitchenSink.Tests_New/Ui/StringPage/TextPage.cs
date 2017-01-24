@@ -10,16 +10,16 @@ namespace KitchenSink.Tests_New.Ui.StringPage
             PageFactory.InitElements(Driver, this);
         }
 
-        [FindsBy(How = How.CssSelector, Using = ".automated-tests-input")]
+        [FindsBy(How = How.CssSelector, Using = ".automated-tests-name__input")]
         public IWebElement Input { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".automated-tests-inputDynamic")]
+        [FindsBy(How = How.CssSelector, Using = ".automated-tests-name__input-dynamic")]
         public IWebElement InputDynamic { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".automated-tests-label")]
+        [FindsBy(How = How.CssSelector, Using = ".automated-tests-name__label")]
         public IWebElement InputInfoLabel1 { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".automated-tests-labelDynamic")]
+        [FindsBy(How = How.CssSelector, Using = ".automated-tests-name__label-dynamic")]
         public IWebElement InputInfoLabel2 { get; set; }
 
         public void FillInput(string input)

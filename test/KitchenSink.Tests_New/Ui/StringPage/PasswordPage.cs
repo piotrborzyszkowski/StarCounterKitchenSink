@@ -10,10 +10,10 @@ namespace KitchenSink.Tests_New.Ui.StringPage
             PageFactory.InitElements(Driver, this);
         }
 
-        [FindsBy(How = How.CssSelector, Using = ".automated-tests-passwordInput")]
+        [FindsBy(How = How.CssSelector, Using = ".automated-tests-password__input")]
         public IWebElement PasswordInput { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".automated-tests-Infolabel")]
+        [FindsBy(How = How.CssSelector, Using = ".automated-tests-info__label")]
         public IWebElement PaswordInputInfoLabel { get; set; }
 
         public void FillPassword(string password)

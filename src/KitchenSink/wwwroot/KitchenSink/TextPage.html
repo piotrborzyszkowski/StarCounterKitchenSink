@@ -6,16 +6,16 @@
 
         <p>Bind to <code>::change</code> listener to send the new value to the server when the field is unfocused. Read more about the target change events in the <a href="https://www.polymer-project.org/1.0/docs/devguide/data-binding.html#two-way-native">Polymer docs</a>.</p>
 
-        <label class="control-label automated-tests-label">{{model.NameReaction}}</label>
+        <label class="control-label automated-tests-name__label">{{model.NameReaction}}</label>
 
-        <input test-value$="{{model.Name$}}" type="text" value="{{model.Name$::change}}" placeholder="Name" class="form-control automated-tests-input">
+        <input test-value$="{{model.Name$}}" type="text" value="{{model.Name$::change}}" placeholder="Name" class="form-control automated-tests-name__input">
 
         <h5>Listening to changes while typing</h5>
 
         <p>Need to update the server after each keystroke? Bind to <code>::input</code>:</p>
 
-        <label class="control-label automated-tests-labelDynamic">{{model.NameLiveReaction}}</label>
+        <label class="control-label automated-tests-name__label-dynamic">{{model.NameLiveReaction}}</label>
 
-        <input test-value$="{{model.NameLive$}}" type="text" value="{{model.NameLive$::input}}" placeholder="Name" class="form-control automated-tests-inputDynamic">
+        <input test-value$="{{model.NameLive$}}" type="text" value="{{model.NameLive$::input}}" placeholder="Name" class="form-control automated-tests-name__input-dynamic">
     </template>
 </template>

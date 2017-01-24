@@ -10,22 +10,22 @@ namespace KitchenSink.Tests_New.Ui.StringPage
             PageFactory.InitElements(Driver, this);
         }
 
-        [FindsBy(How = How.CssSelector, Using = ".automated-tests-FruitButton")]
+        [FindsBy(How = How.CssSelector, Using = ".automated-tests-fruit__button")]
         public IWebElement FruitButton { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".automated-tests-VegetableButton")]
+        [FindsBy(How = How.CssSelector, Using = ".automated-tests-vegetable__button")]
         public IWebElement VegetableButton { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".automated-tests-BreadButton")]
+        [FindsBy(How = How.CssSelector, Using = ".automated-tests-bread__button")]
         public IWebElement BreadButton { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".automated-tests-label")]
+        [FindsBy(How = How.CssSelector, Using = ".automated-tests-favourite-food__label")]
         public IWebElement InfoLabel { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".automated-tests-MorphButton")]
+        [FindsBy(How = How.CssSelector, Using = ".automated-tests-morph__button")]
         public IWebElement MorphButton { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".automated-tests-RedirectButton")]
+        [FindsBy(How = How.CssSelector, Using = ".automated-tests-redirect__button")]
         public IWebElement RedirectButton { get; set; }
 
         public void ClickButton(string button)

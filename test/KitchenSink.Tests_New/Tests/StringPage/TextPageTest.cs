@@ -23,6 +23,8 @@ namespace KitchenSink.Tests_New.Tests.StringPage
             const string oryginalText = "What\'s your name?";
             const string newText = "Krystian";
 
+            WaitUntil(x => _textPage.Input.Displayed);
+
             _textPage.FillInput(newText);
             WaitUntil(x => _textPage.InputInfoLabel1.Text != oryginalText);
             Assert.AreEqual("Hi, Krystian!", _textPage.InputInfoLabel1.Text);
@@ -36,6 +38,8 @@ namespace KitchenSink.Tests_New.Tests.StringPage
         {
             const string oryginalText = "What\'s your name?";
             const string newText = "K";
+
+            WaitUntil(x => _textPage.InputDynamic.Displayed);
 
             _textPage.FillInputDynamic(newText);
             WaitUntil(x => _textPage.InputInfoLabel2.Text != oryginalText);

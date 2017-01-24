@@ -9,7 +9,7 @@
         }
     </style>
     <template is="dom-bind">
-        <juicy-select class="kitchensink-juicyselect dropdown automated-tests-dropdown"
+        <juicy-select class="kitchensink-juicyselect dropdown automated-tests__juicy-select"
                       value="{{model.EntriesPerPage$::change}}"
                       options="{{model.PageEntries}}"
                       text-property="Amount"
@@ -17,7 +17,7 @@
         </juicy-select>
         <ul>
             <template is="dom-repeat" items="{{model.Library}}" as="book">
-                <li class="kitchensink-pagination-entry automated-tests-paginationResult">{{book.Title}} - {{book.Author}}</li>
+                <li class="kitchensink-pagination-entry automated-tests-pagination-result__li">{{book.Title}} - {{book.Author}}</li>
             </template>
         </ul>
         <nav>
@@ -41,7 +41,7 @@
                 </li>
             </ul>
         </nav>
-        <p class="automated-tests-label">page {{model.CurrentPage}} of {{model.TotalPages}}</p>
+        <p class="automated-tests-pagination__label">page {{model.CurrentPage}} of {{model.TotalPages}}</p>
     </template>
     <script>
         (function () {

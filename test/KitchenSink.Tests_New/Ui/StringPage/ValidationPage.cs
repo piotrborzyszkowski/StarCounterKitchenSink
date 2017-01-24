@@ -14,10 +14,10 @@ namespace KitchenSink.Tests_New.Ui.StringPage
         [FindsBy(How = How.XPath, Using = "//button[text() = 'Validate']")]
         public IWebElement ValidateButton { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".automated-tests-nameErrorlabel")]
+        [FindsBy(How = How.CssSelector, Using = ".automated-tests-name-error__label")]
         public IWebElement NameErrorLabel { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".automated-tests-lastNameErrorLabel")]
+        [FindsBy(How = How.CssSelector, Using = ".automated-tests-lastname-error__label")]
         public IWebElement LastNameErrorLabel { get; set; }
 
         public ValidationPage(IWebDriver driver) : base(driver)

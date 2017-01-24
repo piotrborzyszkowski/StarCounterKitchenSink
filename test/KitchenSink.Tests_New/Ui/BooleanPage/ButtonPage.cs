@@ -5,7 +5,7 @@ namespace KitchenSink.Tests_New.Ui.BooleanPage
 {
     public class ButtonPage : BasePage
     {
-        [FindsBy(How = How.CssSelector, Using = ".automated-tests-carrotsReactionLabel")]
+        [FindsBy(How = How.CssSelector, Using = ".automated-tests-carrots-reaction__label")]
         public IWebElement InfoLabel { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//button[text() = 'Button (inline script)']")]
@@ -23,10 +23,10 @@ namespace KitchenSink.Tests_New.Ui.BooleanPage
         [FindsBy(How = How.XPath, Using = "//button[text() = 'Add carrots']")]
         public IWebElement DisableButton { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".automated-tests-carrotEngineReactionLabel")]
+        [FindsBy(How = How.CssSelector, Using = ".automated-tests-carrot-engine-reaction__label")]
         public IWebElement SwitchButtonLabel { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".automated-tests-oneCarrotReactionLabel")]
+        [FindsBy(How = How.CssSelector, Using = ".automated-tests-one-carrot-reaction__label")]
         public IWebElement DisableButtonLabel { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//button[text() = 'Take one Regenerating Carrot']")]
@@ -35,7 +35,7 @@ namespace KitchenSink.Tests_New.Ui.BooleanPage
         [FindsBy(How = How.XPath, Using = "//button[text() = 'Take one Regenerating Carrot(with delay)']")]
         public IWebElement SelfButton2 { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".automated-tests-selButtonLabel")]
+        [FindsBy(How = How.CssSelector, Using = ".automated-tests-self-button__label")]
         public IWebElement SelfButtonLabel { get; set; }
         
         public ButtonPage(IWebDriver driver) : base(driver)

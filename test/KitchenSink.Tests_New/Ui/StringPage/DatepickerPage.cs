@@ -6,19 +6,19 @@ namespace KitchenSink.Tests_New.Ui.StringPage
     public class DatepickerPage : BasePage
     {
 
-        [FindsBy(How = How.CssSelector, Using = ".automated-tests-pikadayInput")]
+        [FindsBy(How = How.CssSelector, Using = ".automated-tests-pikaday__input")]
         public IWebElement DatePicker { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//div[@class = 'pika-lendar']//table//tbody//td[@class = 'is-selected']//button[@class = 'pika-button pika-day']")]
         public IWebElement SelectedDay { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".automated-tests-yearInput")]
+        [FindsBy(How = How.CssSelector, Using = ".automated-tests-year__input")]
         public IWebElement YearInput { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".automated-tests-monthInput")]
+        [FindsBy(How = How.CssSelector, Using = ".automated-tests-month__input")]
         public IWebElement MonthInput { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".automated-tests-dayInput")]
+        [FindsBy(How = How.CssSelector, Using = ".automated-tests-day__input")]
         public IWebElement DayInput { get; set; }
 
         public DatepickerPage(IWebDriver driver) : base(driver)

@@ -5,10 +5,10 @@ namespace KitchenSink.Tests_New.Ui.BooleanPage
 {
     public class CheckboxPage : BasePage
     {
-        [FindsBy(How = How.CssSelector, Using = ".automated-tests-driverLicenseLabel")]
+        [FindsBy(How = How.CssSelector, Using = ".automated-tests-driver-license__label")]
         public IWebElement InfoLabel { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".automated-tests-driverLicenseInput")]
+        [FindsBy(How = How.CssSelector, Using = ".automated-tests-driver-license__input")]
         public IWebElement Checkbox { get; set; }
 
         public CheckboxPage(IWebDriver driver) : base(driver)

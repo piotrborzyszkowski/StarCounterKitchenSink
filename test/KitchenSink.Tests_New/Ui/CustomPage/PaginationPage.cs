@@ -13,16 +13,16 @@ namespace KitchenSink.Tests_New.Ui.CustomPage
             PageFactory.InitElements(Driver, this);
         }
 
-        [FindsBy(How = How.CssSelector, Using = ".automated-tests-dropdown select")]
+        [FindsBy(How = How.CssSelector, Using = ".automated-tests__juicy-select select")]
         public IWebElement DropDown { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".automated-tests-paginationResult")]
+        [FindsBy(How = How.CssSelector, Using = ".automated-tests-pagination-result__li")]
         public IList<IWebElement> PaginationResult { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = ".automated-tests-pagination li")]
         public IWebElement Pagination { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".automated-tests-label")]
+        [FindsBy(How = How.CssSelector, Using = ".automated-tests-pagination__label")]
         public IWebElement PaginationInfoLabel { get; set; }
 
         public void DropdownSelect(string p0)

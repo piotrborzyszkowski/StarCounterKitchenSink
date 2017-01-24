@@ -51,7 +51,7 @@ namespace KitchenSink.Tests_New.Tests.ArrayPage
         [Test]
         public void DropdownPage_JuicyDropdown_SelectAlko()
         {
-            WaitUntil(x => _dropDownPage.JuicySelect2.Displayed);
+            WaitUntil(x => _dropDownPage.JuicySelect.Displayed);
             _dropDownPage.SelectJuicy2("Irish Whiskey");
             Assert.AreEqual("You have selected: Irish Whiskey", _dropDownPage.JuicySelectLabel.Text);
             Assert.AreEqual("Irish Whiskey", _dropDownPage.GetJuicySelectValue());
