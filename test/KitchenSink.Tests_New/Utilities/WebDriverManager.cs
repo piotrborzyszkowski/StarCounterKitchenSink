@@ -6,41 +6,41 @@ namespace KitchenSink.Tests_New.Utilities
 {
     public class WebDriverManager
     {
-        private static IWebDriver driver;
+        private static IWebDriver _driver;
 
-        public static IWebDriver StartDriver(Config.Browser browser, Uri portalUrl, double timeout, Uri remoteWebDriverUri, double ImplicitlyTimeout)
+        public static IWebDriver StartDriver(Config.Browser browser, double timeout, Uri remoteWebDriverUri, double implicitlyTimeout)
         {
             switch (browser)
             {
                 case Config.Browser.Chrome:
                     {
-                        driver = new RemoteWebDriver(remoteWebDriverUri, DesiredCapabilities.Chrome());
+                        _driver = new RemoteWebDriver(remoteWebDriverUri, DesiredCapabilities.Chrome());
                         break;
                     }
                 case Config.Browser.Edge:
                     {
-                        driver = new RemoteWebDriver(remoteWebDriverUri, DesiredCapabilities.Edge());
+                        _driver = new RemoteWebDriver(remoteWebDriverUri, DesiredCapabilities.Edge());
                         break;
                     }
                 case Config.Browser.Firefox:
                     {
-                        driver = new RemoteWebDriver(remoteWebDriverUri, DesiredCapabilities.Firefox());
+                        _driver = new RemoteWebDriver(remoteWebDriverUri, DesiredCapabilities.Firefox());
                         break;
                     }
             }
 
-            IWebDriver eventDriver = new EventListener(driver);
-            driver = eventDriver;
-            driver.Manage().Window.Maximize();
-            //driver.Navigate().GoToUrl(portalUrl);
-            driver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(timeout));
-            driver.Manage().Timeouts().SetScriptTimeout(TimeSpan.FromSeconds(timeout));
-            return driver;
+            IWebDriver eventDriver = new EventListener(_driver);
+            _driver = eventDriver;
+            _driver.Manage().Window.Maximize();
+            //_driver.Navigate().GoToUrl(portalUrl);
+            _driver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(timeout));
+            _driver.Manage().Timeouts().SetScriptTimeout(TimeSpan.FromSeconds(timeout));
+            return _driver;
         }
 
         public static void StopDriver()
         {
-            driver.Quit();
+            _driver.Quit();
         }
     }
 }

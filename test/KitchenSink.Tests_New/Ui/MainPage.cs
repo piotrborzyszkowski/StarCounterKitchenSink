@@ -1,4 +1,5 @@
-﻿using KitchenSink.Tests_New.Ui.ArrayPage;
+﻿using KitchenSink.Tests_New.Tests.CustomPage;
+using KitchenSink.Tests_New.Ui.ArrayPage;
 using KitchenSink.Tests_New.Ui.BooleanPage;
 using KitchenSink.Tests_New.Ui.CustomPage;
 using KitchenSink.Tests_New.Ui.ObjectPage;
@@ -99,6 +100,48 @@ namespace KitchenSink.Tests_New.Ui
         {
             ClickOn(TextareaPageLink);
             return new TextareaPage(Driver);
+        }
+
+        public FileUploadPage GoToFileUploadPage()
+        {
+            ClickOn(FileUploadPageLink);
+            return new FileUploadPage(Driver);
+        }
+
+        public ToggleButtonPage GoToToggleButtonPage()
+        {
+            ClickOn(ToggleButtonPageLink);
+            return new ToggleButtonPage(Driver);
+        }
+
+        public DatagridPage GoToDataGridPage()
+        {
+            ClickOn(DataGridPageLink);
+            return new DatagridPage(Driver);
+        }
+
+        public BreadcrumbPage GoToBreadcrumbPage()
+        {
+            ClickOn(BreadcrumbPageLink);
+            return new BreadcrumbPage(Driver);
+        }
+
+        public MultiselectPage GoToMultiselectPage()
+        {
+            ClickOn(MultiselectPageLink);
+            return new MultiselectPage(Driver);
+        }
+
+        public RadioPage GoToRadioPage()
+        {
+            ClickOn(RadioPageLink);
+            return new RadioPage(Driver);
+        }
+
+        public RadiolistPage GoToRadiolistPage()
+        {
+            ClickOn(RadiolistPageLink);
+            return new RadiolistPage(Driver);
         }
     }
 }

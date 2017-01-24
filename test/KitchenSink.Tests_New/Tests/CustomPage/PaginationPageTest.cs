@@ -20,6 +20,8 @@ namespace KitchenSink.Tests_New.Tests.CustomPage
         [Test]
         public void PaginationPage_Dropdown_HasCorrectOptions()
         {
+            _paginationPage.ScrollToTheTop();
+
             WaitUntil(x => _paginationPage.DropDown.Displayed);
             _paginationPage.DropdownSelect("5");          
             Assert.AreEqual(5, _paginationPage.CountPaginationResult());
@@ -38,6 +40,8 @@ namespace KitchenSink.Tests_New.Tests.CustomPage
         [Test]
         public void PaginationPage_LastButton_GoesToLastPage()
         {
+            _paginationPage.ScrollToTheTop();
+
             WaitUntil(x => _paginationPage.DropDown.Displayed);
             _paginationPage.DropdownSelect("15");
             WaitUntil(x => _paginationPage.CountPaginationResult() > 5);

@@ -22,6 +22,7 @@ namespace KitchenSink.Tests_New.Tests.BooleanPage
         public void CheckboxPage_CheckboxUncheckedAndCheckedAgain()
         {
             WaitUntil(x => _checkboxPage.Checkbox.Displayed);
+            WaitUntil(x => _checkboxPage.InfoLabel.Displayed);
 
             if (_checkboxPage.GetCheckboxState())
             {

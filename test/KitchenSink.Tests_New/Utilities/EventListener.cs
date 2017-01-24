@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.Events;
-using Screenshot = KitchenSink.Tests_New.Utilities.Screenshot;
 
 namespace KitchenSink.Tests_New.Utilities
 {

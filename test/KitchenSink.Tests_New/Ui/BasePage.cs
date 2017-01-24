@@ -51,6 +51,27 @@ namespace KitchenSink.Tests_New.Ui
         [FindsBy(How = How.XPath, Using = "//a[text() = 'Autocomplete']")]
         public IWebElement AutoCompletePageLink { get; set; }
 
+        [FindsBy(How = How.XPath, Using = "//a[text() = 'File upload']")]
+        public IWebElement FileUploadPageLink { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//a[text() = 'Togglebutton']")]
+        public IWebElement ToggleButtonPageLink { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//a[text() = 'Datagrid']")]
+        public IWebElement DataGridPageLink { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//a[text() = 'Breadcrumb']")]
+        public IWebElement BreadcrumbPageLink { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//a[text() = 'Multiselect']")]
+        public IWebElement MultiselectPageLink { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//a[text() = 'Radio']")]
+        public IWebElement RadioPageLink { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//a[text() = 'Radiolist']")]
+        public IWebElement RadiolistPageLink { get; set; }
+
         public BasePage(IWebDriver driver)
         {
             Driver = driver;
@@ -78,6 +99,11 @@ namespace KitchenSink.Tests_New.Ui
             {
                 element.Click();
             }
+        }
+
+        public void ScrollToTheTop()
+        {
+            ((IJavaScriptExecutor) Driver).ExecuteScript("window.scrollTo(0, 0)");
         }
     }
 }
