@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{24C88D95-851A-4786-BFF2-7B5CA2B84EE9}</ProjectGuid>
+    <ProjectGuid>{B10A99CC-66CF-49EC-B9DF-51F9966F1922}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>KitchenSink.Tests</RootNamespace>
@@ -16,6 +16,8 @@
     <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
     <IsCodedUITest>False</IsCodedUITest>
     <TestProjectType>UnitTest</TestProjectType>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -25,7 +27,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -34,37 +35,20 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="nunit.core, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NUnitTestAdapter.2.0.0\lib\nunit.core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="nunit.core.interfaces, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NUnitTestAdapter.2.0.0\lib\nunit.core.interfaces.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="nunit.util, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NUnitTestAdapter.2.0.0\lib\nunit.util.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="NUnit.VisualStudio.TestAdapter, Version=2.0.0.0, Culture=neutral, PublicKeyToken=4cb40d35494691ac, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NUnitTestAdapter.2.0.0\lib\NUnit.VisualStudio.TestAdapter.dll</HintPath>
+    <Reference Include="nunit.framework, Version=3.6.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NUnit.3.6.0\lib\net45\nunit.framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
-    <Reference Include="WebDriver, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Selenium.WebDriver.3.0.0\lib\net40\WebDriver.dll</HintPath>
+    <Reference Include="WebDriver, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Selenium.WebDriver.3.0.1\lib\net40\WebDriver.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="WebDriver.Support, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Selenium.Support.3.0.0\lib\net40\WebDriver.Support.dll</HintPath>
+    <Reference Include="WebDriver.Support, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Selenium.Support.3.0.1\lib\net40\WebDriver.Support.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
@@ -74,31 +58,88 @@
         <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
       </ItemGroup>
     </When>
-    <Otherwise>
-      <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
-      </ItemGroup>
-    </Otherwise>
+    <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="BaseTest.cs" />
-    <Compile Include="ElementSelectionHelper.cs" />
-    <Compile Include="SeleniumExtensions.cs" />
-    <Compile Include="Tests\PaginationPageTest.cs" />
-    <Compile Include="Tests\RedirectPageTest.cs" />
-    <Compile Include="Tests\ButtonPageTest.cs" />
-    <Compile Include="Tests\CheckboxPageTest.cs" />
-    <Compile Include="Tests\PasswordPageTest.cs" />
-    <Compile Include="Tests\TextareaPageTest.cs" />
-    <Compile Include="Tests\AutocompletePageTest.cs" />
-    <Compile Include="Tests\ValidationPageTest.cs" />
-    <Compile Include="Tests\TextPageTest.cs" />
+    <Compile Include="Tests\ArrayPage\BreadcrumbPageTest.cs" />
+    <Compile Include="Tests\ArrayPage\ChartPageTest.cs" />
+    <Compile Include="Tests\ArrayPage\DatagridPageTest.cs" />
+    <Compile Include="Tests\ArrayPage\MultiselectPageTest.cs" />
+    <Compile Include="Tests\ArrayPage\RadiolistPageTest.cs" />
+    <Compile Include="Tests\ArrayPage\RadioPageTest.cs" />
+    <Compile Include="Tests\BaseTest.cs" />
+    <Compile Include="Tests\BooleanPage\ButtonPageTest.cs" />
+    <Compile Include="Tests\BooleanPage\CheckboxPageTest.cs" />
+    <Compile Include="Tests\BooleanPage\ToggleButtonPageTest.cs" />
+    <Compile Include="Tests\CustomPage\AutoCompletePageTest.cs" />
+    <Compile Include="Tests\CustomPage\CallbackPageTest.cs" />
+    <Compile Include="Tests\CustomPage\DialogBoxPageTest.cs" />
+    <Compile Include="Tests\CustomPage\FileUploadPageTest.cs" />
+    <Compile Include="Tests\CustomPage\LazyLoadingPageTest.cs" />
+    <Compile Include="Tests\CustomPage\PaginationPageTest.cs" />
+    <Compile Include="Tests\CustomPage\ProgressBarPageTest.cs" />
+    <Compile Include="Tests\CustomPage\SetCookiePageTest.cs" />
+    <Compile Include="Tests\NumberPage\ButtonPageTest.cs" />
+    <Compile Include="Tests\NumberPage\DecimalPageTest.cs" />
+    <Compile Include="Tests\NumberPage\IntegerPageTest.cs" />
+    <Compile Include="Tests\NumberPage\MapPageTest.cs" />
+    <Compile Include="Tests\StringPage\DatepickerPageTest.cs" />
+    <Compile Include="Tests\ArrayPage\DropdownPageTest.cs" />
+    <Compile Include="Tests\ObjectPage\NestedPartialsPageTest.cs" />
+    <Compile Include="Tests\ArrayPage\TablePageTest.cs" />
+    <Compile Include="Tests\StringPage\HtmlPageTest.cs" />
+    <Compile Include="Tests\StringPage\MarkdownPageTest.cs" />
+    <Compile Include="Tests\StringPage\PasswordPageTest.cs" />
+    <Compile Include="Tests\StringPage\RedirectPageTest.cs" />
+    <Compile Include="Tests\StringPage\TextareaPageTest.cs" />
+    <Compile Include="Tests\StringPage\TextPageTest.cs" />
+    <Compile Include="Tests\StringPage\UrlPageTest.cs" />
+    <Compile Include="Tests\StringPage\ValidationPageTest.cs" />
+    <Compile Include="Ui\ArrayPage\BreadcrumbPage.cs" />
+    <Compile Include="Ui\ArrayPage\ChartPage.cs" />
+    <Compile Include="Ui\ArrayPage\DatagridPage.cs" />
+    <Compile Include="Ui\ArrayPage\MultiselectPage.cs" />
+    <Compile Include="Ui\ArrayPage\RadiolistPage.cs" />
+    <Compile Include="Ui\ArrayPage\RadioPage.cs" />
+    <Compile Include="Ui\BasePage.cs" />
+    <Compile Include="Ui\BooleanPage\ButtonPage.cs" />
+    <Compile Include="Ui\BooleanPage\CheckboxPage.cs" />
+    <Compile Include="Ui\BooleanPage\ToggleButtonPage.cs" />
+    <Compile Include="Ui\CustomPage\AutoCompletePage.cs" />
+    <Compile Include="Ui\CustomPage\CallbackPageTest.cs" />
+    <Compile Include="Ui\CustomPage\DialogBoxPage.cs" />
+    <Compile Include="Ui\CustomPage\FileUploadPage.cs" />
+    <Compile Include="Ui\CustomPage\LazyLoadingPage.cs" />
+    <Compile Include="Ui\CustomPage\PaginationPage.cs" />
+    <Compile Include="Ui\CustomPage\ProgressBarPage.cs" />
+    <Compile Include="Ui\CustomPage\SetCookiePage.cs" />
+    <Compile Include="Ui\NumberPage\ButtonPage.cs" />
+    <Compile Include="Ui\NumberPage\DecimalPage.cs" />
+    <Compile Include="Ui\NumberPage\IntegerPage.cs" />
+    <Compile Include="Ui\NumberPage\MapPage.cs" />
+    <Compile Include="Ui\StringPage\DatepickerPage.cs" />
+    <Compile Include="Ui\ArrayPage\DropdownPage.cs" />
+    <Compile Include="Ui\MainPage.cs" />
+    <Compile Include="Ui\ObjectPage\NestedPartialsPage.cs" />
+    <Compile Include="Ui\ArrayPage\TablePage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WebDriverFactory.cs" />
+    <Compile Include="Ui\StringPage\HtmlPage.cs" />
+    <Compile Include="Ui\StringPage\MarkdownPage.cs" />
+    <Compile Include="Ui\StringPage\PasswordPage.cs" />
+    <Compile Include="Ui\StringPage\RedirectPage.cs" />
+    <Compile Include="Ui\StringPage\TextareaPage.cs" />
+    <Compile Include="Ui\StringPage\TextPage.cs" />
+    <Compile Include="Ui\StringPage\UrlPage.cs" />
+    <Compile Include="Ui\StringPage\ValidationPage.cs" />
+    <Compile Include="Utilities\Config.cs" />
+    <Compile Include="Utilities\EventListener.cs" />
+    <Compile Include="Utilities\Screenshot.cs" />
+    <Compile Include="Utilities\WebDriverManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
