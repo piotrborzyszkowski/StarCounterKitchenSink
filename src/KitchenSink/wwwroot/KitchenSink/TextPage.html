@@ -8,7 +8,7 @@
 
         <label class="control-label kitchensink-test-name__label">{{model.NameReaction}}</label>
 
-        <input test-value$="{{model.Name$}}" type="text" value="{{model.Name$::change}}" placeholder="Name" class="form-control kitchensink-test-name__input">
+        <input type="text" value="{{model.Name$::change}}" placeholder="Name" class="form-control kitchensink-test-name__input">
 
         <h5>Listening to changes while typing</h5>
 
@@ -16,6 +16,6 @@
 
         <label class="control-label kitchensink-test-name__label-dynamic">{{model.NameLiveReaction}}</label>
 
-        <input test-value$="{{model.NameLive$}}" type="text" value="{{model.NameLive$::input}}" placeholder="Name" class="form-control kitchensink-test-name__input-dynamic">
+        <input type="text" value="{{model.NameLive$::input}}" placeholder="Name" class="form-control kitchensink-test-name__input-dynamic">
     </template>
 </template>

@@ -29,7 +29,7 @@ namespace KitchenSink.Tests.Tests.StringPage
             WaitUntil(x => _textPage.InputInfoLabel1.Text != originalText);
             Assert.AreEqual("Hi, Krystian!", _textPage.InputInfoLabel1.Text);
             _textPage.ClearInput();
-            WaitUntil(x => _textPage.Input.GetAttribute("test-value") == string.Empty);
+            WaitUntil(x => _textPage.Input.Text == string.Empty);
             Assert.AreEqual(originalText, _textPage.InputInfoLabel1.Text);
         }
 
@@ -45,7 +45,7 @@ namespace KitchenSink.Tests.Tests.StringPage
             WaitUntil(x => _textPage.InputInfoLabel2.Text != originalText);
             Assert.AreEqual("Hi, K!", _textPage.InputInfoLabel2.Text);
             _textPage.ClearInputDynamic();
-            WaitUntil(x => _textPage.InputDynamic.GetAttribute("test-value") == string.Empty);
+            WaitUntil(x => _textPage.InputDynamic.Text == string.Empty);
             Assert.AreEqual(originalText, _textPage.InputInfoLabel2.Text);
         }
     }
