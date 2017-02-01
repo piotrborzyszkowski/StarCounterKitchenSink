@@ -20,13 +20,13 @@ namespace KitchenSink.Tests.Tests.StringPage
         [Test]
         public void PasswordPage_PasswordTooShort()
         {
-            const string orygnalLabel = "Password must be at least 6 chars long";
+            const string originalLabel = "Password must be at least 6 chars long";
             const string password = "123";
 
             WaitUntil(x => _passwordPage.PasswordInput.Displayed);
             _passwordPage.ClearPassword();
             _passwordPage.FillPassword(password);
-            Assert.AreEqual(orygnalLabel, _passwordPage.PaswordInputInfoLabel.Text);
+            Assert.AreEqual(originalLabel, _passwordPage.PaswordInputInfoLabel.Text);
         }
 
         [Test]

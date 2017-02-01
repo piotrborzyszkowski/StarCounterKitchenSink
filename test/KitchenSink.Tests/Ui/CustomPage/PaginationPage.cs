@@ -35,10 +35,5 @@ namespace KitchenSink.Tests.Ui.CustomPage
         {
             ClickOn(Pagination.FindElement(By.XPath("//span[text() = '" + v + "']")));
         }
-
-        public string GetTitle(string p)
-        {
-            return PaginationResult.Where(x => x.Text.Contains(p)).Select(x => x.Text).First();
-        }
     }
 }

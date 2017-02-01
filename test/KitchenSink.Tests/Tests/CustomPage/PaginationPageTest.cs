@@ -1,4 +1,5 @@
-﻿using KitchenSink.Tests.Ui;
+﻿using System.Linq;
+using KitchenSink.Tests.Ui;
 using KitchenSink.Tests.Ui.CustomPage;
 using NUnit.Framework;
 
@@ -48,11 +49,11 @@ namespace KitchenSink.Tests.Tests.CustomPage
             Assert.AreEqual(15, _paginationPage.PaginationResult.Count);
             Assert.AreEqual("page 1 of 7", _paginationPage.PaginationInfoLabel.Text);
             _paginationPage.GoToPage(">>");
-            Assert.AreEqual("Arbitrary Book 99 - Arbitrary Author", _paginationPage.GetTitle("99"));
+            Assert.AreEqual("Arbitrary Book 99 - Arbitrary Author", _paginationPage.PaginationResult.Where(x => x.Text.Contains("99")).Select(x => x.Text).First());
             _paginationPage.GoToPage("3");
-            Assert.AreEqual("Arbitrary Book 40 - Arbitrary Author", _paginationPage.GetTitle("40"));
+            Assert.AreEqual("Arbitrary Book 40 - Arbitrary Author", _paginationPage.PaginationResult.Where(x => x.Text.Contains("40")).Select(x => x.Text).First());
             _paginationPage.GoToPage("<<");
-            Assert.AreEqual("Arbitrary Book 1 - Arbitrary Author", _paginationPage.GetTitle("1"));
+            Assert.AreEqual("Arbitrary Book 1 - Arbitrary Author", _paginationPage.PaginationResult.Where(x => x.Text.Contains("1")).Select(x => x.Text).First());
         }
     }
 }
