@@ -1,8 +1,9 @@
-﻿using KitchenSink.Tests.Ui.ArrayPage;
-using KitchenSink.Tests.Ui.BooleanPage;
-using KitchenSink.Tests.Ui.CustomPage;
-using KitchenSink.Tests.Ui.ObjectPage;
-using KitchenSink.Tests.Ui.StringPage;
+﻿using KitchenSink.Tests.Ui.SectionArray;
+using KitchenSink.Tests.Ui.SectionBoolean;
+using KitchenSink.Tests.Ui.SectionCustom;
+using KitchenSink.Tests.Ui.SectionNumber;
+using KitchenSink.Tests.Ui.SectionObject;
+using KitchenSink.Tests.Ui.SectionString;
 using KitchenSink.Tests.Utilities;
 using OpenQA.Selenium;
 
@@ -114,18 +115,6 @@ namespace KitchenSink.Tests.Ui
         {
             ClickOn(DataGridPageLink);
             return new DatagridPage(Driver);
-        }
-
-        public BreadcrumbPage GoToBreadcrumbPage()
-        {
-            ClickOn(BreadcrumbPageLink);
-            return new BreadcrumbPage(Driver);
-        }
-
-        public MultiselectPage GoToMultiselectPage()
-        {
-            ClickOn(MultiselectPageLink);
-            return new MultiselectPage(Driver);
         }
 
         public RadioPage GoToRadioPage()
