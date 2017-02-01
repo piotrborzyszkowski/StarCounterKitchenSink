@@ -20,11 +20,11 @@ namespace KitchenSink.Tests.Tests.ObjectPage
         [Test]
         public void NestedPartialsPage_AddNewChild()
         {
-            WaitUntil(x => _nestedPartialsPage.CountChildDivs() > 0);
-            var divsBefore = _nestedPartialsPage.CountChildDivs();
+            WaitUntil(x => _nestedPartialsPage.ChildDivs.Count > 0);
+            var divsBefore = _nestedPartialsPage.ChildDivs.Count;
             _nestedPartialsPage.AddChild();
-            WaitUntil(x => _nestedPartialsPage.CountChildDivs() > divsBefore);
-            var divsAfter = _nestedPartialsPage.CountChildDivs();
+            WaitUntil(x => _nestedPartialsPage.ChildDivs.Count > divsBefore);
+            var divsAfter = _nestedPartialsPage.ChildDivs.Count;
 
             Assert.Greater(divsAfter, divsBefore);
         }

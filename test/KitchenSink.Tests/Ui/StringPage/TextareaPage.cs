@@ -23,9 +23,10 @@ namespace KitchenSink.Tests.Ui.StringPage
 
         public void ClearTextarea()
         {
-            var temp = Textarea.GetAttribute("test-value").Length;
+            //can't use Clear()
+            var textAreaLength = Textarea.GetAttribute("test-value").Length;
 
-            for (var i = 0; i < temp; i++)
+            for (var i = 0; i < textAreaLength; i++)
             {
                 Textarea.SendKeys(Keys.Backspace);
             }

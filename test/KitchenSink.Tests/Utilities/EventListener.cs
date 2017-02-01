@@ -3,9 +3,9 @@ using OpenQA.Selenium.Support.Events;
 
 namespace KitchenSink.Tests.Utilities
 {
-    class EventListener : EventFiringWebDriver
+    class KitchenSinkTestEventListener : EventFiringWebDriver
     {
-        public EventListener(IWebDriver driver) : base(driver)
+        public KitchenSinkTestEventListener(IWebDriver driver) : base(driver)
         {
             ExceptionThrown += (sender, e) =>
             {

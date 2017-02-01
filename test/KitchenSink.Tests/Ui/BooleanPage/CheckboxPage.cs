@@ -16,11 +16,6 @@ namespace KitchenSink.Tests.Ui.BooleanPage
         [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-driver-license__input")]
         public IWebElement Checkbox { get; set; }
 
-        public bool GetCheckboxState()
-        {
-            return Checkbox.Selected;
-        }
-
         public void ChangeCheckboxState()
         {
             ClickOn(Checkbox);

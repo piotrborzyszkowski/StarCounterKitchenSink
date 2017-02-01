@@ -16,12 +16,7 @@ namespace KitchenSink.Tests.Ui.BooleanPage
         [FindsBy(How = How.CssSelector, Using = ".kitchensink-test__tooglebutton")]
         public IWebElement ToogleButton { get; set; }
 
-        public bool GetToogleButtonState()
-        {
-            return ToogleButton.Selected;
-        }
-
-        public void ChangeToogleButtonState()
+        public void ChangeToggleButtonState()
         {
             ClickOn(ToogleButton);
         }

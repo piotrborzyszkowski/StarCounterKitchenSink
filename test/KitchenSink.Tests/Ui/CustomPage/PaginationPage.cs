@@ -31,11 +31,6 @@ namespace KitchenSink.Tests.Ui.CustomPage
             dropDown.SelectByText(p0);
         }
 
-        public int CountPaginationResult()
-        {
-            return PaginationResult.Count;
-        }
-
         internal void GoToPage(string v)
         {
             ClickOn(Pagination.FindElement(By.XPath("//span[text() = '" + v + "']")));

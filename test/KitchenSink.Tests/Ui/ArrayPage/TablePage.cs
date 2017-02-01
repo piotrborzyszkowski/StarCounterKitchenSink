@@ -22,10 +22,5 @@ namespace KitchenSink.Tests.Ui.ArrayPage
         {
             ClickOn(AddPetButton);
         }
-
-        public int CountTableRows()
-        {
-            return PetsTableRows.Count;
-        }
     }
 }

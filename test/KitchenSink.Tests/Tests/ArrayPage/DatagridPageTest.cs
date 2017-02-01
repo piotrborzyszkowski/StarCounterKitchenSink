@@ -21,9 +21,9 @@ namespace KitchenSink.TestsTests.ArrayPage
         [Test]
         public void TablePage_AddNewRow()
         {
-            var rowsBefore = _datagridPage.CountTableRows();
+            var rowsBefore = _datagridPage.PetsTableRows.Count;
             _datagridPage.AddPet();
-            var rowsAfter = _datagridPage.CountTableRows();
+            var rowsAfter = _datagridPage.PetsTableRows.Count;
             Assert.Greater(rowsAfter, rowsBefore);
         }
     }

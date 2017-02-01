@@ -21,8 +21,7 @@ namespace KitchenSink.Tests.Ui.ArrayPage
 
         public void SelectRadio(string radioName)
         {
-            var temp = Radios.Single(x => x.GetAttribute("test-value") == radioName);
-            ClickOn(temp);
+            ClickOn(Radios.Single(x => x.GetAttribute("test-value") == radioName));
         }
     }
 }

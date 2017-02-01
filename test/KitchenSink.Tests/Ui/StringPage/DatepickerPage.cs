@@ -32,23 +32,5 @@ namespace KitchenSink.Tests.Ui.StringPage
             DatePicker.SendKeys(Keys.Enter);
             ClickOn(SelectedDay);
         }
-
-        public string GetYear()
-        {
-            var year = YearInput.GetAttribute("value");
-            return year;
-        }
-
-        public string GetMonth()
-        {
-            var month = MonthInput.GetAttribute("value");
-            return month;
-        }
-
-        public string GetDay()
-        {
-            var day = DayInput.GetAttribute("value");
-            return day;
-        }
     }
 }

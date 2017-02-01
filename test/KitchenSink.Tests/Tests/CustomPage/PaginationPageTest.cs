@@ -24,15 +24,15 @@ namespace KitchenSink.Tests.Tests.CustomPage
 
             WaitUntil(x => _paginationPage.DropDown.Displayed);
             _paginationPage.DropdownSelect("5");          
-            Assert.AreEqual(5, _paginationPage.CountPaginationResult());
+            Assert.AreEqual(5, _paginationPage.PaginationResult.Count);
             Assert.AreEqual("page 1 of 20", _paginationPage.PaginationInfoLabel.Text);
             _paginationPage.DropdownSelect("15");
-            WaitUntil(x => _paginationPage.CountPaginationResult() > 5);
-            Assert.AreEqual(15, _paginationPage.CountPaginationResult());
+            WaitUntil(x => _paginationPage.PaginationResult.Count > 5);
+            Assert.AreEqual(15, _paginationPage.PaginationResult.Count);
             Assert.AreEqual("page 1 of 7", _paginationPage.PaginationInfoLabel.Text);
             _paginationPage.DropdownSelect("30");
-            WaitUntil(x => _paginationPage.CountPaginationResult() > 15);
-            Assert.AreEqual(30, _paginationPage.CountPaginationResult());
+            WaitUntil(x => _paginationPage.PaginationResult.Count > 15);
+            Assert.AreEqual(30, _paginationPage.PaginationResult.Count);
             Assert.AreEqual("page 1 of 4", _paginationPage.PaginationInfoLabel.Text);
         }
 
@@ -44,8 +44,8 @@ namespace KitchenSink.Tests.Tests.CustomPage
 
             WaitUntil(x => _paginationPage.DropDown.Displayed);
             _paginationPage.DropdownSelect("15");
-            WaitUntil(x => _paginationPage.CountPaginationResult() > 5);
-            Assert.AreEqual(15, _paginationPage.CountPaginationResult());
+            WaitUntil(x => _paginationPage.PaginationResult.Count > 5);
+            Assert.AreEqual(15, _paginationPage.PaginationResult.Count);
             Assert.AreEqual("page 1 of 7", _paginationPage.PaginationInfoLabel.Text);
             _paginationPage.GoToPage(">>");
             Assert.AreEqual("Arbitrary Book 99 - Arbitrary Author", _paginationPage.GetTitle("99"));

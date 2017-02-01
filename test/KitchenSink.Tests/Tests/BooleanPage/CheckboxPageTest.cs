@@ -24,7 +24,7 @@ namespace KitchenSink.Tests.Tests.BooleanPage
             WaitUntil(x => _checkboxPage.Checkbox.Displayed);
             WaitUntil(x => _checkboxPage.InfoLabel.Displayed);
 
-            if (_checkboxPage.GetCheckboxState())
+            if (_checkboxPage.Checkbox.Selected)
             {
                 Assert.AreEqual("You can drive", _checkboxPage.InfoLabel.Text);
                 _checkboxPage.ChangeCheckboxState();
@@ -32,7 +32,7 @@ namespace KitchenSink.Tests.Tests.BooleanPage
                 Assert.AreEqual("You can't drive", _checkboxPage.InfoLabel.Text);
             }
 
-            if (!_checkboxPage.GetCheckboxState())
+            if (!_checkboxPage.Checkbox.Selected)
             {
                 Assert.AreEqual("You can't drive", _checkboxPage.InfoLabel.Text);
                 _checkboxPage.ChangeCheckboxState();

@@ -19,23 +19,23 @@ namespace KitchenSink.Tests.Tests.BooleanPage
         }
 
         [Test]
-        public void ToogleButtonPage_CheckboxUncheckedAndCheckedAgain()
+        public void ToggleButtonPage_CheckboxUncheckedAndCheckedAgain()
         {
             WaitUntil(x => _toggleButtonPage.ToogleButton.Displayed);
             WaitUntil(x => _toggleButtonPage.InfoLabel.Displayed);
 
-            if (_toggleButtonPage.GetToogleButtonState())
+            if (_toggleButtonPage.ToogleButton.Selected)
             {
                 Assert.AreEqual("I accept terms and conditions", _toggleButtonPage.InfoLabel.Text);
-                _toggleButtonPage.ChangeToogleButtonState();
+                _toggleButtonPage.ChangeToggleButtonState();
                 WaitUntil(ExpectedConditions.ElementSelectionStateToBe(_toggleButtonPage.ToogleButton, true));
                 Assert.AreEqual("I don't accept terms and conditions", _toggleButtonPage.InfoLabel.Text);
             }
 
-            if (!_toggleButtonPage.GetToogleButtonState())
+            if (!_toggleButtonPage.ToogleButton.Selected)
             {
                 Assert.AreEqual("I accept terms and conditions", _toggleButtonPage.InfoLabel.Text);
-                _toggleButtonPage.ChangeToogleButtonState();
+                _toggleButtonPage.ChangeToggleButtonState();
                 WaitUntil(ExpectedConditions.ElementSelectionStateToBe(_toggleButtonPage.ToogleButton, false));
                 Assert.AreEqual("I don't accept terms and conditions", _toggleButtonPage.InfoLabel.Text);
             }

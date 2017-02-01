@@ -24,9 +24,9 @@ namespace KitchenSink.Tests.Tests.StringPage
 
             _datePicker.SelectDate("2016-01-01");
 
-            Assert.AreEqual("2016", _datePicker.GetYear());
-            Assert.AreEqual("January", _datePicker.GetMonth());
-            Assert.AreEqual("1", _datePicker.GetDay());
+            Assert.AreEqual("2016", _datePicker.YearInput.GetAttribute("value"));
+            Assert.AreEqual("January", _datePicker.MonthInput.GetAttribute("value"));
+            Assert.AreEqual("1", _datePicker.DayInput.GetAttribute("value"));
         }
     }
 }

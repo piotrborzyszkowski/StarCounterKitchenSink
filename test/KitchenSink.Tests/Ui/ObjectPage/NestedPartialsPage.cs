@@ -22,10 +22,5 @@ namespace KitchenSink.Tests.Ui.ObjectPage
         {
             ClickOn(AddChildButton);
         }
-
-        public int CountChildDivs()
-        {
-            return ChildDivs.Count;
-        }
     }
 }

@@ -13,13 +13,13 @@ namespace KitchenSink.Tests.Tests
         [OneTimeSetUp]
         public void TestFixtureSetUp()
         {
-            Driver = WebDriverManager.StartDriver(Config.Browser.Chrome, Config.Timeout, Config.RemoteWebDriverUri, Config.ImplicitlyTimeout);
+            Driver = WebDriverManager.StartDriver(Config.Browser.Chrome, Config.Timeout, Config.RemoteWebDriverUri);
         }
 
         [OneTimeTearDown]
         public void TestFixtureTearDown()
         {
-            WebDriverManager.StopDriver();
+           Driver.Quit();
         }
 
         protected TResult WaitUntil<TResult>(Func<IWebDriver, TResult> condition)

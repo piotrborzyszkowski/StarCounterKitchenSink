@@ -12,7 +12,6 @@ namespace KitchenSink.Tests.Ui.ArrayPage
             PageFactory.InitElements(Driver, this);
         }
 
-
         [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-selected-item__label")]
         public IWebElement InfoLabel { get; set; }
 

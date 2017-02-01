@@ -81,24 +81,13 @@ namespace KitchenSink.Tests.Ui
         public IWebElement WaitForElementToBeClickable(IWebElement elementName, int seconds)
         {
             WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(seconds));
-            IWebElement element = null;
-            try
-            {
-                element = wait.Until(ExpectedConditions.ElementToBeClickable(elementName));
-            }
-            catch (WebDriverTimeoutException)
-            {
-            }
-            return element;
+            return wait.Until(ExpectedConditions.ElementToBeClickable(elementName));
         }
 
         public void ClickOn(IWebElement elementName, int seconds = 5)
         {
             IWebElement element = WaitForElementToBeClickable(elementName, seconds);
-            if (element != null && element.Displayed && element.Enabled)
-            {
-                element.Click();
-            }
+            element.Click();
         }
 
         public void ScrollToTheTop()
