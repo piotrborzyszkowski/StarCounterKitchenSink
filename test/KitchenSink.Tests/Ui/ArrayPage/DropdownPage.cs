@@ -44,13 +44,13 @@ namespace KitchenSink.Tests.Ui.ArrayPage
             return sel.SelectedOption.Text;
         }
 
-        public string GetJuicySelect2Value()
+        public string GetSelectValue()
         {
-            SelectElement sel = new SelectElement(JuicySelect);
+            SelectElement sel = new SelectElement(ProductSelect);
             return sel.SelectedOption.Text;
         }
 
-        public void SelectJuicy2(string juicyName)
+        public void SelectJuicySelect(string juicyName)
         {
             SelectElement sel = new SelectElement(JuicySelect);
             sel.SelectByText(juicyName);

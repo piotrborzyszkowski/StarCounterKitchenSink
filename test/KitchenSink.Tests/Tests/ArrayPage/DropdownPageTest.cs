@@ -32,35 +32,35 @@ namespace KitchenSink.Tests.Tests.ArrayPage
         }
 
         [Test]
-        public void DropdownPage_JuicyDropdown_SelectJuicy()
+        public void DropdownPage_JuicyDropdown_SelectProduct()
         {
             WaitUntil(x => _dropDownPage.JuicySelect.Displayed);
-            _dropDownPage.SelectProduct("Bread");
+            _dropDownPage.SelectJuicySelect("Bread");
             Assert.AreEqual("You have selected: Bread", _dropDownPage.JuicySelectLabel.Text);
-            Assert.AreEqual("Bread", _dropDownPage.GetJuicySelect2Value());
+            Assert.AreEqual("Bread", _dropDownPage.GetSelectValue());
 
-            _dropDownPage.SelectProduct("Butter");
+            _dropDownPage.SelectJuicySelect("Butter");
             Assert.AreEqual("You have selected: Butter", _dropDownPage.JuicySelectLabel.Text);
-            Assert.AreEqual("Butter", _dropDownPage.GetJuicySelect2Value());
+            Assert.AreEqual("Butter", _dropDownPage.GetSelectValue());
 
-            _dropDownPage.SelectProduct("Milk");
+            _dropDownPage.SelectJuicySelect("Milk");
             Assert.AreEqual("You have selected: Milk", _dropDownPage.JuicySelectLabel.Text);
-            Assert.AreEqual("Milk", _dropDownPage.GetJuicySelect2Value());
+            Assert.AreEqual("Milk", _dropDownPage.GetSelectValue());
         }
 
         [Test]
-        public void DropdownPage_JuicyDropdown_SelectAlko()
+        public void DropdownPage_Dropdown_SelectProduct()
         {
-            WaitUntil(x => _dropDownPage.JuicySelect.Displayed);
-            _dropDownPage.SelectJuicy2("Irish Whiskey");
+            WaitUntil(x => _dropDownPage.ProductSelect.Displayed);
+            _dropDownPage.SelectProduct("Irish Whiskey");
             Assert.AreEqual("You have selected: Irish Whiskey", _dropDownPage.JuicySelectLabel.Text);
             Assert.AreEqual("Irish Whiskey", _dropDownPage.GetJuicySelectValue());
 
-            _dropDownPage.SelectJuicy2("Scotch Whisky");
+            _dropDownPage.SelectProduct("Scotch Whisky");
             Assert.AreEqual("You have selected: Scotch Whisky", _dropDownPage.JuicySelectLabel.Text);
             Assert.AreEqual("Scotch Whisky", _dropDownPage.GetJuicySelectValue());
 
-            _dropDownPage.SelectJuicy2("Boiled Mutton");
+            _dropDownPage.SelectProduct("Boiled Mutton");
             Assert.AreEqual("You have selected: Boiled Mutton", _dropDownPage.JuicySelectLabel.Text);
             Assert.AreEqual("Boiled Mutton", _dropDownPage.GetJuicySelectValue());
         }
