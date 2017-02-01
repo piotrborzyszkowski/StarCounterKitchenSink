@@ -3,11 +3,17 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
 
-namespace KitchenSink.Tests_New.Ui
+namespace KitchenSink.Tests.Ui
 {
     public class BasePage
     {
         public IWebDriver Driver;
+
+        public BasePage(IWebDriver driver)
+        {
+            Driver = driver;
+            PageFactory.InitElements(Driver, this);
+        }
 
         [FindsBy(How = How.XPath, Using = "//a[text() = 'MainPage']")]
         public IWebElement MainPageLink { get; set; }
@@ -72,12 +78,6 @@ namespace KitchenSink.Tests_New.Ui
         [FindsBy(How = How.XPath, Using = "//a[text() = 'Radiolist']")]
         public IWebElement RadiolistPageLink { get; set; }
 
-        public BasePage(IWebDriver driver)
-        {
-            Driver = driver;
-            PageFactory.InitElements(Driver, this);
-        }
-
         public IWebElement WaitForElementToBeClickable(IWebElement elementName, int seconds)
         {
             WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(seconds));
@@ -103,7 +103,7 @@ namespace KitchenSink.Tests_New.Ui
 
         public void ScrollToTheTop()
         {
-            ((IJavaScriptExecutor) Driver).ExecuteScript("window.scrollTo(0, 0)");
+            ((IJavaScriptExecutor)Driver).ExecuteScript("window.scrollTo(0, 0)");
         }
     }
 }

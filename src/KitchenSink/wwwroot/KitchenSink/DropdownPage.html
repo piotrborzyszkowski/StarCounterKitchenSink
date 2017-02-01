@@ -6,13 +6,13 @@
 
         <p class="lead">A combination of JSON's primitive value types <code>array</code>, <code>object</code> and <code>number</code> can be mapped to an HTML <code>select</code> element.</p>
 
-        <select class="kitchensink-select automated-tests-pets__select" value="{{model.SelectedPet$::change}}">
+        <select class="kitchensink-select kitchensink-test-pets__select" value="{{model.SelectedPet$::change}}">
             <template is="dom-repeat" items="{{model.Pets}}">
                 <option value="{{item.Label}}">{{item.Label}}</option>
             </template>
         </select>
 
-        <div class="automated-tests-pet-like__label">{{model.PetReaction}}</div>
+        <div class="kitchensink-test-pet-like__label">{{model.PetReaction}}</div>
 
         <br />
 
@@ -24,7 +24,7 @@
 
         <br />
 
-        <select class="kitchensink-select automated-tests-product__select" value="{{model.SelectedProductKey$::change}}">
+        <select class="kitchensink-select kitchensink-test-product__select" value="{{model.SelectedProductKey$::change}}">
             <option></option>
             <template is="dom-repeat" items="{{model.Products}}">
                 <option value="{{item.Key}}">{{item.Name}}</option>
@@ -35,10 +35,10 @@
 
         <br />
 
-        <juicy-select class="kitchensink-juicyselect automated-tests__juicy-select" caption-text=" " value="{{model.SelectedProductKey$}}" options="{{model.Products}}" text-property="Name" value-property="Key"></juicy-select>
+        <juicy-select class="kitchensink-juicyselect kitchensink-test__juicy-select" caption-text=" " value="{{model.SelectedProductKey$}}" options="{{model.Products}}" text-property="Name" value-property="Key"></juicy-select>
 
         <template is="dom-if" if="{{model.SelectedProduct.Name}}">
-            <p class="automated-tests-juicy-select__label">You have selected: <strong>{{model.SelectedProduct.Name}}</strong></p>
+            <p class="kitchensink-test-juicy-select__label">You have selected: <strong>{{model.SelectedProduct.Name}}</strong></p>
         </template>
     </template>
 </template>

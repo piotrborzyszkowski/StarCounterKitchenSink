@@ -3,7 +3,7 @@ using System.Drawing.Imaging;
 using NUnit.Framework;
 using OpenQA.Selenium;
 
-namespace KitchenSink.Tests_New.Utilities
+namespace KitchenSink.Tests.Utilities
 {
     class Screenshot
     {
@@ -13,7 +13,7 @@ namespace KitchenSink.Tests_New.Utilities
             if (null != driverScreenshot)
             {
                 var screenShot = driverScreenshot.GetScreenshot();
-                if (null != screenShot)
+                if (screenShot != null)
                 {
                     var now = DateTime.Now.ToString("yyyyMMddHHmmss");
                     var path = $@"\webdriver_screenshot_{now}.png";

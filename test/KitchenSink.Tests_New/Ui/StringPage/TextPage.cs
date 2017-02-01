@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
-namespace KitchenSink.Tests_New.Ui.StringPage
+namespace KitchenSink.Tests.Ui.StringPage
 {
     public class TextPage : BasePage
     {
@@ -10,16 +10,16 @@ namespace KitchenSink.Tests_New.Ui.StringPage
             PageFactory.InitElements(Driver, this);
         }
 
-        [FindsBy(How = How.CssSelector, Using = ".automated-tests-name__input")]
+        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-name__input")]
         public IWebElement Input { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".automated-tests-name__input-dynamic")]
+        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-name__input-dynamic")]
         public IWebElement InputDynamic { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".automated-tests-name__label")]
+        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-name__label")]
         public IWebElement InputInfoLabel1 { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".automated-tests-name__label-dynamic")]
+        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-name__label-dynamic")]
         public IWebElement InputInfoLabel2 { get; set; }
 
         public void FillInput(string input)

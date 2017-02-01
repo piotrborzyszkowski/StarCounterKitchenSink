@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
-namespace KitchenSink.Tests_New.Ui.StringPage
+namespace KitchenSink.Tests.Ui.StringPage
 {
     public class TextareaPage : BasePage
     {
@@ -10,10 +10,10 @@ namespace KitchenSink.Tests_New.Ui.StringPage
             PageFactory.InitElements(Driver, this);
         }
 
-        [FindsBy(How = How.CssSelector, Using = ".automated-tests__textarea")]
+        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test__textarea")]
         public IWebElement Textarea { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".automated-tests-bio-reaction__label")]
+        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-bio-reaction__label")]
         public IWebElement TextareaInfoLabel { get; set; }
 
         public void FillTextarea(string input)

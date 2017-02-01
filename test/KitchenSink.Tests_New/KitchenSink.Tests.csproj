@@ -6,8 +6,8 @@
     <ProjectGuid>{B10A99CC-66CF-49EC-B9DF-51F9966F1922}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>KitchenSink.Tests_New</RootNamespace>
-    <AssemblyName>KitchenSink.Tests_New</AssemblyName>
+    <RootNamespace>KitchenSink.Tests</RootNamespace>
+    <AssemblyName>KitchenSink.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>

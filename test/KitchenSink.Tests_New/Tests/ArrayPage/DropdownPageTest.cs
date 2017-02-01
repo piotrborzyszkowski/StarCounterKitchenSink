@@ -1,8 +1,8 @@
-﻿using KitchenSink.Tests_New.Ui;
-using KitchenSink.Tests_New.Ui.ArrayPage;
+﻿using KitchenSink.Tests.Ui;
+using KitchenSink.Tests.Ui.ArrayPage;
 using NUnit.Framework;
 
-namespace KitchenSink.Tests_New.Tests.ArrayPage
+namespace KitchenSink.Tests.Tests.ArrayPage
 {
     [TestFixture]
     class DropdownPageTest : BaseTest
@@ -35,15 +35,15 @@ namespace KitchenSink.Tests_New.Tests.ArrayPage
         public void DropdownPage_JuicyDropdown_SelectJuicy()
         {
             WaitUntil(x => _dropDownPage.JuicySelect.Displayed);
-            _dropDownPage.SelectJuicy("Bread");
+            _dropDownPage.SelectProduct("Bread");
             Assert.AreEqual("You have selected: Bread", _dropDownPage.JuicySelectLabel.Text);
             Assert.AreEqual("Bread", _dropDownPage.GetJuicySelect2Value());
 
-            _dropDownPage.SelectJuicy("Butter");
+            _dropDownPage.SelectProduct("Butter");
             Assert.AreEqual("You have selected: Butter", _dropDownPage.JuicySelectLabel.Text);
             Assert.AreEqual("Butter", _dropDownPage.GetJuicySelect2Value());
 
-            _dropDownPage.SelectJuicy("Milk");
+            _dropDownPage.SelectProduct("Milk");
             Assert.AreEqual("You have selected: Milk", _dropDownPage.JuicySelectLabel.Text);
             Assert.AreEqual("Milk", _dropDownPage.GetJuicySelect2Value());
         }

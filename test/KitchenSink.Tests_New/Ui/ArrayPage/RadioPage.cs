@@ -3,7 +3,7 @@ using System.Linq;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
-namespace KitchenSink.Tests_New.Ui.ArrayPage
+namespace KitchenSink.Tests.Ui.ArrayPage
 {
     public class RadioPage : BasePage
     {
@@ -12,10 +12,10 @@ namespace KitchenSink.Tests_New.Ui.ArrayPage
             PageFactory.InitElements(Driver, this);
         }
 
-        [FindsBy(How = How.CssSelector, Using = ".automated-tests-pet-reaction__label")]
+        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-pet-reaction__label")]
         public IWebElement InfoLabel { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".automated-tests__radio-buttons")]
+        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test__radio-buttons")]
         public IList<IWebElement> Radios { get; set; }
 
 

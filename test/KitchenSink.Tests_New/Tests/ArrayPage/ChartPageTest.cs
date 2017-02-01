@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace KitchenSink.Tests_New.Tests.ArrayPage
+namespace KitchenSink.Tests.Tests.ArrayPage
 {
     [TestFixture]
     class ChartPageTest : BaseTest

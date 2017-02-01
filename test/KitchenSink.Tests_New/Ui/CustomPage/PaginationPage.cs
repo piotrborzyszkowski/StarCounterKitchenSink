@@ -4,7 +4,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
 
-namespace KitchenSink.Tests_New.Ui.CustomPage
+namespace KitchenSink.Tests.Ui.CustomPage
 {
     public class PaginationPage : BasePage
     {
@@ -13,16 +13,16 @@ namespace KitchenSink.Tests_New.Ui.CustomPage
             PageFactory.InitElements(Driver, this);
         }
 
-        [FindsBy(How = How.CssSelector, Using = ".automated-tests__juicy-select select")]
+        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test__juicy-select select")]
         public IWebElement DropDown { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".automated-tests-pagination-result__li")]
+        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-pagination-result__li")]
         public IList<IWebElement> PaginationResult { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".automated-tests-pagination li")]
+        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-pagination li")]
         public IWebElement Pagination { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".automated-tests-pagination__label")]
+        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-pagination__label")]
         public IWebElement PaginationInfoLabel { get; set; }
 
         public void DropdownSelect(string p0)
@@ -41,10 +41,9 @@ namespace KitchenSink.Tests_New.Ui.CustomPage
             ClickOn(Pagination.FindElement(By.XPath("//span[text() = '" + v + "']")));
         }
 
-        public string GetTitle(string p0)
+        public string GetTitle(string p)
         {
-            var temp = PaginationResult.Where(x => x.Text.Contains(p0)).Select(x => x.Text).First();
-            return temp;
+            return PaginationResult.Where(x => x.Text.Contains(p)).Select(x => x.Text).First();
         }
     }
 }

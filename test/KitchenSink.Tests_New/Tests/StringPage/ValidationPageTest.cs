@@ -1,9 +1,9 @@
-﻿using KitchenSink.Tests_New.Ui;
-using KitchenSink.Tests_New.Ui.StringPage;
+﻿using KitchenSink.Tests.Ui;
+using KitchenSink.Tests.Ui.StringPage;
 using NUnit.Framework;
 using OpenQA.Selenium;
 
-namespace KitchenSink.Tests_New.Tests.StringPage
+namespace KitchenSink.Tests.Tests.StringPage
 {
     [TestFixture]
     class ValidationPageTest : BaseTest

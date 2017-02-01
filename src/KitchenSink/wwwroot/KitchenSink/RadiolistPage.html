@@ -10,14 +10,14 @@
     <div class="horizontal-section">
       <paper-menu selected="{{model.SelectedItemIndex$}}">
         <template is="dom-repeat" items="{{model.MenuOptions}}">
-          <paper-item class="automated-tests__radio-list" test-value$="{{item.Label}}">{{item.Label}}</paper-item>
+          <paper-item class="kitchensink-test__radio-list" test-value$="{{item.Label}}">{{item.Label}}</paper-item>
         </template>
       </paper-menu>
     </div>
 
     <div>Selected item:</div>
 
-    <span class="automated-tests-selected-item__label">{{model.SelectedItemLabel}}</span>
+    <span class="kitchensink-test-selected-item__label">{{model.SelectedItemLabel}}</span>
 
     <div>
         (<span>{{model.SelectedItemIndex$}}</span>)

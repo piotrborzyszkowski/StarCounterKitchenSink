@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace KitchenSink.Tests_New.Tests.NumberPage
+namespace KitchenSink.Tests.Tests.NumberPage
 {
     [TestFixture]
     class MapPageTest : BaseTest

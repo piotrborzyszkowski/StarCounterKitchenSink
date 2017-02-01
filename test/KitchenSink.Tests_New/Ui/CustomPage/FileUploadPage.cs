@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.Events;
 using OpenQA.Selenium.Support.PageObjects;
 
-namespace KitchenSink.Tests_New.Ui.CustomPage
+namespace KitchenSink.Tests.Ui.CustomPage
 {
     public class FileUploadPage : BasePage
     {
@@ -19,15 +17,14 @@ namespace KitchenSink.Tests_New.Ui.CustomPage
         [FindsBy(How = How.CssSelector, Using = ".alert-warning")]
         public IWebElement InfoLabel { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".automated-tests-uploaded-files__list")]
+        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-uploaded-files__list")]
         public IList<IWebElement> UploadedFilesList { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".automated-tests-delete__button")]
+        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-delete__button")]
         public IList<IWebElement> DeleteButtons { get; set; }
 
         public void UploadAFile(string filePath)
         {
-            //((IJavaScriptExecutor)Driver).ExecuteScript("document.getElementById('fileElement').value = '" + filePath + "'");
             FileInput.SendKeys(filePath);
         }
 

@@ -1,11 +1,16 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
-namespace KitchenSink.Tests_New.Ui.BooleanPage
+namespace KitchenSink.Tests.Ui.BooleanPage
 {
     public class ButtonPage : BasePage
-    {
-        [FindsBy(How = How.CssSelector, Using = ".automated-tests-carrots-reaction__label")]
+    {     
+        public ButtonPage(IWebDriver driver) : base(driver)
+        {
+            PageFactory.InitElements(Driver, this);
+        }
+
+        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-carrots-reaction__label")]
         public IWebElement InfoLabel { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//button[text() = 'Button (inline script)']")]
@@ -23,10 +28,10 @@ namespace KitchenSink.Tests_New.Ui.BooleanPage
         [FindsBy(How = How.XPath, Using = "//button[text() = 'Add carrots']")]
         public IWebElement DisableButton { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".automated-tests-carrot-engine-reaction__label")]
+        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-carrot-engine-reaction__label")]
         public IWebElement SwitchButtonLabel { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".automated-tests-one-carrot-reaction__label")]
+        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-one-carrot-reaction__label")]
         public IWebElement DisableButtonLabel { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//button[text() = 'Take one Regenerating Carrot']")]
@@ -35,13 +40,8 @@ namespace KitchenSink.Tests_New.Ui.BooleanPage
         [FindsBy(How = How.XPath, Using = "//button[text() = 'Take one Regenerating Carrot(with delay)']")]
         public IWebElement SelfButton2 { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".automated-tests-self-button__label")]
+        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-self-button__label")]
         public IWebElement SelfButtonLabel { get; set; }
-        
-        public ButtonPage(IWebDriver driver) : base(driver)
-        {
-            PageFactory.InitElements(Driver, this);
-        }
 
         public void ClickButton1()
         {

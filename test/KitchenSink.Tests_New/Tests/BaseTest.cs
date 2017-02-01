@@ -1,10 +1,10 @@
 ﻿using System;
-using KitchenSink.Tests_New.Utilities;
+using KitchenSink.Tests.Utilities;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 
-namespace KitchenSink.Tests_New.Tests
+namespace KitchenSink.Tests.Tests
 {
     public class BaseTest
     {

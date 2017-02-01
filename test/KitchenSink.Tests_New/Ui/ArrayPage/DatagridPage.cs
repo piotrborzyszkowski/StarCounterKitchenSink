@@ -2,7 +2,7 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
-namespace KitchenSink.Tests_New.Ui.ArrayPage
+namespace KitchenSink.Tests.Ui.ArrayPage
 {
     public class DatagridPage : BasePage
     {

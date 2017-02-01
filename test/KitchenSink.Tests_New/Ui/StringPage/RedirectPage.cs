@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
-namespace KitchenSink.Tests_New.Ui.StringPage
+namespace KitchenSink.Tests.Ui.StringPage
 {
     public class RedirectPage : BasePage
     {
@@ -10,22 +10,22 @@ namespace KitchenSink.Tests_New.Ui.StringPage
             PageFactory.InitElements(Driver, this);
         }
 
-        [FindsBy(How = How.CssSelector, Using = ".automated-tests-fruit__button")]
+        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-fruit__button")]
         public IWebElement FruitButton { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".automated-tests-vegetable__button")]
+        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-vegetable__button")]
         public IWebElement VegetableButton { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".automated-tests-bread__button")]
+        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-bread__button")]
         public IWebElement BreadButton { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".automated-tests-favourite-food__label")]
+        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-favourite-food__label")]
         public IWebElement InfoLabel { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".automated-tests-morph__button")]
+        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-morph__button")]
         public IWebElement MorphButton { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".automated-tests-redirect__button")]
+        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-redirect__button")]
         public IWebElement RedirectButton { get; set; }
 
         public void ClickButton(string button)

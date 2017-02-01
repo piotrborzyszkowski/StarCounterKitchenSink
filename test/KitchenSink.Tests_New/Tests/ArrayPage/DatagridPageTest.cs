@@ -1,8 +1,9 @@
-﻿using KitchenSink.Tests_New.Ui;
-using KitchenSink.Tests_New.Ui.ArrayPage;
+﻿using KitchenSink.Tests.Tests;
+using KitchenSink.Tests.Ui;
+using KitchenSink.Tests.Ui.ArrayPage;
 using NUnit.Framework;
 
-namespace KitchenSink.Tests_New.Tests.ArrayPage
+namespace KitchenSink.TestsTests.ArrayPage
 {
     [TestFixture]
     class DatagridPageTest : BaseTest

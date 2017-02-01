@@ -1,8 +1,8 @@
-﻿using KitchenSink.Tests_New.Ui;
-using KitchenSink.Tests_New.Ui.CustomPage;
+﻿using KitchenSink.Tests.Ui;
+using KitchenSink.Tests.Ui.CustomPage;
 using NUnit.Framework;
 
-namespace KitchenSink.Tests_New.Tests.CustomPage
+namespace KitchenSink.Tests.Tests.CustomPage
 {
     [TestFixture]
     class AutoCompletePageTest : BaseTest
@@ -21,14 +21,14 @@ namespace KitchenSink.Tests_New.Tests.CustomPage
         public void AutoCompletePage_FillStarExpectAllItemsShowUp()
         {
             WaitUntil(x => _autoCompletePage.ProductsInput.Displayed);
-            _autoCompletePage.ClearProductsInput();
-            _autoCompletePage.SendKeyProductsInput("*");
+            _autoCompletePage.ProductsInput.Clear();
+            _autoCompletePage.ProductsInput.SendKeys("*");
             WaitUntil(x => _autoCompletePage.ProductsAutoComplete.Count > 0);
             Assert.AreEqual(8, _autoCompletePage.ProductsAutoComplete.Count);
 
             WaitUntil(x => _autoCompletePage.PlaceInput.Displayed);
-            _autoCompletePage.ClearPlaceInput();
-            _autoCompletePage.SendKeyPlacesInput("*");
+            _autoCompletePage.PlaceInput.Clear();
+            _autoCompletePage.PlaceInput.SendKeys("*");
             WaitUntil(x => _autoCompletePage.PlacesAutoComplete.Count > 0);
             Assert.AreEqual(7, _autoCompletePage.PlacesAutoComplete.Count);
         }
@@ -37,8 +37,8 @@ namespace KitchenSink.Tests_New.Tests.CustomPage
         public void AutoCompletePage_FillCountryNameThenSelectCountry()
         {
             WaitUntil(x => _autoCompletePage.PlaceInput.Displayed);
-            _autoCompletePage.ClearPlaceInput();
-            _autoCompletePage.SendKeyPlacesInput("P");
+            _autoCompletePage.PlaceInput.Clear();
+            _autoCompletePage.PlaceInput.SendKeys("P");
             WaitUntil(x => _autoCompletePage.PlacesAutoComplete.Count > 0);
             _autoCompletePage.ChoosePlace("Poland");
             Assert.AreEqual("Capital of Poland is Warsaw", _autoCompletePage.PlaceInfoLabel.Text);
@@ -48,8 +48,8 @@ namespace KitchenSink.Tests_New.Tests.CustomPage
         public void AutoCompletePage_FillProductNameThenSelectProduct()
         {
             WaitUntil(x => _autoCompletePage.ProductsInput.Displayed);
-            _autoCompletePage.ClearProductsInput();
-            _autoCompletePage.SendKeyProductsInput("B");
+            _autoCompletePage.PlaceInput.Clear();
+            _autoCompletePage.ProductsInput.SendKeys("B");
             WaitUntil(x => _autoCompletePage.ProductsAutoComplete.Count > 0);
             _autoCompletePage.ChooseProducts("Bread");
             Assert.AreEqual("Bread costs $1", _autoCompletePage.ProductsInfoLabel.Text);

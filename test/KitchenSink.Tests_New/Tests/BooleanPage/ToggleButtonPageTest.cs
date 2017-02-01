@@ -1,9 +1,9 @@
-﻿using KitchenSink.Tests_New.Ui;
-using KitchenSink.Tests_New.Ui.BooleanPage;
+﻿using KitchenSink.Tests.Ui;
+using KitchenSink.Tests.Ui.BooleanPage;
 using NUnit.Framework;
 using OpenQA.Selenium.Support.UI;
 
-namespace KitchenSink.Tests_New.Tests.BooleanPage
+namespace KitchenSink.Tests.Tests.BooleanPage
 {
     [TestFixture]
     class ToggleButtonPageTest : BaseTest

@@ -1,10 +1,15 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
-namespace KitchenSink.Tests_New.Ui.StringPage
+namespace KitchenSink.Tests.Ui.StringPage
 {
     public class ValidationPage : BasePage
     {
+        public ValidationPage(IWebDriver driver) : base(driver)
+        {
+            PageFactory.InitElements(Driver, this);
+        }
+
         [FindsBy(How = How.XPath, Using = "//input[@placeholder = 'Name']")]
         public IWebElement NameInput { get; set; }
 
@@ -14,16 +19,11 @@ namespace KitchenSink.Tests_New.Ui.StringPage
         [FindsBy(How = How.XPath, Using = "//button[text() = 'Validate']")]
         public IWebElement ValidateButton { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".automated-tests-name-error__label")]
+        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-name-error__label")]
         public IWebElement NameErrorLabel { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".automated-tests-lastname-error__label")]
+        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-lastname-error__label")]
         public IWebElement LastNameErrorLabel { get; set; }
-
-        public ValidationPage(IWebDriver driver) : base(driver)
-        {
-            PageFactory.InitElements(Driver, this);
-        }
 
         public void InsertName(string name)
         {

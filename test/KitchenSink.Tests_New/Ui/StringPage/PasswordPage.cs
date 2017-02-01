@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
-namespace KitchenSink.Tests_New.Ui.StringPage
+namespace KitchenSink.Tests.Ui.StringPage
 {
     public class PasswordPage : BasePage
     {
@@ -10,10 +10,10 @@ namespace KitchenSink.Tests_New.Ui.StringPage
             PageFactory.InitElements(Driver, this);
         }
 
-        [FindsBy(How = How.CssSelector, Using = ".automated-tests-password__input")]
+        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-password__input")]
         public IWebElement PasswordInput { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".automated-tests-info__label")]
+        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-info__label")]
         public IWebElement PaswordInputInfoLabel { get; set; }
 
         public void FillPassword(string password)

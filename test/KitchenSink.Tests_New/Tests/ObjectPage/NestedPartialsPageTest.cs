@@ -1,8 +1,8 @@
-﻿using KitchenSink.Tests_New.Ui;
-using KitchenSink.Tests_New.Ui.ObjectPage;
+﻿using KitchenSink.Tests.Ui;
+using KitchenSink.Tests.Ui.ObjectPage;
 using NUnit.Framework;
 
-namespace KitchenSink.Tests_New.Tests.ObjectPage
+namespace KitchenSink.Tests.Tests.ObjectPage
 {
     [TestFixture]
     class NestedPartialsPageTest : BaseTest

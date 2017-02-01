@@ -3,7 +3,7 @@ using System.Linq;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
-namespace KitchenSink.Tests_New.Ui.CustomPage
+namespace KitchenSink.Tests.Ui.CustomPage
 {
     public class AutoCompletePage : BasePage
     {
@@ -30,37 +30,14 @@ namespace KitchenSink.Tests_New.Ui.CustomPage
         [FindsBy(How = How.Id, Using = "kitchensink-autocomplete-price")]
         public IWebElement ProductsInfoLabel { get; set; }
 
-        public void SendKeyProductsInput(string s)
-        {
-            ProductsInput.SendKeys(s);
-        }
-
-        public void SendKeyPlacesInput(string s)
-        {
-            PlaceInput.SendKeys(s);
-        }
-
         public void ChoosePlace(string s)
         {
-            var test = (from temp in PlacesAutoComplete where temp.Text == s select temp).First();
-            test.Click();
-
+           ClickOn(PlacesAutoComplete.Where(x => x.Text == s).First());
         }
 
         public void ChooseProducts(string b)
         {
-            var test = (from temp in ProductsAutoComplete where temp.Text == b select temp).First();
-            test.Click();
-        }
-
-        public void ClearProductsInput()
-        {
-            ProductsInput.Clear();
-        }
-
-        public void ClearPlaceInput()
-        {
-            PlaceInput.Clear();
+            ClickOn(ProductsAutoComplete.Where(x => x.Text == b).First());
         }
     }
 }

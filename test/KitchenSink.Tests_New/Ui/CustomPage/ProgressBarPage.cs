@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
-namespace KitchenSink.Tests_New.Ui.CustomPage
+namespace KitchenSink.Tests.Ui.CustomPage
 {
     public class ProgressBarPage : BasePage
     {

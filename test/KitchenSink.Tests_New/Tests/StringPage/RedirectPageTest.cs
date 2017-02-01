@@ -1,8 +1,9 @@
-﻿using KitchenSink.Tests_New.Ui;
-using KitchenSink.Tests_New.Ui.StringPage;
+﻿using KitchenSink.Tests.Ui;
+using KitchenSink.Tests.Ui.StringPage;
+using KitchenSink.Tests.Utilities;
 using NUnit.Framework;
 
-namespace KitchenSink.Tests_New.Tests.StringPage
+namespace KitchenSink.Tests.Tests.StringPage
 {
     [TestFixture]
     class RedirectPageTest : BaseTest
@@ -20,32 +21,32 @@ namespace KitchenSink.Tests_New.Tests.StringPage
         [Test]
         public void RedirectPage_ClickingOnFruitShouldChangeUrlAndText()
         {
-            var oryginalText = "Select your favorite food";
+            var originalText = "Select your favorite food";
 
             _redirectPage.ClickButton("Fruit");
-            WaitUntil(x => _redirectPage.InfoLabel.Text != oryginalText);
+            WaitUntil(x => _redirectPage.InfoLabel.Text != originalText);
             Assert.AreEqual("You\'ve got some tasty apple", _redirectPage.InfoLabel.Text);
-            Assert.AreEqual("http://localhost:8080/KitchenSink/Redirect/apple", Driver.Url);
+            Assert.AreEqual(Config.KitchenSinkUrl + "/Redirect/apple", Driver.Url);
             
-            oryginalText = "You\'ve got some tasty apple";
+            originalText = "You\'ve got some tasty apple";
             _redirectPage.ClickButton("Vegetable");
-            WaitUntil(x => _redirectPage.InfoLabel.Text != oryginalText);
+            WaitUntil(x => _redirectPage.InfoLabel.Text != originalText);
             Assert.AreEqual("You\'ve got some tasty carrot", _redirectPage.InfoLabel.Text);
-            Assert.AreEqual("http://localhost:8080/KitchenSink/Redirect/carrot", Driver.Url);
+            Assert.AreEqual(Config.KitchenSinkUrl + "/Redirect/carrot", Driver.Url);
 
-            oryginalText = "You\'ve got some tasty carrot";
+            originalText = "You\'ve got some tasty carrot";
             _redirectPage.ClickButton("Bread");
-            WaitUntil(x => _redirectPage.InfoLabel.Text != oryginalText);
+            WaitUntil(x => _redirectPage.InfoLabel.Text != originalText);
             Assert.AreEqual("You\'ve got some tasty baguette", _redirectPage.InfoLabel.Text);
-            Assert.AreEqual("http://localhost:8080/KitchenSink/Redirect/baguette", Driver.Url);
+            Assert.AreEqual(Config.KitchenSinkUrl + "/Redirect/baguette", Driver.Url);
         }
 
         [Test]
         public void RedirectPage_ClickingOnRedirectToAnotherPartialShouldChangeUrl()
         {
             _redirectPage.ClickButton("Morph");
-            WaitUntil(x => Driver.Url == "http://localhost:8080/KitchenSink");
-            Assert.AreEqual("http://localhost:8080/KitchenSink", Driver.Url);
+            WaitUntil(x => Driver.Url == Config.KitchenSinkUrl.ToString());
+            Assert.AreEqual(Config.KitchenSinkUrl, Driver.Url);
         }
 
         [Test]

@@ -1,26 +1,22 @@
-﻿using KitchenSink.Tests_New.Tests.CustomPage;
-using KitchenSink.Tests_New.Ui.ArrayPage;
-using KitchenSink.Tests_New.Ui.BooleanPage;
-using KitchenSink.Tests_New.Ui.CustomPage;
-using KitchenSink.Tests_New.Ui.ObjectPage;
-using KitchenSink.Tests_New.Ui.StringPage;
-using KitchenSink.Tests_New.Utilities;
+﻿using KitchenSink.Tests.Ui.ArrayPage;
+using KitchenSink.Tests.Ui.BooleanPage;
+using KitchenSink.Tests.Ui.CustomPage;
+using KitchenSink.Tests.Ui.ObjectPage;
+using KitchenSink.Tests.Ui.StringPage;
+using KitchenSink.Tests.Utilities;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.PageObjects;
 
-namespace KitchenSink.Tests_New.Ui
+namespace KitchenSink.Tests.Ui
 {
     public class MainPage : BasePage
     {
         public MainPage(IWebDriver driver) : base(driver)
         {
-            //PageFactory.InitElements(Driver, this);
         }
 
         public MainPage GoToMainPage()
         {
-            //ClickOn(MainPageLink);
-            Driver.Navigate().GoToUrl(Config.Url);
+            Driver.Navigate().GoToUrl(Config.KitchenSinkUrl + "/MainPage");
             return this;
         }
 

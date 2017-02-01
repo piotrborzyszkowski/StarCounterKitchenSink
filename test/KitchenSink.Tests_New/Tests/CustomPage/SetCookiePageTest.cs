@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace KitchenSink.Tests_New.Tests.CustomPage
+namespace KitchenSink.Tests.Tests.CustomPage
 {
     [TestFixture]
     class SetCookiePageTest : BaseTest

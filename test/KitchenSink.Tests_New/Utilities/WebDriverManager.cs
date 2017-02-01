@@ -2,7 +2,7 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Remote;
 
-namespace KitchenSink.Tests_New.Utilities
+namespace KitchenSink.Tests.Utilities
 {
     public class WebDriverManager
     {
@@ -32,7 +32,6 @@ namespace KitchenSink.Tests_New.Utilities
             IWebDriver eventDriver = new EventListener(_driver);
             _driver = eventDriver;
             _driver.Manage().Window.Maximize();
-            //_driver.Navigate().GoToUrl(portalUrl);
             _driver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(timeout));
             _driver.Manage().Timeouts().SetScriptTimeout(TimeSpan.FromSeconds(timeout));
             return _driver;
