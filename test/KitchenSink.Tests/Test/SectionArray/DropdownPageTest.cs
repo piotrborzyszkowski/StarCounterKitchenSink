@@ -13,7 +13,7 @@ namespace KitchenSink.Tests.Test.SectionArray
         private DropdownPage _dropDownPage;
         private MainPage _mainPage;
 
-        public DropdownPageTest(Config.Browser browser) : base(browser)
+        public DropdownPageTest(Config.Browser browser, string author, string description) : base(browser)
         {
         }
 

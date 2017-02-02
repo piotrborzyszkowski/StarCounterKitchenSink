@@ -13,7 +13,7 @@ namespace KitchenSink.Tests.Test.SectionString
         private ValidationPage _validationPage;
         private MainPage _mainPage;
 
-        public ValidationPageTest(Config.Browser browser) : base(browser)
+        public ValidationPageTest(Config.Browser browser, string author, string description) : base(browser)
         {
         }
 

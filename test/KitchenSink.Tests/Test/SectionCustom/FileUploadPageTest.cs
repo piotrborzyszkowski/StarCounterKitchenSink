@@ -14,7 +14,7 @@ namespace KitchenSink.Tests.Test.SectionCustom
         private FileUploadPage _fileUploadPage;
         private MainPage _mainPage;
 
-        public FileUploadPageTest(Config.Browser browser) : base(browser)
+        public FileUploadPageTest(Config.Browser browser, string author, string description) : base(browser)
         {
         }
 

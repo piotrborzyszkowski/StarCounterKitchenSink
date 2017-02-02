@@ -13,7 +13,7 @@ namespace KitchenSink.Tests.Test.SectionArray
         private TablePage _tablePage;
         private MainPage _mainPage;
 
-        public TablePageTest(Config.Browser browser) : base(browser)
+        public TablePageTest(Config.Browser browser, string author, string description) : base(browser)
         {
         }
 

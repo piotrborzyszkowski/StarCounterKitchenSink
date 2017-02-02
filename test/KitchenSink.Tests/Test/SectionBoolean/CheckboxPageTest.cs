@@ -14,7 +14,7 @@ namespace KitchenSink.Tests.Test.SectionBoolean
         private CheckboxPage _checkboxPage;
         private MainPage _mainPage;
 
-        public CheckboxPageTest(Config.Browser browser) : base(browser)
+        public CheckboxPageTest(Config.Browser browser, string author, string description) : base(browser)
         {
         }
 

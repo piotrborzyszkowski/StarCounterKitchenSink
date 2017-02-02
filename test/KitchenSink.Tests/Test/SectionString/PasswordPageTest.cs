@@ -13,7 +13,7 @@ namespace KitchenSink.Tests.Test.SectionString
         private PasswordPage _passwordPage;
         private MainPage _mainPage;
 
-        public PasswordPageTest(Config.Browser browser) : base(browser)
+        public PasswordPageTest(Config.Browser browser, string author, string description) : base(browser)
         {
         }
 

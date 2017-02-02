@@ -13,7 +13,7 @@ namespace KitchenSink.Tests.Test.SectionString
         private DatepickerPage _datePicker;
         private MainPage _mainPage;
 
-        public DatepickerPageTest(Config.Browser browser) : base(browser)
+        public DatepickerPageTest(Config.Browser browser, string author, string description) : base(browser)
         {
         }
 

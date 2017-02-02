@@ -13,7 +13,7 @@ namespace KitchenSink.Tests.Test.SectionString
         private TextareaPage _textareaPage;
         private MainPage _mainPage;
 
-        public TextareaPageTest(Config.Browser browser) : base(browser)
+        public TextareaPageTest(Config.Browser browser, string author, string description) : base(browser)
         {
         }
 

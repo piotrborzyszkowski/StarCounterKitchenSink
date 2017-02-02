@@ -13,7 +13,7 @@ namespace KitchenSink.Tests.Test.SectionArray
         private DatagridPage _datagridPage;
         private MainPage _mainPage;
 
-        public DatagridPageTest(Config.Browser browser) : base(browser)
+        public DatagridPageTest(Config.Browser browser, string author, string description) : base(browser)
         {
         }
 

@@ -14,7 +14,7 @@ namespace KitchenSink.Tests.Test.SectionNumber
         private ButtonPage _buttonPage;
         private MainPage _mainPage;
 
-        public ButtonPageTest(Config.Browser browser) : base(browser)
+        public ButtonPageTest(Config.Browser browser, string author, string description) : base(browser)
         {
         }
 

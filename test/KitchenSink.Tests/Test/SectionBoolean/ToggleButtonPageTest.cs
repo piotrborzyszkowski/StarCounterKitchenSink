@@ -14,7 +14,7 @@ namespace KitchenSink.Tests.Test.SectionBoolean
         private ToggleButtonPage _toggleButtonPage;
         private MainPage _mainPage;
 
-        public ToggleButtonPageTest(Config.Browser browser) : base(browser)
+        public ToggleButtonPageTest(Config.Browser browser, string author, string description) : base(browser)
         {
         }
 

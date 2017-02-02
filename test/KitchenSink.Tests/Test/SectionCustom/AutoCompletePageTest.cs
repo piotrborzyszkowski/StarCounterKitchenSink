@@ -13,7 +13,7 @@ namespace KitchenSink.Tests.Test.SectionCustom
         private AutoCompletePage _autoCompletePage;
         private MainPage _mainPage;
 
-        public AutoCompletePageTest(Config.Browser browser) : base(browser)
+        public AutoCompletePageTest(Config.Browser browser, string author, string description) : base(browser)
         {
         }
 

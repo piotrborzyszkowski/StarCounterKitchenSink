@@ -13,7 +13,7 @@ namespace KitchenSink.Tests.Test.SectionArray
         private RadioPage _radioPage;
         private MainPage _mainPage;
 
-        public RadioPageTest(Config.Browser browser) : base(browser)
+        public RadioPageTest(Config.Browser browser, string author, string description) : base(browser)
         {
         }
 

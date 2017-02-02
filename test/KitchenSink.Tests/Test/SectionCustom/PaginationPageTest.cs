@@ -14,7 +14,7 @@ namespace KitchenSink.Tests.Test.SectionCustom
         private PaginationPage _paginationPage;
         private MainPage _mainPage;
 
-        public PaginationPageTest(Config.Browser browser) : base(browser)
+        public PaginationPageTest(Config.Browser browser, string author, string description) : base(browser)
         {
         }
 

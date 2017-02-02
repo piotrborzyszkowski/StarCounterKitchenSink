@@ -13,7 +13,7 @@ namespace KitchenSink.Tests.Test.SectionString
         private RedirectPage _redirectPage;
         private MainPage _mainPage;
 
-        public RedirectPageTest(Config.Browser browser) : base(browser)
+        public RedirectPageTest(Config.Browser browser, string author, string description) : base(browser)
         {
         }
 
