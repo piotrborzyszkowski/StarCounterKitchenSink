@@ -1,6 +1,7 @@
 ﻿using System;
 using KitchenSink.Tests.Utilities;
 using NUnit.Framework;
+using NUnit.Framework.Internal;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 
@@ -9,15 +10,16 @@ namespace KitchenSink.Tests.Test
     public class BaseTest
     {
         public IWebDriver Driver;
+        private string _args;
 
-        [OneTimeSetUp]
+        [OneTimeSetUp, Description("DESCRIPTION OF A TEST")]
         public void TestFixtureSetUp()
         {
-            string args = TestContext.Parameters["Browser"];
+            _args = TestContext.Parameters["Browser"];
 
             Config.Browser browser = Config.Browser.Chrome;
 
-            switch (args)
+            switch (_args)
             {
                 case "Chrome":
                     browser = Config.Browser.Chrome;
@@ -30,13 +32,16 @@ namespace KitchenSink.Tests.Test
                     break;
             }
 
+            Console.WriteLine("##teamcity[testSuiteStarted name='" + _args + "']");
+
             Driver = WebDriverManager.StartDriver(browser, Config.Timeout, Config.RemoteWebDriverUri);
         }
 
         [OneTimeTearDown]
         public void TestFixtureTearDown()
         {
-           Driver.Quit();
+            Console.WriteLine("##teamcity[testSuiteFinished name='" + _args + "']");
+            Driver.Quit();
         }
 
         protected TResult WaitUntil<TResult>(Func<IWebDriver, TResult> condition)
