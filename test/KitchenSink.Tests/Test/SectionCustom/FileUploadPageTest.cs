@@ -6,9 +6,9 @@ using KitchenSink.Tests.Utilities;
 
 namespace KitchenSink.Tests.Test.SectionCustom
 {
-    [TestFixture(Config.Browser.Chrome)]
-    [TestFixture(Config.Browser.Edge)]
-    [TestFixture(Config.Browser.Firefox)]
+    [TestFixture(Config.Browser.Chrome, "Krystian Matti", "Running File Upload Page Test on Chrome")]
+    [TestFixture(Config.Browser.Edge, "Krystian Matti", "Running File Upload Page Test on Edge")]
+    [TestFixture(Config.Browser.Firefox, "Krystian Matti", "Running File Upload Page Test on Firefox")]
     class FileUploadPageTest : BaseTest
     {
         private FileUploadPage _fileUploadPage;

@@ -5,9 +5,9 @@ using NUnit.Framework;
 
 namespace KitchenSink.Tests.Test.SectionCustom
 {
-    [TestFixture(Config.Browser.Chrome)]
-    [TestFixture(Config.Browser.Edge)]
-    [TestFixture(Config.Browser.Firefox)]
+    [TestFixture(Config.Browser.Chrome, "Krystian Matti", "Running AutoComplete Page Test on Chrome")]
+    [TestFixture(Config.Browser.Edge, "Krystian Matti", "Running AutoComplete Page Test on Edge")]
+    [TestFixture(Config.Browser.Firefox, "Krystian Matti", "Running AutoComplete Page Test on Firefox")]
     class AutoCompletePageTest : BaseTest
     {
         private AutoCompletePage _autoCompletePage;

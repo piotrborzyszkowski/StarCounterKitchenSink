@@ -5,9 +5,9 @@ using NUnit.Framework;
 
 namespace KitchenSink.Tests.Test.SectionString
 {
-    [TestFixture(Config.Browser.Chrome)]
-    [TestFixture(Config.Browser.Edge)]
-    [TestFixture(Config.Browser.Firefox)]
+    [TestFixture(Config.Browser.Chrome, "Krystian Matti", "Running Datepicker Page Test on Chrome")]
+    [TestFixture(Config.Browser.Edge, "Krystian Matti", "Running Datepicker Page Test on Edge")]
+    [TestFixture(Config.Browser.Firefox, "Krystian Matti", "Running Datepicker Page Test on Firefox")]
     class DatepickerPageTest : BaseTest
     {
         private DatepickerPage _datePicker;

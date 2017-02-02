@@ -6,9 +6,9 @@ using OpenQA.Selenium.Support.UI;
 
 namespace KitchenSink.Tests.Test.SectionBoolean
 {
-    [TestFixture(Config.Browser.Chrome, "Krystian", "Running Test on Chrome")]
-    [TestFixture(Config.Browser.Edge,"Krystian","Running Test on Edge")]
-    [TestFixture(Config.Browser.Firefox, "Krystian", "Running Test on Firefox")]
+    [TestFixture(Config.Browser.Chrome, "Krystian Matti", "Running Checkbox Page Test on Chrome")]
+    [TestFixture(Config.Browser.Edge, "Krystian Matti", "Running Checkbox Page Test on Edge")]
+    [TestFixture(Config.Browser.Firefox, "Krystian Matti", "Running Checkbox Page Test on Firefox")]
     class CheckboxPageTest : BaseTest
     {
         private CheckboxPage _checkboxPage;

@@ -6,9 +6,9 @@ using OpenQA.Selenium.Support.UI;
 
 namespace KitchenSink.Tests.Test.SectionNumber
 {
-    [TestFixture(Config.Browser.Chrome)]
-    [TestFixture(Config.Browser.Edge)]
-    [TestFixture(Config.Browser.Firefox)]
+    [TestFixture(Config.Browser.Chrome, "Krystian Matti", "Running Button Page Test on Chrome")]
+    [TestFixture(Config.Browser.Edge, "Krystian Matti", "Running Button Page Test on Edge")]
+    [TestFixture(Config.Browser.Firefox, "Krystian Matti", "Running Button Page Test on Firefox")]
     class ButtonPageTest : BaseTest
     {
         private ButtonPage _buttonPage;

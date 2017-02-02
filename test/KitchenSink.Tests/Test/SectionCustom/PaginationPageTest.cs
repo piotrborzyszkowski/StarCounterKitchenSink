@@ -6,9 +6,9 @@ using NUnit.Framework;
 
 namespace KitchenSink.Tests.Test.SectionCustom
 {
-    [TestFixture(Config.Browser.Chrome)]
-    [TestFixture(Config.Browser.Edge)]
-    [TestFixture(Config.Browser.Firefox)]
+    [TestFixture(Config.Browser.Chrome, "Krystian Matti", "Running Pagination Page Test on Chrome")]
+    [TestFixture(Config.Browser.Edge, "Krystian Matti", "Running Pagination Page Test on Edge")]
+    [TestFixture(Config.Browser.Firefox, "Krystian Matti", "Running Pagination Page Test on Firefox")]
     class PaginationPageTest : BaseTest
     {
         private PaginationPage _paginationPage;

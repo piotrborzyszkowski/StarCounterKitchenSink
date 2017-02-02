@@ -5,9 +5,9 @@ using NUnit.Framework;
 
 namespace KitchenSink.Tests.Test.SectionArray
 {
-    [TestFixture(Config.Browser.Chrome)]
-    [TestFixture(Config.Browser.Edge)]
-    [TestFixture(Config.Browser.Firefox)]
+    [TestFixture(Config.Browser.Chrome, "Krystian", "Running Radiolist Page Test on Chrome")]
+    [TestFixture(Config.Browser.Edge, "Krystian", "Running Radiolist Page Test on Edge")]
+    [TestFixture(Config.Browser.Firefox, "Krystian", "Running Radiolist Page Test on Firefox")]
     class RadiolistPageTest : BaseTest
     {
         private RadiolistPage _radiolistPage;
