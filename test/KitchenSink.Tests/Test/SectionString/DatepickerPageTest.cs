@@ -1,14 +1,21 @@
 ﻿using KitchenSink.Tests.Ui;
 using KitchenSink.Tests.Ui.SectionString;
+using KitchenSink.Tests.Utilities;
 using NUnit.Framework;
 
 namespace KitchenSink.Tests.Test.SectionString
 {
-    [TestFixture]
+    [TestFixture(Config.Browser.Chrome)]
+    [TestFixture(Config.Browser.Edge)]
+    [TestFixture(Config.Browser.Firefox)]
     class DatepickerPageTest : BaseTest
     {
         private DatepickerPage _datePicker;
         private MainPage _mainPage;
+
+        public DatepickerPageTest(Config.Browser browser) : base(browser)
+        {
+        }
 
         [SetUp]
         public void SetUp()

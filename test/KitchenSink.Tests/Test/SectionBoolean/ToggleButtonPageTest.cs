@@ -1,15 +1,22 @@
 ﻿using KitchenSink.Tests.Ui;
 using KitchenSink.Tests.Ui.SectionBoolean;
+using KitchenSink.Tests.Utilities;
 using NUnit.Framework;
 using OpenQA.Selenium.Support.UI;
 
 namespace KitchenSink.Tests.Test.SectionBoolean
 {
-    [TestFixture]
+    [TestFixture(Config.Browser.Chrome)]
+    [TestFixture(Config.Browser.Edge)]
+    [TestFixture(Config.Browser.Firefox)]
     class ToggleButtonPageTest : BaseTest
     {
         private ToggleButtonPage _toggleButtonPage;
         private MainPage _mainPage;
+
+        public ToggleButtonPageTest(Config.Browser browser) : base(browser)
+        {
+        }
 
         [SetUp]
         public void SetUp()

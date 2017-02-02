@@ -5,11 +5,17 @@ using NUnit.Framework;
 
 namespace KitchenSink.Tests.Test.SectionString
 {
-    [TestFixture]
+    [TestFixture(Config.Browser.Chrome)]
+    [TestFixture(Config.Browser.Edge)]
+    [TestFixture(Config.Browser.Firefox)]
     class RedirectPageTest : BaseTest
     {
         private RedirectPage _redirectPage;
         private MainPage _mainPage;
+
+        public RedirectPageTest(Config.Browser browser) : base(browser)
+        {
+        }
 
         [SetUp]
         public void SetUp()

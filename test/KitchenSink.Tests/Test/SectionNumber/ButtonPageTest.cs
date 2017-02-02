@@ -1,15 +1,23 @@
 ﻿using KitchenSink.Tests.Ui;
 using KitchenSink.Tests.Ui.SectionNumber;
+using KitchenSink.Tests.Utilities;
 using NUnit.Framework;
 using OpenQA.Selenium.Support.UI;
 
 namespace KitchenSink.Tests.Test.SectionNumber
 {
-    [TestFixture]
+    [TestFixture(Config.Browser.Chrome)]
+    [TestFixture(Config.Browser.Edge)]
+    [TestFixture(Config.Browser.Firefox)]
     class ButtonPageTest : BaseTest
     {
         private ButtonPage _buttonPage;
         private MainPage _mainPage;
+
+        public ButtonPageTest(Config.Browser browser) : base(browser)
+        {
+        }
+
 
         [SetUp]
         public void SetUp()

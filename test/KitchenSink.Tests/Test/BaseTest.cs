@@ -10,29 +10,34 @@ namespace KitchenSink.Tests.Test
     public class BaseTest
     {
         public IWebDriver Driver;
-        private string _args;
+        private readonly Config.Browser _browser;
+
+        public BaseTest(Config.Browser browser)
+        {
+            _browser = browser;
+        }
 
         [OneTimeSetUp]
         public void TestFixtureSetUp()
         {
-            _args = TestContext.Parameters["Browser"];
+            //string _args = TestContext.Parameters["Browser"];
 
-            Config.Browser browser = Config.Browser.Chrome;
+            //Config.Browser browser = Config.Browser.Chrome;
 
-            switch (_args)
-            {
-                case "Chrome":
-                    browser = Config.Browser.Chrome;
-                    break;
-                case "Firefox":
-                    browser = Config.Browser.Firefox;
-                    break;
-                case "Edge":
-                    browser = Config.Browser.Edge;
-                    break;
-            }
+            //switch (_args)
+            //{
+            //    case "Chrome":
+            //        browser = Config.Browser.Chrome;
+            //        break;
+            //    case "Firefox":
+            //        browser = Config.Browser.Firefox;
+            //        break;
+            //    case "Edge":
+            //        browser = Config.Browser.Edge;
+            //        break;
+            //}
 
-            Driver = WebDriverManager.StartDriver(browser, Config.Timeout, Config.RemoteWebDriverUri);
+            Driver = WebDriverManager.StartDriver(_browser, Config.Timeout, Config.RemoteWebDriverUri);
         }
 
         [OneTimeTearDown]

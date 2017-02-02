@@ -1,14 +1,21 @@
 ﻿using KitchenSink.Tests.Ui;
 using KitchenSink.Tests.Ui.SectionString;
+using KitchenSink.Tests.Utilities;
 using NUnit.Framework;
 
 namespace KitchenSink.Tests.Test.SectionString
 {
-    [TestFixture]
+    [TestFixture(Config.Browser.Chrome)]
+    [TestFixture(Config.Browser.Edge)]
+    [TestFixture(Config.Browser.Firefox)]
     class ValidationPageTest : BaseTest
     {
         private ValidationPage _validationPage;
         private MainPage _mainPage;
+
+        public ValidationPageTest(Config.Browser browser) : base(browser)
+        {
+        }
 
         [SetUp]
         public void SetUp()

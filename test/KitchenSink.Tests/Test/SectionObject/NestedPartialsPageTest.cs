@@ -1,14 +1,21 @@
 ﻿using KitchenSink.Tests.Ui;
 using KitchenSink.Tests.Ui.SectionObject;
+using KitchenSink.Tests.Utilities;
 using NUnit.Framework;
 
 namespace KitchenSink.Tests.Test.SectionObject
 {
-    [TestFixture]
+    [TestFixture(Config.Browser.Chrome)]
+    [TestFixture(Config.Browser.Edge)]
+    [TestFixture(Config.Browser.Firefox)]
     class NestedPartialsPageTest : BaseTest
     {
         private NestedPartialsPage _nestedPartialsPage;
         private MainPage _mainPage;
+
+        public NestedPartialsPageTest(Config.Browser browser) : base(browser)
+        {
+        }
 
         [SetUp]
         public void SetUp()

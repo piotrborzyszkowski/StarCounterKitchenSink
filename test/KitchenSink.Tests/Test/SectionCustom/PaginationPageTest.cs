@@ -1,15 +1,22 @@
 ﻿using System.Linq;
 using KitchenSink.Tests.Ui;
 using KitchenSink.Tests.Ui.SectionCustom;
+using KitchenSink.Tests.Utilities;
 using NUnit.Framework;
 
 namespace KitchenSink.Tests.Test.SectionCustom
 {
-    [TestFixture]
+    [TestFixture(Config.Browser.Chrome)]
+    [TestFixture(Config.Browser.Edge)]
+    [TestFixture(Config.Browser.Firefox)]
     class PaginationPageTest : BaseTest
     {
         private PaginationPage _paginationPage;
         private MainPage _mainPage;
+
+        public PaginationPageTest(Config.Browser browser) : base(browser)
+        {
+        }
 
         [SetUp]
         public void SetUp()

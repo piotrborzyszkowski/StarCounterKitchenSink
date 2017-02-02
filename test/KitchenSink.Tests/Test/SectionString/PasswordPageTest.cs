@@ -1,14 +1,21 @@
 ﻿using KitchenSink.Tests.Ui;
 using KitchenSink.Tests.Ui.SectionString;
+using KitchenSink.Tests.Utilities;
 using NUnit.Framework;
 
 namespace KitchenSink.Tests.Test.SectionString
 {
-    [TestFixture]
+    [TestFixture(Config.Browser.Chrome)]
+    [TestFixture(Config.Browser.Edge)]
+    [TestFixture(Config.Browser.Firefox)]
     class PasswordPageTest : BaseTest
     {
         private PasswordPage _passwordPage;
         private MainPage _mainPage;
+
+        public PasswordPageTest(Config.Browser browser) : base(browser)
+        {
+        }
 
         [SetUp]
         public void SetUp()

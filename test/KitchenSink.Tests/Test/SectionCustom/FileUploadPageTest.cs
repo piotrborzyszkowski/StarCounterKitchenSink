@@ -2,14 +2,21 @@
 using KitchenSink.Tests.Ui.SectionCustom;
 using NUnit.Framework;
 using System.IO;
+using KitchenSink.Tests.Utilities;
 
 namespace KitchenSink.Tests.Test.SectionCustom
 {
-    [TestFixture]
+    [TestFixture(Config.Browser.Chrome)]
+    [TestFixture(Config.Browser.Edge)]
+    [TestFixture(Config.Browser.Firefox)]
     class FileUploadPageTest : BaseTest
     {
         private FileUploadPage _fileUploadPage;
         private MainPage _mainPage;
+
+        public FileUploadPageTest(Config.Browser browser) : base(browser)
+        {
+        }
 
         [SetUp]
         public void SetUp()
