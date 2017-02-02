@@ -12,7 +12,7 @@ namespace KitchenSink.Tests.Test
         public IWebDriver Driver;
         private string _args;
 
-        [OneTimeSetUp, Description("DESCRIPTION OF A TEST")]
+        [OneTimeSetUp]
         public void TestFixtureSetUp()
         {
             _args = TestContext.Parameters["Browser"];
@@ -32,15 +32,12 @@ namespace KitchenSink.Tests.Test
                     break;
             }
 
-            Console.WriteLine("##teamcity[testSuiteStarted name='" + _args + "']");
-
             Driver = WebDriverManager.StartDriver(browser, Config.Timeout, Config.RemoteWebDriverUri);
         }
 
         [OneTimeTearDown]
         public void TestFixtureTearDown()
         {
-            Console.WriteLine("##teamcity[testSuiteFinished name='" + _args + "']");
             Driver.Quit();
         }
 
