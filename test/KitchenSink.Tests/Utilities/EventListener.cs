@@ -11,8 +11,7 @@ namespace KitchenSink.Tests.Utilities
             {
                 if (e != null && sender != null)
                 {
-                    //Need fix
-                    //Screenshot.MakeScreenshot(e.Driver);
+                    Screenshot.MakeScreenshot(e.Driver);
                 }
             };
         }
