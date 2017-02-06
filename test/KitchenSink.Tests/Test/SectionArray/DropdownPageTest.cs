@@ -2,6 +2,7 @@
 using KitchenSink.Tests.Ui.SectionArray;
 using KitchenSink.Tests.Utilities;
 using NUnit.Framework;
+using OpenQA.Selenium.Support.UI;
 
 namespace KitchenSink.Tests.Test.SectionArray
 {
@@ -30,13 +31,13 @@ namespace KitchenSink.Tests.Test.SectionArray
         {
             WaitUntil(x => _dropDownPage.PetsSelect.Displayed);
             _dropDownPage.SelectPet("dogs");
-            Assert.AreEqual("You like dogs", _dropDownPage.PetLikeLabel.Text);
+            Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_dropDownPage.PetLikeLabel, "You like dogs")));
 
             _dropDownPage.SelectPet("cats");
-            Assert.AreEqual("You like cats", _dropDownPage.PetLikeLabel.Text);
+            Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_dropDownPage.PetLikeLabel, "You like cats")));
 
             _dropDownPage.SelectPet("rabbit");
-            Assert.AreEqual("You like rabbit", _dropDownPage.PetLikeLabel.Text);
+            Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_dropDownPage.PetLikeLabel, "You like rabbit")));
         }
 
         [Test]

@@ -2,6 +2,7 @@
 using KitchenSink.Tests.Ui.SectionArray;
 using KitchenSink.Tests.Utilities;
 using NUnit.Framework;
+using OpenQA.Selenium.Support.UI;
 
 namespace KitchenSink.Tests.Test.SectionArray
 {
@@ -28,13 +29,13 @@ namespace KitchenSink.Tests.Test.SectionArray
         public void ButtonPage_RegularButton()
         {
             WaitUntil(x => _radiolistPage.InfoLabel.Displayed);
-            Assert.AreEqual("Dogs", _radiolistPage.InfoLabel.Text);
+            Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_radiolistPage.InfoLabel, "Dogs")));
 
             _radiolistPage.SelectRadio("Cats");
-            Assert.AreEqual("Cats", _radiolistPage.InfoLabel.Text);
+            Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_radiolistPage.InfoLabel, "Dogs")));
 
             _radiolistPage.SelectRadio("Dogs");
-            Assert.AreEqual("Dogs", _radiolistPage.InfoLabel.Text);
+            Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_radiolistPage.InfoLabel, "Dogs")));
         }
     }
 }
