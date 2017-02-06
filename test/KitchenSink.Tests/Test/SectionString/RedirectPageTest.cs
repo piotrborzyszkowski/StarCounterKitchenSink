@@ -2,6 +2,7 @@
 using KitchenSink.Tests.Ui.SectionString;
 using KitchenSink.Tests.Utilities;
 using NUnit.Framework;
+using OpenQA.Selenium.Support.UI;
 
 namespace KitchenSink.Tests.Test.SectionString
 {
@@ -27,23 +28,16 @@ namespace KitchenSink.Tests.Test.SectionString
         [Test]
         public void RedirectPage_ClickingOnFruitShouldChangeUrlAndText()
         {
-            var originalText = "Select your favorite food";
-
             _redirectPage.ClickButton("Fruit");
-            WaitUntil(x => _redirectPage.InfoLabel.Text != originalText);
-            Assert.AreEqual("You\'ve got some tasty apple", _redirectPage.InfoLabel.Text);
+            Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_redirectPage.InfoLabel, "You\'ve got some tasty apple")));
             Assert.AreEqual(Config.KitchenSinkUrl + "/Redirect/apple", Driver.Url);
             
-            originalText = "You\'ve got some tasty apple";
             _redirectPage.ClickButton("Vegetable");
-            WaitUntil(x => _redirectPage.InfoLabel.Text != originalText);
-            Assert.AreEqual("You\'ve got some tasty carrot", _redirectPage.InfoLabel.Text);
+            Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_redirectPage.InfoLabel, "You\'ve got some tasty carrot")));
             Assert.AreEqual(Config.KitchenSinkUrl + "/Redirect/carrot", Driver.Url);
 
-            originalText = "You\'ve got some tasty carrot";
             _redirectPage.ClickButton("Bread");
-            WaitUntil(x => _redirectPage.InfoLabel.Text != originalText);
-            Assert.AreEqual("You\'ve got some tasty baguette", _redirectPage.InfoLabel.Text);
+            Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_redirectPage.InfoLabel, "You\'ve got some tasty baguette")));
             Assert.AreEqual(Config.KitchenSinkUrl + "/Redirect/baguette", Driver.Url);
         }
 

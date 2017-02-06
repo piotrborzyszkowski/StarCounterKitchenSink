@@ -32,7 +32,7 @@ namespace KitchenSink.Tests.Test.SectionArray
             Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_radiolistPage.InfoLabel, "Dogs")));
 
             _radiolistPage.SelectRadio("Cats");
-            Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_radiolistPage.InfoLabel, "Dogs")));
+            Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_radiolistPage.InfoLabel, "Cats")));
 
             _radiolistPage.SelectRadio("Dogs");
             Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_radiolistPage.InfoLabel, "Dogs")));

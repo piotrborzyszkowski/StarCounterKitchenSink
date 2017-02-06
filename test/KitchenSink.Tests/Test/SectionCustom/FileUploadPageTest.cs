@@ -7,7 +7,7 @@ using KitchenSink.Tests.Utilities;
 namespace KitchenSink.Tests.Test.SectionCustom
 {
     [TestFixture(Config.Browser.Chrome, "Krystian Matti", "Running File Upload Page Test on Chrome")]
-    [TestFixture(Config.Browser.Edge, "Krystian Matti", "Running File Upload Page Test on Edge")]
+    //[TestFixture(Config.Browser.Edge, "Krystian Matti", "Running File Upload Page Test on Edge")] //BUG on EDGE https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/7194303/
     [TestFixture(Config.Browser.Firefox, "Krystian Matti", "Running File Upload Page Test on Firefox")]
     class FileUploadPageTest : BaseTest
     {

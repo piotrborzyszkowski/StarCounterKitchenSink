@@ -3,6 +3,7 @@ using KitchenSink.Tests.Ui;
 using KitchenSink.Tests.Ui.SectionCustom;
 using KitchenSink.Tests.Utilities;
 using NUnit.Framework;
+using OpenQA.Selenium.Support.UI;
 
 namespace KitchenSink.Tests.Test.SectionCustom
 {
@@ -31,17 +32,15 @@ namespace KitchenSink.Tests.Test.SectionCustom
             _paginationPage.ScrollToTheTop();
 
             WaitUntil(x => _paginationPage.DropDown.Displayed);
-            _paginationPage.DropdownSelect("5");          
+            _paginationPage.DropdownSelect("5");
+            Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_paginationPage.PaginationInfoLabel, "page 1 of 20")));
             Assert.AreEqual(5, _paginationPage.PaginationResult.Count);
-            Assert.AreEqual("page 1 of 20", _paginationPage.PaginationInfoLabel.Text);
             _paginationPage.DropdownSelect("15");
-            WaitUntil(x => _paginationPage.PaginationResult.Count > 5);
+            Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_paginationPage.PaginationInfoLabel, "page 1 of 7")));
             Assert.AreEqual(15, _paginationPage.PaginationResult.Count);
-            Assert.AreEqual("page 1 of 7", _paginationPage.PaginationInfoLabel.Text);
             _paginationPage.DropdownSelect("30");
-            WaitUntil(x => _paginationPage.PaginationResult.Count > 15);
+            Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_paginationPage.PaginationInfoLabel, "page 1 of 4")));
             Assert.AreEqual(30, _paginationPage.PaginationResult.Count);
-            Assert.AreEqual("page 1 of 4", _paginationPage.PaginationInfoLabel.Text);
         }
 
 
@@ -52,9 +51,8 @@ namespace KitchenSink.Tests.Test.SectionCustom
 
             WaitUntil(x => _paginationPage.DropDown.Displayed);
             _paginationPage.DropdownSelect("15");
-            WaitUntil(x => _paginationPage.PaginationResult.Count > 5);
+            Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_paginationPage.PaginationInfoLabel, "page 1 of 7")));
             Assert.AreEqual(15, _paginationPage.PaginationResult.Count);
-            Assert.AreEqual("page 1 of 7", _paginationPage.PaginationInfoLabel.Text);
             _paginationPage.GoToPage(">>");
             Assert.AreEqual("Arbitrary Book 99 - Arbitrary Author", _paginationPage.PaginationResult.Where(x => x.Text.Contains("99")).Select(x => x.Text).First());
             _paginationPage.GoToPage("3");

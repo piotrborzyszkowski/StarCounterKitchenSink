@@ -2,6 +2,7 @@
 using KitchenSink.Tests.Ui.SectionString;
 using KitchenSink.Tests.Utilities;
 using NUnit.Framework;
+using OpenQA.Selenium.Support.UI;
 
 namespace KitchenSink.Tests.Test.SectionString
 {
@@ -27,33 +28,25 @@ namespace KitchenSink.Tests.Test.SectionString
         [Test]
         public void TextPage_TextPropagationOnUnfocus()
         {
-            const string originalText = "What\'s your name?";
-            const string newText = "Krystian";
-
             WaitUntil(x => _textPage.Input.Displayed);
 
-            _textPage.FillInput(newText);
-            WaitUntil(x => _textPage.InputInfoLabel1.Text != originalText);
-            Assert.AreEqual("Hi, Krystian!", _textPage.InputInfoLabel1.Text);
+            _textPage.FillInput("Krystian");
+            Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_textPage.InputInfoLabel1, "Hi, Krystian!")));
             _textPage.ClearInput();
             WaitUntil(x => _textPage.Input.Text == string.Empty);
-            Assert.AreEqual(originalText, _textPage.InputInfoLabel1.Text);
+            Assert.AreEqual("What\'s your name?", _textPage.InputInfoLabel1.Text);
         }
 
         [Test]
         public void TextPage_TextPropagationWhileTyping()
         {
-            const string originalText = "What\'s your name?";
-            const string newText = "K";
-
             WaitUntil(x => _textPage.InputDynamic.Displayed);
 
-            _textPage.FillInputDynamic(newText);
-            WaitUntil(x => _textPage.InputInfoLabel2.Text != originalText);
-            Assert.AreEqual("Hi, K!", _textPage.InputInfoLabel2.Text);
+            _textPage.FillInputDynamic("K");
+            Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_textPage.InputInfoLabel1, "Hi, K!")));
             _textPage.ClearInputDynamic();
             WaitUntil(x => _textPage.InputDynamic.Text == string.Empty);
-            Assert.AreEqual(originalText, _textPage.InputInfoLabel2.Text);
+            Assert.AreEqual("What\'s your name?", _textPage.InputInfoLabel2.Text);
         }
     }
 }
