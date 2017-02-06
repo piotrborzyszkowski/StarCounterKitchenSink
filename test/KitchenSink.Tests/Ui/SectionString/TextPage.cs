@@ -17,10 +17,10 @@ namespace KitchenSink.Tests.Ui.SectionString
         public IWebElement InputDynamic { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-name__label")]
-        public IWebElement InputInfoLabel1 { get; set; }
+        public IWebElement InputInfoLabel { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-name__label-dynamic")]
-        public IWebElement InputInfoLabel2 { get; set; }
+        public IWebElement InputInfoLabelDynamic { get; set; }
 
         public void FillInput(string input)
         {

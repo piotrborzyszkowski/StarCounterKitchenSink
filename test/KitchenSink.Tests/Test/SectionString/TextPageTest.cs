@@ -31,10 +31,10 @@ namespace KitchenSink.Tests.Test.SectionString
             WaitUntil(x => _textPage.Input.Displayed);
 
             _textPage.FillInput("Krystian");
-            Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_textPage.InputInfoLabel1, "Hi, Krystian!")));
+            Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_textPage.InputInfoLabel, "Hi, Krystian!")));
             _textPage.ClearInput();
             WaitUntil(x => _textPage.Input.Text == string.Empty);
-            Assert.AreEqual("What\'s your name?", _textPage.InputInfoLabel1.Text);
+            Assert.AreEqual("What\'s your name?", _textPage.InputInfoLabel.Text);
         }
 
         [Test]
@@ -43,10 +43,10 @@ namespace KitchenSink.Tests.Test.SectionString
             WaitUntil(x => _textPage.InputDynamic.Displayed);
 
             _textPage.FillInputDynamic("K");
-            Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_textPage.InputInfoLabel1, "Hi, K!")));
+            Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_textPage.InputInfoLabelDynamic, "Hi, K!")));
             _textPage.ClearInputDynamic();
             WaitUntil(x => _textPage.InputDynamic.Text == string.Empty);
-            Assert.AreEqual("What\'s your name?", _textPage.InputInfoLabel2.Text);
+            Assert.AreEqual("What\'s your name?", _textPage.InputInfoLabelDynamic.Text);
         }
     }
 }
