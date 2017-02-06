@@ -108,6 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="PrepareAndRunTests.ps1" />
   </ItemGroup>
   <ItemGroup />
   <Choose>

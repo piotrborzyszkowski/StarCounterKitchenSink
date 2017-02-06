@@ -25,7 +25,7 @@ namespace KitchenSink.Tests.Ui.SectionCustom
 
         public void UploadAFile(string filePath)
         {
-            FileInput.SendKeys(filePath);
+            FileInput.SendKeys(filePath); //BUG in EDGE: https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/7194303/
         }
 
         public int GetUploadedFilesCount()

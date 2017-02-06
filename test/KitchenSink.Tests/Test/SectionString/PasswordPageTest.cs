@@ -2,6 +2,7 @@
 using KitchenSink.Tests.Ui.SectionString;
 using KitchenSink.Tests.Utilities;
 using NUnit.Framework;
+using OpenQA.Selenium.Support.UI;
 
 namespace KitchenSink.Tests.Test.SectionString
 {
@@ -33,7 +34,7 @@ namespace KitchenSink.Tests.Test.SectionString
             WaitUntil(x => _passwordPage.PasswordInput.Displayed);
             _passwordPage.ClearPassword();
             _passwordPage.FillPassword(password);
-            Assert.AreEqual(originalLabel, _passwordPage.PaswordInputInfoLabel.Text);
+            Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_passwordPage.PaswordInputInfoLabel, originalLabel)));
         }
 
         [Test]
@@ -44,7 +45,7 @@ namespace KitchenSink.Tests.Test.SectionString
             WaitUntil(x => _passwordPage.PasswordInput.Displayed);
             _passwordPage.ClearPassword();
             _passwordPage.FillPassword(password);
-            Assert.AreEqual("Good password!", _passwordPage.PaswordInputInfoLabel.Text);
+            Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_passwordPage.PaswordInputInfoLabel, "Good password!")));
         }
 
         [Test]
@@ -55,10 +56,10 @@ namespace KitchenSink.Tests.Test.SectionString
             WaitUntil(x => _passwordPage.PasswordInput.Displayed);
             _passwordPage.ClearPassword();
             _passwordPage.FillPassword(password);
-            Assert.AreEqual("Good password!", _passwordPage.PaswordInputInfoLabel.Text);
+            Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_passwordPage.PaswordInputInfoLabel, "Good password!")));
             _passwordPage.ClearPassword();
             _passwordPage.FillPassword("123");
-            Assert.AreEqual("Password must be at least 6 chars long", _passwordPage.PaswordInputInfoLabel.Text);
+            Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_passwordPage.PaswordInputInfoLabel, "Password must be at least 6 chars long")));
         }
     }
 }

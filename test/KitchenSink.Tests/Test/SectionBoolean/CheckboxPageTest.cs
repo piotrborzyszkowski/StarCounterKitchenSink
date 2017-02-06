@@ -33,17 +33,17 @@ namespace KitchenSink.Tests.Test.SectionBoolean
 
             if (_checkboxPage.Checkbox.Selected)
             {
-                Assert.AreEqual("You can drive", _checkboxPage.InfoLabel.Text);
+                Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_checkboxPage.InfoLabel, "You can drive")));
                 _checkboxPage.ChangeCheckboxState();
                 WaitUntil(ExpectedConditions.ElementSelectionStateToBe(_checkboxPage.Checkbox, false));
-                Assert.AreEqual("You can't drive", _checkboxPage.InfoLabel.Text);
+                Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_checkboxPage.InfoLabel, "You can't drive")));
             }
             else
             {
-                Assert.AreEqual("You can't drive", _checkboxPage.InfoLabel.Text);
+                Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_checkboxPage.InfoLabel, "You can't drive")));
                 _checkboxPage.ChangeCheckboxState();
                 WaitUntil(ExpectedConditions.ElementSelectionStateToBe(_checkboxPage.Checkbox, true));
-                Assert.AreEqual("You can drive", _checkboxPage.InfoLabel.Text);
+                Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_checkboxPage.InfoLabel, "You can drive")));
             }
         }
     }

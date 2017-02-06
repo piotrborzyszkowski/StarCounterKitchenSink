@@ -34,15 +34,15 @@ namespace KitchenSink.Tests.Test.SectionNumber
 
             WaitUntil(x => _buttonPage.CarrotsButton1.Displayed);
             _buttonPage.ClickButton1();
-            Assert.AreEqual("You have 1 imaginary carrots", _buttonPage.InfoLabel.Text);
+            Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_buttonPage.InfoLabel, "You have 1 imaginary carrots")));
 
             WaitUntil(x => _buttonPage.CarrotsButton2.Displayed);
             _buttonPage.ClickButton2();
-            Assert.AreEqual("You have 2 imaginary carrots", _buttonPage.InfoLabel.Text);
+            Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_buttonPage.InfoLabel, "You have 2 imaginary carrots")));
 
             WaitUntil(x => _buttonPage.CarrotsSpan.Displayed);
             _buttonPage.ClickSpan();
-            Assert.AreEqual("You have 3 imaginary carrots", _buttonPage.InfoLabel.Text);
+            Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_buttonPage.InfoLabel, "You have 3 imaginary carrots")));
         }
 
         [Test]

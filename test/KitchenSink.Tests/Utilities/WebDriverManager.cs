@@ -6,8 +6,6 @@ namespace KitchenSink.Tests.Utilities
 {
     public class WebDriverManager
     {
-       
-
         public static IWebDriver StartDriver(Config.Browser browser, TimeSpan timeout, Uri remoteWebDriverUri)
         {
             IWebDriver driver = null;
