@@ -12,6 +12,8 @@ namespace KitchenSink
             app.Use(new HtmlFromJsonProvider());
             app.Use(new PartialToStandaloneHtmlProvider());
 
+            DummyData.Create();
+
             Handle.GET("/KitchenSink/master", () =>
             {
                 Session session = Session.Current;
@@ -240,9 +242,8 @@ namespace KitchenSink
                 });
             });
 
-            Handle.GET("/KitchenSink/partial/autocomplete", () => Db.Scope(() => new AutocompletePage().Init()));
-            Handle.GET("/KitchenSink/autocomplete",
-                () => WrapPage<AutocompletePage>("/KitchenSink/partial/autocomplete"));
+            Handle.GET("/KitchenSink/partial/autocomplete", () => Db.Scope(() => new AutocompletePage()));
+            Handle.GET("/KitchenSink/autocomplete", () => WrapPage<AutocompletePage>("/KitchenSink/partial/autocomplete"));
 
             //for a launcher
             Handle.GET("/KitchenSink/app-name", () => { return new AppName(); });

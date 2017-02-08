@@ -31,16 +31,6 @@ namespace KitchenSink
 
             this.SelectedPet = "dogs";
 
-            // Generate some dummy data
-            if (Db.SQL("SELECT p FROM KitchenSink.SoftwareProduct p").First == null)
-            {
-                Db.Transact(() =>
-                {
-                    new SoftwareProduct() {Name = "Starcounter Database"};
-                    new SoftwareProduct() {Name = "Polymer JavaScript library"};
-                });
-            }
-
             this.Products.Data = Db.SQL("SELECT p FROM KitchenSink.SoftwareProduct p ORDER BY p.Name");
             this.SelectedProduct.Data = Db.SQL("SELECT p FROM KitchenSink.SoftwareProduct p ORDER BY p.Name DESC").First;
         }

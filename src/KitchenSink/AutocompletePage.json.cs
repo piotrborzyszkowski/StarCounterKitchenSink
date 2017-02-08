@@ -23,29 +23,6 @@ namespace KitchenSink
             new Country("Scotland", "Edinburgh"),
         };
 
-        public AutocompletePage Init()
-        {
-            AddGroceryProduct("Bread", 1);
-            AddGroceryProduct("Butter", 3);
-            AddGroceryProduct("Scotch Whisky", 4);
-            AddGroceryProduct("Irish Whiskey", 2);
-            AddGroceryProduct("Milk", 5);
-            AddGroceryProduct("Boiled Mutton", 7);
-            Transaction.Commit();
-
-            return this;
-        }
-
-        private static void AddGroceryProduct(string name, int price)
-        {
-            if (
-                Db.SQL<long>("SELECT count (p) from KitchenSink.GroceryProduct p WHERE name = ? FETCH ?", name, 1).First ==
-                0)
-            {
-                new GroceryProduct {Name = name, Price = price};
-            }
-        }
-
         public void Handle(Input.ProductsSearch action)
         {
             var searchTerm = action.Value == "*" ? "%" : $"%{action.Value}%";

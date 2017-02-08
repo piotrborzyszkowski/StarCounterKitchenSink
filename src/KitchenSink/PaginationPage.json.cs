@@ -16,26 +16,6 @@ namespace KitchenSink
         {
             base.OnData();
 
-            var firstBook = Db.SQL<Book>("SELECT b FROM KitchenSink.Book b").First;
-            if (firstBook == null)
-            {
-                // creates some dummy data
-                // change the number of element with adjusting elementsInTotal
-                int elementsInTotal = 100;
-                Db.Transact(() =>
-                {
-                    for (int i = 0; i < elementsInTotal; i++)
-                    {
-                        var book = new Book()
-                        {
-                            Author = "Arbitrary Author",
-                            Title = "Arbitrary Book " + (i + 1).ToString(),
-                            Position = i + 1
-                        };
-                    }
-                });
-            }
-
             this.TotalEntries = Db.SQL<long>("SELECT COUNT(e) FROM KitchenSink.Book e").First;
             InitPage();
         }
