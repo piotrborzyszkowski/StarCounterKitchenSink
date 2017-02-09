@@ -6,9 +6,9 @@ using OpenQA.Selenium.Support.UI;
 
 namespace KitchenSink.Tests.Test.SectionString
 {
-    [TestFixture(Config.Browser.Chrome, "Running Text Page Test on Chrome")]
-    [TestFixture(Config.Browser.Edge, "Running Text Page Test on Edge")]
-    [TestFixture(Config.Browser.Firefox, "Running Text Page Test on Firefox")]
+    [TestFixture(Config.Browser.Chrome)]
+    [TestFixture(Config.Browser.Edge)]
+    [TestFixture(Config.Browser.Firefox)]
     internal class TextPageTest : BaseTest
     {
         private TextPage _textPage;

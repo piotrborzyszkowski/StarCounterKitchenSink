@@ -6,15 +6,15 @@ using OpenQA.Selenium.Support.UI;
 
 namespace KitchenSink.Tests.Test.SectionArray
 {
-    [TestFixture(Config.Browser.Chrome, "Running Dropdown Page Test on Chrome")]
-    [TestFixture(Config.Browser.Edge, "Running Dropdown Page Test on Edge")]
-    [TestFixture(Config.Browser.Firefox, "Running Dropdown Page Test on Firefox")]
+    [TestFixture(Config.Browser.Chrome)]
+    [TestFixture(Config.Browser.Edge)]
+    [TestFixture(Config.Browser.Firefox)]
     class DropdownPageTest : BaseTest
     {
         private DropdownPage _dropDownPage;
         private MainPage _mainPage;
 
-        public DropdownPageTest(Config.Browser browser) : base(browser)
+        public DropdownPageTest(Config.Browser browser, string description) : base(browser)
         {
         }
 

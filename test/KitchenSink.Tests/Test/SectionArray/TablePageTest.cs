@@ -5,9 +5,9 @@ using NUnit.Framework;
 
 namespace KitchenSink.Tests.Test.SectionArray
 {
-    [TestFixture(Config.Browser.Chrome,"Running Table Page Test on Chrome")]
-    [TestFixture(Config.Browser.Edge, "Running Table Page Test on Edge")]
-    [TestFixture(Config.Browser.Firefox, "Running Table Page Test on Firefox")]
+    [TestFixture(Config.Browser.Chrome)]
+    [TestFixture(Config.Browser.Edge)]
+    [TestFixture(Config.Browser.Firefox)]
     class TablePageTest : BaseTest
     {
         private TablePage _tablePage;

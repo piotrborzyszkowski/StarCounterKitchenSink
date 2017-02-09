@@ -5,9 +5,9 @@ using NUnit.Framework;
 
 namespace KitchenSink.Tests.Test.SectionString
 {
-    [TestFixture(Config.Browser.Chrome, "Running Textarea Page Test on Chrome")]
-    [TestFixture(Config.Browser.Edge, "Running Textarea Page Test on Edge")]
-    [TestFixture(Config.Browser.Firefox, "Running Textarea Page Test on Firefox")]
+    [TestFixture(Config.Browser.Chrome)]
+    [TestFixture(Config.Browser.Edge)]
+    [TestFixture(Config.Browser.Firefox)]
     class TextareaPageTest : BaseTest
     {
         private TextareaPage _textareaPage;

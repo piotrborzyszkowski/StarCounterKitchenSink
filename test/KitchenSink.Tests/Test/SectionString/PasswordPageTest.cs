@@ -6,9 +6,9 @@ using OpenQA.Selenium.Support.UI;
 
 namespace KitchenSink.Tests.Test.SectionString
 {
-    [TestFixture(Config.Browser.Chrome, "Running Password Page Test on Chrome")]
-    [TestFixture(Config.Browser.Edge, "Running Password Page Test on Edge")]
-    [TestFixture(Config.Browser.Firefox, "Running Password Page Test on Firefox")]
+    [TestFixture(Config.Browser.Chrome)]
+    [TestFixture(Config.Browser.Edge)]
+    [TestFixture(Config.Browser.Firefox)]
     class PasswordPageTest : BaseTest
     {
         private PasswordPage _passwordPage;

@@ -5,9 +5,9 @@ using NUnit.Framework;
 
 namespace KitchenSink.Tests.Test.SectionArray
 {
-    [TestFixture(Config.Browser.Chrome, "Running Datagrid Page Test on Chrome")]
-    [TestFixture(Config.Browser.Edge, "Running Datagrid Page Test on Edge")]
-    [TestFixture(Config.Browser.Firefox, "Running Datagrid Page Test on Firefox")]
+    [TestFixture(Config.Browser.Chrome)]
+    [TestFixture(Config.Browser.Edge)]
+    [TestFixture(Config.Browser.Firefox)]
     class DatagridPageTest : BaseTest
     {
         private DatagridPage _datagridPage;

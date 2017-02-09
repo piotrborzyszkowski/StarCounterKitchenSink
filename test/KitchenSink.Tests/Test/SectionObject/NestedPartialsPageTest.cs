@@ -5,9 +5,9 @@ using NUnit.Framework;
 
 namespace KitchenSink.Tests.Test.SectionObject
 {
-    [TestFixture(Config.Browser.Chrome, "Running Nested Partials Page Test on Chrome")]
-    [TestFixture(Config.Browser.Edge, "Running Nested Partials Page Test on Edge")]
-    [TestFixture(Config.Browser.Firefox, "Running Nested Partials Page Test on Firefox")]
+    [TestFixture(Config.Browser.Chrome)]
+    [TestFixture(Config.Browser.Edge)]
+    [TestFixture(Config.Browser.Firefox)]
     class NestedPartialsPageTest : BaseTest
     {
         private NestedPartialsPage _nestedPartialsPage;

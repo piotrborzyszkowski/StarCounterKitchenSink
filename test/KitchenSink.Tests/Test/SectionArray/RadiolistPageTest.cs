@@ -6,15 +6,15 @@ using OpenQA.Selenium.Support.UI;
 
 namespace KitchenSink.Tests.Test.SectionArray
 {
-    [TestFixture(Config.Browser.Chrome, "Running Radiolist Page Test on Chrome")]
-    [TestFixture(Config.Browser.Edge, "Running Radiolist Page Test on Edge")]
-    [TestFixture(Config.Browser.Firefox, "Running Radiolist Page Test on Firefox")]
+    [TestFixture(Config.Browser.Chrome)]
+    [TestFixture(Config.Browser.Edge)]
+    [TestFixture(Config.Browser.Firefox)]
     class RadiolistPageTest : BaseTest
     {
         private RadiolistPage _radiolistPage;
         private MainPage _mainPage;
 
-        public RadiolistPageTest(Config.Browser browser) : base(browser)
+        public RadiolistPageTest(Config.Browser browser, string description) : base(browser)
         {
         }
 

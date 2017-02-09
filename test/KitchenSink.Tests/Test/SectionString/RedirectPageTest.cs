@@ -7,9 +7,9 @@ using OpenQA.Selenium.Support.UI;
 
 namespace KitchenSink.Tests.Test.SectionString
 {
-    [TestFixture(Config.Browser.Chrome, "Running Redirect Page Test on Chrome")]
-    [TestFixture(Config.Browser.Edge, "Running Redirect Page Test on Edge")]
-    [TestFixture(Config.Browser.Firefox, "Running Redirect Page Test on Firefox")]
+    [TestFixture(Config.Browser.Chrome)]
+    [TestFixture(Config.Browser.Edge)]
+    [TestFixture(Config.Browser.Firefox)]
     class RedirectPageTest : BaseTest
     {
         private RedirectPage _redirectPage;

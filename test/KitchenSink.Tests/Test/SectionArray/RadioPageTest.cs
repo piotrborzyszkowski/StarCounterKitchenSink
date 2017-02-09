@@ -6,15 +6,15 @@ using OpenQA.Selenium.Support.UI;
 
 namespace KitchenSink.Tests.Test.SectionArray
 {
-    [TestFixture(Config.Browser.Chrome, "Running Radio Page Test on Chrome")]
-    [TestFixture(Config.Browser.Edge, "Running Radio Page Test on Edge")]
-    [TestFixture(Config.Browser.Firefox, "Running Radio Page Test on Firefox")]
+    [TestFixture(Config.Browser.Chrome)]
+    [TestFixture(Config.Browser.Edge)]
+    [TestFixture(Config.Browser.Firefox)]
     class RadioPageTest : BaseTest
     {
         private RadioPage _radioPage;
         private MainPage _mainPage;
 
-        public RadioPageTest(Config.Browser browser) : base(browser)
+        public RadioPageTest(Config.Browser browser, string description) : base(browser)
         {
         }
 
