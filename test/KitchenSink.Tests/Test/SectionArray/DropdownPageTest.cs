@@ -44,34 +44,30 @@ namespace KitchenSink.Tests.Test.SectionArray
         public void DropdownPage_JuicyDropdown_SelectProduct()
         {
             WaitUntil(x => _dropDownPage.JuicySelect.Displayed);
-            _dropDownPage.SelectJuicySelect("Bread");
-            Assert.AreEqual("You have selected: Bread", _dropDownPage.JuicySelectLabel.Text);
-            Assert.AreEqual("Bread", _dropDownPage.GetSelectValue());
+            Assert.AreEqual(string.Empty, _dropDownPage.GetSelectValue());
 
-            _dropDownPage.SelectJuicySelect("Butter");
-            Assert.AreEqual("You have selected: Butter", _dropDownPage.JuicySelectLabel.Text);
-            Assert.AreEqual("Butter", _dropDownPage.GetSelectValue());
+            _dropDownPage.SelectJuicySelect("Polymer JavaScript library");
+            Assert.AreEqual("You have selected: Polymer JavaScript library", _dropDownPage.JuicySelectLabel.Text);
+            Assert.AreEqual("Polymer JavaScript library", _dropDownPage.GetSelectValue());
 
-            _dropDownPage.SelectJuicySelect("Milk");
-            Assert.AreEqual("You have selected: Milk", _dropDownPage.JuicySelectLabel.Text);
-            Assert.AreEqual("Milk", _dropDownPage.GetSelectValue());
+            _dropDownPage.SelectJuicySelect("Starcounter Database");
+            Assert.AreEqual("You have selected: Starcounter Database", _dropDownPage.JuicySelectLabel.Text);
+            Assert.AreEqual("Starcounter Database", _dropDownPage.GetSelectValue());
+
         }
 
         [Test]
         public void DropdownPage_Dropdown_SelectProduct()
         {
             WaitUntil(x => _dropDownPage.ProductSelect.Displayed);
-            _dropDownPage.SelectProduct("Irish Whiskey");
-            Assert.AreEqual("You have selected: Irish Whiskey", _dropDownPage.JuicySelectLabel.Text);
-            Assert.AreEqual("Irish Whiskey", _dropDownPage.GetJuicySelectValue());
+            _dropDownPage.SelectProduct("Starcounter Database");
+            Assert.AreEqual("You have selected: Starcounter Database", _dropDownPage.JuicySelectLabel.Text);
+            Assert.AreEqual("Starcounter Database", _dropDownPage.GetJuicySelectValue());
 
-            _dropDownPage.SelectProduct("Scotch Whisky");
-            Assert.AreEqual("You have selected: Scotch Whisky", _dropDownPage.JuicySelectLabel.Text);
-            Assert.AreEqual("Scotch Whisky", _dropDownPage.GetJuicySelectValue());
+            _dropDownPage.SelectProduct("Polymer JavaScript library");
+            Assert.AreEqual("You have selected: Polymer JavaScript library", _dropDownPage.JuicySelectLabel.Text);
+            Assert.AreEqual("Polymer JavaScript library", _dropDownPage.GetJuicySelectValue());
 
-            _dropDownPage.SelectProduct("Boiled Mutton");
-            Assert.AreEqual("You have selected: Boiled Mutton", _dropDownPage.JuicySelectLabel.Text);
-            Assert.AreEqual("Boiled Mutton", _dropDownPage.GetJuicySelectValue());
         }
     }
 }

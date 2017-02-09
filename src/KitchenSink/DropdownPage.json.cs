@@ -3,6 +3,11 @@ using Simplified.Ring3;
 
 namespace KitchenSink
 {
+    [Database]
+    public class SoftwareProduct : Product
+    {
+    }
+
     partial class DropdownPage : Json
     {
         static DropdownPage()
@@ -26,18 +31,8 @@ namespace KitchenSink
 
             this.SelectedPet = "dogs";
 
-            // Generate some dummy data
-            if (Db.SQL("SELECT p FROM Simplified.Ring3.Product p").First == null)
-            {
-                Db.Transact(() =>
-                {
-                    new Product() {Name = "Starcounter Database"};
-                    new Product() {Name = "Polymer JavaScript library"};
-                });
-            }
-
-            this.Products.Data = Db.SQL("SELECT p FROM Simplified.Ring3.Product p ORDER BY p.Name");
-            this.SelectedProduct.Data = Db.SQL("SELECT p FROM Simplified.Ring3.Product p ORDER BY p.Name DESC").First;
+            this.Products.Data = Db.SQL("SELECT p FROM KitchenSink.SoftwareProduct p ORDER BY p.Name");
+            this.SelectedProduct.Data = Db.SQL("SELECT p FROM KitchenSink.SoftwareProduct p ORDER BY p.Name DESC").First;
         }
 
         public string CalculatedPetReaction
@@ -64,7 +59,7 @@ namespace KitchenSink
                     return;
                 }
 
-                this.SelectedProduct.Data = DbHelper.FromID(DbHelper.Base64DecodeObjectID(value)) as Product;
+                this.SelectedProduct.Data = DbHelper.FromID(DbHelper.Base64DecodeObjectID(value)) as SoftwareProduct;
             }
         }
     }

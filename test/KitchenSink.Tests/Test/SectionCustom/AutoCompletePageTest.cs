@@ -32,7 +32,7 @@ namespace KitchenSink.Tests.Test.SectionCustom
             _autoCompletePage.ProductsInput.Clear();
             _autoCompletePage.ProductsInput.SendKeys("*");
             WaitUntil(x => _autoCompletePage.ProductsAutoComplete.Count > 0);
-            Assert.AreEqual(8, _autoCompletePage.ProductsAutoComplete.Count);
+            Assert.AreEqual(6, _autoCompletePage.ProductsAutoComplete.Count);
 
             WaitUntil(x => _autoCompletePage.PlaceInput.Displayed);
             _autoCompletePage.PlaceInput.Clear();
