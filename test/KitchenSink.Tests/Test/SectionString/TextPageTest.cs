@@ -14,7 +14,7 @@ namespace KitchenSink.Tests.Test.SectionString
         private TextPage _textPage;
         private MainPage _mainPage;
 
-        public TextPageTest(Config.Browser browser, string author, string description) : base(browser)
+        public TextPageTest(Config.Browser browser) : base(browser)
         {
         }
 

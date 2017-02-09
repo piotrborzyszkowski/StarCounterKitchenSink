@@ -13,7 +13,7 @@ namespace KitchenSink.Tests.Test.SectionObject
         private NestedPartialsPage _nestedPartialsPage;
         private MainPage _mainPage;
 
-        public NestedPartialsPageTest(Config.Browser browser, string author, string description) : base(browser)
+        public NestedPartialsPageTest(Config.Browser browser) : base(browser)
         {
         }
 
