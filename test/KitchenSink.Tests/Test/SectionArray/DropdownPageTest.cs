@@ -47,13 +47,12 @@ namespace KitchenSink.Tests.Test.SectionArray
             Assert.AreEqual(string.Empty, _dropDownPage.GetSelectValue());
 
             _dropDownPage.SelectJuicySelect("Polymer JavaScript library");
-            Assert.AreEqual("You have selected: Polymer JavaScript library", _dropDownPage.JuicySelectLabel.Text);
-            Assert.AreEqual("Polymer JavaScript library", _dropDownPage.GetSelectValue());
+            Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_dropDownPage.JuicySelectLabel, "You have selected: Polymer JavaScript library")));
+            Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(new SelectElement(_dropDownPage.ProductSelect).SelectedOption, "Polymer JavaScript library")));
 
             _dropDownPage.SelectJuicySelect("Starcounter Database");
-            Assert.AreEqual("You have selected: Starcounter Database", _dropDownPage.JuicySelectLabel.Text);
-            Assert.AreEqual("Starcounter Database", _dropDownPage.GetSelectValue());
-
+            Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_dropDownPage.JuicySelectLabel, "You have selected: Starcounter Database")));
+            Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(new SelectElement(_dropDownPage.ProductSelect).SelectedOption, "Starcounter Database")));
         }
 
         [Test]

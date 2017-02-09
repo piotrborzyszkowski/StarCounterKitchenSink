@@ -2,6 +2,7 @@
 using KitchenSink.Tests.Ui.SectionString;
 using KitchenSink.Tests.Utilities;
 using NUnit.Framework;
+using OpenQA.Selenium.Support.UI;
 
 namespace KitchenSink.Tests.Test.SectionString
 {
@@ -33,7 +34,8 @@ namespace KitchenSink.Tests.Test.SectionString
             _textareaPage.ClearTextarea();
             WaitUntil(x => _textareaPage.Textarea.GetAttribute("text-value") != string.Empty);
             _textareaPage.FillTextarea(newText);
-            Assert.AreEqual("Length of your bio: 26 chars", _textareaPage.TextareaInfoLabel.Text);
+            Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_textareaPage.TextareaInfoLabel, "Length of your bio: 26 chars")));
+            //Assert.AreEqual("Length of your bio: 26 chars", _textareaPage.TextareaInfoLabel.Text);
         }
 
         [Test]
@@ -46,8 +48,9 @@ namespace KitchenSink.Tests.Test.SectionString
             _textareaPage.FillTextarea(newText);
             Assert.AreEqual("Length of your bio: 4 chars", _textareaPage.TextareaInfoLabel.Text);
             _textareaPage.ClearTextarea();
-            WaitUntil(x => _textareaPage.Textarea.GetAttribute("text-value") != string.Empty);
-            Assert.AreEqual("Length of your bio: 0 chars", _textareaPage.TextareaInfoLabel.Text);
+            Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_textareaPage.TextareaInfoLabel, "Length of your bio: 0 chars")));
+            //WaitUntil(x => _textareaPage.Textarea.GetAttribute("text-value") != string.Empty);
+            //Assert.AreEqual("Length of your bio: 0 chars", _textareaPage.TextareaInfoLabel.Text);
         }
     }
 }
