@@ -6,15 +6,15 @@ using OpenQA.Selenium.Support.UI;
 
 namespace KitchenSink.Tests.Test.SectionBoolean
 {
-    [TestFixture(Config.Browser.Chrome, "Krystian Matti", "Running Toggle Button Page Test on Chrome")]
-    [TestFixture(Config.Browser.Edge, "Krystian Matti", "Running Toggle Button Page Test on Edge")]
-    [TestFixture(Config.Browser.Firefox, "Krystian Matti", "Running Toggle Button Page Test on Firefox")]
+    [TestFixture(Config.Browser.Chrome, "Running Toggle Button Page Test on Chrome")]
+    [TestFixture(Config.Browser.Edge, "Running Toggle Button Page Test on Edge")]
+    [TestFixture(Config.Browser.Firefox, "Running Toggle Button Page Test on Firefox")]
     class ToggleButtonPageTest : BaseTest
     {
         private ToggleButtonPage _toggleButtonPage;
         private MainPage _mainPage;
 
-        public ToggleButtonPageTest(Config.Browser browser, string author, string description) : base(browser)
+        public ToggleButtonPageTest(Config.Browser browser) : base(browser)
         {
         }
 

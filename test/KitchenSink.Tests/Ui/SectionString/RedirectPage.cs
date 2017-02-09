@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using KitchenSink.Tests.Utilities;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
 namespace KitchenSink.Tests.Ui.SectionString
@@ -28,9 +29,9 @@ namespace KitchenSink.Tests.Ui.SectionString
         [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-redirect__button")]
         public IWebElement RedirectButton { get; set; }
 
-        public void ClickButton(string button)
+        public void ClickButton(Config.Buttons button)
         {
-            switch (button)
+            switch (Config.ButtonsDictionary[button])
             {
                 case "Bread":
                     ClickOn(BreadButton); break;

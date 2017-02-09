@@ -7,15 +7,15 @@ using OpenQA.Selenium.Support.UI;
 
 namespace KitchenSink.Tests.Test.SectionCustom
 {
-    [TestFixture(Config.Browser.Chrome, "Krystian Matti", "Running Pagination Page Test on Chrome")]
-    [TestFixture(Config.Browser.Edge, "Krystian Matti", "Running Pagination Page Test on Edge")]
-    [TestFixture(Config.Browser.Firefox, "Krystian Matti", "Running Pagination Page Test on Firefox")]
+    [TestFixture(Config.Browser.Chrome, "Running Pagination Page Test on Chrome")]
+    [TestFixture(Config.Browser.Edge, "Running Pagination Page Test on Edge")]
+    [TestFixture(Config.Browser.Firefox, "Running Pagination Page Test on Firefox")]
     class PaginationPageTest : BaseTest
     {
         private PaginationPage _paginationPage;
         private MainPage _mainPage;
 
-        public PaginationPageTest(Config.Browser browser, string author, string description) : base(browser)
+        public PaginationPageTest(Config.Browser browser) : base(browser)
         {
         }
 

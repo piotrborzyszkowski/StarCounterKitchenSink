@@ -16,7 +16,7 @@ namespace KitchenSink.Tests.Ui.SectionBoolean
         [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-driver-license__input")]
         public IWebElement Checkbox { get; set; }
 
-        public void ChangeCheckboxState()
+        public void ToggleCheckbox()
         {
             ClickOn(Checkbox);
         }

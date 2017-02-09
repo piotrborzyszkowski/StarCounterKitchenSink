@@ -5,15 +5,15 @@ using NUnit.Framework;
 
 namespace KitchenSink.Tests.Test.SectionArray
 {
-    [TestFixture(Config.Browser.Chrome, "Krystian Matti", "Running Table Page Test on Chrome")]
-    [TestFixture(Config.Browser.Edge, "Krystian Matti", "Running Table Page Test on Edge")]
-    [TestFixture(Config.Browser.Firefox, "Krystian Matti", "Running Table Page Test on Firefox")]
+    [TestFixture(Config.Browser.Chrome,"Running Table Page Test on Chrome")]
+    [TestFixture(Config.Browser.Edge, "Running Table Page Test on Edge")]
+    [TestFixture(Config.Browser.Firefox, "Running Table Page Test on Firefox")]
     class TablePageTest : BaseTest
     {
         private TablePage _tablePage;
         private MainPage _mainPage;
 
-        public TablePageTest(Config.Browser browser, string author, string description) : base(browser)
+        public TablePageTest(Config.Browser browser) : base(browser)
         {
         }
 

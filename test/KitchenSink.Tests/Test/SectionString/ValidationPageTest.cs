@@ -5,15 +5,15 @@ using NUnit.Framework;
 
 namespace KitchenSink.Tests.Test.SectionString
 {
-    [TestFixture(Config.Browser.Chrome, "Krystian Matti", "Running Validation Page Test on Chrome")]
-    [TestFixture(Config.Browser.Edge, "Krystian Matti", "Running Validation Page Test on Edge")]
-    [TestFixture(Config.Browser.Firefox, "Krystian Matti", "Running Validation Page Test on Firefox")]
+    [TestFixture(Config.Browser.Chrome, "Running Validation Page Test on Chrome")]
+    [TestFixture(Config.Browser.Edge, "Running Validation Page Test on Edge")]
+    [TestFixture(Config.Browser.Firefox, "Running Validation Page Test on Firefox")]
     class ValidationPageTest : BaseTest
     {
         private ValidationPage _validationPage;
         private MainPage _mainPage;
 
-        public ValidationPageTest(Config.Browser browser, string author, string description) : base(browser)
+        public ValidationPageTest(Config.Browser browser) : base(browser)
         {
         }
 

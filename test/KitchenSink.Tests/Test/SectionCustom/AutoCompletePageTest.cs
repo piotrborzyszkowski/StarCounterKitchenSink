@@ -6,15 +6,15 @@ using OpenQA.Selenium.Support.UI;
 
 namespace KitchenSink.Tests.Test.SectionCustom
 {
-    [TestFixture(Config.Browser.Chrome, "Krystian Matti", "Running AutoComplete Page Test on Chrome")]
-    [TestFixture(Config.Browser.Edge, "Krystian Matti", "Running AutoComplete Page Test on Edge")]
-    [TestFixture(Config.Browser.Firefox, "Krystian Matti", "Running AutoComplete Page Test on Firefox")]
+    [TestFixture(Config.Browser.Chrome, "Running AutoComplete Page Test on Chrome")]
+    [TestFixture(Config.Browser.Edge, "Running AutoComplete Page Test on Edge")]
+    [TestFixture(Config.Browser.Firefox, "Running AutoComplete Page Test on Firefox")]
     class AutoCompletePageTest : BaseTest
     {
         private AutoCompletePage _autoCompletePage;
         private MainPage _mainPage;
 
-        public AutoCompletePageTest(Config.Browser browser, string author, string description) : base(browser)
+        public AutoCompletePageTest(Config.Browser browser) : base(browser)
         {
         }
 

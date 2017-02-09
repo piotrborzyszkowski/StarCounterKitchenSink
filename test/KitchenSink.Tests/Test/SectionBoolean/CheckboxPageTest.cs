@@ -6,15 +6,15 @@ using OpenQA.Selenium.Support.UI;
 
 namespace KitchenSink.Tests.Test.SectionBoolean
 {
-    [TestFixture(Config.Browser.Chrome, "Krystian Matti", "Running Checkbox Page Test on Chrome")]
-    [TestFixture(Config.Browser.Edge, "Krystian Matti", "Running Checkbox Page Test on Edge")]
-    [TestFixture(Config.Browser.Firefox, "Krystian Matti", "Running Checkbox Page Test on Firefox")]
+    [TestFixture(Config.Browser.Chrome, "Running Checkbox Page Test on Chrome")]
+    [TestFixture(Config.Browser.Edge, "Running Checkbox Page Test on Edge")]
+    [TestFixture(Config.Browser.Firefox, "Running Checkbox Page Test on Firefox")]
     class CheckboxPageTest : BaseTest
     {
         private CheckboxPage _checkboxPage;
         private MainPage _mainPage;
 
-        public CheckboxPageTest(Config.Browser browser, string author, string description) : base(browser)
+        public CheckboxPageTest(Config.Browser browser) : base(browser)
         {
         }
 
@@ -34,14 +34,14 @@ namespace KitchenSink.Tests.Test.SectionBoolean
             if (_checkboxPage.Checkbox.Selected)
             {
                 Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_checkboxPage.InfoLabel, "You can drive")));
-                _checkboxPage.ChangeCheckboxState();
+                _checkboxPage.ToggleCheckbox();
                 WaitUntil(ExpectedConditions.ElementSelectionStateToBe(_checkboxPage.Checkbox, false));
                 Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_checkboxPage.InfoLabel, "You can't drive")));
             }
             else
             {
                 Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_checkboxPage.InfoLabel, "You can't drive")));
-                _checkboxPage.ChangeCheckboxState();
+                _checkboxPage.ToggleCheckbox();
                 WaitUntil(ExpectedConditions.ElementSelectionStateToBe(_checkboxPage.Checkbox, true));
                 Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_checkboxPage.InfoLabel, "You can drive")));
             }
