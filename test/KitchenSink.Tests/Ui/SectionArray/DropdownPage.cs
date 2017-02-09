@@ -38,18 +38,6 @@ namespace KitchenSink.Tests.Ui.SectionArray
             sel.SelectByText(productName);
         }
 
-        public string GetJuicySelectValue()
-        {
-            SelectElement sel = new SelectElement(JuicySelect);
-            return sel.SelectedOption.Text;
-        }
-
-        public string GetSelectValue()
-        {
-            SelectElement sel = new SelectElement(ProductSelect);
-            return sel.SelectedOption.Text;
-        }
-
         public void SelectJuicySelect(string juicyName)
         {
             SelectElement sel = new SelectElement(JuicySelect);
