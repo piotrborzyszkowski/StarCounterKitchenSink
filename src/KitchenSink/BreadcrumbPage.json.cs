@@ -22,8 +22,7 @@ namespace KitchenSink
         {
             base.OnData();
 
-            var treeItem = Db.SQL<TreeItem>("SELECT i FROM TreeItem i WHERE Name = ?", "Milk").First
-                ?? Db.SQL<TreeItem>("SELECT i FROM TreeItem i WHERE Parent IS NOT NULL FETCH ?", 1).First;
+            var treeItem = Db.SQL<TreeItem>("SELECT i FROM TreeItem i WHERE Parent IS NOT NULL FETCH ?", 1).First;
             SetActiveItem(treeItem);
         }
 
