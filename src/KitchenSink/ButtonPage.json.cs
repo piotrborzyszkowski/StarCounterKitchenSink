@@ -44,12 +44,6 @@ namespace KitchenSink
 
         void Handle(Input.TakeOneRegeneratingCarrot action)
         {
-            Thread.Sleep(100);
-            action.Cancel();
-        }
-
-        void Handle(Input.TakeOneFakeRegeneratingCarrot action)
-        {
             Thread.Sleep(500);
             action.Cancel();
         }
