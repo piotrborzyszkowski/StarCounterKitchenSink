@@ -11,63 +11,63 @@ namespace KitchenSink.Tests.Ui.SectionNumber
         }
 
         [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-carrots-reaction__label")]
-        public IWebElement InfoLabel { get; set; }
+        public IWebElement VegetablesButtonInfoLabel { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//button[text() = 'Button (inline script)']")]
-        public IWebElement CarrotsButton1 { get; set; }
+        public IWebElement ButtonInlineScript { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//button[text() = 'Button (function)']")]
-        public IWebElement CarrotsButton2 { get; set; }
+        public IWebElement ButtonFunction { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//span[text() = 'Span (function)']")]
-        public IWebElement CarrotsSpan { get; set; }
+        public IWebElement SpanFunction { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//button[text() = 'Enable carrot engine']")]
-        public IWebElement SwitchButton { get; set; }
+        public IWebElement ButtonEnableCarrotEngine { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//button[text() = 'Add carrots']")]
-        public IWebElement DisableButton { get; set; }
+        public IWebElement ButtonAddCarrots { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-carrot-engine-reaction__label")]
-        public IWebElement SwitchButtonLabel { get; set; }
+        public IWebElement EnableCarrotEngineLabel { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-one-carrot-reaction__label")]
-        public IWebElement DisableButtonLabel { get; set; }
+        public IWebElement AddCarrotsLabel { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//button[text() = 'Take one Regenerating Carrot']")]
-        public IWebElement SelfButton { get; set; }
+        public IWebElement ButonTakeOneRegeneratingCarrot { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-self-button__label")]
-        public IWebElement SelfButtonLabel { get; set; }
+        public IWebElement TakeOneRegeneratingCarrotLabel { get; set; }
 
-        public void ClickButton1()
+        public void ClickButtonInlineScript()
         {
-            ClickOn(CarrotsButton1);
+            ClickOn(ButtonInlineScript);
         }
 
-        public void ClickButton2()
+        public void ClickButtonFunction()
         {
-            ClickOn(CarrotsButton2);
+            ClickOn(ButtonFunction);
         }
 
-        public void ClickSpan()
+        public void ClickSpanFunction()
         {
-            ClickOn(CarrotsSpan);
+            ClickOn(SpanFunction);
         }
 
-        public void ClickSwitchButton()
+        public void ClickEnableCarrotEngine()
         {
-            ClickOn(SwitchButton);
+            ClickOn(ButtonEnableCarrotEngine);
         }
 
-        public void ClickDisableButton()
+        public void ClickButtonAddCarrots()
         {
-            ClickOn(DisableButton);
+            ClickOn(ButtonAddCarrots);
         }
 
-        public void ClickSelfButton()
+        public void ClickButonTakeOneRegeneratingCarrot()
         {
-            ClickOn(SelfButton);
+            ClickOn(ButonTakeOneRegeneratingCarrot);
         }
     }
 }
