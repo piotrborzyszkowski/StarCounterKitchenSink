@@ -48,9 +48,7 @@ namespace KitchenSink.Tests.Test.SectionNumber
         [Test]
         public void ButtonPage_SelfButton()
         {
-            _buttonPage.ClickSelfButton1();
-            Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_buttonPage.SelfButtonLabel, "Currently Regenerating!")));
-            _buttonPage.ClickSelfButton2();
+            _buttonPage.ClickSelfButton();
             Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_buttonPage.SelfButtonLabel, "Currently Regenerating!")));
         }
 

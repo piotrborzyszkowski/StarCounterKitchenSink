@@ -35,10 +35,7 @@ namespace KitchenSink.Tests.Ui.SectionNumber
         public IWebElement DisableButtonLabel { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//button[text() = 'Take one Regenerating Carrot']")]
-        public IWebElement SelfButton1 { get; set; }
-
-        [FindsBy(How = How.XPath, Using = "//button[text() = 'Take one Regenerating Carrot(with delay)']")]
-        public IWebElement SelfButton2 { get; set; }
+        public IWebElement SelfButton { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-self-button__label")]
         public IWebElement SelfButtonLabel { get; set; }
@@ -68,14 +65,9 @@ namespace KitchenSink.Tests.Ui.SectionNumber
             ClickOn(DisableButton);
         }
 
-        public void ClickSelfButton1()
+        public void ClickSelfButton()
         {
-            ClickOn(SelfButton1);
-        }
-
-        public void ClickSelfButton2()
-        {
-            ClickOn(SelfButton2);
+            ClickOn(SelfButton);
         }
     }
 }
