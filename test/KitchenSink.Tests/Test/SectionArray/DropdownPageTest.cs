@@ -44,7 +44,7 @@ namespace KitchenSink.Tests.Test.SectionArray
         public void DropdownPage_JuicyDropdown_SelectProduct()
         {
             WaitUntil(x => _dropDownPage.JuicySelect.Displayed);
-            Assert.AreEqual(string.Empty, new SelectElement(_dropDownPage.ProductSelect).SelectedOption);
+            Assert.AreEqual(string.Empty, new SelectElement(_dropDownPage.ProductSelect).SelectedOption.Text);
 
             _dropDownPage.SelectJuicySelect("Polymer JavaScript library");
             Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_dropDownPage.JuicySelectLabel, "You have selected: Polymer JavaScript library")));
