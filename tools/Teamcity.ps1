@@ -29,7 +29,8 @@ Function createXML($repoPath, $configPath)
 #start KitchenSink app
 Function startKitchenSink($scpath, $wwwPath, $exePath)
 {
-	Start-Process -FilePath $scpath\star.exe -ArgumentList "--d=kitchensink --resourcedir=$wwwPath $exePath" 
+	$process = Start-Process -FilePath $scpath\star.exe -ArgumentList "--d=kitchensink --resourcedir=$wwwPath $exePath" -PassThru -NoNewWindow
+	return $process.Id
 }
 
 #run KitchenSink tests
@@ -54,8 +55,8 @@ try
 		$createXMLExitCode = createXML -repoPath $StarCounterRepoPath -configPath $StarCounterConfigPath
 		if ($createXMLExitCode)
 		{ 
-			startKitchenSink -scpath $StarCounterDir -wwwPath $KitchenSinkWwwPath -exePath $KitchenSinkExePath 
-			Start-Sleep -s 20	#wait 20 second for KitchenSink start
+			$id = startKitchenSink -scpath $StarCounterDir -wwwPath $KitchenSinkWwwPath -exePath $KitchenSinkExePath 
+			wait-process -id $id
 			$testExitCode = runTests -testPath $KitchenSinkTestsPath
 			if($testExitCode -ge 0)
 			{
