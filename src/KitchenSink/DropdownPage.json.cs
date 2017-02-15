@@ -1,11 +1,18 @@
 using Starcounter;
-using Simplified.Ring3;
 
 namespace KitchenSink
 {
     [Database]
-    public class SoftwareProduct : Product
+    public class SoftwareProduct
     {
+        public string Name;
+        public string Key
+        {
+            get
+            {
+                return this.GetObjectID();
+            }
+        }
     }
 
     partial class DropdownPage : Json
