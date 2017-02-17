@@ -1,13 +1,14 @@
 using System;
 using System.Linq;
-using Simplified.Ring3;
 using Starcounter;
 
 namespace KitchenSink
 {
     [Database]
-    public class GroceryProduct : Product
+    public class GroceryProduct
     {
+        public decimal Price;
+        public string Name;
     }
 
     partial class AutocompletePage : Partial
