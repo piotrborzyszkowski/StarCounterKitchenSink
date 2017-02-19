@@ -4,7 +4,7 @@ namespace KitchenSink
 {
     partial class FlashMessagePage : Json
     {
-        public void Handle(Input.ButtonWasClicked Action)
+        public void Handle(Input.ShowMessageClick Action)
         {
             Action.Cancel();
             this.ServerMessage = "This Message was set on the Server side!";

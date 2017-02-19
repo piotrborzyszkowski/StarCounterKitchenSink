@@ -8,14 +8,14 @@
 
         <p> And if you combine that with <code>Scheduling.ScheduleTask</code> and <code>Session.ScheduleTask</code> you can make a server side message appear.</p>
 
-        <button class="btn btn-default" value="{{model.ButtonWasClicked$::click}}" onmousedown="++this.value">Trigger message from Server side </button>
+        <button class="btn btn-default" value="{{model.ShowMessageClick$::click}}" onmousedown="++this.value">Trigger message from Server side </button>
 
         <template is="dom-if" if="{{model.ServerMessage}}">
             <p class="alert alert-info">{{model.ServerMessage}} </p>
         </template>
 
         <p> <br> And by combining <code>&lt;template is="dom-if"&gt;</code> with a click event and a timed function, by using <code> setTimeout </code> you can achieve the same behavior. </p>
-        <button class="btn btn-default" on-click="ButtonClicked"> Trigger message from Client side </button>
+        <button class="btn btn-default" on-click="showMessage"> Trigger message from Client side </button>
 
         <template is="dom-if" if="{{model.ClientMessage$}}">
             <p class="alert alert-info">{{model.ClientMessage$}} </p>
@@ -27,7 +27,7 @@
             var script = document._currentScript || document.currentScript;
             var template = script.previousElementSibling;
 
-            template.ButtonClicked = function () {
+            template.showMessage = function () {
                 template.set("model.ClientMessage$", "This message was set on the Client Side!");
                 setTimeout(() => {
                     template.set("model.ClientMessage$", "");

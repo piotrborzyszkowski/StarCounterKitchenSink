@@ -1,6 +1,6 @@
 {
   "Html": "/KitchenSink/FlashMessagePage.html",
-  "ButtonWasClicked$": 0,
+  "ShowMessageClick$": 0,
   "ServerMessage": "",
   "ClientMessage$": ""
 }
