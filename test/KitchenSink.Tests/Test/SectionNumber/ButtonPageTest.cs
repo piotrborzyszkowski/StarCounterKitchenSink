@@ -34,43 +34,43 @@ namespace KitchenSink.Tests.Test.SectionNumber
 
             WaitUntil(x => _buttonPage.ButtonInlineScript.Displayed);
             _buttonPage.ClickButtonInlineScript();
-            Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_buttonPage.VegetablesButtonInfoLabel, "You have 1 imaginary carrots")));
+            Assert.IsTrue(WaitForText(_buttonPage.VegetablesButtonInfoLabel, "You have 1 imaginary carrots", 5));
 
             WaitUntil(x => _buttonPage.ButtonFunction.Displayed);
             _buttonPage.ClickButtonFunction();
-            Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_buttonPage.VegetablesButtonInfoLabel, "You have 2 imaginary carrots")));
+            Assert.IsTrue(WaitForText(_buttonPage.VegetablesButtonInfoLabel, "You have 2 imaginary carrots", 5));
 
             WaitUntil(x => _buttonPage.SpanFunction.Displayed);
             _buttonPage.ClickSpanFunction();
-            Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_buttonPage.VegetablesButtonInfoLabel, "You have 3 imaginary carrots")));
+            Assert.IsTrue(WaitForText(_buttonPage.VegetablesButtonInfoLabel, "You have 3 imaginary carrots", 5));
         }
 
         [Test]
         public void ButtonPage_SelfButton()
         {
             _buttonPage.ClickButonTakeOneRegeneratingCarrot();
-            Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_buttonPage.TakeOneRegeneratingCarrotLabel, "Currently Regenerating!")));
+            Assert.IsTrue(WaitForText(_buttonPage.TakeOneRegeneratingCarrotLabel, "Currently Regenerating!", 5));
         }
 
         [Test]
         public void ButtonPage_SwitchButton()
         {
-            Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_buttonPage.EnableCarrotEngineLabel, "Carrot engine is off")));
+            Assert.IsTrue(WaitForText(_buttonPage.EnableCarrotEngineLabel, "Carrot engine is off", 5));
 
             _buttonPage.ClickEnableCarrotEngine();
-            Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_buttonPage.EnableCarrotEngineLabel, "Carrot engine is on")));
+            Assert.IsTrue(WaitForText(_buttonPage.EnableCarrotEngineLabel, "Carrot engine is on", 5));
             _buttonPage.ClickEnableCarrotEngine();
-            Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_buttonPage.EnableCarrotEngineLabel, "Carrot engine is off")));
+            Assert.IsTrue(WaitForText(_buttonPage.EnableCarrotEngineLabel, "Carrot engine is off", 5));
         }
 
         [Test]
         public void ButtonPage_DisabledButton()
         {
-            Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_buttonPage.AddCarrotsLabel,
-                "You don't have any carrots")));
+            Assert.IsTrue(WaitForText(_buttonPage.AddCarrotsLabel,
+                "You don't have any carrots", 5));
             _buttonPage.ClickButtonAddCarrots();
-            Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_buttonPage.AddCarrotsLabel,
-                "You have 1 imaginary carrots")));
+            Assert.IsTrue(WaitForText(_buttonPage.AddCarrotsLabel,
+                "You have 1 imaginary carrots", 5));
         }
     }
 }

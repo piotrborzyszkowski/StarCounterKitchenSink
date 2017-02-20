@@ -30,22 +30,11 @@ namespace KitchenSink.Tests.Test.SectionBoolean
         {
             WaitUntil(x => _toggleButtonPage.ToogleButton.Displayed);
             WaitUntil(x => _toggleButtonPage.InfoLabel.Displayed);
-
-            if (_toggleButtonPage.ToogleButton.Selected)
-            {
-                Assert.AreEqual("I accept terms and conditions", _toggleButtonPage.InfoLabel.Text);
-                _toggleButtonPage.ChangeToggleButtonState();
-                WaitUntil(ExpectedConditions.ElementSelectionStateToBe(_toggleButtonPage.ToogleButton, true));
-                Assert.AreEqual("I don't accept terms and conditions", _toggleButtonPage.InfoLabel.Text);
-            }
-
-            if (!_toggleButtonPage.ToogleButton.Selected)
-            {
-                Assert.AreEqual("I accept terms and conditions", _toggleButtonPage.InfoLabel.Text);
-                _toggleButtonPage.ChangeToggleButtonState();
-                WaitUntil(ExpectedConditions.ElementSelectionStateToBe(_toggleButtonPage.ToogleButton, false));
-                Assert.AreEqual("I don't accept terms and conditions", _toggleButtonPage.InfoLabel.Text);
-            }
+            Assert.AreEqual("I accept terms and conditions", _toggleButtonPage.InfoLabel.Text);
+            _toggleButtonPage.ChangeToggleButtonState();
+            Assert.IsTrue(WaitForText(_toggleButtonPage.InfoLabel, "I don't accept terms and conditions", 5));
+            _toggleButtonPage.ChangeToggleButtonState();
+            Assert.IsTrue(WaitForText(_toggleButtonPage.InfoLabel, "I accept terms and conditions", 5));
         }
     }
 }

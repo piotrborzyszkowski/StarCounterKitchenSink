@@ -14,9 +14,8 @@ namespace KitchenSink.Tests.Utilities
             if (screenShot != null)
             {
                 var now = DateTime.Now.ToString("yyyyMMddHHmmss");
-                var path = $@"\webdriver_screenshot_{now}.png";
-
-                screenShot.SaveAsFile(TestContext.CurrentContext.TestDirectory + path, ImageFormat.Png);
+                var path = $@"\webdriver_screenshot_{now}.png";               
+                screenShot.SaveAsFile(TestContext.CurrentContext.TestDirectory + path, ScreenshotImageFormat.Png);
             }
             else
             {

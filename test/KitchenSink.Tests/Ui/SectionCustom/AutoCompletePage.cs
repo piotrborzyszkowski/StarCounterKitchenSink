@@ -30,14 +30,14 @@ namespace KitchenSink.Tests.Ui.SectionCustom
         [FindsBy(How = How.Id, Using = "kitchensink-autocomplete-price")]
         public IWebElement ProductsInfoLabel { get; set; }
 
-        public void ChoosePlace(string s)
+        public void ChoosePlace(string place)
         {
-           ClickOn(PlacesAutoComplete.Where(x => x.Text == s).First());
+           ClickOn(PlacesAutoComplete.First(x => x.Text == place));
         }
 
-        public void ChooseProducts(string b)
+        public void ChooseProducts(string product)
         {
-            ClickOn(ProductsAutoComplete.Where(x => x.Text == b).First());
+            ClickOn(ProductsAutoComplete.First(x => x.Text == product));
         }
     }
 }

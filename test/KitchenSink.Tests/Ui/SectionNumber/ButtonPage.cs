@@ -10,7 +10,7 @@ namespace KitchenSink.Tests.Ui.SectionNumber
             PageFactory.InitElements(Driver, this);
         }
 
-        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-carrots-reaction__label")]
+        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-carrots-reaction-label")]
         public IWebElement VegetablesButtonInfoLabel { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//button[text() = 'Button (inline script)']")]
@@ -28,16 +28,16 @@ namespace KitchenSink.Tests.Ui.SectionNumber
         [FindsBy(How = How.XPath, Using = "//button[text() = 'Add carrots']")]
         public IWebElement ButtonAddCarrots { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-carrot-engine-reaction__label")]
+        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-carrot-engine-reaction-label")]
         public IWebElement EnableCarrotEngineLabel { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-one-carrot-reaction__label")]
+        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-one-carrot-reaction-label")]
         public IWebElement AddCarrotsLabel { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//button[text() = 'Take one Regenerating Carrot']")]
         public IWebElement ButonTakeOneRegeneratingCarrot { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-self-button__label")]
+        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-self-button-label")]
         public IWebElement TakeOneRegeneratingCarrotLabel { get; set; }
 
         public void ClickButtonInlineScript()

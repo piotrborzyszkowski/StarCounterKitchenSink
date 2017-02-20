@@ -34,7 +34,7 @@ namespace KitchenSink.Tests.Test.SectionString
             WaitUntil(x => _passwordPage.PasswordInput.Displayed);
             _passwordPage.ClearPassword();
             _passwordPage.FillPassword(password);
-            Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_passwordPage.PaswordInputInfoLabel, originalLabel)));
+            Assert.IsTrue(WaitForText(_passwordPage.PaswordInputInfoLabel, originalLabel, 5));
         }
 
         [Test]
@@ -45,7 +45,7 @@ namespace KitchenSink.Tests.Test.SectionString
             WaitUntil(x => _passwordPage.PasswordInput.Displayed);
             _passwordPage.ClearPassword();
             _passwordPage.FillPassword(password);
-            Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_passwordPage.PaswordInputInfoLabel, "Good password!")));
+            Assert.IsTrue(WaitForText(_passwordPage.PaswordInputInfoLabel, "Good password!", 5));
         }
 
         [Test]
@@ -56,10 +56,10 @@ namespace KitchenSink.Tests.Test.SectionString
             WaitUntil(x => _passwordPage.PasswordInput.Displayed);
             _passwordPage.ClearPassword();
             _passwordPage.FillPassword(password);
-            Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_passwordPage.PaswordInputInfoLabel, "Good password!")));
+            Assert.IsTrue(WaitForText(_passwordPage.PaswordInputInfoLabel, "Good password!", 5));
             _passwordPage.ClearPassword();
             _passwordPage.FillPassword("123");
-            Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_passwordPage.PaswordInputInfoLabel, "Password must be at least 6 chars long")));
+            Assert.IsTrue(WaitForText(_passwordPage.PaswordInputInfoLabel, "Password must be at least 6 chars long", 5));
         }
     }
 }

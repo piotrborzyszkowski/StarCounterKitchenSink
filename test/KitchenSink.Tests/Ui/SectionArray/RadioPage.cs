@@ -12,16 +12,16 @@ namespace KitchenSink.Tests.Ui.SectionArray
             PageFactory.InitElements(Driver, this);
         }
 
-        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-pet-reaction__label")]
+        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-pet-reaction-label")]
         public IWebElement InfoLabel { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test__radio-buttons")]
+        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-radio-buttons")]
         public IList<IWebElement> Radios { get; set; }
 
 
         public void SelectRadio(string radioName)
         {
-            ClickOn(Radios.Single(x => x.GetAttribute("test-value") == radioName));
+            ClickOn(Radios.Single(x => x.Text == radioName)); 
         }
     }
 }

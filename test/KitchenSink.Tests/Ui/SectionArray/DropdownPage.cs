@@ -11,37 +11,37 @@ namespace KitchenSink.Tests.Ui.SectionArray
             PageFactory.InitElements(Driver, this);
         }
 
-        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-pets__select")]
+        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-pets-select")]
         public IWebElement PetsSelect { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-pet-like__label")]
+        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-pet-like-label")]
         public IWebElement PetLikeLabel { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-product__select")]
+        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-product-select")]
         public IWebElement ProductSelect { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-juicy-select__label")]
+        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-juicy-select-label")]
         public IWebElement JuicySelectLabel { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test__juicy-select select")]
+        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-juicy-select select")]
         public IWebElement JuicySelect { get; set; }
 
         public void SelectPet(string petName)
         {
-            SelectElement sel = new SelectElement(PetsSelect);
-            sel.SelectByText(petName);
+            SelectElement select = new SelectElement(PetsSelect);
+            select.SelectByText(petName);
         }
 
         public void SelectProduct(string productName)
         {
-            SelectElement sel = new SelectElement(ProductSelect);
-            sel.SelectByText(productName);
+            SelectElement select = new SelectElement(ProductSelect);
+            select.SelectByText(productName);
         }
 
         public void SelectJuicySelect(string juicyName)
         {
-            SelectElement sel = new SelectElement(JuicySelect);
-            sel.SelectByText(juicyName);
+            SelectElement select = new SelectElement(JuicySelect);
+            select.SelectByText(juicyName);
         }
     }
 }

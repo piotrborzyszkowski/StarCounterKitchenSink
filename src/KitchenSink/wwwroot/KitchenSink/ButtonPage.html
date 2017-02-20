@@ -14,7 +14,7 @@
             <li>Any other element (<code>span</code>, etc) with a helper function</li>
         </ol>
 
-        <pre class="kitchensink-test-carrots-reaction__label">{{model.CarrotsReaction}}</pre>
+        <pre class="kitchensink-test-carrots-reaction-label">{{model.CarrotsReaction}}</pre>
 
         <p class="kitchensink-add-carrots">
             <span class="kitchensink-add-carrots__label">Add carrots:</span>
@@ -32,7 +32,7 @@
 
         <button class="btn btn-sm btn-default kitchensink-toggle-button" pressed$="{{model.EnableCarrotEngine$}}" on-click="onEnableCarrotEngineClick">Enable carrot engine</button>
 
-        <span class="kitchensink-test-carrot-engine-reaction__label">{{model.CarrotEngineReaction}}</span>
+        <span class="kitchensink-test-carrot-engine-reaction-label">{{model.CarrotEngineReaction}}</span>
 
         <h5>Disabled button</h5>
 
@@ -40,7 +40,7 @@
 
         <button class="btn btn-sm btn-default kitchensink-toggle-button" value="{{model.AddOneCarrot$::click}}" onmousedown="++this.value" disabled$="{{model.AddOneCarrotDisabled}}">Add carrots</button>
 
-        <span class="kitchensink-test-one-carrot-reaction__label">{{model.OneCarrotReaction}}</span>
+        <span class="kitchensink-test-one-carrot-reaction-label">{{model.OneCarrotReaction}}</span>
 
         <h5>Self Disabling/Enabling Button</h5>
 
@@ -49,7 +49,7 @@
             <div>
                 <button class="btn btn-sm btn-default kitchensink-toggle-button" value="{{model.TakeOneRegeneratingCarrot$::click}}" disabled="{{model.TakeOneRegeneratingCarrot$}}" onmouseup="++this.value">Take one Regenerating Carrot</button>
                 <template is="dom-if" if="{{model.TakeOneRegeneratingCarrot$}}">
-                    <p class="kitchensink-test-self-button__label">Currently Regenerating!</p>
+                    <p class="kitchensink-test-self-button-label">Currently Regenerating!</p>
                 </template>
             </div>
         </div>

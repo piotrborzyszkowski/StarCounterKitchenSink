@@ -29,13 +29,13 @@ namespace KitchenSink.Tests.Test.SectionArray
         public void ButtonPage_RegularButton()
         {
             WaitUntil(x => _radiolistPage.InfoLabel.Displayed);
-            Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_radiolistPage.InfoLabel, "Dogs")));
+            Assert.IsTrue(WaitForText(_radiolistPage.InfoLabel, "Dogs", 5));
 
             _radiolistPage.SelectRadio("Cats");
-            Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_radiolistPage.InfoLabel, "Cats")));
+            Assert.IsTrue(WaitForText(_radiolistPage.InfoLabel, "Cats", 5));
 
             _radiolistPage.SelectRadio("Dogs");
-            Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_radiolistPage.InfoLabel, "Dogs")));
+            Assert.IsTrue(WaitForText(_radiolistPage.InfoLabel, "Dogs", 5));
         }
     }
 }

@@ -26,12 +26,12 @@
                 </thead>
                 <tbody>
                     <template is="dom-repeat" items="{{model.Files}}">
-                        <tr class="kitchensink-test-uploaded-files__list">
+                        <tr class="kitchensink-test-uploaded-files-list">
                             <td>{{item.FileName}}</td>
                             <td>{{item.FileSizeString}}</td>
                             <td>{{item.FilePath}}</td>
                             <td>
-                                <button type="button" class="btn btn-sm btn-default kitchensink-test-delete__button" value="{{item.DeleteClick$::click}}" onmouseup="++this.value;">Delete</button>
+                                <button type="button" class="btn btn-sm btn-default kitchensink-test-delete-button" value="{{item.DeleteClick$::click}}" onmouseup="++this.value;">Delete</button>
                             </td>
                         </tr>
                     </template>

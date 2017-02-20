@@ -30,21 +30,11 @@ namespace KitchenSink.Tests.Test.SectionBoolean
         {
             WaitUntil(x => _checkboxPage.Checkbox.Displayed);
             WaitUntil(x => _checkboxPage.InfoLabel.Displayed);
-
-            if (_checkboxPage.Checkbox.Selected)
-            {
-                Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_checkboxPage.InfoLabel, "You can drive")));
-                _checkboxPage.ToggleCheckbox();
-                WaitUntil(ExpectedConditions.ElementSelectionStateToBe(_checkboxPage.Checkbox, false));
-                Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_checkboxPage.InfoLabel, "You can't drive")));
-            }
-            else
-            {
-                Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_checkboxPage.InfoLabel, "You can't drive")));
-                _checkboxPage.ToggleCheckbox();
-                WaitUntil(ExpectedConditions.ElementSelectionStateToBe(_checkboxPage.Checkbox, true));
-                Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_checkboxPage.InfoLabel, "You can drive")));
-            }
+            Assert.IsTrue(WaitForText(_checkboxPage.InfoLabel, "You can drive", 5));
+            _checkboxPage.ToggleCheckbox();
+            Assert.IsTrue(WaitForText(_checkboxPage.InfoLabel, "You can't drive", 5));
+            _checkboxPage.ToggleCheckbox();
+            Assert.IsTrue(WaitForText(_checkboxPage.InfoLabel, "You can drive", 5));
         }
     }
 }

@@ -10,16 +10,16 @@ namespace KitchenSink.Tests.Ui.SectionString
             PageFactory.InitElements(Driver, this);
         }
 
-        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-name__input")]
+        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-name-input")]
         public IWebElement Input { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-name__input-dynamic")]
+        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-name-input-dynamic")]
         public IWebElement InputDynamic { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-name__label")]
+        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-name-label")]
         public IWebElement InputInfoLabel { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-name__label-dynamic")]
+        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-name-label-dynamic")]
         public IWebElement InputInfoLabelDynamic { get; set; }
 
         public void FillInput(string input)
@@ -44,9 +44,10 @@ namespace KitchenSink.Tests.Ui.SectionString
 
         public void ClearInputDynamic()
         {
-            var temp = InputDynamic.GetAttribute("value").Length;
+            var inputLength = InputDynamic.GetAttribute("value").Length;
 
-            for (var i = 0; i < temp; i++)
+            //can't use Clear()
+            for (var i = 0; i < inputLength; i++)
             {
                 InputDynamic.SendKeys(Keys.Backspace);
             }

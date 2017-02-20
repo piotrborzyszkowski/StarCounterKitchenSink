@@ -12,27 +12,27 @@ namespace KitchenSink.Tests.Ui.SectionCustom
             PageFactory.InitElements(Driver, this);
         }
 
-        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test__juicy-select select")]
+        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-juicy-select select")]
         public IWebElement DropDown { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-pagination-result__li")]
+        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-pagination-result-li")]
         public IList<IWebElement> PaginationResult { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-pagination li")]
         public IWebElement Pagination { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-pagination__label")]
+        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-pagination-label")]
         public IWebElement PaginationInfoLabel { get; set; }
 
-        public void DropdownSelect(string p0)
+        public void DropdownSelect(string option)
         {
             SelectElement dropDown = new SelectElement(DropDown);
-            dropDown.SelectByText(p0);
+            dropDown.SelectByText(option);
         }
 
-        internal void GoToPage(string v)
+        internal void GoToPage(string pageNumber)
         {
-            ClickOn(Pagination.FindElement(By.XPath("//span[text() = '" + v + "']")));
+            ClickOn(Pagination.FindElement(By.XPath("//span[text() = '" + pageNumber + "']")));
         }
     }
 }

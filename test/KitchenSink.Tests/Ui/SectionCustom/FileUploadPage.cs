@@ -17,10 +17,10 @@ namespace KitchenSink.Tests.Ui.SectionCustom
         [FindsBy(How = How.CssSelector, Using = ".alert-warning")]
         public IWebElement InfoLabel { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-uploaded-files__list")]
+        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-uploaded-files-list")]
         public IList<IWebElement> UploadedFilesList { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-delete__button")]
+        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-delete-button")]
         public IList<IWebElement> DeleteButtons { get; set; }
 
         public void UploadAFile(string filePath)

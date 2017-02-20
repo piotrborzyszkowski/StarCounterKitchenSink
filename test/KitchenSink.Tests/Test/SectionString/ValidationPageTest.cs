@@ -30,10 +30,10 @@ namespace KitchenSink.Tests.Test.SectionString
             WaitUntil(x => _validationPage.ValidateButton.Displayed);
             _validationPage.Validate();
 
-            WaitUntil(x => _validationPage.NameErrorLabel.GetAttribute("test-value") != string.Empty && _validationPage.LastNameErrorLabel.GetAttribute("test-value") != string.Empty);
+            WaitUntil(x => _validationPage.NameErrorLabel.Text != string.Empty && _validationPage.LastNameErrorLabel.Text != string.Empty);
 
-            Assert.AreEqual("'Name' should not be empty.", _validationPage.NameErrorLabel.GetAttribute("test-value"));
-            Assert.AreEqual("'Last Name' should not be empty.", _validationPage.LastNameErrorLabel.GetAttribute("test-value"));
+            Assert.AreEqual("'Name' should not be empty.", _validationPage.NameErrorLabel.Text);
+            Assert.AreEqual("'Last Name' should not be empty.", _validationPage.LastNameErrorLabel.Text);
         }
 
         [Test]

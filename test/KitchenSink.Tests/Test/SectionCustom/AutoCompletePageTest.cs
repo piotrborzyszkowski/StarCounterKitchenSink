@@ -2,7 +2,6 @@
 using KitchenSink.Tests.Ui.SectionCustom;
 using KitchenSink.Tests.Utilities;
 using NUnit.Framework;
-using OpenQA.Selenium.Support.UI;
 
 namespace KitchenSink.Tests.Test.SectionCustom
 {
@@ -49,7 +48,7 @@ namespace KitchenSink.Tests.Test.SectionCustom
             _autoCompletePage.PlaceInput.SendKeys("P");
             WaitUntil(x => _autoCompletePage.PlacesAutoComplete.Count > 0);
             _autoCompletePage.ChoosePlace("Poland");
-            Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_autoCompletePage.PlaceInfoLabel, "Capital of Poland is Warsaw")));
+            Assert.IsTrue(WaitForText(_autoCompletePage.PlaceInfoLabel, "Capital of Poland is Warsaw", 5));
         }
 
         [Test]
@@ -60,7 +59,7 @@ namespace KitchenSink.Tests.Test.SectionCustom
             _autoCompletePage.ProductsInput.SendKeys("B");
             WaitUntil(x => _autoCompletePage.ProductsAutoComplete.Count > 0);
             _autoCompletePage.ChooseProducts("Bread");
-            Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_autoCompletePage.ProductsInfoLabel, "Bread costs $1")));
+            Assert.IsTrue(WaitForText(_autoCompletePage.ProductsInfoLabel, "Bread costs $1", 5));
         }
     }
 }

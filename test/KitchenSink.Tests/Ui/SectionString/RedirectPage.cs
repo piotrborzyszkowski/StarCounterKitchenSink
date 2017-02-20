@@ -11,22 +11,22 @@ namespace KitchenSink.Tests.Ui.SectionString
             PageFactory.InitElements(Driver, this);
         }
 
-        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-fruit__button")]
+        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-fruit-button")]
         public IWebElement FruitButton { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-vegetable__button")]
+        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-vegetable-button")]
         public IWebElement VegetableButton { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-bread__button")]
+        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-bread-button")]
         public IWebElement BreadButton { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-favourite-food__label")]
+        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-favourite-food-label")]
         public IWebElement InfoLabel { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-morph__button")]
+        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-morph-button")]
         public IWebElement MorphButton { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-redirect__button")]
+        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-redirect-button")]
         public IWebElement RedirectButton { get; set; }
 
         public void ClickButton(Config.Buttons button)

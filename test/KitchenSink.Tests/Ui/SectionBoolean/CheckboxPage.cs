@@ -10,10 +10,10 @@ namespace KitchenSink.Tests.Ui.SectionBoolean
             PageFactory.InitElements(Driver, this);
         }
 
-        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-driver-license__label")]
+        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-driver-license-label")]
         public IWebElement InfoLabel { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-driver-license__input")]
+        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-driver-license-input")]
         public IWebElement Checkbox { get; set; }
 
         public void ToggleCheckbox()

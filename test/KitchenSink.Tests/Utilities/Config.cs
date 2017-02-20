@@ -33,5 +33,12 @@ namespace KitchenSink.Tests.Utilities
             {Buttons.Morph, "Morph"},
             {Buttons.Redirect, "Redirect"}
         };
+
+        public static readonly Dictionary<Browser, string> BrowserDictionary = new Dictionary<Browser, string>
+        {
+            {Browser.Chrome, "Chrome"},
+            {Browser.Edge, "Edge"},
+            {Browser.Firefox, "Firefox"}
+        };
     }
 }

@@ -31,13 +31,12 @@ namespace KitchenSink.Tests.Test.SectionArray
         {
             WaitUntil(x => _dropDownPage.PetsSelect.Displayed);
             _dropDownPage.SelectPet("dogs");
-            Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_dropDownPage.PetLikeLabel, "You like dogs")));
-
+            Assert.IsTrue(WaitForText(_dropDownPage.PetLikeLabel, "You like dogs", 5));
             _dropDownPage.SelectPet("cats");
-            Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_dropDownPage.PetLikeLabel, "You like cats")));
+            Assert.IsTrue(WaitForText(_dropDownPage.PetLikeLabel, "You like cats", 5));
 
             _dropDownPage.SelectPet("rabbit");
-            Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_dropDownPage.PetLikeLabel, "You like rabbit")));
+            Assert.IsTrue(WaitForText(_dropDownPage.PetLikeLabel, "You like rabbit", 5));
         }
 
         [Test]
@@ -47,12 +46,12 @@ namespace KitchenSink.Tests.Test.SectionArray
             Assert.AreEqual(string.Empty, new SelectElement(_dropDownPage.ProductSelect).SelectedOption.Text);
 
             _dropDownPage.SelectJuicySelect("Polymer JavaScript library");
-            Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_dropDownPage.JuicySelectLabel, "You have selected: Polymer JavaScript library")));
-            Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(new SelectElement(_dropDownPage.ProductSelect).SelectedOption, "Polymer JavaScript library")));
+            Assert.IsTrue(WaitForText(_dropDownPage.JuicySelectLabel, "You have selected: Polymer JavaScript library", 5));
+            Assert.IsTrue(WaitForText(new SelectElement(_dropDownPage.ProductSelect).SelectedOption, "Polymer JavaScript library", 5));
 
             _dropDownPage.SelectJuicySelect("Starcounter Database");
-            Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_dropDownPage.JuicySelectLabel, "You have selected: Starcounter Database")));
-            Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(new SelectElement(_dropDownPage.ProductSelect).SelectedOption, "Starcounter Database")));
+            Assert.IsTrue(WaitForText(_dropDownPage.JuicySelectLabel, "You have selected: Starcounter Database", 5));
+            Assert.IsTrue(WaitForText(new SelectElement(_dropDownPage.ProductSelect).SelectedOption, "Starcounter Database", 5));
         }
 
         [Test]
@@ -60,12 +59,12 @@ namespace KitchenSink.Tests.Test.SectionArray
         {
             WaitUntil(x => _dropDownPage.ProductSelect.Displayed);
             _dropDownPage.SelectProduct("Starcounter Database");
-            Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_dropDownPage.JuicySelectLabel, "You have selected: Starcounter Database")));
-            Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(new SelectElement(_dropDownPage.JuicySelect).SelectedOption, "Starcounter Database")));
+            Assert.IsTrue(WaitForText(_dropDownPage.JuicySelectLabel, "You have selected: Starcounter Database", 5));
+            Assert.IsTrue(WaitForText(new SelectElement(_dropDownPage.JuicySelect).SelectedOption, "Starcounter Database", 5));
 
             _dropDownPage.SelectProduct("Polymer JavaScript library");
-            Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(_dropDownPage.JuicySelectLabel, "You have selected: Polymer JavaScript library")));
-            Assert.IsTrue(WaitUntil(ExpectedConditions.TextToBePresentInElement(new SelectElement(_dropDownPage.JuicySelect).SelectedOption, "Polymer JavaScript library")));
+            Assert.IsTrue(WaitForText(_dropDownPage.JuicySelectLabel, "You have selected: Polymer JavaScript library", 5));
+            Assert.IsTrue(WaitForText(new SelectElement(_dropDownPage.JuicySelect).SelectedOption, "Polymer JavaScript library", 5));
         }
     }
 }

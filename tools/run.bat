@@ -1,2 +1,3 @@
 @echo off
-star --resourcedir="%~dp0src\KitchenSink\wwwroot" "%~dp0bin/Debug/KitchenSink.exe"
+
+START /W star.exe --resourcedir="..\src\KitchenSink\wwwroot" "..\bin\Debug\KitchenSink.exe"

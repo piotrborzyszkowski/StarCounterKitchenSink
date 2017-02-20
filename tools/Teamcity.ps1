@@ -36,7 +36,7 @@ Function startKitchenSink($scpath, $wwwPath, $exePath)
 #run KitchenSink tests
 Function runTests($testPath)
 {
-	$process = Start-Process -FilePath "$checkoutdir\KitchenSink\packages\NUnit.ConsoleRunner.3.6.0\tools\nunit3-console.exe" -ArgumentList "$testPath --noheader --teamcity" -PassThru -NoNewWindow -Wait
+	$process = Start-Process -FilePath "$checkoutdir\KitchenSink\packages\NUnit.ConsoleRunner.3.6.0\tools\nunit3-console.exe" -ArgumentList "$testPath --noheader --teamcity --params Browsers=Chrome,Firefox" -PassThru -NoNewWindow -Wait
 	return $process.ExitCode
 }
 
