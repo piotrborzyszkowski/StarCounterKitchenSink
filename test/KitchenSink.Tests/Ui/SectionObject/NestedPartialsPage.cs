@@ -14,7 +14,6 @@ namespace KitchenSink.Tests.Ui.SectionObject
         [FindsBy(How = How.XPath, Using = "//button[text() = 'Add child']")]
         public IWebElement AddChildButton { get; set; }
 
-        [FindsByAll]
         [FindsBy(How = How.XPath, Using = "//div[@class = 'kitchensink-nested-child']")]
         public IList<IWebElement> ChildDivs { get; set; }
 

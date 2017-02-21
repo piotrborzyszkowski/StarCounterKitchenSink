@@ -12,10 +12,8 @@ namespace KitchenSink.Tests.Test
     {
         public IWebDriver Driver;
         private readonly Config.Browser _browser;
-        private readonly List<string> _browsers = TestContext.Parameters["Browsers"].Split(',').ToList();
-
-        //DEBUG ONLY
-        //private readonly List<string> _browsers = "Chrome;Firefox".Split(';').ToList();
+        private readonly string _browsersTc = TestContext.Parameters["Browsers"];
+        private List<string> _browsersToRun = new List<string>();
 
         public BaseTest(Config.Browser browser)
         {
@@ -25,7 +23,18 @@ namespace KitchenSink.Tests.Test
         [OneTimeSetUp]
         public void TestFixtureSetUp()
         {
-            if (_browsers.Contains(Config.BrowserDictionary[_browser]))
+            if (_browsersTc != null)
+            {
+                _browsersToRun = _browsersTc.Split(',').ToList();
+            }
+            else
+            {
+                _browsersToRun.Add("Chrome");
+                _browsersToRun.Add("Firefox");
+                //_browsersToRun.Add("Edge");
+            }
+
+            if (_browsersToRun.Contains(Config.BrowserDictionary[_browser]))
                 Driver = WebDriverManager.StartDriver(_browser, Config.Timeout, Config.RemoteWebDriverUri);
             else
             {
@@ -41,7 +50,7 @@ namespace KitchenSink.Tests.Test
 
         protected TResult WaitUntil<TResult>(Func<IWebDriver, TResult> condition)
         {
-            WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(30));
+            WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
             return wait.Until(condition);
         }
 
