@@ -6,7 +6,7 @@ rem call git --git-dir="%~dp0.git" pull || (GOTO ERROR)
 REM call git --git-dir="%~dp0.git" --work-tree="%~dp0" pull && (echo success) || (GOTO ERROR)
 SET FOUND_SOURCE=0
 REM Echo Building Source
-FOR %%i IN (%~dp0src\KitchenSink\*.csproj) DO (
+FOR %%i IN (*.sln) DO (
 SET FOUND_SOURCE=1
 
 REM Use Microsoft Build Tools 2015 that includes C# 6 (https://www.microsoft.com/en-us/download/details.aspx?id=48159)
