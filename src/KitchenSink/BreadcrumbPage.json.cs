@@ -22,13 +22,7 @@ namespace KitchenSink
         {
             base.OnData();
 
-            if (BreadcrumbTestData.Exists())
-            {
-                Db.Transact(() => { BreadcrumbTestData.DeleteAll(); });
-            }
-            BreadcrumbTestData.Create();
-
-            var treeItem = Db.SQL<TreeItem>("SELECT i FROM TreeItem i WHERE Name = ?", "Milk").First;
+            var treeItem = Db.SQL<TreeItem>("SELECT i FROM TreeItem i WHERE Parent IS NOT NULL FETCH ?", 1).First;
             SetActiveItem(treeItem);
         }
 

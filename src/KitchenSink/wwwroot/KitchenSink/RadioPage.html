@@ -9,10 +9,10 @@
 
     <paper-radio-group selected="{{model.SelectedPet$}}">
         <template is="dom-repeat" items="{{model.Pets}}">
-            <paper-radio-button name="{{item.Label}}">{{item.Label}}</paper-radio-button>
+            <paper-radio-button test-value$="{{item.Label}}" class="kitchensink-test-radio-buttons" name="{{item.Label}}">{{item.Label}}</paper-radio-button>
         </template>
     </paper-radio-group>
 
-    <div>{{model.PetReaction}}</div>
+    <div class="kitchensink-test-pet-reaction-label">{{model.PetReaction}}</div>
   </template>
 </template>

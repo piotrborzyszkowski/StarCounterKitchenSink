@@ -7,7 +7,6 @@
   "AddOneCarrotDisabled": false,
 
   "TakeOneRegeneratingCarrot$": 0,
-  "TakeOneFakeRegeneratingCarrot$": 0,
 
   "CarrotsReaction": "You don't have any carrots",
   "CarrotEngineReaction": "Carrot engine is off",

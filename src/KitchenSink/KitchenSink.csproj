@@ -24,7 +24,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <Prefer32Bit>false</Prefer32Bit>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <PlatformTarget>x64</PlatformTarget>
@@ -85,8 +85,12 @@
     <Compile Include="ChartPage.json.cs">
       <DependentUpon>ChartPage.json</DependentUpon>
     </Compile>
+    <Compile Include="DummyData.cs" />
     <Compile Include="LazyLoadingPage.json.cs">
       <DependentUpon>LazyLoadingPage.json</DependentUpon>
+    </Compile>
+    <Compile Include="MainPage.json.cs">
+      <DependentUpon>MainPage.json</DependentUpon>
     </Compile>
     <Compile Include="PaginationPage.json.cs">
       <DependentUpon>PaginationPage.json</DependentUpon>
@@ -199,6 +203,9 @@
     <Content Include="wwwroot\KitchenSink\CallbackPage.html" />
     <Content Include="wwwroot\KitchenSink\ChartPage.html" />
     <Content Include="wwwroot\KitchenSink\LazyLoadingPage.html" />
+    <Content Include="wwwroot\KitchenSink\MainPage.html">
+      <SubType>Component</SubType>
+    </Content>
     <Content Include="wwwroot\KitchenSink\PaginationPage.html" />
     <Content Include="wwwroot\KitchenSink\ProgressBarPage.html" />
     <Content Include="wwwroot\KitchenSink\ValidationPage.html" />
@@ -387,6 +394,9 @@
   </ItemGroup>
   <ItemGroup>
     <TypedJSON Include="LazyLoadingPage.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
+    <TypedJSON Include="MainPage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
     <None Include="packages.config" />

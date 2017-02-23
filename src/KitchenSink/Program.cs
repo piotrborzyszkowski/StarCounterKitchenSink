@@ -12,6 +12,8 @@ namespace KitchenSink
             app.Use(new HtmlFromJsonProvider());
             app.Use(new PartialToStandaloneHtmlProvider());
 
+            DummyData.Create();
+
             Handle.GET("/KitchenSink/master", () =>
             {
                 Session session = Session.Current;
@@ -34,7 +36,10 @@ namespace KitchenSink
 
             Handle.GET("/KitchenSink/json", () => { return new Json(); });
 
-            Handle.GET("/KitchenSink", () => { return Self.GET("/KitchenSink/text"); });
+            Handle.GET("/KitchenSink/partial/mainpage", () => new MainPage());
+            Handle.GET("/KitchenSink/mainpage", () => WrapPage<MainPage>("/KitchenSink/partial/mainpage"));
+
+            Handle.GET("/KitchenSink", () => { return Self.GET("/KitchenSink/mainpage"); });
 
             Handle.GET("/KitchenSink/partial/button", () => new ButtonPage());
             Handle.GET("/KitchenSink/button", () => WrapPage<ButtonPage>("/KitchenSink/partial/button"));
@@ -240,9 +245,8 @@ namespace KitchenSink
                 });
             });
 
-            Handle.GET("/KitchenSink/partial/autocomplete", () => Db.Scope(() => new AutocompletePage().Init()));
-            Handle.GET("/KitchenSink/autocomplete",
-                () => WrapPage<AutocompletePage>("/KitchenSink/partial/autocomplete"));
+            Handle.GET("/KitchenSink/partial/autocomplete", () => Db.Scope(() => new AutocompletePage()));
+            Handle.GET("/KitchenSink/autocomplete", () => WrapPage<AutocompletePage>("/KitchenSink/partial/autocomplete"));
 
             //for a launcher
             Handle.GET("/KitchenSink/app-name", () => { return new AppName(); });
