@@ -84,17 +84,13 @@ Before running the steps, you need to:
 3. Start the KitchenSink app
 4. Press "Run all" in Test Explorer
    - If you get an error about some packages not installed, right click on the project in Solution Explorer. Choose "Manage NuGet Packages" and click on "Restore".
-5. Don't touch your keyboard or mouse while the tests are being executed :)
 
 ### Run the test (from command line)
 
 1. Start Selenium Remote Driver: `java -jar selenium-server-standalone-3.*.jar`
-2. Go to the solution folder and run `nuget restore` to make sure you have the test dependencies (listed in `test\KitchenSink.Tests\packages.config`)
- - if you don't have `nuget.exe`, get it from [here](http://docs.nuget.org/Consume/Command-Line-Reference)
-3. Build the solution ('msbuild KitchenSink.sln')
-4. Start the KitchenSink app (StartKitchenSink.ps1)
-5. Start the KitchenSink.Test runner (`StartTests.ps1`)
-6. Don't touch your keyboard or mouse while the tests are being executed :)
+2. Build the solution (build.bat)
+3. Run the KitchenSink app (run.bat)
+4. Start the KitchenSink.Test runner (test.bat)
 
 ### How to release a package
 
