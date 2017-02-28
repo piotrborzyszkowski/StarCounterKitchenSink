@@ -3,10 +3,10 @@ using KitchenSink.Tests.Ui;
 using KitchenSink.Tests.Ui.SectionCustom;
 using KitchenSink.Tests.Utilities;
 using NUnit.Framework;
-using OpenQA.Selenium.Support.UI;
 
 namespace KitchenSink.Tests.Test.SectionCustom
 {
+    [Parallelizable(ParallelScope.Fixtures)]
     [TestFixture(Config.Browser.Chrome)]
     [TestFixture(Config.Browser.Edge)]
     [TestFixture(Config.Browser.Firefox)]

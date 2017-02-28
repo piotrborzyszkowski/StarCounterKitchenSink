@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Drawing.Imaging;
 using NUnit.Framework;
 using OpenQA.Selenium;
 
