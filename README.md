@@ -73,26 +73,24 @@ Before running the steps, you need to:
 
 - Download and install Visual Studio 2015 to run the tests
 - Download and install Java, required by Selenium Standalone Server
-- Download Selenium Standalone Server and the drivers (Edge and Chrome) using the instructions at http://starcounter.io/guides/web/acceptance-testing-with-selenium/#install-selenium-standalone-server-and-browser-drivers
+- Download Selenium Standalone Server and the drivers (Microsoft WebDriver (Edge), Google ChromeDriver (Chrome) and Mozilla GeckoDriver (Firefox)) using the instructions at http://starcounter.io/guides/web/acceptance-testing-with-selenium/#install-selenium-standalone-server-and-browser-drivers
+- Add path to the folder with drivers to system path on your computer
 
 ### Run the test (from Visual Studio)
 
-1. Start Selenium Remote Driver: `java -jar selenium-server-standalone-3.0.0-beta3.jar`
+1. Start Selenium Remote Driver: `java -jar selenium-server-standalone-3.*.jar`
 2. Open `KitchenSink.sln` in Visual Studio and enable Test Explorer (Test > Window > Test Explorer)
+3. You need to install NUnit 3 Test Adapter in VS addon window in order to see tests in Test Explorer window
 3. Start the KitchenSink app
 4. Press "Run all" in Test Explorer
    - If you get an error about some packages not installed, right click on the project in Solution Explorer. Choose "Manage NuGet Packages" and click on "Restore".
-5. Don't touch your keyboard or mouse while the tests are being executed :)
 
 ### Run the test (from command line)
 
-1. Start Selenium Remote Driver: `java -jar selenium-server-standalone-3.0.0-beta3.jar`
-2. Go to the solution folder and run `nuget restore` to make sure you have the test dependencies (listed in `test\KitchenSink.Tests\packages.config`)
- - if you don't have `nuget.exe`, get it from [here](http://docs.nuget.org/Consume/Command-Line-Reference)
-3. Build the solution ('msbuild KitchenSink.sln')
-4. Start the KitchenSink app (`run.bat`)
-5. Start the KitchenSink.Test runner (`test.bat`)
-6. Don't touch your keyboard or mouse while the tests are being executed :)
+1. Start Selenium Remote Driver: `java -jar selenium-server-standalone-3.*.jar`
+2. Build the solution (build.bat)
+3. Run the KitchenSink app (run.bat)
+4. Start the KitchenSink.Test runner (test.bat)
 
 ### How to release a package
 
