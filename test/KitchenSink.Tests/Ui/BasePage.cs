@@ -84,7 +84,7 @@ namespace KitchenSink.Tests.Ui
             return wait.Until(ExpectedConditions.ElementToBeClickable(elementName));
         }
 
-        public void ClickOn(IWebElement elementName, int seconds = 10)
+        public void ClickOn(IWebElement elementName, int seconds = 15)
         {
             IWebElement element = WaitForElementToBeClickable(elementName, seconds);
             element.Click();
