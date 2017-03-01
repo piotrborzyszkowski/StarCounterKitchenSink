@@ -5,6 +5,7 @@ using NUnit.Framework;
 
 namespace KitchenSink.Tests.Test.SectionString
 {
+    [Parallelizable(ParallelScope.Fixtures)]
     [TestFixture(Config.Browser.Chrome)]
     [TestFixture(Config.Browser.Edge)]
     [TestFixture(Config.Browser.Firefox)]
