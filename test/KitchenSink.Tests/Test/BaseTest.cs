@@ -38,7 +38,7 @@ namespace KitchenSink.Tests.Test
                 Driver = WebDriverManager.StartDriver(_browser, Config.Timeout, Config.RemoteWebDriverUri);
             else
             {
-                Assert.Ignore();
+                Assert.Ignore(Config.BrowserDictionary[_browser] + " is on browsers ignore list");
             }
         }
 
