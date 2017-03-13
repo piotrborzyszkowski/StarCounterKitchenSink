@@ -28,6 +28,7 @@ namespace KitchenSink.Tests.Test.SectionArray
         [Test]
         public void TablePage_AddNewRow()
         {
+            WaitUntil(x => _tablePage.PetsTable.Displayed);
 
             var rowsBefore = _tablePage.PetsTableRows.Count;
             _tablePage.AddPet();
