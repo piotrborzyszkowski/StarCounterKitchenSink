@@ -11,9 +11,6 @@ namespace KitchenSink.Tests.Ui.SectionCustom
             PageFactory.InitElements(Driver, this);
         }
 
-        [FindsBy(How = How.Id, Using = "fileElement")]
-        public IWebElement FileInput { get; set; }
-
         [FindsBy(How = How.CssSelector, Using = ".alert-warning")]
         public IWebElement InfoLabel { get; set; }
 
@@ -25,12 +22,19 @@ namespace KitchenSink.Tests.Ui.SectionCustom
 
         public void UploadAFile(string filePath)
         {
-            FileInput.SendKeys(filePath); //BUG in EDGE: https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/7194303/
+            var shadowRoot = ExpandShadowRoot(Driver.FindElement(By.XPath("//starcounter-upload")));
+            shadowRoot.FindElement(By.Id("fileElement")).SendKeys(filePath);
         }
 
         public int GetUploadedFilesCount()
         {
             return UploadedFilesList.Count;
+        }
+
+        public bool CheckFileInputVisible()
+        {
+            var shadowRoot = ExpandShadowRoot(Driver.FindElement(By.XPath("//starcounter-upload")));
+            return shadowRoot.FindElement(By.Id("fileElement")).Enabled;
         }
 
         public void DeleteAllFiles()
