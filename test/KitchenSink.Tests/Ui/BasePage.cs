@@ -93,7 +93,12 @@ namespace KitchenSink.Tests.Ui
         public IWebElement ExpandShadowRoot(IWebElement shadowRootElement)
         {
             IWebElement shadowTreeParent = (IWebElement)((IJavaScriptExecutor)Driver)
-            .ExecuteScript("return arguments[0].shadowRoot", shadowRootElement);
+           .ExecuteScript("return arguments[0].shadowRoot", shadowRootElement);
+            if (shadowTreeParent == null)
+            {
+                //Shadow DOM not supported, fall back to DOM
+                return shadowRootElement;
+            }
             return shadowTreeParent;
         }
 

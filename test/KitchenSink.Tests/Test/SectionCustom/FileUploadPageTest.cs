@@ -31,21 +31,14 @@ namespace KitchenSink.Tests.Test.SectionCustom
         [Test]
         public void FileUploadPage_UploadAFile()
         {
-            if (_browser == Config.Browser.Chrome)
-                WaitUntil(x => _fileUploadPage.CheckFileInputVisible());
-            else
-                WaitUntil(x => _fileUploadPage.FileInput.Enabled);
+            WaitUntil(x => _fileUploadPage.CheckFileInputVisible());
 
             string tempFilePath = Path.GetTempFileName();
             using (StreamWriter outputFile = new StreamWriter(tempFilePath, false))
             {
                 outputFile.WriteLine("Test123");
             }
-
-            if (_browser == Config.Browser.Chrome)
-                _fileUploadPage.UploadAFileShadowRoot(tempFilePath);
-            else
-                _fileUploadPage.UploadAFile(tempFilePath);
+            _fileUploadPage.UploadAFile(tempFilePath);
 
             WaitUntil(x => _fileUploadPage.GetUploadedFilesCount() > 0);
 
@@ -56,21 +49,14 @@ namespace KitchenSink.Tests.Test.SectionCustom
         [Test]
         public void FileUploadPage_UploadAndDeleteAFile()
         {
-            if (_browser == Config.Browser.Chrome)
-                WaitUntil(x => _fileUploadPage.CheckFileInputVisible());
-            else
-                WaitUntil(x => _fileUploadPage.FileInput.Enabled);
+            WaitUntil(x => _fileUploadPage.CheckFileInputVisible());
 
             string tempFilePath = Path.GetTempFileName();
             using (StreamWriter outputFile = new StreamWriter(tempFilePath, false))
             {
                 outputFile.WriteLine("Test123");
             }
-
-            if (_browser == Config.Browser.Chrome)
-                _fileUploadPage.UploadAFileShadowRoot(tempFilePath);
-            else
-                _fileUploadPage.UploadAFile(tempFilePath);
+            _fileUploadPage.UploadAFile(tempFilePath);
 
             WaitUntil(x => _fileUploadPage.GetUploadedFilesCount() > 0);
 

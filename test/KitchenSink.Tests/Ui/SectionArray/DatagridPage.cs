@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Runtime.Remoting.Messaging;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
@@ -14,12 +13,6 @@ namespace KitchenSink.Tests.Ui.SectionArray
 
         [FindsBy(How = How.XPath, Using = "//button[text() = 'Add a pet']")]
         public IWebElement AddPetButton { get; set; }
-
-        [FindsBy(How = How.ClassName, Using = "htCore")]
-        public IWebElement PetsTable { get; set; }
-
-        [FindsBy(How = How.XPath, Using = "//table[@class='htCore']//tbody//tr")]
-        public IList<IWebElement> PetsTableRows { get; set; }
 
         public bool CheckTableVisible()
         {

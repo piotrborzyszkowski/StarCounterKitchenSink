@@ -30,17 +30,9 @@ namespace KitchenSink.Tests.Test.SectionArray
         [Test]
         public void TablePage_AddNewRow()
         {
-            if (_browser == Config.Browser.Chrome)
-                WaitUntil(x => _datagridPage.CheckTableVisible());
-            else
-                WaitUntil(x => _datagridPage.PetsTable.Displayed);
-            
+            WaitUntil(x => _datagridPage.CheckTableVisible());
             _datagridPage.AddPet();
-
-            if (_browser == Config.Browser.Chrome)
-                WaitUntil(x => _datagridPage.GetTableRowsCount() == 4);
-            else
-                WaitUntil(x => _datagridPage.PetsTableRows.Count == 4);
+            WaitUntil(x => _datagridPage.GetTableRowsCount() == 4);
         }
     }
 }
