@@ -14,9 +14,11 @@ namespace KitchenSink.Tests.Test.SectionCustom
     {
         private FileUploadPage _fileUploadPage;
         private MainPage _mainPage;
+        private readonly Config.Browser _browser;
 
         public FileUploadPageTest(Config.Browser browser) : base(browser)
         {
+            _browser = browser;
         }
 
         [SetUp]
@@ -29,7 +31,10 @@ namespace KitchenSink.Tests.Test.SectionCustom
         [Test]
         public void FileUploadPage_UploadAFile()
         {
-            WaitUntil(x => _fileUploadPage.FileInput.Enabled);
+            if (_browser == Config.Browser.Chrome)
+                WaitUntil(x => _fileUploadPage.CheckFileInputVisible());
+            else
+                WaitUntil(x => _fileUploadPage.FileInput.Enabled);
 
             string tempFilePath = Path.GetTempFileName();
             using (StreamWriter outputFile = new StreamWriter(tempFilePath, false))
@@ -37,16 +42,24 @@ namespace KitchenSink.Tests.Test.SectionCustom
                 outputFile.WriteLine("Test123");
             }
 
-            _fileUploadPage.UploadAFile(tempFilePath);
+            if (_browser == Config.Browser.Chrome)
+                _fileUploadPage.UploadAFileShadowRoot(tempFilePath);
+            else
+                _fileUploadPage.UploadAFile(tempFilePath);
+
             WaitUntil(x => _fileUploadPage.GetUploadedFilesCount() > 0);
 
-            Assert.AreEqual("Do not forget to delete files from your temporary folder!", _fileUploadPage.InfoLabel.Text);
+            Assert.AreEqual("Do not forget to delete files from your temporary folder!",
+                _fileUploadPage.InfoLabel.Text);
         }
 
         [Test]
         public void FileUploadPage_UploadAndDeleteAFile()
         {
-            WaitUntil(x => _fileUploadPage.FileInput.Enabled);
+            if (_browser == Config.Browser.Chrome)
+                WaitUntil(x => _fileUploadPage.CheckFileInputVisible());
+            else
+                WaitUntil(x => _fileUploadPage.FileInput.Enabled);
 
             string tempFilePath = Path.GetTempFileName();
             using (StreamWriter outputFile = new StreamWriter(tempFilePath, false))
@@ -54,7 +67,11 @@ namespace KitchenSink.Tests.Test.SectionCustom
                 outputFile.WriteLine("Test123");
             }
 
-            _fileUploadPage.UploadAFile(tempFilePath);
+            if (_browser == Config.Browser.Chrome)
+                _fileUploadPage.UploadAFileShadowRoot(tempFilePath);
+            else
+                _fileUploadPage.UploadAFile(tempFilePath);
+
             WaitUntil(x => _fileUploadPage.GetUploadedFilesCount() > 0);
 
             Assert.AreEqual("Do not forget to delete files from your temporary folder!", _fileUploadPage.InfoLabel.Text);

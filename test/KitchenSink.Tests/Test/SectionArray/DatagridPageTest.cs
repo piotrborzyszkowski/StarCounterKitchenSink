@@ -13,9 +13,11 @@ namespace KitchenSink.Tests.Test.SectionArray
     {
         private DatagridPage _datagridPage;
         private MainPage _mainPage;
+        private readonly Config.Browser _browser;
 
         public DatagridPageTest(Config.Browser browser) : base(browser)
         {
+            _browser = browser;
         }
 
         [SetUp]
@@ -28,10 +30,17 @@ namespace KitchenSink.Tests.Test.SectionArray
         [Test]
         public void TablePage_AddNewRow()
         {
-            var rowsBefore = _datagridPage.PetsTableRows.Count;
+            if (_browser == Config.Browser.Chrome)
+                WaitUntil(x => _datagridPage.CheckTableVisible());
+            else
+                WaitUntil(x => _datagridPage.PetsTable.Displayed);
+            
             _datagridPage.AddPet();
-            var rowsAfter = _datagridPage.PetsTableRows.Count;
-            Assert.Greater(rowsAfter, rowsBefore);
+
+            if (_browser == Config.Browser.Chrome)
+                WaitUntil(x => _datagridPage.GetTableRowsCount() == 4);
+            else
+                WaitUntil(x => _datagridPage.PetsTableRows.Count == 4);
         }
     }
 }

@@ -90,6 +90,13 @@ namespace KitchenSink.Tests.Ui
             element.Click();
         }
 
+        public IWebElement ExpandShadowRoot(IWebElement shadowRootElement)
+        {
+            IWebElement shadowTreeParent = (IWebElement)((IJavaScriptExecutor)Driver)
+            .ExecuteScript("return arguments[0].shadowRoot", shadowRootElement);
+            return shadowTreeParent;
+        }
+
         public void ScrollToTheTop()
         {
             ((IJavaScriptExecutor)Driver).ExecuteScript("window.scrollTo(0, 0)");

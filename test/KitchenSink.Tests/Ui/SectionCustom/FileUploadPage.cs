@@ -28,9 +28,21 @@ namespace KitchenSink.Tests.Ui.SectionCustom
             FileInput.SendKeys(filePath); //BUG in EDGE: https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/7194303/
         }
 
+        public void UploadAFileShadowRoot(string filePath)
+        {
+            var shadowRoot = ExpandShadowRoot(Driver.FindElement(By.XPath("//starcounter-upload")));
+            shadowRoot.FindElement(By.Id("fileElement")).SendKeys(filePath);
+        }
+
         public int GetUploadedFilesCount()
         {
             return UploadedFilesList.Count;
+        }
+
+        public bool CheckFileInputVisible()
+        {
+            var shadowRoot = ExpandShadowRoot(Driver.FindElement(By.XPath("//starcounter-upload")));
+            return shadowRoot.FindElement(By.Id("fileElement")).Enabled;
         }
 
         public void DeleteAllFiles()
