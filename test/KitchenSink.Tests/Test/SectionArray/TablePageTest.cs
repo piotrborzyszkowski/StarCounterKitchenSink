@@ -29,11 +29,8 @@ namespace KitchenSink.Tests.Test.SectionArray
         public void TablePage_AddNewRow()
         {
             WaitUntil(x => _tablePage.PetsTable.Displayed);
-
-            var rowsBefore = _tablePage.PetsTableRows.Count;
             _tablePage.AddPet();
-            var rowsAfter = _tablePage.PetsTableRows.Count;
-            Assert.Greater(rowsAfter, rowsBefore);
+            WaitUntil(x => _tablePage.PetsTableRows.Count == 4);
         }
     }
 }
