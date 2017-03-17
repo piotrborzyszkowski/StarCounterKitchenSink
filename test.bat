@@ -1,7 +1,5 @@
 @ECHO OFF
 
-staradmin stop db default
-
 IF "%CONFIGURATION%"=="" SET CONFIGURATION=Debug
 
 SET INTERACTIVE=1
