@@ -2,10 +2,10 @@
 using KitchenSink.Tests.Ui.SectionString;
 using KitchenSink.Tests.Utilities;
 using NUnit.Framework;
-using OpenQA.Selenium.Support.UI;
 
 namespace KitchenSink.Tests.Test.SectionString
 {
+    [Parallelizable(ParallelScope.Fixtures)]
     [TestFixture(Config.Browser.Chrome)]
     [TestFixture(Config.Browser.Edge)]
     [TestFixture(Config.Browser.Firefox)]
@@ -45,7 +45,7 @@ namespace KitchenSink.Tests.Test.SectionString
             WaitUntil(x => _textareaPage.Textarea.Displayed);
             _textareaPage.ClearTextarea();
             _textareaPage.FillTextarea(newText);
-            Assert.AreEqual("Length of your bio: 4 chars", _textareaPage.TextareaInfoLabel.Text);
+            Assert.IsTrue(WaitForText(_textareaPage.TextareaInfoLabel, "Length of your bio: 4 chars", 5));
             _textareaPage.ClearTextarea();
             Assert.IsTrue(WaitForText(_textareaPage.TextareaInfoLabel, "Length of your bio: 0 chars", 5));
         }

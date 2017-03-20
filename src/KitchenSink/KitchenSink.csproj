@@ -184,6 +184,9 @@
       <DependentUpon>DatagridPage.json</DependentUpon>
     </Compile>
     <Compile Include="ValidatorHelper.cs" />
+    <Compile Include="FlashMessagePage.json.cs">
+      <DependentUpon>FlashMessagePage.json</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <TypedJSON Include="TextPage.json">
@@ -202,6 +205,10 @@
     <Content Include="wwwroot\KitchenSink\ButtonPage.html" />
     <Content Include="wwwroot\KitchenSink\CallbackPage.html" />
     <Content Include="wwwroot\KitchenSink\ChartPage.html" />
+    <TypedJSON Include="FlashMessagePage.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
+    <None Include="wwwroot\KitchenSink\FlashMessagePage.html" />
     <Content Include="wwwroot\KitchenSink\LazyLoadingPage.html" />
     <Content Include="wwwroot\KitchenSink\MainPage.html">
       <SubType>Component</SubType>

@@ -5,6 +5,7 @@ using NUnit.Framework;
 
 namespace KitchenSink.Tests.Test.SectionArray
 {
+    [Parallelizable(ParallelScope.Fixtures)]
     [TestFixture(Config.Browser.Chrome)]
     [TestFixture(Config.Browser.Edge)]
     [TestFixture(Config.Browser.Firefox)]
@@ -12,9 +13,11 @@ namespace KitchenSink.Tests.Test.SectionArray
     {
         private DatagridPage _datagridPage;
         private MainPage _mainPage;
+        private readonly Config.Browser _browser;
 
         public DatagridPageTest(Config.Browser browser) : base(browser)
         {
+            _browser = browser;
         }
 
         [SetUp]
@@ -27,10 +30,9 @@ namespace KitchenSink.Tests.Test.SectionArray
         [Test]
         public void TablePage_AddNewRow()
         {
-            var rowsBefore = _datagridPage.PetsTableRows.Count;
+            WaitUntil(x => _datagridPage.CheckTableVisible());
             _datagridPage.AddPet();
-            var rowsAfter = _datagridPage.PetsTableRows.Count;
-            Assert.Greater(rowsAfter, rowsBefore);
+            WaitUntil(x => _datagridPage.GetTableRowsCount() == 4);
         }
     }
 }

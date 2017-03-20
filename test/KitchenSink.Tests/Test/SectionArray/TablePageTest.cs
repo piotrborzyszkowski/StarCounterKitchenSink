@@ -5,6 +5,7 @@ using NUnit.Framework;
 
 namespace KitchenSink.Tests.Test.SectionArray
 {
+    [Parallelizable(ParallelScope.Fixtures)]
     [TestFixture(Config.Browser.Chrome)]
     [TestFixture(Config.Browser.Edge)]
     [TestFixture(Config.Browser.Firefox)]
@@ -27,11 +28,9 @@ namespace KitchenSink.Tests.Test.SectionArray
         [Test]
         public void TablePage_AddNewRow()
         {
-
-            var rowsBefore = _tablePage.PetsTableRows.Count;
+            WaitUntil(x => _tablePage.PetsTable.Displayed);
             _tablePage.AddPet();
-            var rowsAfter = _tablePage.PetsTableRows.Count;
-            Assert.Greater(rowsAfter, rowsBefore);
+            WaitUntil(x => _tablePage.PetsTableRows.Count == 4);
         }
     }
 }

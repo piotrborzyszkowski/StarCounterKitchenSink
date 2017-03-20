@@ -1,3 +1,5 @@
-@echo off
+@ECHO OFF
 
-START /W star.exe --resourcedir="src\KitchenSink\wwwroot" "bin\Debug\KitchenSink.exe"
+IF "%CONFIGURATION%"=="" SET CONFIGURATION=Debug
+
+star --resourcedir="%~dp0src\KitchenSink\wwwroot" "%~dp0bin/%CONFIGURATION%/KitchenSink.exe"

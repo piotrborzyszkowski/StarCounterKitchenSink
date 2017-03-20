@@ -14,6 +14,9 @@ namespace KitchenSink.Tests.Ui.SectionArray
         [FindsBy(How = How.XPath, Using = "//button[text() = 'Add a pet']")]
         public IWebElement AddPetButton { get; set; }
 
+        [FindsBy(How = How.XPath, Using = "//table[@class='table table-striped']")]
+        public IWebElement PetsTable { get; set; }
+
         [FindsBy(How = How.XPath, Using = "//table[@class='table table-striped']//tbody//tr")]
         public IList<IWebElement> PetsTableRows { get; set; }
 

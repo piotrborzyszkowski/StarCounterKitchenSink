@@ -1,4 +1,4 @@
-Param ($checkoutdir = "%teamcity.build.checkoutDir%")
+Param ($checkoutdir, $nunitversion, $browsersToRun)
 
 $StarCounterDir = "$checkoutdir\sc"
 $StarCounterWorkDirPath = "$StarCounterDir\starcounter-workdir"
@@ -8,15 +8,14 @@ $StarCounterConfigPath = "$StarCounterDir\Configuration"
 $KitchenSinkWwwPath = "$checkoutdir\KitchenSink\src\KitchenSink\wwwroot"
 $KitchenSinkExePath = "$checkoutdir\KitchenSink\bin\Debug\KitchenSink.exe"
 $KitchenSinkTestsPath = "$checkoutdir\KitchenSink\test\KitchenSink.Tests\bin\Debug\KitchenSink.Tests.dll"
+$KitchenSinkArg = "--resourcedir=$KitchenSinkWwwPath $KitchenSinkExePath"
 
-#create repo
-Function createRepo($wdir, $scpath)
-{
-	$process = Start-Process -FilePath $scpath\star.exe -ArgumentList "`@`@createrepo $wdir" -PassThru -Wait
-	return $process.ExitCode
-}
+$NunitConsoleRunnerExePath = "$checkoutdir\KitchenSink\packages\NUnit.ConsoleRunner.$nunitversion\tools\nunit3-console.exe"
+$NunitArg = "$KitchenSinkTestsPath --noheader --teamcity --params Browsers=$browsersToRun"
 
-#create xml file (personal.xml) in Configuration folder
+$StarExePath = "$StarCounterDir\star.exe"
+$StarAdminExePath = "$StarCounterDir\staradmin.exe"
+
 Function createXML($repoPath, $configPath)
 {
 	$fileContent = "<?xml version=`"1.0`" encoding=`"UTF-8`"?>
@@ -26,42 +25,21 @@ Function createXML($repoPath, $configPath)
 	return Test-Path $configPath\personal.xml
 }
 
-#start KitchenSink app
-Function startKitchenSink($scpath, $wwwPath, $exePath)
-{
-	$process = Start-Process -FilePath $scpath\star.exe -ArgumentList "--d=kitchensink --resourcedir=$wwwPath $exePath" -PassThru -NoNewWindow
-	return $process.Id
-}
-
-#run KitchenSink tests
-Function runTests($testPath)
-{
-	$process = Start-Process -FilePath "$checkoutdir\KitchenSink\packages\NUnit.ConsoleRunner.3.6.0\tools\nunit3-console.exe" -ArgumentList "$testPath --noheader --teamcity --params Browsers=Chrome,Firefox" -PassThru -NoNewWindow -Wait
-	return $process.ExitCode
-}
-
-#kill StarCounter server
-Function killStarcounter($scpath)
-{
-	$process = Start-Process -FilePath "$scpath/staradmin.exe" -ArgumentList "kill all" -PassThru -Wait
-	return $process.ExitCode
-}
-
 try 
 {
-	$createRepoExitCode = createRepo -wdir $StarCounterWorkDirPath -scpath $StarCounterDir
-	if ($createRepoExitCode -eq 0)
+	$createRepo = Start-Process -FilePath $StarExePath -ArgumentList "`@`@createrepo $StarCounterWorkDirPath" -PassThru -NoNewWindow -Wait
+	if ($createRepo.ExitCode -eq 0)
 	{
 		$createXMLExitCode = createXML -repoPath $StarCounterRepoPath -configPath $StarCounterConfigPath
 		if ($createXMLExitCode)
 		{ 
-			$id = startKitchenSink -scpath $StarCounterDir -wwwPath $KitchenSinkWwwPath -exePath $KitchenSinkExePath 
-			wait-process -id $id
-			$testExitCode = runTests -testPath $KitchenSinkTestsPath
-			if($testExitCode -ge 0)
+			$KitchenSink = Start-Process -FilePath $StarExePath -ArgumentList $KitchenSinkArg -PassThru -NoNewWindow
+			wait-process -id $KitchenSink.Id
+			$Tests = Start-Process -FilePath $NunitConsoleRunnerExePath -ArgumentList $NunitArg -PassThru -NoNewWindow -Wait
+			if($Tests.ExitCode -ge 0)
 			{
-				$killingExitCode = killStarcounter -scpath $StarCounterDir
-				if($killingExitCode -eq 0) { exit(0) }
+				$KillStarcounter = Start-Process -FilePath $StarAdminExePath -ArgumentList "kill all" -PassThru -NoNewWindow -Wait
+				if($KillStarcounter.ExitCode -eq 0) { exit(0) }
 				else { exit(1) }
 			}
 			else { exit(1) }
