@@ -95,8 +95,12 @@
     <Compile Include="PaginationPage.json.cs">
       <DependentUpon>PaginationPage.json</DependentUpon>
     </Compile>
+    <Compile Include="Person.cs" />
     <Compile Include="ProgressBarPage.json.cs">
       <DependentUpon>ProgressBarPage.json</DependentUpon>
+    </Compile>
+    <Compile Include="SortableListPage.json.cs">
+      <DependentUpon>SortableListPage.json</DependentUpon>
     </Compile>
     <Compile Include="ValidationPage.json.cs">
       <DependentUpon>ValidationPage.json</DependentUpon>
@@ -208,6 +212,9 @@
     <TypedJSON Include="FlashMessagePage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
+    <TypedJSON Include="SortableListPage.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
     <None Include="wwwroot\KitchenSink\FlashMessagePage.html" />
     <Content Include="wwwroot\KitchenSink\LazyLoadingPage.html" />
     <Content Include="wwwroot\KitchenSink\MainPage.html">
@@ -215,6 +222,7 @@
     </Content>
     <Content Include="wwwroot\KitchenSink\PaginationPage.html" />
     <Content Include="wwwroot\KitchenSink\ProgressBarPage.html" />
+    <Content Include="wwwroot\KitchenSink\SortableListPage.html" />
     <Content Include="wwwroot\KitchenSink\ValidationPage.html" />
     <Content Include="wwwroot\KitchenSink\ToggleButtonPage.html" />
     <Content Include="wwwroot\KitchenSink\CheckboxPage.html" />

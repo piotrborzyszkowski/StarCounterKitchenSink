@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Starcounter;
+using System.Collections.Generic;
 
 namespace KitchenSink
 {
@@ -40,6 +41,18 @@ namespace KitchenSink
             Handle.GET("/KitchenSink/mainpage", () => WrapPage<MainPage>("/KitchenSink/partial/mainpage"));
 
             Handle.GET("/KitchenSink", () => { return Self.GET("/KitchenSink/mainpage"); });
+
+            Handle.GET("/KitchenSink/partial/sortablelist", () =>
+            {
+                List<Person> persons = null;
+                Db.Transact(() =>
+                {
+                    persons = Db.SQL("SELECT p FROM KitchenSink.Person p").Skip(3).Take(5).Select(p => (Person) p).ToList();
+                });
+
+                return new SortableListPage() { Data = persons };
+            });
+            Handle.GET("/KitchenSink/sortablelist", () => WrapPage<SortableListPage>("/KitchenSink/partial/sortablelist"));
 
             Handle.GET("/KitchenSink/partial/button", () => new ButtonPage());
             Handle.GET("/KitchenSink/button", () => WrapPage<ButtonPage>("/KitchenSink/partial/button"));

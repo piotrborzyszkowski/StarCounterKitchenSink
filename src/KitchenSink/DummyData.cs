@@ -8,6 +8,28 @@ namespace KitchenSink
         {
             Db.Transact(() =>
             {
+                if (Db.SQL("SELECT p FROM KitchenSink.Person p").First == null)
+                {
+                    new Person("Clemence", "Hunnisett");
+                    new Person("Veronica", "Clarkson");
+                    new Person("Ami", "Langley");
+                    new Person("Rupert", "Donalds");
+                    new Person("Geraldine", "Traviss");
+                    new Person("Julius", "Edwards");
+                    new Person("Jessika", "Jewel");
+                    new Person("Herbert", "Wright");
+                    new Person("Kori", "Wragge");
+                    new Person("Dorthy", "Danniell");
+                    new Person("Garry", "Leon");
+                    new Person("Rudolph", "Jameson");
+                    new Person("Matilda", "Earls");
+                    new Person("Jessika", "Foster");
+                    new Person("Jessika", "Wright");
+                    new Person("Herbert", "Jameson");
+                    new Person("Kori", "Hunnisett");
+                    new Person("Dorthy", "Langley");
+                }
+
                 // For Dropdown page
                 if (Db.SQL("SELECT p FROM KitchenSink.SoftwareProduct p").First == null)
                 {
