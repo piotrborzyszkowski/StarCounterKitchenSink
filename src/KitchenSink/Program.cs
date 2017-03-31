@@ -47,10 +47,22 @@ namespace KitchenSink
                 List<Person> persons = null;
                 Db.Transact(() =>
                 {
-                    persons = Db.SQL("SELECT p FROM KitchenSink.Person p").Skip(3).Take(5).Select(p => (Person) p).ToList();
+                    persons = Db.SQL("SELECT p FROM KitchenSink.Person p ORDER BY p.OrderNumber").Skip(3).Take(5).Select(p => (Person) p).ToList();
                 });
 
-                return new SortableListPage() { Data = persons };
+                var page = new SortableListPage();
+                page.Data = new
+                {
+                    Persons = persons
+                };
+                //foreach (var person in persons)
+                //{
+                //    var jsonPerson = page.Persons.Add();
+                //    jsonPerson.FirstName = person.FirstName;
+                //    jsonPerson.LastName = person.LastName;
+                //}
+
+                return page;
             });
             Handle.GET("/KitchenSink/sortablelist", () => WrapPage<SortableListPage>("/KitchenSink/partial/sortablelist"));
 

@@ -2,6 +2,34 @@
 
 <template>
     <template is="dom-bind">
-        ala ma kota
+        <table>
+            <thead>
+                <tr>
+                    <th>First name</th>
+                    <th>Last name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <template is="dom-repeat" items="{{model.Persons}}" as="person">
+                    <tr>
+                        <td>{{ person.FirstName }}</td>
+                        <td>{{ person.LastName }}</td>
+                        <td>
+                            <button value="{{ person.MoveUp$::click }}" onmousedown="++this.value">move up</button>
+                            <button value="{{ person.MoveDown$::click }}" onmousedown="++this.value">move down</button>
+                        </td>
+                    </tr>
+                </template>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3">
+                        <button value="{{ model.PreviousPage$::click }}" onmousedown="++this.value">&lt;</button>
+                        <button value="{{ model.NextPage$::click }}" onmousedown="++this.value">&gt;</button>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
     </template>
 </template>

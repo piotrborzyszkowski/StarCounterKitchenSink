@@ -10,24 +10,25 @@ namespace KitchenSink
             {
                 if (Db.SQL("SELECT p FROM KitchenSink.Person p").First == null)
                 {
-                    new Person("Clemence", "Hunnisett");
-                    new Person("Veronica", "Clarkson");
-                    new Person("Ami", "Langley");
-                    new Person("Rupert", "Donalds");
-                    new Person("Geraldine", "Traviss");
-                    new Person("Julius", "Edwards");
-                    new Person("Jessika", "Jewel");
-                    new Person("Herbert", "Wright");
-                    new Person("Kori", "Wragge");
-                    new Person("Dorthy", "Danniell");
-                    new Person("Garry", "Leon");
-                    new Person("Rudolph", "Jameson");
-                    new Person("Matilda", "Earls");
-                    new Person("Jessika", "Foster");
-                    new Person("Jessika", "Wright");
-                    new Person("Herbert", "Jameson");
-                    new Person("Kori", "Hunnisett");
-                    new Person("Dorthy", "Langley");
+                    int orderNumber = 0;
+                    new Person("Clemence", "Hunnisett", ++orderNumber);
+                    new Person("Veronica", "Clarkson", ++orderNumber);
+                    new Person("Ami", "Langley", ++orderNumber);
+                    new Person("Rupert", "Donalds", ++orderNumber);
+                    new Person("Geraldine", "Traviss", ++orderNumber);
+                    new Person("Julius", "Edwards", ++orderNumber);
+                    new Person("Jessika", "Jewel", ++orderNumber);
+                    new Person("Herbert", "Wright", ++orderNumber);
+                    new Person("Kori", "Wragge", ++orderNumber);
+                    new Person("Dorthy", "Danniell", ++orderNumber);
+                    new Person("Garry", "Leon", ++orderNumber);
+                    new Person("Rudolph", "Jameson", ++orderNumber);
+                    new Person("Matilda", "Earls", ++orderNumber);
+                    new Person("Jessika", "Foster", ++orderNumber);
+                    new Person("Jessika", "Wright", ++orderNumber);
+                    new Person("Herbert", "Jameson", ++orderNumber);
+                    new Person("Kori", "Hunnisett", ++orderNumber);
+                    new Person("Dorthy", "Langley", ++orderNumber);
                 }
 
                 // For Dropdown page
