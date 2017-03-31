@@ -44,25 +44,15 @@ namespace KitchenSink
 
             Handle.GET("/KitchenSink/partial/sortablelist", () =>
             {
-                List<Person> persons = null;
-                Db.Transact(() =>
+                return Db.Scope(() =>
                 {
-                    persons = Db.SQL("SELECT p FROM KitchenSink.Person p ORDER BY p.OrderNumber").Skip(3).Take(5).Select(p => (Person) p).ToList();
+                    List<Person> persons = Db.SQL<Person>("SELECT p FROM KitchenSink.Person p ORDER BY p.OrderNumber").Skip(3).Take(5).ToList();
+
+                    var page = new SortableListPage();
+                    page.LoadData();
+
+                    return page;
                 });
-
-                var page = new SortableListPage();
-                page.Data = new
-                {
-                    Persons = persons
-                };
-                //foreach (var person in persons)
-                //{
-                //    var jsonPerson = page.Persons.Add();
-                //    jsonPerson.FirstName = person.FirstName;
-                //    jsonPerson.LastName = person.LastName;
-                //}
-
-                return page;
             });
             Handle.GET("/KitchenSink/sortablelist", () => WrapPage<SortableListPage>("/KitchenSink/partial/sortablelist"));
 
