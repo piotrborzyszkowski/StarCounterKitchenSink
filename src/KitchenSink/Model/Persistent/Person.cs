@@ -1,6 +1,6 @@
 ﻿using Starcounter;
 
-namespace KitchenSink
+namespace KitchenSink.Model.Persistent
 {
     [Database]
     public class Person

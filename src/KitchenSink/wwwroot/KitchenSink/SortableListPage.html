@@ -25,8 +25,9 @@
             <tfoot>
                 <tr>
                     <td colspan="3">
-                        <button value="{{ model.PreviousPage$::click }}" onmousedown="++this.value">&lt;</button>
-                        <button value="{{ model.NextPage$::click }}" onmousedown="++this.value">&gt;</button>
+                        <button value="{{ model.PreviousPage$::click }}" onmousedown="++this.value" disabled="{{ model.PreviousPageDisabled }}">&lt;</button>
+                        Page {{ model.PageNumberHumanReadable }}
+                        <button value="{{ model.NextPage$::click }}" onmousedown="++this.value" disabled="{{ model.NextPageDisabled }}">&gt;</button>
                     </td>
                 </tr>
             </tfoot>

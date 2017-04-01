@@ -2,6 +2,7 @@
 using System.Linq;
 using Starcounter;
 using System.Collections.Generic;
+using KitchenSink.Model.Persistent;
 
 namespace KitchenSink
 {
@@ -46,8 +47,6 @@ namespace KitchenSink
             {
                 return Db.Scope(() =>
                 {
-                    List<Person> persons = Db.SQL<Person>("SELECT p FROM KitchenSink.Person p ORDER BY p.OrderNumber").Skip(3).Take(5).ToList();
-
                     var page = new SortableListPage();
                     page.LoadData();
 

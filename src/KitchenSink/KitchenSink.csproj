@@ -92,10 +92,11 @@
     <Compile Include="MainPage.json.cs">
       <DependentUpon>MainPage.json</DependentUpon>
     </Compile>
+    <Compile Include="Model\Page\SortableListPageData.cs" />
     <Compile Include="PaginationPage.json.cs">
       <DependentUpon>PaginationPage.json</DependentUpon>
     </Compile>
-    <Compile Include="Person.cs" />
+    <Compile Include="Model\Persistent\Person.cs" />
     <Compile Include="ProgressBarPage.json.cs">
       <DependentUpon>ProgressBarPage.json</DependentUpon>
     </Compile>

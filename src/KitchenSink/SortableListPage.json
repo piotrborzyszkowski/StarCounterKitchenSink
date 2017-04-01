@@ -11,6 +11,13 @@
     }
   ],
 
-  "NextPage$": 0,
-  "PreviousPage$": 0
+  "PageNumber": 0,
+  "PageNumberHumanReadable": 0,
+  "MaxPageNumber": 0,
+
+  "PreviousPageDisabled": false,
+  "NextPageDisabled": false,
+
+  "PreviousPage$": 0,
+  "NextPage$": 0
 }

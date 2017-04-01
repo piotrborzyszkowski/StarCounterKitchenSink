@@ -1,4 +1,5 @@
-﻿using Starcounter;
+﻿using KitchenSink.Model.Persistent;
+using Starcounter;
 
 namespace KitchenSink
 {
@@ -8,7 +9,7 @@ namespace KitchenSink
         {
             Db.Transact(() =>
             {
-                if (Db.SQL("SELECT p FROM KitchenSink.Person p").First == null)
+                if (Db.SQL("SELECT p FROM KitchenSink.Model.Persistent.Person p").First == null)
                 {
                     int orderNumber = 0;
                     new Person("Clemence", "Hunnisett", ++orderNumber);
