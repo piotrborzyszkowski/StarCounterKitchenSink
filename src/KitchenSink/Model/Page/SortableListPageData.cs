@@ -1,11 +1,10 @@
-﻿using KitchenSink.Model.Persistent;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace KitchenSink.Model.Page
 {
     public class SortableListPageData
     {
-        public List<Person> Persons { get; set; }
+        public List<SortableListPage.Person> Persons { get; set; }
 
         public int PageNumber { get; set; }
         public int MaxPageNumber { get; set; }
@@ -15,6 +14,14 @@ namespace KitchenSink.Model.Page
             get
             {
                 return PageNumber + 1;
+            }
+        }
+
+        public int MaxPageNumberHumanReadable
+        {
+            get
+            {
+                return MaxPageNumber + 1;
             }
         }
 

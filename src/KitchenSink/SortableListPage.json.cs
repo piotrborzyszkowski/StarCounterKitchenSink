@@ -17,7 +17,10 @@ namespace KitchenSink
                 this.Data = data = new SortableListPageData();
             }
 
-            data.Persons = Db.SQL<Model.Persistent.Person>("SELECT p FROM KitchenSink.Model.Persistent.Person p ORDER BY p.OrderNumber").Skip(data.PageNumber * pageSize).Take(pageSize).ToList();
+            var min = Db.SQL<long>("SELECT min(p.OrderNumber) FROM KitchenSink.Model.Persistent.Person p").First;
+            var max = Db.SQL<long>("SELECT max(p.OrderNumber) FROM KitchenSink.Model.Persistent.Person p").First;
+            data.Persons = Db.SQL<Model.Persistent.Person>("SELECT p FROM KitchenSink.Model.Persistent.Person p ORDER BY p.OrderNumber")
+                .Skip(data.PageNumber * pageSize).Take(pageSize).Select(person => map(person, min, max)).ToList();
 
             var count = Db.SQL<long>("SELECT count(p.OrderNumber) FROM KitchenSink.Model.Persistent.Person p").First;
             data.MaxPageNumber = Convert.ToInt32(Math.Ceiling((double)count / (double)pageSize)) - 1;
@@ -48,12 +51,25 @@ namespace KitchenSink
             LoadData();
         }
 
+        private Person map(Model.Persistent.Person person, long minOrderNumber, long maxOrderNumber)
+        {
+            return new Person()
+            {
+                FirstName = person.FirstName,
+                LastName = person.LastName,
+                OrderNumber = person.OrderNumber,
+
+                FirstItem = person.OrderNumber == minOrderNumber,
+                LastItem = person.OrderNumber == maxOrderNumber,
+            };
+        }
+
         [SortableListPage_json.Persons]
         public partial class Person : Json
         {
             public void Handle(Input.MoveUp action)
             {
-                var person = (Model.Persistent.Person)this.Data;
+                var person = (Person)this.Data;
                 if (person.OrderNumber <= 1)
                 {
                     throw new ArgumentOutOfRangeException("Unable to move up the first person");
@@ -66,7 +82,7 @@ namespace KitchenSink
             {
                 var maxOrderCount = Db.SQL<long>("SELECT max(p.OrderNumber) FROM KitchenSink.Model.Persistent.Person p").First;
 
-                var person = (Model.Persistent.Person)this.Data;
+                var person = (Person)this.Data;
                 if (person.OrderNumber >= maxOrderCount)
                 {
                     throw new ArgumentOutOfRangeException("Unable to move down the first person");
@@ -75,13 +91,14 @@ namespace KitchenSink
                 Move(person, 1);
             }
 
-            private void Move(Model.Persistent.Person person, int step)
+            private void Move(Person person, long step)
             {
-                int moveToOrderNumber = person.OrderNumber + step;
-                var previousPerson = Db.SQL<Model.Persistent.Person>("SELECT p FROM KitchenSink.Model.Persistent.Person p WHERE p.OrderNumber = ?", moveToOrderNumber).First;
+                long moveToOrderNumber = person.OrderNumber + step;
+                var thisPerson = Db.SQL<Model.Persistent.Person>("SELECT p FROM KitchenSink.Model.Persistent.Person p WHERE p.OrderNumber = ?", person.OrderNumber).First;
+                var otherPerson = Db.SQL<Model.Persistent.Person>("SELECT p FROM KitchenSink.Model.Persistent.Person p WHERE p.OrderNumber = ?", moveToOrderNumber).First;
 
-                person.OrderNumber += step;
-                previousPerson.OrderNumber -= step;
+                thisPerson.OrderNumber += step;
+                otherPerson.OrderNumber -= step;
 
                 ((SortableListPage)Parent.Parent).LoadData();
 

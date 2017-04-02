@@ -5,6 +5,10 @@
     {
       "FirstName": "",
       "LastName": "",
+      "OrderNumber":  0,
+
+      "FirstItem": false,
+      "LastItem": false,
 
       "MoveUp$": 0,
       "MoveDown$": 0
@@ -14,6 +18,7 @@
   "PageNumber": 0,
   "PageNumberHumanReadable": 0,
   "MaxPageNumber": 0,
+  "MaxPageNumberHumanReadable": 0,
 
   "PreviousPageDisabled": false,
   "NextPageDisabled": false,

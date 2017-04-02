@@ -16,8 +16,8 @@
                         <td>{{ person.FirstName }}</td>
                         <td>{{ person.LastName }}</td>
                         <td>
-                            <button value="{{ person.MoveUp$::click }}" onmousedown="++this.value">move up</button>
-                            <button value="{{ person.MoveDown$::click }}" onmousedown="++this.value">move down</button>
+                            <button value="{{ person.MoveUp$::click }}" onmousedown="++this.value" disabled="{{ person.FirstItem }}">move up</button>
+                            <button value="{{ person.MoveDown$::click }}" onmousedown="++this.value" disabled="{{ person.LastItem }}">move down</button>
                         </td>
                     </tr>
                 </template>
@@ -26,7 +26,7 @@
                 <tr>
                     <td colspan="3">
                         <button value="{{ model.PreviousPage$::click }}" onmousedown="++this.value" disabled="{{ model.PreviousPageDisabled }}">&lt;</button>
-                        Page {{ model.PageNumberHumanReadable }}
+                        Page {{ model.PageNumberHumanReadable }} of {{ model.MaxPageNumberHumanReadable }}
                         <button value="{{ model.NextPage$::click }}" onmousedown="++this.value" disabled="{{ model.NextPageDisabled }}">&gt;</button>
                     </td>
                 </tr>
