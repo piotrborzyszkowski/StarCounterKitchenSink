@@ -16,8 +16,8 @@
                         <td>{{ person.FirstName }}</td>
                         <td>{{ person.LastName }}</td>
                         <td>
-                            <button value="{{ person.MoveUp$::click }}" onmousedown="++this.value" disabled="{{ person.FirstItem }}">move up</button>
-                            <button value="{{ person.MoveDown$::click }}" onmousedown="++this.value" disabled="{{ person.LastItem }}">move down</button>
+                            <button value="{{ person.MoveUp$::click }}" onmousedown="++this.value" disabled="{{ person.FirstItem }}" class="move-person move-person-up"></button>
+                            <button value="{{ person.MoveDown$::click }}" onmousedown="++this.value" disabled="{{ person.LastItem }}" class="move-person move-person-down"></button>
                         </td>
                     </tr>
                 </template>

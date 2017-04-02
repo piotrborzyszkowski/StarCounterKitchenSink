@@ -210,3 +210,18 @@
     color: red;
     font-size: 8pt;
 }
+
+.move-person {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background: none;
+    border: none;
+    background-image: url("./images/thumbsup.svg");
+    background-repeat: no-repeat;
+    content: "";
+}
+
+.move-person.move-person-down {
+    transform: scaleY(-1);
+}
