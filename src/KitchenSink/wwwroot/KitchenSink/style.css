@@ -225,3 +225,9 @@
 .move-person.move-person-down {
     transform: scaleY(-1);
 }
+
+.move-person:disabled {
+    background-image: url("./images/thumbsup-inactive.svg");
+    filter: blur(1px);
+    opacity: .7;
+}
