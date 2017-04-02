@@ -228,6 +228,5 @@
 
 .move-person:disabled {
     background-image: url("./images/thumbsup-inactive.svg");
-    filter: blur(1px);
-    opacity: .7;
+    opacity: .4;
 }
