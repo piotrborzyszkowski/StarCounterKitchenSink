@@ -1,8 +1,9 @@
 ﻿<link rel="import" href="/sys/polymer/polymer.html">
+<link rel="import" href="/sys/juicy-draggable/juicy-draggable.html">
 
 <template>
-    <template is="dom-bind">
-        <table>
+    <template is="dom-bind" id="listTemplate">
+        <table id="sortableList">
             <thead>
                 <tr>
                     <th>First name</th>
@@ -11,7 +12,7 @@
                 </tr>
             </thead>
             <tbody>
-                <template is="dom-repeat" items="{{model.Persons}}" as="person">
+                <template is="dom-repeat" items="{{ model.Persons }}" as="person">
                     <tr>
                         <td>{{ person.FirstName }}</td>
                         <td>{{ person.LastName }}</td>
@@ -32,5 +33,48 @@
                 </tr>
             </tfoot>
         </table>
+
+        <template is="dom-repeat" items="{{ model.Persons }}" as="person">
+                <div class="drop" style="position: static; width: 200px; height: auto;" data-order-number="{{ person.OrderNumber }}">
+                    {{ person.FirstName }} {{ person.LastName }}
+                    <div>
+                        <button value="{{ person.Move$::click }}" onmousedown="++this.value" class="move-person-by">x</button>
+                        <input value$="{{ person.DragOffset$ }}" class="move-person-offset" />
+                    </div>
+                </div>
+        </template>
+
+        <script>
+            var template = document.querySelector("#listTemplate");
+
+            template.itemDropped = function (event) {
+                var target = event.currentTarget;
+                var drag = event.detail.dragElement;
+                var drop = event.detail.dropElement;
+
+                if (!event.detail.dropElement) {
+                    drag.parentNode.removeChild(drag);
+                } else {
+                    //debugger;
+                    var offset = event.detail.dropElement.dataOrderNumber - event.srcElement.dataOrderNumber;
+                    if (offset != 0) {
+                        var offsetInput = event.srcElement.getElementsByClassName("move-person-offset");
+                        offsetInput.value = offset;
+                        event.srcElement.getElementsByClassName("move-person-by")[0].click();
+                    }
+
+                    if (target.position == "static") {
+                        var origin = drag.nextElementSibling;
+
+                        drop.appendChild(origin);
+                        drag.parentNode.removeChild(drag);
+                    } else {
+                        drop.appendChild(drag);
+                        drag.style.position = "";
+                        target.setAttribute("disabled", "disabled");
+                    }
+                }
+            };
+        </script>
     </template>
 </template>

@@ -67,34 +67,37 @@ namespace KitchenSink
         [SortableListPage_json.Persons]
         public partial class Person : Json
         {
+            public void Handle(Input.Move action)
+            {
+                MoveBy(DragOffset);
+            }
+
             public void Handle(Input.MoveUp action)
             {
-                var person = (Person)this.Data;
-                if (person.OrderNumber <= 1)
+                if (OrderNumber <= 1)
                 {
                     throw new ArgumentOutOfRangeException("Unable to move up the first person");
                 }
 
-                Move(person, -1);
+                MoveBy(-1);
             }
 
             public void Handle(Input.MoveDown action)
             {
                 var maxOrderCount = Db.SQL<long>("SELECT max(p.OrderNumber) FROM KitchenSink.Model.Persistent.Person p").First;
 
-                var person = (Person)this.Data;
-                if (person.OrderNumber >= maxOrderCount)
+                if (OrderNumber >= maxOrderCount)
                 {
                     throw new ArgumentOutOfRangeException("Unable to move down the first person");
                 }
 
-                Move(person, 1);
+                MoveBy(1);
             }
 
-            private void Move(Person person, long step)
+            private void MoveBy(long step)
             {
-                long moveToOrderNumber = person.OrderNumber + step;
-                var thisPerson = Db.SQL<Model.Persistent.Person>("SELECT p FROM KitchenSink.Model.Persistent.Person p WHERE p.OrderNumber = ?", person.OrderNumber).First;
+                long moveToOrderNumber = OrderNumber + step;
+                var thisPerson = Db.SQL<Model.Persistent.Person>("SELECT p FROM KitchenSink.Model.Persistent.Person p WHERE p.OrderNumber = ?", OrderNumber).First;
                 var otherPerson = Db.SQL<Model.Persistent.Person>("SELECT p FROM KitchenSink.Model.Persistent.Person p WHERE p.OrderNumber = ?", moveToOrderNumber).First;
 
                 thisPerson.OrderNumber += step;

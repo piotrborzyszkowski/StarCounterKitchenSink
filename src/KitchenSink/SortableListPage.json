@@ -11,7 +11,9 @@
       "LastItem": false,
 
       "MoveUp$": 0,
-      "MoveDown$": 0
+      "MoveDown$": 0,
+      "Move$": 0,
+      "DragOffset$": 0
     }
   ],
 

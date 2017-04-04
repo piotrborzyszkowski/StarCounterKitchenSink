@@ -226,7 +226,16 @@
     transform: scaleY(-1);
 }
 
+.move-person:hover {
+    background-image: url("./images/thumbsup-hover.svg");
+}
+
 .move-person:disabled {
     background-image: url("./images/thumbsup-inactive.svg");
     opacity: .4;
 }
+
+#sortableList td, #sortableList th {
+    padding-left: 20px;
+    padding-right: 20px;
+} 
