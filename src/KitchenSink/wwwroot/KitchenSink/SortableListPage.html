@@ -39,7 +39,7 @@
                     {{ person.FirstName }} {{ person.LastName }}
                     <div>
                         <button value="{{ person.Move$::click }}" onmousedown="++this.value" class="move-person-by">x</button>
-                        <input value$="{{ person.DragOffset$ }}" class="move-person-offset" />
+                        <input value$="{{ person.DragOffset$::input }}" class="move-person-offset" />
                     </div>
                 </div>
         </template>

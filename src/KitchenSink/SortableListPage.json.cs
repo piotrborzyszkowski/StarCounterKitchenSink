@@ -20,7 +20,7 @@ namespace KitchenSink
             var min = Db.SQL<long>("SELECT min(p.OrderNumber) FROM KitchenSink.Model.Persistent.Person p").First;
             var max = Db.SQL<long>("SELECT max(p.OrderNumber) FROM KitchenSink.Model.Persistent.Person p").First;
             data.Persons = Db.SQL<Model.Persistent.Person>("SELECT p FROM KitchenSink.Model.Persistent.Person p ORDER BY p.OrderNumber")
-                .Skip(data.PageNumber * pageSize).Take(pageSize).Select(person => map(person, min, max)).ToList();
+                .Skip(data.PageNumber * pageSize).Take(pageSize).Select(person => Map(person, min, max)).ToList();
 
             var count = Db.SQL<long>("SELECT count(p.OrderNumber) FROM KitchenSink.Model.Persistent.Person p").First;
             data.MaxPageNumber = Convert.ToInt32(Math.Ceiling((double)count / (double)pageSize)) - 1;
@@ -51,9 +51,9 @@ namespace KitchenSink
             LoadData();
         }
 
-        private Person map(Model.Persistent.Person person, long minOrderNumber, long maxOrderNumber)
+        private Person Map(Model.Persistent.Person person, long minOrderNumber, long maxOrderNumber)
         {
-            return new Person()
+            var ret = new Person()
             {
                 FirstName = person.FirstName,
                 LastName = person.LastName,
@@ -62,11 +62,16 @@ namespace KitchenSink
                 FirstItem = person.OrderNumber == minOrderNumber,
                 LastItem = person.OrderNumber == maxOrderNumber,
             };
+
+            ret.LoadDataCallback = () => this.LoadData();
+            return ret;
         }
 
         [SortableListPage_json.Persons]
         public partial class Person : Json
         {
+            public Action LoadDataCallback { get; set; }
+
             public void Handle(Input.Move action)
             {
                 MoveBy(DragOffset);
@@ -103,8 +108,7 @@ namespace KitchenSink
                 thisPerson.OrderNumber += step;
                 otherPerson.OrderNumber -= step;
 
-                ((SortableListPage)Parent.Parent).LoadData();
-
+                LoadDataCallback();
                 Transaction.Commit();
             }
         }
